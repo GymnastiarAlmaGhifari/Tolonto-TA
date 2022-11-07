@@ -84,45 +84,45 @@ $password = $_POST['password'];
 
 
 // get token from session
-// $token = $_POST['token'];
-// // check token
-// if (Token::check($token)) {
-//     // check login
-//     if ($user->loginApi($email, $password)) {
-//         // set cookie
-//         $kukis = md5(uniqid(rand(), true));
-//         $user->cookie($email, $kukis);
-//         // set cookie
-//         Cookie::set('kukis', $kukis, 3600);
-//         // set session
-//         Session::set('login', true);
-//         // get user data
-//         $user_data = $user->get_data1($email);
-//         // set response
-//         $response = [
-//             "status" => "success",
-//             "message" => "Login Berhasil",
-//             "data" => $user_data,
-//         ];
-//         echo json_encode($response);
-//     } else {
-//         $response = [
-//             "status" => "error",
-//             "message" => "Login Gagal",
-//             "data" => [],
-//         ];
-//         echo json_encode($response);
-//     }
-// } else {
-//     $response = [
-//         "status" => "error",
-//         "message" => "Token Salah",
-//         "data" => [],
-//     ];
-//     echo json_encode($response);
-// }
+$token = $_POST['token'];
+// check token
+if (Token::check($token)) {
+    // check login
+    if ($user->loginApi($email, $password)) {
+        // set cookie
+        $kukis = md5(uniqid(rand(), true));
+        $user->cookie($email, $kukis);
+        // set cookie
+        Cookie::set('kukis', $kukis, 3600);
+        // set session
+        Session::set('login', true);
+        // get user data
+        $user_data = $user->get_data1($email);
+        // set response
+        $response = [
+            "status" => "success",
+            "message" => "Login Berhasil",
+            "data" => $user_data,
+        ];
+        echo json_encode($response);
+    } else {
+        $response = [
+            "status" => "error",
+            "message" => "Login Gagal",
+            "data" => [],
+        ];
+        echo json_encode($response);
+    }
+} else {
+    $response = [
+        "status" => "error",
+        "message" => "Token Salah",
+        "data" => [],
+    ];
+    echo json_encode($response);
+}
 
-// // $token === Session::get('token');
+// $token === Session::get('token');
 
 
 

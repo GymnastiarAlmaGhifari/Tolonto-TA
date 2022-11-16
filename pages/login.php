@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                         Login
                     </div>
                     <div class="mt-2 self-center text-sm font-noto-sans text-neutral_050 flex justify-center">
-                        Silahkan login untuk melanjutkan
+                        Silahkan login
                     </div>
                     <div class="mt-7">
 

@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*  */
+
+input[type="text"]:focus ~ .sticker,
+input[type="text"]:valid ~ .sticker {
+  @apply duration-300 transform -translate-y-4 text-xs ease-in-out;
+}
+
+input:focus ~ .sticker2,
+input:valid ~ .sticker2 {
+  @apply duration-300 transform -translate-y-4 text-xs ease-in-out;
+}
+/* animation notif from left to right */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/* input[type="checkbox"]:checked ~ .check {
+  @apply bg-neutral_050 shadow-elevation-dark-4;
+}
+input[type="checkbox"]:checked ~ .check::before {
+  @apply transform translate-x-[50px];
+}
+input[type="checkbox"]:checked ~ .check::after {
+  @apply transform translate-x-[0px];
+} */
+
+/* input[type="text"]: ~ .valid {
+  @apply opacity-100;
+} */
+/* input notfocus */

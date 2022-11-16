@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: application/json");
 // // require_once "../core/init.php";
 
 // // // login api
@@ -35,8 +36,12 @@
 // // $data = $user->loginApi($email, $password);
 require_once "../core/init.php";
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$json = file_get_contents('php://input');
+// $email = json_decode($_POST, false);
+// $password = json_decode($_POST['password'], false);
+$data = json_decode($json);
+$email = $data->email;
+$password = $data->password;
 
 
 

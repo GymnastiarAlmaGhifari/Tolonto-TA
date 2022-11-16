@@ -1,15 +1,21 @@
 <?php
+header("Content-Type: application/json");
 
 require_once "../core/init.php";
 
-$userId = $_POST['user_id'];
-$email = $_POST['email'];
-$username = $_POST['username'];
-$password = $_POST['password'];
-$cookies = $_POST['cookies'];
-$create_at = $_POST['create_at'];
-$update_at = $_POST['update_at'];
-$saldo = $_POST['saldo'];
+$json = file_get_contents('php://input');
+$data = json_decode($json);
+
+$userId = $data->user_id;
+$email = $data->email;
+$username = $data->username;
+$password = $data->password;
+$hp = $data->hp;
+$cookies = $data->cookies;
+$create_at = $data->create_at;
+$update_at = $data->update_at;
+$saldo = $data->saldo;
+$img = $data->img;
 
 $create_at = date("Y-m-d H:i:s");
 $update_at = date("Y-m-d H:i:s");
@@ -20,10 +26,12 @@ if ($user->register_api(
         'email' => $email,
         'username' => $username,
         'password' => $password,
+        'hp' => $hp,
         'cookies' => $cookies,
         'create_at' => $create_at,
         'update_at' => $update_at,
         'saldo' => $saldo,
+        'img' => $img
     ]
 )) {
     $response = [

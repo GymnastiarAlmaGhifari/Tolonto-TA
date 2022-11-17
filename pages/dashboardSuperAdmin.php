@@ -86,6 +86,10 @@ $ps = $Sadmin->ps_card();
                     <div class="flex flex-wrap gap-7 flex-row">
                         <?php 
                         $row = 0;
+                        if (empty($ps)) {
+                            echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                        } else {
+                            
                         while ($row < count($ps)) { ?>
                         <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
                             <div class="flex justify-between mt-2 mx-5">
@@ -124,7 +128,7 @@ $ps = $Sadmin->ps_card();
                                 </div>
                             </div>
                         </div>
-                        <?php $row++; } ?>
+                        <?php $row++; }} ?>
                         <!-- end -->
                        
                     </div>

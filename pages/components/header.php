@@ -50,7 +50,7 @@ $user_data = $user->get_data(Session::get('username'));
                 <?php echo $user_data['username'] ?>
                     <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" alt="" class="rounded-full w-[48px] h-[48px]">
                 </label>
-                <ul tabindex="0" class="dropdown-content p-2  cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-32 text-neutral_050 -right-3 mt-1">
+                <ul tabindex="0" class="dropdown-content p-2  cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-32 text-neutral_050 -right-5 mt-1">
                     <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
                         <i class="fa-regular fa-user mr-1"></i>
                         <a>Profile</a>

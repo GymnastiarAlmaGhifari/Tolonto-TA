@@ -16,11 +16,13 @@ $create_at = $data->create_at;
 $update_at = $data->update_at;
 $saldo = $data->saldo;
 $img = $data->img;
+// print_r($data);
+// die();
 
 $create_at = date("Y-m-d H:i:s");
 $update_at = date("Y-m-d H:i:s");
 
-if ($user->register_api(
+if ($userapi->register_api(
     [
         'user_id' => $userId,
         'email' => $email,
@@ -34,11 +36,27 @@ if ($user->register_api(
         'img' => $img
     ]
 )) {
-    $response = [
-        "status" => "success",
-        "message" => "Register Berhasil",
-    ];
-    echo json_encode($response);
+    $kukis = md5(uniqid(rand(), true));
+        $userapi->cookie($email, $kukis);
+        // set cookie
+        Cookie::set('kukis', $kukis, 2592000);
+        // set session
+        Session::set('login', true);
+        // get user data
+        $user_data = $userapi->get_data1($email);
+        // set response
+        $response = [
+            "status" => "success",
+            "message" => "Register Berhasil",
+            "data" => $user_data,
+        ];
+        echo json_encode($response);
+    // $response = [
+    //     "status" => "success",
+    //     "message" => "Register Berhasil",
+
+        
+    // ];
 } else {
     $response = [
         "status" => "error",

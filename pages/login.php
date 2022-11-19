@@ -151,8 +151,6 @@ if (isset($_POST['submit'])) {
                                             no-repeat
                                         `,
                     timer: 2500,
-
-
                 })
 
 

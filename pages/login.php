@@ -116,16 +116,23 @@ if (isset($_POST['submit'])) {
                         ?>
                         "> -->
                             <div class="flex w-full">
-                                <button type="submit" name="submit" class="flex justify-center items-center bg-primary_400 font-noto-sans font-semibold rounded-md mt-5 h-[48px] w-full transition duration-150 ease-in">Login</button>
+                                <button @click.prevent="open = true" aria-controls="basic-modal" id="login" type="submit" name="submit" class="flex justify-center items-center bg-primary_400 font-noto-sans font-semibold rounded-md mt-5 h-[48px] w-full transition duration-150 ease-in">Login</button>
                             </div>
+
                         </div>
+                    </div>
+
                 </form>
+
             </div>
         </div>
     </div>
     <?php if (!empty($errors)) { ?>
         <?php foreach ($errors as $error) { ?>
-            <!-- <div class="bg-neutral_050 rounded-lg border-gray-300 border p-3 top-0 absolute shadow-primary_500 shadow-lg duration-300  notif">
+            <?php require_once 'components/alert.php'; ?>
+
+
+            <!-- <div class="bg-neutral_050 rounded-lg border-neutral_300 border p-3 top-0 absolute shadow-primary_500 shadow-lg duration-300  notif">
                 <div class="flex flex-row">
                     <div class="px-2">
                         <svg width="24" height="24" viewBox="0 0 1792 1792" fill="#44C997" xmlns="http://www.w3.org/2000/svg">
@@ -137,53 +144,67 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div> -->
 
-            <script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: '<?php echo $error ?>',
-                    footer: '<a href="">Why do I have this issue?</a>',
-                    // opacity
-                    backdrop: `
-                                            rgba(0,0,123,0.4)
-                                            url("https://sweetalert2.github.io/images/nyan-cat.gif")
-                                            left top
-                                            no-repeat
-                                        `,
-                    timer: 2500,
-                })
 
+            // pertama kali load halaman modal tidak muncul
+            // button dengan id login tidak di klik saat load halaman
 
-                // const notif = document.querySelector('.notif');
-                //notif displaynya hide dulu
-                // menggelapkan background belakangnya
-
-                // ketika muncul notif, dipangil dari kiri 
+            // modal hanya akan muncul ketika tombol di klik dan pertama kali load halaman modal tidak muncul
 
 
 
-
-                // notif.style.left = '0';
-                // notif.style.transition = 'left 1.5s ease-in-out';
-                // notif.style.transitionDelay = '1.5s';
+            // jika login di klik dan durasi 3 detik
 
 
 
-                // // notif.style.display = 'none';
-                // // //tampilkan notif
-                // // notif.style.display = 'block';
-                // // //hilangkan notif
-                // setTimeout(() => {
-                //     notif.style.left = '-80%';
-                //     notif.style.transition = 'left 1.5s ease-in-out';
-                //     notif.style.transitionDelay = '1.5s';
-                // }, 1500);
-                // transisi notif
-                // hilangkan notif
+            // document.getElementById('login').addEventListener('click', function() {});
+
+            // openModal('basicModal');
+
+            // Swal.fire({
+            // icon: 'error',
+            // title: 'Oops...',
+            // text: '',
+            // footer: '<a href="">Why do I have this issue?</a>',
+            // // opacity
+            // backdrop: `
+            // rgba(0,0,123,0.4)
+            // url("https://sweetalert2.github.io/images/nyan-cat.gif")
+            // left top
+            // no-repeat
+            // `,
+            // timer: 2500,
+            // })
 
 
-                //ketika 3 detik notif akan hilang
-            </script>
+            // const notif = document.querySelector('.notif');
+            //notif displaynya hide dulu
+            // menggelapkan background belakangnya
+
+            // ketika muncul notif, dipangil dari kiri
+
+
+
+
+            // notif.style.left = '0';
+            // notif.style.transition = 'left 1.5s ease-in-out';
+            // notif.style.transitionDelay = '1.5s';
+
+
+
+            // // notif.style.display = 'none';
+            // // //tampilkan notif
+            // // notif.style.display = 'block';
+            // // //hilangkan notif
+            // setTimeout(() => {
+            // notif.style.left = '-80%';
+            // notif.style.transition = 'left 1.5s ease-in-out';
+            // notif.style.transitionDelay = '1.5s';
+            // }, 1500);
+            // transisi notif
+            // hilangkan notif
+
+
+            //ketika 3 detik notif akan hilang
 
 
         <?php  } ?>
@@ -198,7 +219,7 @@ if (isset($_POST['submit'])) {
 <!-- php error -->
 
 <!-- alert tailwind -->
-<!-- <div class="p-4 text-red-900 bg-red-100 border border-red-200 rounded-md">
+<!-- <div class="p-4 text-error_900 bg-red-100 border border-red-200 rounded-md">
     <div class="flex justify-between flex-wrap">
         <div class="w-0 flex-1 flex">
             <div class="mr-3 pt-1">

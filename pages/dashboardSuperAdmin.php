@@ -41,7 +41,7 @@ $ps = $Sadmin->ps_card();
     <link rel="stylesheet" href="../assets/styles/animation.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Dashboard Super</title>
+    <title>Dashboard Super Admin</title>
 </head>
 
 <body>
@@ -84,53 +84,55 @@ $ps = $Sadmin->ps_card();
             <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
                 <div class="container">
                     <div class="flex flex-wrap gap-7 flex-row">
-                        <?php 
+                        <?php
                         $row = 0;
                         if (empty($ps)) {
                             echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
                         } else {
-                            
-                        while ($row < count($ps)) { ?>
-                        <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
-                            <div class="flex justify-between mt-2 mx-5">
-                                <h1><?php echo $ps[$row]['nama_ps'] ?></h1>
-                                <!-- <div class="switch">
+
+                            while ($row < count($ps)) { ?>
+                                <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
+                                    <div class="flex justify-between mt-2 mx-5">
+                                        <h1><?php echo $ps[$row]['nama_ps'] ?></h1>
+                                        <!-- <div class="switch">
                                     <div class="switch__1">
                                         <input type="checkbox" id="switch-1">
                                         <label for="switch-1"></label>
                                     </div>
                                 </div> -->
-                                <input type="checkbox" class="toggle toggle-md   checked:bg-[#32FC00]" checked />
-                            </div>
-                            <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
-                            <div class="flex justify-center items-center relative">
-                                <img  class="h-[110px] m-2" src="<?php echo $ps[$row]['img'] ?>" alt="">
-                            </div>
-                            <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['nama_jenis'] ?></h1>
-                            <div class="flex flex-row justify-between px-5">
-                                <div class="flex flex-row items-center gap-x-2">
-                                    <span class="w-3 h-3 rounded-full bg-[#32FC00]"></span>
-                                    <h1><?php echo $ps[$row]['status'] ?></h1>
+                                        <input type="checkbox" class="toggle toggle-md   checked:bg-[#32FC00]" checked />
+                                    </div>
+                                    <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
+                                    <div class="flex justify-center items-center relative">
+                                        <img class="h-[110px] m-2" src="<?php echo $ps[$row]['img'] ?>" alt="">
+                                    </div>
+                                    <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['nama_jenis'] ?></h1>
+                                    <div class="flex flex-row justify-between px-5">
+                                        <div class="flex flex-row items-center gap-x-2">
+                                            <span class="w-3 h-3 rounded-full bg-[#32FC00]"></span>
+                                            <h1><?php echo $ps[$row]['status'] ?></h1>
+                                        </div>
+                                        <div class="flex flex-row items-center gap-x-2">
+                                            <h1><?php echo $ps[$row]['playtime'] ?></h1>
+                                            <i class="fa-regular fa-clock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row justify-between px-5">
+                                        <div class="flex flex-row items-center gap-x-2">
+                                            <i class="fa-solid fa-dollar-sign"></i>
+                                            <h1>Rp. <?php echo $ps[$row]['bayar'] ?></h1>
+                                        </div>
+                                        <div class="flex flex-row items-center gap-x-2">
+                                            <h1><?php echo $ps[$row]['username'] ?></h1>
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex flex-row items-center gap-x-2">
-                                    <h1><?php echo $ps[$row]['playtime'] ?></h1>
-                                    <i class="fa-regular fa-clock"></i>
-                                </div>
-                            </div>
-                            <div class="flex flex-row justify-between px-5">
-                                <div class="flex flex-row items-center gap-x-2">
-                                    <i class="fa-solid fa-dollar-sign"></i>
-                                    <h1>Rp. <?php echo $ps[$row]['bayar'] ?></h1>
-                                </div>
-                                <div class="flex flex-row items-center gap-x-2">
-                                    <h1><?php echo $ps[$row]['username'] ?></h1>
-                                    <i class="fas fa-user"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <?php $row++; }} ?>
+                        <?php $row++;
+                            }
+                        } ?>
                         <!-- end -->
-                       
+
                     </div>
                 </div>
         </div>
@@ -141,6 +143,7 @@ $ps = $Sadmin->ps_card();
 
     </div>
     <script src="../assets/js/main.js"></script>
+
 </body>
 
 </html>

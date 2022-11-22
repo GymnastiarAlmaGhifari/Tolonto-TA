@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Booking Super Admin</title>
+    <title>Riwayat</title>
 </head>
 
 <body>
@@ -311,7 +311,7 @@
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center h-[77px] -mb-3">
                                 <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">Sewa Aktif</h1>
+                                    <h1 class="capitalize font-semibold">history Sewa</h1>
                                     <h2>6</h2>
                                 </div>
                                 <span id="open2" onclick="openTable2()" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
@@ -593,7 +593,7 @@
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center h-[77px] -mb-3">
                                 <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">sewa pending</h1>
+                                    <h1 class="capitalize font-semibold">history servis</h1>
                                     <h2>6</h2>
                                 </div>
                                 <span id="open3" onclick="openTable3()" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">

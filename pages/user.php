@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Booking Super Admin</title>
+    <title>Document</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center h-[77px] -mb-3">
                                 <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">history rental</h1>
+                                    <h1 class="capitalize font-semibold">user</h1>
                                     <h2>6</h2>
                                 </div>
                                 <span id="open" onclick="openTable()" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
@@ -61,18 +61,6 @@
                                                 </button>
                                             </td>
                                             <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">waktu</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">total</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class=" ">
                                                 <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                                     <h1 class="capitalize font-normal">option</h1>
                                                     <i class="fa-solid fa-caret-down"></i>
@@ -97,8 +85,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <!-- <div class="dropdown dropdown-right">
                                                     <label tabindex="0" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
@@ -142,8 +129,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -166,8 +152,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -190,8 +175,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -214,8 +198,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -238,8 +221,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -262,8 +244,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -286,8 +267,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -311,7 +291,7 @@
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center h-[77px] -mb-3">
                                 <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">Sewa Aktif</h1>
+                                    <h1 class="capitalize font-semibold">admin</h1>
                                     <h2>6</h2>
                                 </div>
                                 <span id="open2" onclick="openTable2()" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
@@ -344,18 +324,6 @@
                                                 </button>
                                             </td>
                                             <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">waktu</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">total</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class=" ">
                                                 <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                                     <h1 class="capitalize font-normal">option</h1>
                                                     <i class="fa-solid fa-caret-down"></i>
@@ -380,8 +348,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <!-- <div class="dropdown dropdown-right">
                                                     <label tabindex="0" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
@@ -425,290 +392,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- table end -->
-            <!-- table start -->
-            <section class="mt-12 text-neutral_050  ml-16">
-                <div class="container px-6  max-w-full xl:w-11/12 2xl:max-w-full md:w-11/12">
-                    <div id="atas3" class="h-[450px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative">
-                        <div class="flex flex-wrap flex-col ">
-                            <div class=" flex flex-row justify-between items-center h-[77px] -mb-3">
-                                <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">sewa pending</h1>
-                                    <h2>6</h2>
-                                </div>
-                                <span id="open3" onclick="openTable3()" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
-                                    <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
-                                    <span id="plus3" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
-                                </span>
-                            </div>
-                            <span id="garis3" class="w-full mx-auto -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table3">
-                                <table class="w-full table-auto">
-                                    <thead>
-                                        <tr class="font-semibold ">
-                                            <td class="  relative">
-                                                <div class="flex flex-row gap-x-3 items-center">
-                                                    <i class="fa-solid fa-magnifying-glass  mt-1"></i>
-                                                    <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
-                                                    <label for="search" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
-                                                </div>
-                                            </td>
-                                            <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
-                                                    <h1 class=" uppercase">nama ps</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">play time</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">waktu</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">total</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class=" ">
-                                                <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
-                                                    <h1 class="capitalize font-normal">option</h1>
-                                                    <i class="fa-solid fa-caret-down"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="overflow-y-hidden">
-                                        <!-- list 1 start -->
-                                        <tr class="">
-                                            <td class="flex flex-row gap-x-3 pb-5">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <!-- <div class="dropdown dropdown-right">
-                                                    <label tabindex="0" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
-                                                        <i class="fa-solid fa-ellipsis"></i>
-                                                    </label>
-                                                    <ul tabindex="0" class="dropdown-content p-2 z-10 cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-52 text-neutral_050">
-                                                        <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
-                                                            wqdmoqwdoq
-                                                        </li>
-                                                        <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
-                                                            wqdmoqwdoq
-                                                        </li>
 
-                                                    </ul>
-                                                </div> -->
-                                                <!-- <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 peer">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                                <div class="hidden absolute peer-focus:block bg-neutral_600 z-20 -right-3">
-                                                    <ul>
-                                                        <li>wkokwdow</li>
-                                                        <li>iwjiwj</li>
-                                                    </ul>
-                                                </div> -->
-                                            </td>
-                                        </tr>
-                                        <!-- list 1 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -731,8 +415,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -755,8 +438,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -779,8 +461,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -803,8 +484,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -827,8 +507,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -851,8 +530,7 @@
                                             </td>
                                             <td class="text-center">PS No.1</td>
                                             <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+
                                             <td class=" text-center">
                                                 <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
                                                     <i class="fa-solid fa-ellipsis"></i>
@@ -868,6 +546,7 @@
                 </div>
             </section>
             <!-- table end -->
+
         </div>
     </main>
 
@@ -887,11 +566,7 @@
         const garis2 = document.getElementById('garis2');
         const plus2 = document.getElementById('plus2');
 
-        const open3 = document.getElementById('open3');
-        const atas3 = document.getElementById('atas3');
-        const table3 = document.getElementById('table3');
-        const garis3 = document.getElementById('garis3');
-        const plus3 = document.getElementById('plus3');
+
 
         // const btnOption = document.getElementById('btn-option');
 
@@ -965,29 +640,7 @@
 
         }
         openTable2();
-        const openTable3 = () => {
-            atas3.classList.toggle('h-[450px]');
-            atas3.classList.toggle('h-[77px]');
 
-            // hilangkan table dan muncul setelah 300ms dan ketika atas sudah berubah langsung hilang
-            if (atas3.classList.contains('h-[77px]')) {
-                garis3.classList.add('hidden');
-                plus3.classList.add('hidden');
-                table3.classList.add('hidden');
-
-            } else {
-                setTimeout(() => {
-                    table3.classList.remove('hidden');
-                    garis3.classList.remove('hidden');
-                    plus3.classList.remove('hidden');
-                    garis3.classList.add('ease-in-out');
-                    table3.classList.add('ease-in-out');
-                }, 100);
-
-            }
-
-        }
-        openTable3();
 
 
 

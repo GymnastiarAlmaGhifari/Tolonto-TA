@@ -5,9 +5,9 @@ $lok = $Sadmin->lokasi();
 $user_data = $user->get_data(Session::get('username'));
 ?>
 <div class="container">
-    <div class=" w-screen h-[60px] fixed z-50 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
+    <div class=" w-screen h-[60px] fixed z-40 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
 
-        <h1 class="font-noto-sans text-lg text-neutral_900 ml-[38px] font-semibold">Dashboard</h1>
+        <h1 class="font-noto-sans text-lg text-neutral_900 ml-[20px] xs:ml-[48px]  font-semibold">Dashboard</h1>
         <div class="flex items-center xs:gap-x-5">
             <!-- dropdown start -->
 

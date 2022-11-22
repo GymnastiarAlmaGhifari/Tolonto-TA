@@ -9,6 +9,6 @@ spl_autoload_register(function ($class) {
 });
 // menggunakan spl_autoload_register untuk memanggil semua kelas yang ada di folder controllers
 
-$user = new Controllerauth();
-$admin = new Controllerauthapi();
+$user = new ControllerAuth();
+$admin = new ControllerAuthApi();
 $Sadmin = new ControllerSuperAdmin();

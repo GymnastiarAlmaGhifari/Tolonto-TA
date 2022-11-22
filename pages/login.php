@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
 
 <body class="overflow-hidden">
     <div class="min-h-screen flex flex-col items-center justify-center bg-neutral_900 ">
-        <div class="flex flex-coll bg-neutral_800 sm:px-6 lg:px-6 py-8 rounded-xl w-[476px] h-[382px] xs:w-5/6 max-w-md overflow-hidden relative shadow-elevation-dark-4">
+        <div class="flex flex-coll bg-neutral_800 sm:px-6 lg:px-6 py-8 rounded-xl xs:w-5/6 h-[382px] w-5/6  max-w-md overflow-hidden relative shadow-elevation-dark-4">
             <div class="absolute w-[476px] h-[382px] bg-gradient-to-r from-primary_500 via-primary_500 to-transparent -top-[50%] -left-[50%] animate-spin-slow origin-bottom-right"></div>
             <div class="absolute w-[476px] h-[382px] bg-gradient-to-r from-primary_500 via-primary_500 to-transparent -top-[50%] -left-[50%] animate-spin-delay origin-bottom-right"></div>
 

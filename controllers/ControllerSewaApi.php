@@ -2,6 +2,6 @@
 // Include Database.php file
 include_once 'Database.php';
 
-class ControllerServis extends Database
+class ControllerSewaApi extends Database
 {
 }

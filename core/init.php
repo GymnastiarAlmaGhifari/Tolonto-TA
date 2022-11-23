@@ -9,6 +9,18 @@ spl_autoload_register(function ($class) {
 });
 // menggunakan spl_autoload_register untuk memanggil semua kelas yang ada di folder controllers
 
+// Controller Web
 $user = new ControllerAuth();
-$admin = new ControllerAuthApi();
 $Sadmin = new ControllerSuperAdmin();
+$riwayat = new ControllerRiwayat();
+$detail = new ControllerDetail();
+$sewa = new ControllerSewa();
+
+// Controller API
+$admin = new ControllerAuthApi();
+$sewa = new ControllerSewaApi();
+$feedback = new ControllerFeedbackApi();
+$servis = new ControllerServisApi();
+$payment = new ControllerPaymentApi();
+$order = new ControllerOrderApi();
+$game = new ControllerGameCenterApi();

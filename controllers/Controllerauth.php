@@ -15,7 +15,7 @@ class Controllerauth extends Database
             return false;
         }
     }
-    
+
 
     public function cek_nama($username)
     {
@@ -71,7 +71,7 @@ class Controllerauth extends Database
 
 
     // insert cookie
-    
+
 
 
     public function register($username, $password)

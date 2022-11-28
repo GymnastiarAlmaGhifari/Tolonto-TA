@@ -16,6 +16,8 @@ if (Input::get('nama')) {
     $user_data = $user->get_data(Session::get('username'));
 }
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

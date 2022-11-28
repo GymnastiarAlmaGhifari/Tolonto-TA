@@ -1,3 +1,19 @@
+<?php
+
+require_once "../core/init.php";
+
+$user_data = $user->get_users();
+
+// make method get_data from user_data
+
+$row = 0;
+while ($row < count($user_data)) {
+    echo $user_data[$row]['username'];
+    echo $user_data[$row]['password'];
+    $row++;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,6 +86,7 @@
                                     </thead>
                                     <tbody class="overflow-y-hidden">
                                         <!-- list 1 start -->
+
                                         <tr class="">
                                             <td class="flex flex-row gap-x-3 pb-5">
                                                 <div class="form-control -ml-[5px]">
@@ -313,13 +330,13 @@
                                             </td>
                                             <td class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
-                                                    <h1 class=" uppercase">nama ps</h1>
+                                                    <h1 class=" uppercase">username</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
                                             <td class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">play time</h1>
+                                                    <h1 class="uppercase">password</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
@@ -332,212 +349,40 @@
                                         </tr>
                                     </thead>
                                     <tbody class="overflow-y-hidden">
-                                        <!-- list 1 start -->
-                                        <tr class="">
-                                            <td class="flex flex-row gap-x-3 pb-5">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-
-                                            <td class=" text-center">
-                                                <!-- <div class="dropdown dropdown-right">
-                                                    <label tabindex="0" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
-                                                        <i class="fa-solid fa-ellipsis"></i>
-                                                    </label>
-                                                    <ul tabindex="0" class="dropdown-content p-2 z-10 cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-52 text-neutral_050">
-                                                        <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
-                                                            wqdmoqwdoq
-                                                        </li>
-                                                        <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
-                                                            wqdmoqwdoq
-                                                        </li>
-
-                                                    </ul>
-                                                </div> -->
-                                                <!-- <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 peer">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                                <div class="hidden absolute peer-focus:block bg-neutral_600 z-20 -right-3">
-                                                    <ul>
-                                                        <li>wkokwdow</li>
-                                                        <li>iwjiwj</li>
-                                                    </ul>
-                                                </div> -->
-                                            </td>
-                                        </tr>
-                                        <!-- list 1 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-[5px]">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
+                                        <!-- list start -->
+                                        <?php
+                                        $row = 0;
+                                        while ($row < count($user_data)) { ?>
+                                            <tr class="">
+                                                <td class="flex flex-row gap-x-3 pb-5">
+                                                    <div class="form-control -ml-[5px]">
+                                                        <label class="label cursor-pointer">
+                                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                                        </label>
+                                                    </div>
+                                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                                    <div class="flex flex-col gap-y-1">
+                                                        <h1 class="font-semibold">john</h1>
+                                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php
+                                                    echo $user_data[$row]['username'];
+                                                    ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php
+                                                    echo $user_data[$row]['password'];
+                                                    ?>
+                                                </td>
+                                                <td class=" text-center">
+                                                </td>
+                                            </tr>
+                                            <!-- list end -->
+                                        <?php $row++;
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -552,8 +397,11 @@
 
     </div>
     <script src="../assets/js/main.js"></script>
-
     <script>
+
+    </script>
+
+    <!-- <script>
         const open = document.getElementById('open');
         const atas = document.getElementById('atas');
         const table = document.getElementById('table');
@@ -688,7 +536,7 @@
         //         checkbox.checked = e.target.checked;
         //     });
         // });
-    </script>
+    </script> -->
 </body>
 
 </html>

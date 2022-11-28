@@ -39,40 +39,40 @@
                             <span id="garis" class="w-full mx-auto -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
                             <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table">
                                 <table class="w-full table-auto">
-                                    <thead>
+                                    <thead class="">
                                         <tr class="font-semibold ">
-                                            <td class="  relative">
+                                            <td class="xs:px-3 lg:-px3  relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass  mt-1"></i>
                                                     <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
                                                     <label for="search" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
                                                 </div>
                                             </td>
-                                            <td class=" ">
+                                            <td class="xs:px-3 lg:-px3 ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
                                                     <h1 class=" uppercase">nama ps</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
-                                            <td class=" ">
+                                            <td class="xs:px-3 lg:-px3 ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">play time</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
-                                            <td class=" ">
+                                            <td class="xs:px-3 lg:-px3 ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">waktu</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
-                                            <td class="">
+                                            <td class="xs:px-3 lg:-px3">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">total</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
-                                            <td class=" ">
+                                            <td class="xs:px-3 lg:-px3 ">
                                                 <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                                     <h1 class="capitalize font-normal">option</h1>
                                                     <i class="fa-solid fa-caret-down"></i>

@@ -46,4 +46,10 @@ class ControllerGameCenterApi extends Database
         $data = $this->uniquery('SELECT COUNT(ps.id_ps) as total from ps WHERE ps.lok = "Tuban";');
         return $data;
     }
+
+    public function ps_bojonegoro()
+    {
+        $data = $this->uniquery('SELECT * from ps WHERE ps.lok = "Bojonegoro";');
+        return $data;
+    }
 }

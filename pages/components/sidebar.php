@@ -85,5 +85,6 @@
         sidebarToggle.classList.toggle('toggle-active');
         flexing.classList.toggle('flexing-active');
         gambar.classList.toggle('gambar-active');
+
     })
 </script>

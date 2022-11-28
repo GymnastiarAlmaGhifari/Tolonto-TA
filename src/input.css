@@ -24,14 +24,14 @@ input:valid ~ .sticker2 {
 }
 
 * {
-  scrollbar-width: calc(0.2em + 0.5vw);
+  scrollbar-width: calc(0.2em + 0.2vw);
   scrollbar-color: #f3f4f6 #1f2937;
 }
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 9px;
-  height: 153px;
+  height: 10px;
   margin-top: 10px;
 }
 
@@ -61,6 +61,12 @@ input:valid ~ .sticker2 {
 }
 .gambar-active {
   @apply w-10 h-10 rounded-full mx-6 my-auto block;
+}
+.activeAlert {
+  @apply duration-100 ease-in-out transform translate-x-0 block;
+}
+.hideAlert {
+  @apply duration-100 ease-in-out transform translate-x-full hidden;
 }
 /* animation gambar-active  */
 

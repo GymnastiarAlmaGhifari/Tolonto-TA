@@ -28,7 +28,7 @@ class Controllerauthapi extends Database
     public function loginApi($email, $password)
     {
         $data = $this->fetch('user', 'email', $email);
-        if ($data['password'] == $password) {
+        if ($data['pass word'] == $password) {
             $_SESSION['password'] = $data['password'];
             return true;
         } else {

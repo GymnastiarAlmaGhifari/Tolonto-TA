@@ -129,7 +129,7 @@ if (isset($_POST['submit'])) {
     </div>
     <?php if (!empty($errors)) { ?>
         <?php foreach ($errors as $error) { ?>
-            <?php require_once 'components/alert.php'; ?>
+            <?php require_once 'components/alertLogin.php'; ?>
 
 
             <!-- <div class="bg-neutral_050 rounded-lg border-neutral_300 border p-3 top-0 absolute shadow-primary_500 shadow-lg duration-300  notif">

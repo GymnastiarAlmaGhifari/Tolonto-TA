@@ -3,11 +3,26 @@ require_once '../core/init.php';
 
 $lok = $Sadmin->lokasi();
 $user_data = $user->get_data(Session::get('username'));
+
+
 ?>
 <div class="container">
     <div class=" w-screen h-[60px] fixed z-40 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
 
-        <h1 class="font-noto-sans text-lg text-neutral_900 ml-[20px] xs:ml-[48px]  font-semibold">Dashboard</h1>
+        <h1 class="font-noto-sans text-lg text-neutral_900 ml-[20px] xs:ml-[48px]  font-semibold">
+            <?php
+            $location = $_SERVER['PHP_SELF'];
+            $location = explode('/', $location);
+
+            if ($location[2] == 'dashboardSuperAdmin.php') {
+                echo 'Dashboard Super Admin';
+            } elseif ($location[2] == 'inventorySuperAdmin.php') {
+                echo 'Inventory Super Admin';
+            }
+
+
+            ?>
+        </h1>
         <div class="flex items-center xs:gap-x-5">
             <!-- dropdown start -->
 
@@ -25,7 +40,7 @@ $user_data = $user->get_data(Session::get('username'));
                     while ($row < count($lok)) { ?>
                         <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base"><a><?php echo $lok[$row]['nama_lok'] ?></a></li>
                         <!-- <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base"><a>Tuban</a></li>
-                    <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base "><a>Bojonegoro</a></li> -->
+                            <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base "><a>Bojonegoro</a></li> -->
                     <?php $row++;
                     } ?>
                 </ul>
@@ -58,13 +73,16 @@ $user_data = $user->get_data(Session::get('username'));
                             <i class="fa-regular fa-user mr-1"></i>
                             <a>Profile</a>
                         </li>
-                        <li class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
 
-                            <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>
-                            <a>
-                                Logout
+                        <li id="logout" class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
 
-                            </a>
+                            <button type="submit" name="logout">
+                                <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>
+                                <a>
+                                    Logout
+                                </a>
+                            </button>
+
                         </li>
                     </ul>
                 </div>

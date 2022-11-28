@@ -17,7 +17,7 @@ $detail = new ControllerDetail();
 $sewa = new ControllerSewa();
 
 // Controller API
-$admin = new ControllerAuthApi();
+$userapi = new ControllerAuthApi();
 $sewa = new ControllerSewaApi();
 $feedback = new ControllerFeedbackApi();
 $servis = new ControllerServisApi();

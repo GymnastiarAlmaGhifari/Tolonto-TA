@@ -236,7 +236,7 @@ class Database
         rental.id_rental, rental.playtime, rental.bayar, user.username 
         FROM rental JOIN ps ON rental.id_ps=ps.id_ps 
         JOIN jenis ON ps.jenis=jenis.id_jenis 
-        JOIN user ON rental.email_user=user.email 
+        JOIN user ON rental.id_user=user.user_id 
         WHERE rental.id_rental LIKE '%$tgl%';";
                 $result = $this->conn->query($query);
 

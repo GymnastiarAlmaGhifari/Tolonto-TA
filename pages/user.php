@@ -4,7 +4,6 @@ require_once "../core/init.php";
 
 $ju = $SadminUser->jumlah_user();
 $tb_admin = $SadminUser->table_admin();
-print_r($tb_admin);
 
  
 

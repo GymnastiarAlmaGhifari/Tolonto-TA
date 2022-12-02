@@ -4,29 +4,30 @@ require_once '../core/init.php';
 $lok = $Sadmin->lokasi();
 $user_data = $user->get_data(Session::get('username'));
 
+$text = "";
+
+$location = $_SERVER['PHP_SELF'];
+$location = explode('/', $location);
+
+if ($location[2] == 'dashboardSuperAdmin.php') {
+    $text = "Dashboard Super Admin";
+} elseif ($location[2] == 'inventorySuperAdmin.php') {
+    $text = "Inventory Super Admin";
+} elseif ($location[2] == 'bookingSuperAdmin.php') {
+    $text = "Booking Super Admin";
+}
 
 ?>
 <div class="container">
     <div class=" w-screen h-[60px] fixed z-40 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
 
         <h1 class="font-noto-sans text-lg text-neutral_900 ml-[20px] xs:ml-[48px]  font-semibold">
-            <?php
-            $location = $_SERVER['PHP_SELF'];
-            $location = explode('/', $location);
-
-            if ($location[2] == 'dashboardSuperAdmin.php') {
-                echo 'Dashboard Super Admin';
-            } elseif ($location[2] == 'inventorySuperAdmin.php') {
-                echo 'Inventory Super Admin';
-            }
-
-
-            ?>
+            <?php echo $text; ?>
         </h1>
         <div class="flex items-center xs:gap-x-5">
             <!-- dropdown start -->
 
-            <div class="dropdown dropdown-bottom">
+            <div id="lokasi" class="dropdown dropdown-bottom">
                 <label tabindex="0" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
                     <svg width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.75 11.875C7.9212 11.875 7.12634 11.5458 6.54029 10.9597C5.95424 10.3737 5.625 9.5788 5.625 8.75C5.625 7.9212 5.95424 7.12634 6.54029 6.54029C7.12634 5.95424 7.9212 5.625 8.75 5.625C9.5788 5.625 10.3737 5.95424 10.9597 6.54029C11.5458 7.12634 11.875 7.9212 11.875 8.75C11.875 9.16038 11.7942 9.56674 11.6371 9.94589C11.4801 10.325 11.2499 10.6695 10.9597 10.9597C10.6695 11.2499 10.325 11.4801 9.94589 11.6371C9.56674 11.7942 9.16038 11.875 8.75 11.875ZM8.75 0C6.42936 0 4.20376 0.921872 2.56282 2.56282C0.921872 4.20376 0 6.42936 0 8.75C0 15.3125 8.75 25 8.75 25C8.75 25 17.5 15.3125 17.5 8.75C17.5 6.42936 16.5781 4.20376 14.9372 2.56282C13.2962 0.921872 11.0706 0 8.75 0Z" fill="#303030" />
@@ -91,6 +92,14 @@ $user_data = $user->get_data(Session::get('username'));
     </div>
 </div>
 <script>
+    const lokasi = document.getElementById('lokasi');
+
+    // if window location in pages/lokasi.php
+
+    <?php if ($location[2] == 'dashboard.php') { ?>
+        lokasi.classList.add('hidden');
+    <?php } ?>
+
     const clock = () => {
         const today = new Date();
         const h = today.getHours();

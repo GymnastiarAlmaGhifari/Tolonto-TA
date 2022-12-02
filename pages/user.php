@@ -3,6 +3,7 @@
 require_once "../core/init.php";
 
 $user_data = $user->get_users();
+$ju = $SadminUser->jumlah_user();
 
 // make method get_data from user_data
 
@@ -45,7 +46,7 @@ while ($row < count($user_data)) {
                             <div class=" flex flex-row justify-between items-center h-[77px] -mb-3">
                                 <div class="flex gap-4">
                                     <h1 class="capitalize font-semibold">user</h1>
-                                    <h2>6</h2>
+                                    <h2><?php echo $ju ?></h2>
                                 </div>
                                 <span id="open" onclick="openTable()" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                                     <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>

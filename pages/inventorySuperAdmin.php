@@ -1,32 +1,8 @@
 <?php
 require_once '../core/init.php';
 
-if (!$user->is_login()) {
-    Session::flash(
-        'login',
-        '<script>alert("Anda Harus Login")</script>'
-    );
-    Redirect::to('login');
-}
-
-if (Session::exists('dashboard')) {
-    echo Session::flash('dashboard');
-}
-
-// pengecekan halaman admin
-if (!$user->is_superAdmin(Session::get('username'))) {
-    Session::flash(
-        'dashboard',
-        '<script>alert("Halaman Ini Khusus Admin")</script>'
-    );
-    Redirect::to('dashboard');
-}
-$users = $user->get_users();
-$tersedia = $Sadmin->ps_tersedia();
-$maintain = $Sadmin->ps_maintain();
-$psbook = $Sadmin->ps_book();
-$laba = $Sadmin->laba();
-$ps = $Sadmin->ps_card();
+$ju_ps = $SadminPs->jumlah_ps();
+$ps = $SadminPs->ps_card();
 
 
 ?>
@@ -73,16 +49,28 @@ $ps = $Sadmin->ps_card();
                 <!-- main ditempat -->
                 <section id="main-ditempat" class="mt-24  text-neutral_050 ml-24 flex flex-row gap-8">
                     <h1 class="capitalize font-semibold">total inventory</h1>
-                    <h2 class="text-neutral_300">6</h2>
+                    <h2 class="text-neutral_300"><?php echo $ju_ps ?></h2>
                 </section>
                 <!-- list ps -->
                 <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
                     <div class="container">
                         <div class="flex flex-wrap gap-7 flex-row">
                             <!-- start -->
-                            <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
+                            <?php
+                            $row = 0;
+                            if (empty($ps)) {
+                                echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                            } else {
+
+                                while ($row < count($ps)) { 
+                                    $status = $ps[$row]['status'];
+                                    if ($status == 'aktif') {
+                                    $ikon = 'bg-[#32FC00]'; } 
+                                    else { $ikon = 'bg-[#fc1100]'; }
+                                     ?>
+                            <div class="w-[350px] h-[230px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
                                 <div class="flex justify-between mt-2 mx-5">
-                                    <h1>ps 1</h1>
+                                    <h1><?php echo $ps[$row]['nama_ps']?></h1>
                                     <div class="flex flex-row gap-2">
                                         <button id="edit" name="editButton" class="w-[30px] h-[30px] bg-neutral_050  rounded-full relative">
                                             <svg class="mx-auto my-1.5" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,32 +87,26 @@ $ps = $Sadmin->ps_card();
                                 </div>
                                 <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
                                 <div class="flex justify-center items-center relative">
-                                    <img class="h-[110px] m-2" src="https://awsimages.detik.net.id/community/media/visual/2017/05/30/05284fac-29fb-448d-a43f-cbade1c0eedb_169.jpg?w=700&q=90" alt="">
+                                    <img class="h-[110px] m-2" src="<?php echo $ps[$row]['img']?>" alt="">
                                 </div>
-                                <h1 class="uppercase font-noto-sans font-semibold px-5">ps 3</h1>
+                                <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['jenis']; ?></h1>
                                 <div class="flex flex-row justify-between px-5">
                                     <div class="flex flex-row items-center gap-x-2">
-                                        <span class="w-3 h-3 rounded-full bg-[#32FC00]"></span>
-                                        <h1>aktif</h1>
+                                        <span class="w-3 h-3 rounded-full <?php echo $ikon ?>"></span>
+                                        <h1><?php echo $ps[$row]['status']?></h1>
                                     </div>
-                                    <div class="flex flex-row items-center gap-x-2">
-                                        <h1>3 jam</h1>
-                                        <i class="fa-regular fa-clock"></i>
-                                    </div>
-                                </div>
-                                <div class="flex flex-row justify-between px-5">
                                     <div class="flex flex-row items-center gap-x-2">
                                         <i class="fa-solid fa-dollar-sign"></i>
-                                        <h1>Rp. 12000</h1>
-                                    </div>
-                                    <div class="flex flex-row items-center gap-x-2">
-                                        <h1>agim</h1>
-                                        <i class="fas fa-user"></i>
+                                        <h1>Rp. <?php echo $ps[$row]['harga']?></h1>
                                     </div>
                                 </div>
+
                             </div>
+                            <?php
+                                $row++; }
+                            } ?>
                             <!-- end -->
-                            <div class="w-[350px] h-[250px] bg-transparent rounded-xl  flex items-center justify-center">
+                            <div class="w-[350px] h-[230px] bg-transparent rounded-xl  flex items-center justify-center">
                                 <button id="tambah" name="tambahButton" class="flex justify-center items-center h-[150px] w-[150px] shadow-elevation-dark-4 bg-neutral_800 rounded-full ">
                                     <span class="bg-neutral_050 w-20 h-[4px] rounded-full"></span>
                                     <span id="plus3" class="bg-neutral_050 w-[4px] h-20 absolute rounded-full"></span>

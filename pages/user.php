@@ -2,17 +2,13 @@
 
 require_once "../core/init.php";
 
-$user_data = $user->get_users();
 $ju = $SadminUser->jumlah_user();
+$tb_admin = $SadminUser->table_admin();
+print_r($tb_admin);
+
+ 
 
 // make method get_data from user_data
-
-$row = 0;
-while ($row < count($user_data)) {
-    echo $user_data[$row]['username'];
-    echo $user_data[$row]['password'];
-    $row++;
-}
 ?>
 
 <!DOCTYPE html>
@@ -330,14 +326,14 @@ while ($row < count($user_data)) {
                                                 </div>
                                             </td>
                                             <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
-                                                    <h1 class=" uppercase">username</h1>
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                                    <h1 class="uppercase">level</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
                                             <td class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">password</h1>
+                                                    <h1 class="uppercase">lokasi</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
@@ -353,7 +349,7 @@ while ($row < count($user_data)) {
                                         <!-- list start -->
                                         <?php
                                         $row = 0;
-                                        while ($row < count($user_data)) { ?>
+                                        while ($row < count($tb_admin)) { ?>
                                             <tr class="">
                                                 <td class="flex flex-row gap-x-3 pb-5">
                                                     <div class="form-control -ml-[5px]">
@@ -361,20 +357,22 @@ while ($row < count($user_data)) {
                                                             <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
                                                         </label>
                                                     </div>
-                                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                                    <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
+                                                        <img src="<?php echo $tb_admin[$row]['img'] ?>" " alt="" class="rounded-full w-full h-full object-cover">
+                                                    </div>
                                                     <div class="flex flex-col gap-y-1">
-                                                        <h1 class="font-semibold">john</h1>
-                                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                                        <h1 class="font-semibold"><?php echo $tb_admin[$row]['username'] ?></h1>
+                                                        <h2 class="text-neutral_400 text-xs"><?php echo $tb_admin[$row]['id_admin'] ?></h2>
                                                     </div>
                                                 </td>
                                                 <td class="text-center">
                                                     <?php
-                                                    echo $user_data[$row]['username'];
+                                                    echo $tb_admin[$row]['role'];
                                                     ?>
                                                 </td>
                                                 <td class="text-center">
                                                     <?php
-                                                    echo $user_data[$row]['password'];
+                                                    echo $tb_admin[$row]['lok'];
                                                     ?>
                                                 </td>
                                                 <td class=" text-center">

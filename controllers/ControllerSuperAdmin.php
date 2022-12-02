@@ -49,16 +49,16 @@ public function ps_maintain()
     }
 
     public function ps_card()
-    
     {
-        $tgl = date("dmy");
-        $data = $this->card_ps($tgl);
-    //  while ($row < 2) {   
-    // print_r($data[0]['nama_ps']);
-    // print_r($row);
-    // $row++;
-    // }
-    // die();
+        $lok = "Bojonegoro";
+        $data = $this->card_ps($lok);
+    return $data;
+    }
+
+    public function is_active($id_ps)
+    {
+        $idps = $id_ps;
+        $data = $this->is_aktif($idps);
     return $data;
     }
 

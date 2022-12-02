@@ -230,14 +230,27 @@ class Database
             // return $results;
     }
     
-    public function card_ps($tgl = '') 
+    public function card_ps($lok = '') 
     {
-        $query = "SELECT ps.nama_ps, ps.status, jenis.nama_jenis, ps.img, 
-        rental.id_rental, rental.playtime, rental.bayar, user.username 
-        FROM rental JOIN ps ON rental.id_ps=ps.id_ps 
-        JOIN jenis ON ps.jenis=jenis.id_jenis 
-        JOIN user ON rental.id_user=user.user_id 
-        WHERE rental.id_rental LIKE '%$tgl%';";
+        $query = "SELECT ps.id_ps, ps.nama_ps, ps.status, jenis.nama_jenis, ps.img 
+        FROM ps JOIN jenis on ps.jenis = jenis.id_jenis WHERE ps.lok = '$lok' ;";
+                $result = $this->conn->query($query);
+
+                while ($row = $result->fetchAll(PDO::FETCH_BOTH)) {
+                    return $row;
+                    $results[] = $row;
+                }
+                if (isset($results)) {
+                    return $results;
+                } else {
+                    return false;
+                }
+    }
+
+    public function is_aktif($idps = '') 
+    {
+        $query = "SELECT rental.playtime, rental.bayar, user.username 
+        FROM rental JOIN user ON rental.id_user = user.user_id WHERE id_ps = '$idps' ;";
                 $result = $this->conn->query($query);
 
                 while ($row = $result->fetchAll(PDO::FETCH_BOTH)) {
@@ -278,6 +291,23 @@ class Database
             }
             // return $results;
         }
+    }
+
+    public function countsemua($id, $table)
+    {
+
+                $query = "SELECT COUNT($id) FROM $table";
+                $result = $this->conn->query($query);
+
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    return $row;
+                }
+            if (isset($results)) {
+                return $results;
+            } else {
+                return false;
+            }
+            // return $results;
     }
 
     public function counttgl($id, $table, $row = '', $value )

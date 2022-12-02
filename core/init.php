@@ -15,6 +15,7 @@ $Sadmin = new ControllerSuperAdmin();
 $riwayat = new ControllerRiwayat();
 $detail = new ControllerDetail();
 $sewa = new ControllerSewa();
+$SadminUser = new ControllerSuperadminUser();
 
 // Controller API
 $userapi = new ControllerAuthApi();

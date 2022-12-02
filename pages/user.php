@@ -2,16 +2,12 @@
 
 require_once "../core/init.php";
 
-$user_data = $user->get_users();
+$ju = $SadminUser->jumlah_user();
+$tb_admin = $SadminUser->table_admin();
+
+ 
 
 // make method get_data from user_data
-
-$row = 0;
-while ($row < count($user_data)) {
-    echo $user_data[$row]['username'];
-    echo $user_data[$row]['password'];
-    $row++;
-}
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +42,9 @@ while ($row < count($user_data)) {
                                 <div class="flex gap-4">
                                     <h1 class="capitalize font-semibold">Sewa Aktif</h1>
                                     <h2>6</h2>
+                                    <h1 class="capitalize font-semibold">user</h1>
+                                    <h2><?php echo $ju ?></h2>
+
                                 </div>
                                 <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                                     <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
@@ -296,6 +295,10 @@ while ($row < count($user_data)) {
                                             <td class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">play time</h1>
+
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                                    <h1 class="uppercase">level</h1>
+
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
@@ -308,6 +311,7 @@ while ($row < count($user_data)) {
                                             <td class="">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">total</h1>
+                                                    <h1 class="uppercase">lokasi</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
@@ -363,6 +367,42 @@ while ($row < count($user_data)) {
                                             </td>
                                         </tr>
                                         <!-- list 1 end -->
+                                        <!-- list start -->
+                                        <?php
+                                        $row = 0;
+                                        while ($row < count($tb_admin)) { ?>
+                                            <tr class="">
+                                                <td class="flex flex-row gap-x-3 pb-5">
+                                                    <div class="form-control -ml-[5px]">
+                                                        <label class="label cursor-pointer">
+                                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                                        </label>
+                                                    </div>
+                                                    <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
+                                                        <img src="<?php echo $tb_admin[$row]['img'] ?>" " alt="" class="rounded-full w-full h-full object-cover">
+                                                    </div>
+                                                    <div class="flex flex-col gap-y-1">
+                                                        <h1 class="font-semibold"><?php echo $tb_admin[$row]['username'] ?></h1>
+                                                        <h2 class="text-neutral_400 text-xs"><?php echo $tb_admin[$row]['id_admin'] ?></h2>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php
+                                                    echo $tb_admin[$row]['role'];
+                                                    ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php
+                                                    echo $tb_admin[$row]['lok'];
+                                                    ?>
+                                                </td>
+                                                <td class=" text-center">
+                                                </td>
+                                            </tr>
+                                            <!-- list end -->
+                                        <?php $row++;
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -43,7 +43,7 @@ $ps = $Sadmin->ps_card();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dist/output.css">
-    <link rel="stylesheet" href="../assets/styles/animation.css">
+    <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -53,19 +53,17 @@ $ps = $Sadmin->ps_card();
 <body>
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-            <form action="dashboardSuperAdmin.php" method="post">
 
                 <!-- header -->
-                <?php require_once 'components/header.php';
-                if (isset($_POST['logout'])) {
-                    require_once 'components/alertLogout.php';
-                }
+                <?php include_once 'components/header.php';?>
 
-                ?>
+  
+
+
 
 
                 <!-- sidebar -->
-                <?php require_once 'components/sidebar.php'; ?>
+                <?php include_once 'components/sidebar.php'; ?>
 
                 <!-- list control -->
                 <section id="control" class="mt-24 text-neutral_050  ml-24">
@@ -198,10 +196,31 @@ $ps = $Sadmin->ps_card();
 
         </div>
         </div>
-        </form>
     </main>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    const logout = document.getElementById('logout');
+
+    logout.addEventListener('click', function() {
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Anda akan keluar dari akun ini",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Keluar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'logout.php';
+            }
+        })
+    })
+
+
+// ambil dari alertLogout.php
+    </script>
 
 </body>
 

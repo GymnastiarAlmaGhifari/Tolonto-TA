@@ -17,7 +17,7 @@ $ps = $SadminPs->ps_card();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dist/output.css">
-    <link rel="stylesheet" href="../assets/styles/animation.css">
+    <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Inventory Superadmin</title>

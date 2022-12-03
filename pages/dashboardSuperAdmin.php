@@ -10,21 +10,18 @@ if (!$user->is_login()) {
     Redirect::to('login');
 }
 
-if (Session::exists('dashboard')) {
-    echo Session::flash('dashboard');
+if (Session::exists('dashboardSuperAdmin')) {
+    echo Session::flash('dashboardSuperAdmin');
 }
-
-
-
 
 
 // pengecekan halaman admin
 if (!$user->is_superAdmin(Session::get('username'))) {
     Session::flash(
-        'dashboard',
-        '<script>alert("Halaman Ini Khusus Admin")</script>'
+        'dashboardSuperAdmin',
+        '<script>alert("Halaman Ini Khusus Super Admin")</script>'
     );
-    Redirect::to('dashboard');
+    Redirect::to('dashboardSuperAdmin');
 }
 $users = $user->get_users();
 $tersedia = $Sadmin->ps_tersedia();
@@ -32,6 +29,10 @@ $maintain = $Sadmin->ps_maintain();
 $psbook = $Sadmin->ps_book();
 $laba = $Sadmin->laba();
 $ps = $Sadmin->ps_card();
+
+if (isset($_POST['inventory'])) {
+    Redirect::to('inventorySuperAdmin');
+}
 ?>
 
 
@@ -43,7 +44,7 @@ $ps = $Sadmin->ps_card();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dist/output.css">
-    <link rel="stylesheet" href="../assets/styles/animation.css">
+    <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -62,10 +63,10 @@ $ps = $Sadmin->ps_card();
                 }
 
                 ?>
-
-
                 <!-- sidebar -->
-                <?php require_once 'components/sidebar.php'; ?>
+                <?php require_once 'components/sidebar.php';
+
+                ?>
 
                 <!-- list control -->
                 <section id="control" class="mt-24 text-neutral_050  ml-24">
@@ -104,101 +105,102 @@ $ps = $Sadmin->ps_card();
                                 echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
                             } else {
 
-                                while ($row < count($ps)) { 
+                                while ($row < count($ps)) {
                                     $status = $ps[$row]['status'];
                                     if ($status == 'aktif') {
-                                     $id_ps = $ps[$row]['id_ps'] ;
-                                     $aktif = $Sadmin->is_active($id_ps); 
-                                     ?>
-                                    <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
-                                        <div class="flex justify-between mt-2 mx-5">
-                                            <h1><?php echo $ps[$row]['nama_ps']?></h1>
-                                            <!-- <div class="switch">
+                                        $id_ps = $ps[$row]['id_ps'];
+                                        $aktif = $Sadmin->is_active($id_ps);
+                            ?>
+                                        <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
+                                            <div class="flex justify-between mt-2 mx-5">
+                                                <h1><?php echo $ps[$row]['nama_ps'] ?></h1>
+                                                <!-- <div class="switch">
                                     <div class="switch__1">
                                         <input type="checkbox" id="switch-1">
                                         <label for="switch-1"></label>
                                     </div>
                                 </div> -->
-                                            <input type="checkbox" class="toggle toggle-md   checked:bg-[#32FC00]" checked />
-                                        </div>
-                                        <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
-                                        <div class="flex justify-center items-center relative">
-                                            <img class="h-[110px] m-2" src="<?php echo $ps[$row]['img'] ?>" alt="">
-                                        </div>
-                                        <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['nama_jenis'] ?></h1>
-                                        <div class="flex flex-row justify-between px-5">
-                                            <div class="flex flex-row items-center gap-x-2">
-                                                <span class="w-3 h-3 rounded-full bg-[#32FC00]"></span>
-                                                <h1><?php echo $ps[$row]['status'] ?></h1>
+                                                <input type="checkbox" class="toggle toggle-md   checked:bg-[#32FC00]" checked />
                                             </div>
-                                            <div class="flex flex-row items-center gap-x-2">
-                                                <h1><?php echo $aktif[0]['playtime'] ?></h1>
-                                                <i class="fa-regular fa-clock"></i>
+                                            <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
+                                            <div class="flex justify-center items-center relative">
+                                                <img class="h-[110px] m-2" src="<?php echo $ps[$row]['img'] ?>" alt="">
+                                            </div>
+                                            <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['nama_jenis'] ?></h1>
+                                            <div class="flex flex-row justify-between px-5">
+                                                <div class="flex flex-row items-center gap-x-2">
+                                                    <span class="w-3 h-3 rounded-full bg-[#32FC00]"></span>
+                                                    <h1><?php echo $ps[$row]['status'] ?></h1>
+                                                </div>
+                                                <div class="flex flex-row items-center gap-x-2">
+                                                    <h1><?php echo $aktif[0]['playtime'] ?></h1>
+                                                    <i class="fa-regular fa-clock"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-row justify-between px-5">
+                                                <div class="flex flex-row items-center gap-x-2">
+                                                    <i class="fa-solid fa-dollar-sign"></i>
+                                                    <h1>Rp. <?php echo $aktif[0]['bayar'] ?></h1>
+                                                </div>
+                                                <div class="flex flex-row items-center gap-x-2">
+                                                    <h1><?php echo $aktif[0]['username'] ?></h1>
+                                                    <i class="fas fa-user"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="flex flex-row justify-between px-5">
-                                            <div class="flex flex-row items-center gap-x-2">
-                                                <i class="fa-solid fa-dollar-sign"></i>
-                                                <h1>Rp. <?php echo $aktif[0]['bayar'] ?></h1>
-                                            </div>
-                                            <div class="flex flex-row items-center gap-x-2">
-                                                <h1><?php echo $aktif[0]['username'] ?></h1>
-                                                <i class="fas fa-user"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                            <?php
+                                    <?php
                                     } else { ?>
                                         <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
-                                        <div class="flex justify-between mt-2 mx-5">
-                                            <h1><?php echo $ps[$row]['nama_ps'] ?></h1>
-                                            <!-- <div class="switch">
+                                            <div class="flex justify-between mt-2 mx-5">
+                                                <h1><?php echo $ps[$row]['nama_ps'] ?></h1>
+                                                <!-- <div class="switch">
                                     <div class="switch__1">
                                         <input type="checkbox" id="switch-1">
                                         <label for="switch-1"></label>
                                     </div>
                                 </div> -->
-                                            <input type="checkbox" class="toggle toggle-md   checked:bg-[#32FC00]" checked />
-                                        </div>
-                                        <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
-                                        <div class="flex justify-center items-center relative">
-                                            <img class="h-[110px] m-2" src="<?php echo $ps[$row]['img'] ?>" alt="">
-                                        </div>
-                                        <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['nama_jenis'] ?></h1>
-                                        <div class="flex flex-row justify-between px-5">
-                                            <div class="flex flex-row items-center gap-x-2">
-                                                <span class="w-3 h-3 rounded-full bg-[#fc1100]"></span>
-                                                <h1><?php echo $ps[$row]['status'] ?></h1>
+                                                <input type="checkbox" class="toggle toggle-md   checked:bg-[#32FC00]" checked />
                                             </div>
-                                            <div class="flex flex-row items-center gap-x-2">
-                                                <h1>-</h1>
-                                                <i class="fa-regular fa-clock"></i>
+                                            <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
+                                            <div class="flex justify-center items-center relative">
+                                                <img class="h-[110px] m-2" src="<?php echo $ps[$row]['img'] ?>" alt="">
+                                            </div>
+                                            <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['nama_jenis'] ?></h1>
+                                            <div class="flex flex-row justify-between px-5">
+                                                <div class="flex flex-row items-center gap-x-2">
+                                                    <span class="w-3 h-3 rounded-full bg-[#fc1100]"></span>
+                                                    <h1><?php echo $ps[$row]['status'] ?></h1>
+                                                </div>
+                                                <div class="flex flex-row items-center gap-x-2">
+                                                    <h1>-</h1>
+                                                    <i class="fa-regular fa-clock"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-row justify-between px-5">
+                                                <div class="flex flex-row items-center gap-x-2">
+                                                    <i class="fa-solid fa-dollar-sign"></i>
+                                                    <h1>Rp. -</h1>
+                                                </div>
+                                                <div class="flex flex-row items-center gap-x-2">
+                                                    <h1>-</h1>
+                                                    <i class="fas fa-user"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="flex flex-row justify-between px-5">
-                                            <div class="flex flex-row items-center gap-x-2">
-                                                <i class="fa-solid fa-dollar-sign"></i>
-                                                <h1>Rp. -</h1>
-                                            </div>
-                                            <div class="flex flex-row items-center gap-x-2">
-                                                <h1>-</h1>
-                                                <i class="fas fa-user"></i>
-                                            </div>
-                                        </div>
-                                    </div>
                             <?php    }
-                                $row++; }
+                                    $row++;
+                                }
                             } ?>
                             <!-- end -->
 
                         </div>
                     </div>
-        </div>
-        </section>
 
+                </section>
+
+            </form>
         </div>
-        </div>
-        </form>
+
     </main>
 
     <script src="../assets/js/main.js"></script>

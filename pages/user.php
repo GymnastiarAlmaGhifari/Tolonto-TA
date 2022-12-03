@@ -5,7 +5,7 @@ require_once "../core/init.php";
 $ju = $SadminUser->jumlah_user();
 $tb_admin = $SadminUser->table_admin();
 
- 
+
 
 // make method get_data from user_data
 ?>
@@ -19,6 +19,8 @@ $tb_admin = $SadminUser->table_admin();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dist/output.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css" />
+    <link rel="stylesheet" href="assets/styles/animation.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -296,11 +298,11 @@ $tb_admin = $SadminUser->table_admin();
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">play time</h1>
 
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">level</h1>
+                                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                                        <h1 class="uppercase">level</h1>
 
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
+                                                        <i class="fa-solid fa-angle-up"></i>
+                                                    </button>
                                             </td>
                                             <td class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
@@ -379,7 +381,7 @@ $tb_admin = $SadminUser->table_admin();
                                                         </label>
                                                     </div>
                                                     <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                        <img src="<?php echo $tb_admin[$row]['img'] ?>" " alt="" class="rounded-full w-full h-full object-cover">
+                                                        <img src="<?php echo $tb_admin[$row]['img'] ?>" " alt="" class=" rounded-full w-full h-full object-cover">
                                                     </div>
                                                     <div class="flex flex-col gap-y-1">
                                                         <h1 class="font-semibold"><?php echo $tb_admin[$row]['username'] ?></h1>

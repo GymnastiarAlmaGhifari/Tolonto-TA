@@ -15,10 +15,24 @@ class ControllerSuperadminUser extends Database
         else return "0";
 }
 
+public function jumlah_admin()
+{
+    $data = $this->countsemua('id_admin', 'manage');
+    $jumlah=$data['COUNT(id_admin)'];
+    if ($jumlah != 0) return $jumlah;
+        else return "0";
+}
+
 public function table_admin()
 {
     $sql = 'SELECT manage.id_admin, manage.username, level.role, manage.lok, manage.img 
     FROM manage JOIN level ON manage.level = level.id_level ;' ;
     return $this->uniquery($sql);
 }
+
+public function table_user()
+{
+    return $this->fetchsemua('*', 'user');
+}
+
 }

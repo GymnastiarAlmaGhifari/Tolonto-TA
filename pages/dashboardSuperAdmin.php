@@ -54,13 +54,12 @@ if (isset($_POST['inventory'])) {
 <body>
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-            <form action="dashboardSuperAdmin.php" method="post">
 
                 <!-- header -->
-                <?php require_once 'components/header.php';
-                if (isset($_POST['logout'])) {
-                    require_once 'components/alertLogout.php';
-                }
+                <?php include_once 'components/header.php';?>
+
+  
+
 
                 ?>
                 <!-- sidebar -->
@@ -203,7 +202,29 @@ if (isset($_POST['inventory'])) {
 
     </main>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    const logout = document.getElementById('logout');
+
+    logout.addEventListener('click', function() {
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Anda akan keluar dari akun ini",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Keluar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'logout.php';
+            }
+        })
+    })
+
+
+// ambil dari alertLogout.php
+    </script>
 
 </body>
 

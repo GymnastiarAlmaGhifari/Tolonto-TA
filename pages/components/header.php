@@ -17,6 +17,8 @@ if ($location[2] == 'dashboardSuperAdmin.php') {
     $text = "Booking Super Admin";
 }
 
+
+
 ?>
 <div class="container">
     <div class=" w-screen h-[60px] fixed z-40 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
@@ -127,4 +129,7 @@ if ($location[2] == 'dashboardSuperAdmin.php') {
         document.getElementById("seconds").innerHTML = s;
     };
     setInterval(clock, 10);
+    
+    
+
 </script>

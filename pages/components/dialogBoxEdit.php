@@ -29,12 +29,6 @@
                                     <!-- input image -->
                                     <label for="image" class="text-neutral_050 font-semibold text-lg">Gambar PS</label>
                                     <input type="file" name="image" id="image" class="text-neutral_050">
-                                    <?php
-                                    // Upload.php
-                                    if (isset($_POST['image'])) {
-                                        Upload::uploadimage();
-                                    }
-                                    ?>
 
                                     </input>
 

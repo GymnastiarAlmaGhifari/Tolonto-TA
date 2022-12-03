@@ -25,19 +25,12 @@
                                     <input type="text" name="jumlah" id="jumlah" class="w-[300px] h-[40px] outline-none pl-2 text-neutral_050 bg-neutral_900 rounded-xl shadow-elevation-dark-4">
                                 </div>
                                 <div class="flex flex-col gap-2 justify-center items-center">
+                                    <!-- show previe image from Upload::uploadimage() -->
+                                    <img src="" alt="" id="preview" class="w-[300px] h-[300px] object-cover rounded-xl shadow-elevation-dark-4">
 
-                                    <!-- input image -->
+                                    <!-- label and input accept only .jpg .png .jpeg -->
                                     <label for="image" class="text-neutral_050 font-semibold text-lg">Gambar PS</label>
-                                    <input type="file" name="image" id="image" class="text-neutral_050">
-                                    <?php
-                                    // Upload.php
-                                    if (isset($_POST['image'])) {
-                                        Upload::uploadimage();
-                                    }
-                                    ?>
-
-                                    </input>
-
+                                    <input type="file" name="image" id="image" class="w-[300px] h-[40px] outline-none pl-2 text-neutral_050 bg-neutral_900 rounded-xl shadow-elevation-dark-4" accept=".jpg, .png, .jpeg">
                                 </div>
                                 <div class="flex flex-row gap-2 justify-center items-center">
                                     <button type="submit" @click="open = false" name="tambah" class="w-[100px] h-[40px]
@@ -69,7 +62,33 @@
     }
 
     openModal('basicModal');
-    // set 3 second
 
-    // openModal('basicModal');
+    const image = document.querySelector('#image');
+    const preview = document.querySelector('#preview');
+
+    image.addEventListener('change', function() {
+        const file = image.files[0];
+        const type = file.type;
+        const size = file.size;
+        const name = file.name;
+
+        if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+            alert('type file harus .jpg .png .jpeg');
+            image.value = '';
+            return false;
+        }
+
+        if (size > 2000000) {
+            alert('ukuran file maksimal 2mb');
+            image.value = '';
+            return false;
+        }
+
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = function(e) {
+            preview.src = e.target.result;
+        }
+    })
 </script>

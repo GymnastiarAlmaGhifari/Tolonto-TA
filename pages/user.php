@@ -171,7 +171,7 @@ $tb_user = $SadminUser->table_user();
                                             <td class="relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
-                                                    <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
+                                                    <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent outline-none focus:border-neutral_700 peer" placeholder=" " required>
                                                     <label for="search3" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
                                                 </div>
                                             </td>
@@ -271,12 +271,6 @@ $tb_user = $SadminUser->table_user();
         const garis = document.getElementById('garis');
         const plus = document.getElementById('plus');
 
-        const open2 = document.getElementById('open2');
-        const atas2 = document.getElementById('atas2');
-        const table2 = document.getElementById('table2');
-        const garis2 = document.getElementById('garis2');
-        const plus2 = document.getElementById('plus2');
-
         const open3 = document.getElementById('open3');
         const atas3 = document.getElementById('atas3');
         const table3 = document.getElementById('table3');
@@ -320,44 +314,6 @@ $tb_user = $SadminUser->table_user();
             }
         }
         openTable();
-
-        const openTable2 = () => {
-            open2.addEventListener("click", function() {
-                if (atas2.classList.contains('h-[77px]')) {
-                    localStorage.setItem("open-table2", "true");
-                } else {
-                    localStorage.setItem("open-table2", "false");
-                }
-                themeMode();
-            });
-
-            function themeMode() {
-                if (localStorage.getItem("open-table2") == "false") {
-                    garis2.classList.add('hidden');
-                    plus2.classList.add('hidden');
-                    table2.classList.add('hidden');
-                    atas2.classList.remove('h-[450px]');
-                    atas2.classList.add('h-[77px]');
-                } else {
-                    setTimeout(() => {
-                        table2.classList.remove('hidden');
-                        garis2.classList.remove('hidden');
-                        plus2.classList.remove('hidden');
-                        garis2.classList.add('ease-in-out');
-                        table2.classList.add('ease-in-out');
-                        atas2.classList.add('h-[450px]');
-                        atas2.classList.remove('h-[77px]');
-                    }, 100);
-                }
-            }
-            if (localStorage.getItem("open-table2") !== null) {
-                themeMode();
-            }
-            if (atas2.classList.contains("h-[450px]")) {
-                open2.checked = true;
-            }
-        }
-        openTable2();
 
         const openTable3 = () => {
             open3.addEventListener("click", function() {

@@ -1,3 +1,9 @@
+<?php
+
+require_once '../core/init.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,17 +17,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Riwayat</title>
+    <title>Riwayat SuperAdmin</title>
 </head>
 
 <body>
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-
-            <!-- header -->
-            <?php require_once 'components/header.php'; ?>
-            <!-- sidebar -->
-            <?php require_once 'components/sidebar.php'; ?>
+            <form action="riwayatSuperAdmin.php" method="post">
+                <!-- header -->
+                <?php require_once 'components/header.php'; ?>
+                <!-- sidebar -->
+                <?php require_once 'components/sidebar.php'; ?>
+            </form>
             <!-- table start -->
             <section class="mt-24 text-neutral_050  ml-16">
                 <div class="container px-6 max-w-full ">
@@ -353,6 +360,7 @@
                 </div>
             </section>
             <!-- table end -->
+
         </div>
     </main>
 

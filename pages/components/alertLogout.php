@@ -23,7 +23,7 @@
                             <button type="button" id="keluar" class="w-10/12 py-2 inline-flex justify-center rounded-md border border-transparent shadow-sm bg-error_600 text-base font-medium text-white hover:bg-error_700 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg focus:ring-error_500 sm:ml-3  sm:text-sm text-neutral_050" @click="open = false">
                                 Ok
                             </button>
-                            <button type="button" class="w-10/12 py-2 inline-flex justify-center rounded-md border border-transparent shadow-sm bg-error_600 text-base font-medium text-white hover:bg-error_700 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg focus:ring-error_500 sm:ml-3  sm:text-sm text-neutral_050" @click="open = false">
+                            <button id="cancel" type="button" class="w-10/12 py-2 inline-flex justify-center rounded-md border border-transparent shadow-sm bg-error_600 text-base font-medium text-white hover:bg-error_700 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg focus:ring-error_500 sm:ml-3  sm:text-sm text-neutral_050" @click="open = false">
                                 Cancel
                             </button>
                         </div>
@@ -57,4 +57,6 @@
     // set 3 second
 
     // openModal('basicModal');
+
+    
 </script>

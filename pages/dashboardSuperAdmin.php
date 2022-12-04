@@ -52,17 +52,16 @@ $ps = $Sadmin->ps_card();
 <body>
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-            <form action="dashboardSuperAdmin.php" method="post">
 
-                <!-- header -->
-                <?php require_once 'components/header.php';
-                if (isset($_POST['logout'])) {
-                    require_once 'components/alertLogout.php';
-                }
+            <!-- header -->
+            <?php include_once 'components/header.php'; ?>
 
-                ?>
-                <!-- sidebar -->
-                <?php require_once 'components/sidebar.php'; ?>
+
+
+
+            ?>
+            <!-- sidebar -->
+            <?php require_once 'components/sidebar.php'; ?>
             </form>
 
             <!-- list control -->
@@ -201,21 +200,27 @@ $ps = $Sadmin->ps_card();
     </main>
 
     <script src="assets/js/main.js"></script>
-
     <script>
-        // const inventory = document.getElementById('inventory');
-        // const booking = document.getElementById('booking');
+        const logout = document.getElementById('logout');
 
-        // inventory.addEventListener('click', function() {
-        //     window.location.href = 'inventorySuperAdmin.php';
-        // });
+        logout.addEventListener('click', function() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan keluar dari akun ini",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Keluar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'logout.php';
+                }
+            })
+        })
 
-        // booking.addEventListener('click', function() {
-        //     
-        //     Redirect::to('bookingSuperAdmin.php');
-        //     
 
-        // });
+        // ambil dari alertLogout.php
     </script>
 
 </body>

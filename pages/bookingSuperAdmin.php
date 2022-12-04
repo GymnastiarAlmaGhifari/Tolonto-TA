@@ -1,3 +1,8 @@
+<?php
+require_once '../core/init.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,21 +12,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dist/output.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css" />
+    <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Booking Super Admin</title>
+    <title>Booking SuperAdmin</title>
 </head>
 
 <body>
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
+            <form action="bookingSuperAdmin.php" method="post">
 
-            <!-- header -->
-            <?php require_once 'components/header.php'; ?>
-            <!-- sidebar -->
-            <?php require_once 'components/sidebar.php'; ?>
-            <!-- table start -->
+                <!-- header -->
+                <?php require_once 'components/header.php'; ?>
+                <!-- sidebar -->
+                <?php require_once 'components/sidebar.php'; ?>
+                <!-- table start -->
+            </form>
             <section class="mt-24 text-neutral_050  ml-16">
                 <div class="container px-6 max-w-full ">
                     <div id="atas" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
@@ -44,8 +52,7 @@
                                             <td class="relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
-                                                    <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
-                                                    <label for="search" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
+                                                    <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                                 </div>
                                             </td>
                                             <td class=" ">
@@ -133,6 +140,12 @@
             </section>
             <!-- table end -->
 
+            <!-- <div class="w-20 h-20 bg-neutral_050">
+                    <button class="btn btn-ghost">
+                        <h1>iawjdiajdoaiijoaijdawoj</h1>
+                    </button>
+                </div> -->
+
             <!-- table start -->
             <section class="mt-12 text-neutral_050  ml-16">
                 <div class="container px-6 max-w-full ">
@@ -156,8 +169,7 @@
                                             <td class="relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
-                                                    <input type="text" id="search2" name="search2" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
-                                                    <label for="search2" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
+                                                    <input type="text" id="search2" name="search2" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                                 </div>
                                             </td>
                                             <td class=" ">
@@ -267,8 +279,7 @@
                                             <td class="relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
-                                                    <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
-                                                    <label for="search3" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
+                                                    <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                                 </div>
                                             </td>
                                             <td class=" ">
@@ -355,10 +366,10 @@
                 </div>
             </section>
             <!-- table end -->
+
         </div>
     </main>
 
-    </div>
     <script>
         const open = document.getElementById('open');
         const atas = document.getElementById('atas');

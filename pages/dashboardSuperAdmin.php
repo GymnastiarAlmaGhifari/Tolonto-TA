@@ -1,4 +1,5 @@
 <?php
+
 require_once '../core/init.php';
 
 
@@ -10,21 +11,18 @@ if (!$user->is_login()) {
     Redirect::to('login');
 }
 
-if (Session::exists('dashboard')) {
-    echo Session::flash('dashboard');
+if (Session::exists('dashboardSuperAdmin')) {
+    echo Session::flash('dashboardSuperAdmin');
 }
-
-
-
 
 
 // pengecekan halaman admin
 if (!$user->is_superAdmin(Session::get('username'))) {
     Session::flash(
-        'dashboard',
-        '<script>alert("Halaman Ini Khusus Admin")</script>'
+        'dashboardSuperAdmin',
+        '<script>alert("Halaman Ini Khusus Super Admin")</script>'
     );
-    Redirect::to('dashboard');
+    Redirect::to('dashboardSuperAdmin');
 }
 $users = $user->get_users();
 $tersedia = $Sadmin->ps_tersedia();
@@ -32,6 +30,7 @@ $maintain = $Sadmin->ps_maintain();
 $psbook = $Sadmin->ps_book();
 $laba = $Sadmin->laba();
 $ps = $Sadmin->ps_card();
+
 ?>
 
 
@@ -53,64 +52,65 @@ $ps = $Sadmin->ps_card();
 <body>
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-
+            <form action="dashboardSuperAdmin.php" method="post">
                 <!-- header -->
-                <?php include_once 'components/header.php';?>
+                <?php include_once 'components/header.php'; ?>
 
-  
+
 
 
 
 
                 <!-- sidebar -->
                 <?php include_once 'components/sidebar.php'; ?>
+            </form>
 
-                <!-- list control -->
-                <section id="control" class="mt-24 text-neutral_050  ml-24">
-                    <div class="container">
-                        <div class="flex flex-wrap flex-row  gap-7 font-bas sm:justify-center xs:justify-center md:justify-start xl:justify-start 2xl:justify-start xs:-ml-11 sm:ml-0 md:ml-0 xl:ml-0 2xl:ml-0">
-                            <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
-                                <h1 class="ml-3 mt-3">PlayStation Tersedia</h1>
-                                <h1 class="text-5xl ml-[105px]"><?php echo $tersedia ?></h1>
-                            </div>
-                            <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
-                                <h1 class="ml-3 mt-3">PlayStation Maintenance</h1>
-                                <h1 class="text-5xl ml-[105px]"><?php echo $maintain ?></h1>
-                            </div>
-                            <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
-                                <h1 class="ml-3 mt-3">Booking Hari ini</h1>
-                                <h1 class="text-5xl ml-[105px]"><?php echo $psbook ?></h1>
-                            </div>
-                            <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
-                                <h1 class="ml-3 mt-3">Laba Hari ini</h1>
-                                <h1 class="text-5xl mx-5">Rp. <?php echo $laba ?></h1>
-                            </div>
+            <!-- list control -->
+            <section id="control" class="mt-24 text-neutral_050  ml-24">
+                <div class="container">
+                    <div class="flex flex-wrap flex-row  gap-7 font-bas sm:justify-center xs:justify-center md:justify-start xl:justify-start 2xl:justify-start xs:-ml-11 sm:ml-0 md:ml-0 xl:ml-0 2xl:ml-0">
+                        <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
+                            <h1 class="ml-3 mt-3">PlayStation Tersedia</h1>
+                            <h1 class="text-5xl ml-[105px]"><?php echo $tersedia ?></h1>
+                        </div>
+                        <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
+                            <h1 class="ml-3 mt-3">PlayStation Maintenance</h1>
+                            <h1 class="text-5xl ml-[105px]"><?php echo $maintain ?></h1>
+                        </div>
+                        <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
+                            <h1 class="ml-3 mt-3">Booking Hari ini</h1>
+                            <h1 class="text-5xl ml-[105px]"><?php echo $psbook ?></h1>
+                        </div>
+                        <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
+                            <h1 class="ml-3 mt-3">Laba Hari ini</h1>
+                            <h1 class="text-5xl mx-5">Rp. <?php echo $laba ?></h1>
                         </div>
                     </div>
-                </section>
-                <!-- main ditempat -->
-                <section id="main-ditempat" class="mt-8  text-neutral_050 ml-24">
-                    <h1>Main Di tempat</h1>
-                </section>
-                <!-- list ps -->
-                <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
-                    <div class="container">
-                        <div class="flex flex-wrap gap-7 flex-row">
-                            <?php
-                            $row = 0;
-                            if (empty($ps)) {
-                                echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
-                            } else {
+                </div>
+            </section>
+            <!-- main ditempat -->
+            <section id="main-ditempat" class="mt-8  text-neutral_050 ml-24">
+                <h1>Main Di tempat</h1>
+            </section>
+            <!-- list ps -->
+            <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
+                <div class="container">
+                    <div class="flex flex-wrap gap-7 flex-row">
+                        <?php
+                        $row = 0;
+                        if (empty($ps)) {
+                            echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                        } else {
 
-                                while ($row < count($ps)) { 
-                                    $status = $ps[$row]['status'];
-                                    if ($status == 'aktif') {
-                                     $id_ps = $ps[$row]['id_ps'] ;
-                                     $aktif = $Sadmin->is_active($id_ps); 
-                                     ?>
+                            while ($row < count($ps)) {
+                                $status = $ps[$row]['status'];
+                                if ($status == 'aktif') {
+                                    $id_ps = $ps[$row]['id_ps'];
+                                    $aktif = $Sadmin->is_active($id_ps);
+                        ?>
                                     <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
                                         <div class="flex justify-between mt-2 mx-5">
-                                            <h1><?php echo $ps[$row]['nama_ps']?></h1>
+                                            <h1><?php echo $ps[$row]['nama_ps'] ?></h1>
                                             <!-- <div class="switch">
                                     <div class="switch__1">
                                         <input type="checkbox" id="switch-1">
@@ -145,9 +145,9 @@ $ps = $Sadmin->ps_card();
                                             </div>
                                         </div>
                                     </div>
-                            <?php
-                                    } else { ?>
-                                        <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
+                                <?php
+                                } else { ?>
+                                    <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
                                         <div class="flex justify-between mt-2 mx-5">
                                             <h1><?php echo $ps[$row]['nama_ps'] ?></h1>
                                             <!-- <div class="switch">
@@ -184,42 +184,44 @@ $ps = $Sadmin->ps_card();
                                             </div>
                                         </div>
                                     </div>
-                            <?php    }
-                                $row++; }
-                            } ?>
-                            <!-- end -->
+                        <?php    }
+                                $row++;
+                            }
+                        } ?>
+                        <!-- end -->
 
-                        </div>
                     </div>
-        </div>
-        </section>
+                </div>
+
+            </section>
+
 
         </div>
-        </div>
+
     </main>
 
     <script src="assets/js/main.js"></script>
     <script>
-    const logout = document.getElementById('logout');
+        const logout = document.getElementById('logout');
 
-    logout.addEventListener('click', function() {
-        Swal.fire({
-            title: 'Apakah anda yakin?',
-            text: "Anda akan keluar dari akun ini",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Keluar!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'logout.php';
-            }
+        logout.addEventListener('click', function() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda akan keluar dari akun ini",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Keluar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'logout.php';
+                }
+            })
         })
-    })
 
 
-// ambil dari alertLogout.php
+        // ambil dari alertLogout.php
     </script>
 
 </body>

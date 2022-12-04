@@ -27,7 +27,7 @@ if (Input::get('nama')) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dist/output.css">
-    <link rel="stylesheet" href="../assets/styles/animation.css">
+    <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Document</title>
@@ -39,12 +39,6 @@ if (Input::get('nama')) {
     <?php require_once 'components/sidebar.php'; ?>
 
     <!-- fungsi multi level user       -->
-    <?php if ($user_data['username'] == Session::get('username')) { ?>
-        <?php if ($user->is_superAdmin(Session::get('username'))) { ?>
-            <a style="color:#eee;margin-left:-215px;text-decoration: underline;" href="dashboardSuperAdmin.php">Selamat Datang Admin</a>
-        <?php } ?>
-    <?php } ?>
-    <h1 class="judul"><strong>Halo <?php echo $user_data['username']; ?></strong></h1>
 </body>
 
 </html>

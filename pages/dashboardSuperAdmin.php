@@ -52,16 +52,17 @@ $ps = $Sadmin->ps_card();
 <body>
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-
-            <!-- header -->
-            <?php include_once 'components/header.php'; ?>
-
-
+            <form action="dashboardSuperAdmin.php" method="post">
+                <!-- header -->
+                <?php include_once 'components/header.php'; ?>
 
 
-            ?>
-            <!-- sidebar -->
-            <?php require_once 'components/sidebar.php'; ?>
+
+
+
+
+                <!-- sidebar -->
+                <?php include_once 'components/sidebar.php'; ?>
             </form>
 
             <!-- list control -->

@@ -23,27 +23,26 @@ const atas3 = document.getElementById("atas3");
 const table3 = document.getElementById("table3");
 const garis3 = document.getElementById("garis3");
 const plus3 = document.getElementById("plus3");
-
 /*-------------------------------------------------------------
 Input fields
 -------------------------------------------------------------*/
-const onFocusUsername = () => {
-  if (username != null) {
-    usernameLabel.classList.add("peer-empty:text-transparent");
-  }
-  if (username == null) {
-    usernameLabel.classList.remove("peer-empty:text-transparent");
-  }
-};
+// window loader id = loader
 
-const onFocusPassword = () => {
-  if (password != null) {
-    passwordLabel.classList.add("peer-empty:text-transparent");
-  }
-  if (password == null) {
-    passwordLabel.classList.remove("peer-empty:text-transparent");
-  }
-};
+// window.addEventListener("load", () => {
+//   document.querySelector(".js-page-loader").classList.add("fade-out");
+//   setTimeout(() => {
+//     document.querySelector(".js-page-loader").style.display = "none";
+//   }, 600);
+// });
+// document.onreadystatechange = function () {
+//   if (document.readyState !== "complete") {
+//     document.getElementsByTagName("main").style.visibility = "hidden";
+//     document.querySelector("#loader").style.visibility = "visible";
+//   } else {
+//     document.querySelector("#loader").style.display = "none";
+//     document.getElementsByTagName("main").style.visibility = "visible";
+//   }
+// };
 
 /*-------------------------------------------------------------
 show password
@@ -65,9 +64,21 @@ const show = () => {
 /*-------------------------------------------------------------
 toggle switch color
 -------------------------------------------------------------*/
+
 /*-------------------------------------------------------------
 clock
 -------------------------------------------------------------*/
+const clock = () => {
+  const today = new Date();
+  const h = today.getHours();
+  const m = today.getMinutes();
+  const s = today.getSeconds();
+
+  document.getElementById("hours").innerHTML = h;
+  document.getElementById("minutes").innerHTML = m;
+  document.getElementById("seconds").innerHTML = s;
+};
+setInterval(clock, 10);
 /*-------------------------------------------------------------
 table
 -------------------------------------------------------------*/
@@ -107,7 +118,6 @@ const openTable = () => {
     open.checked = true;
   }
 };
-openTable();
 
 const openTable2 = () => {
   open2.addEventListener("click", function () {

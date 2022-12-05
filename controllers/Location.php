@@ -6,6 +6,6 @@ class Location
     {
         $location = $_SERVER['PHP_SELF'];
         $location = explode('/', $location);
-        return $location[$slice] == $lokasi;
+        return $location[$slice] == $lokasi . '.php';
     }
 }

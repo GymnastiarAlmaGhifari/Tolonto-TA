@@ -12,18 +12,18 @@ spl_autoload_register(function ($class) {
 
 // Controller Web
 $user = new ControllerAuth();
-$Sadmin = new ControllerSuperAdmin();
-$riwayat = new ControllerRiwayat();
-$detail = new ControllerDetail();
-$sewa = new ControllerSewa();
-$SadminUser = new ControllerSuperadminUser();
-$SadminPs = new ControllerSuperadminInventory();
+// $Sadmin = new ControllerSuperAdmin();
+// $riwayat = new ControllerRiwayat();
+// $detail = new ControllerDetail();
+// $sewa = new ControllerSewa();
+// $SadminUser = new ControllerSuperadminUser();
+// $SadminPs = new ControllerSuperadminInventory();
 
 // Controller API
-$userapi = new ControllerAuthApi();
-$sewa = new ControllerSewaApi();
-$feedback = new ControllerFeedbackApi();
-$servis = new ControllerServisApi();
-$payment = new ControllerPaymentApi();
-$order = new ControllerOrderApi();
-$game = new ControllerGameCenterApi();
+// $userapi = new ControllerAuthApi();
+// $sewa = new ControllerSewaApi();
+// $feedback = new ControllerFeedbackApi();
+// $servis = new ControllerServisApi();
+// $payment = new ControllerPaymentApi();
+// $order = new ControllerOrderApi();
+// $game = new ControllerGameCenterApi();

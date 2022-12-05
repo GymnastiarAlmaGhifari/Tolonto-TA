@@ -20,6 +20,11 @@ require_once '../core/init.php';
 </head>
 
 <body>
+        <!--loader start  -->
+        <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+        <span class="loader-103"> </span>
+    </div>
+    <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
             <form action="bookingSuperAdmin.php" method="post">
@@ -371,6 +376,10 @@ require_once '../core/init.php';
     </main>
 
     <script>
+                var loader = document.getElementById('loader');
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
         const open = document.getElementById('open');
         const atas = document.getElementById('atas');
         const table = document.getElementById('table');

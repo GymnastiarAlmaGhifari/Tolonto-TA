@@ -1,5 +1,6 @@
 <?php
 require_once '../core/init.php';
+$SadminPs = new ControllerSuperadminInventory();
 
 $ju_ps = $SadminPs->jumlah_ps();
 $ps = $SadminPs->ps_card();
@@ -13,6 +14,13 @@ $ps = $SadminPs->ps_card();
 <html lang="en">
 
 <head>
+    <script>
+        function tambah() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "components/dialogBoxTambah.php", true);
+            xmlhttp.send();
+        }
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,14 +33,20 @@ $ps = $SadminPs->ps_card();
 
 <body>
 
+    <!--loader start  -->
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+        <span class="loader-103"> </span>
+    </div>
+    <!-- loader end -->
     <main class=" bg-neutral_900 w-full font-noto-sans">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-            <form action="inventorySuperAdmin.php" method="post">
-                <!-- header -->
-                <?php require_once 'components/header.php'; ?>
+            <!-- header -->
+            <?php require_once 'components/header.php'; ?>
 
-                <!-- sidebar -->
-                <?php require_once 'components/sidebar.php'; ?>
+            <!-- sidebar -->
+            <?php require_once 'components/sidebar.php'; ?>
+            <form action="inventorySuperAdmin.php" method="post">
+
 
                 <?php if (isset($_POST['hapusButton'])) {
                     require_once 'components/alertHapus.php';
@@ -43,6 +57,11 @@ $ps = $SadminPs->ps_card();
                 }
                 if (isset($_POST['tambahButton'])) {
                     require_once 'components/dialogBoxTambah.php';
+                    $f = fopen('components/dialogBoxTambah.php', 'r');
+
+                    fpassthru($f);
+
+                    fclose($f);
                 }
                 ?>
             </form>
@@ -111,7 +130,7 @@ $ps = $SadminPs->ps_card();
                         } ?>
                         <!-- end -->
                         <div class="w-[350px] h-[230px] bg-transparent rounded-xl  flex items-center justify-center">
-                            <button id="tambah" name="tambahButton" class="flex justify-center items-center h-[150px] w-[150px] shadow-elevation-dark-4 bg-neutral_800 rounded-full ">
+                            <button id="tambah" name="tambahButton" onclick="tambah()" class="flex justify-center items-center h-[150px] w-[150px] shadow-elevation-dark-4 bg-neutral_800 rounded-full ">
                                 <span class="bg-neutral_050 w-20 h-[4px] rounded-full"></span>
                                 <span id="plus3" class="bg-neutral_050 w-[4px] h-20 absolute rounded-full"></span>
                             </button>
@@ -129,6 +148,12 @@ $ps = $SadminPs->ps_card();
 
     <script src="../assets/js/main.js"></script>
     <script>
+        var loader = document.getElementById('loader');
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
+
+
         const hapus = document.getElementById('hapus');
         const alertHapus = document.getElementById('alertHapus');
 

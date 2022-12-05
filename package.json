@@ -2,7 +2,6 @@
   "name": "tolonto",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },

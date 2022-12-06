@@ -20,13 +20,8 @@ require_once 'core/init.php';
 </head>
 
 <body>
-<<<<<<< HEAD:pages/bookingSuperAdmin.php
-        <!--loader start  -->
-        <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
-=======
     <!--loader start  -->
     <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:bookingSuperAdmin.php
         <span class="loader-103"> </span>
     </div>
     <!-- loader end -->
@@ -381,11 +376,7 @@ require_once 'core/init.php';
     </main>
 
     <script>
-<<<<<<< HEAD:pages/bookingSuperAdmin.php
-                var loader = document.getElementById('loader');
-=======
         var loader = document.getElementById('loader');
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:bookingSuperAdmin.php
         window.addEventListener("load", () => {
             loader.classList.add("hidden");
         });

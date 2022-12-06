@@ -1,8 +1,4 @@
 <?php
-<<<<<<< HEAD:pages/components/header.php
-require_once '../core/init.php';
-=======
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/header.php
 $Sadmin = new ControllerSuperAdmin();
 $lok = $Sadmin->lokasi();
 
@@ -10,19 +6,11 @@ $user_data = $user->get_data(Session::get('username'));
 
 $text = "";
 
-<<<<<<< HEAD:pages/components/header.php
-if (Location::in(3, "dashboardSuperAdmin")) {
-    $text = "Dashboard Super Admin";
-} elseif (Location::in(3, 'inventorySuperAdmin')) {
-    $text = "Inventory Super Admin";
-} elseif (Location::in(3, 'bookingSuperAdmin')) {
-=======
 if (Location::in(1, "dashboardSuperAdmin")) {
     $text = "Dashboard Super Admin";
 } elseif (Location::in(1, 'inventorySuperAdmin')) {
     $text = "Inventory Super Admin";
 } elseif (Location::in(1, 'bookingSuperAdmin')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/header.php
     $text = "Booking Super Admin";
 }
 
@@ -113,11 +101,7 @@ if (Location::in(1, "dashboardSuperAdmin")) {
     const tempat = document.getElementById('tempat');
     // if window location in pages/lokasi
 
-<<<<<<< HEAD:pages/components/header.php
-    <?php if (Location::in(3, 'dashboard')) { ?>
-=======
     <?php if (Location::in(1, 'dashboard')) { ?>
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/header.php
         // set tempat with text dashboard
         tempat.innerHTML = 'Dashboard';
         lokasi.classList.add('hidden');

@@ -1,6 +1,7 @@
 <?php
 
 require_once '../core/init.php';
+$riwayat = new ControllerRiwayat();
 
 ?>
 
@@ -21,6 +22,7 @@ require_once '../core/init.php';
 </head>
 
 <body>
+
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
             <form action="riwayatSuperAdmin.php" method="post">
@@ -366,6 +368,12 @@ require_once '../core/init.php';
 
     </div>
     <script>
+        var loader = document.getElementById('loader');
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
+
+
         const open = document.getElementById('open');
         const atas = document.getElementById('atas');
         const table = document.getElementById('table');

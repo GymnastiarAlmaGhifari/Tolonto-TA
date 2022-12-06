@@ -4,7 +4,7 @@
 // $location = $_SERVER['PHP_SELF'];
 // $location = explode('/', $location);
 
-if (Location::in(2, 'dashboardSuperAdmin.php')) {
+if (Location::in(3, 'dashboardSuperAdmin')) {
     if (isset($_POST['inventory'])) {
         Redirect::to('inventorySuperAdmin');
     }
@@ -21,7 +21,7 @@ if (Location::in(2, 'dashboardSuperAdmin.php')) {
         Redirect::to('userSuperAdmin');
     }
 }
-if (Location::in(2, 'inventorySuperAdmin.php')) {
+if (Location::in(3, 'inventorySuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -38,7 +38,7 @@ if (Location::in(2, 'inventorySuperAdmin.php')) {
         Redirect::to('userSuperAdmin');
     }
 }
-if (Location::in(2, 'bookingSuperAdmin.php')) {
+if (Location::in(3, 'bookingSuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -55,7 +55,7 @@ if (Location::in(2, 'bookingSuperAdmin.php')) {
         Redirect::to('userSuperAdmin');
     }
 }
-if (Location::in(2, 'servisSuperAdmin.php')) {
+if (Location::in(3, 'servisSuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -72,7 +72,7 @@ if (Location::in(2, 'servisSuperAdmin.php')) {
         Redirect::to('userSuperAdmin');
     }
 }
-if (Location::in(2, 'historySuperAdmin.php')) {
+if (Location::in(3, 'historySuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -89,7 +89,7 @@ if (Location::in(2, 'historySuperAdmin.php')) {
         Redirect::to('userSuperAdmin');
     }
 }
-if (Location::in(2, 'userSuperAdmin.php')) {
+if (Location::in(3, 'userSuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -104,6 +104,108 @@ if (Location::in(2, 'userSuperAdmin.php')) {
     }
     if (isset($_POST['history'])) {
         Redirect::to('riwayatSuperAdmin');
+    }
+}
+if (Location::in(3, 'dashboard')) {
+    if (isset($_POST['inventory'])) {
+        Redirect::to('inventory');
+    }
+    if (isset($_POST['booking'])) {
+        Redirect::to('booking');
+    }
+    if (isset($_POST['servis'])) {
+        Redirect::to('servis');
+    }
+    if (isset($_POST['history'])) {
+        Redirect::to('riwayat');
+    }
+    if (isset($_POST['user'])) {
+        Redirect::to('user');
+    }
+}
+if (Location::in(3, 'inventory')) {
+    if (isset($_POST['dashboard'])) {
+        Redirect::to('dashboard');
+    }
+    if (isset($_POST['booking'])) {
+        Redirect::to('booking');
+    }
+    if (isset($_POST['servis'])) {
+        Redirect::to('servis');
+    }
+    if (isset($_POST['history'])) {
+        Redirect::to('riwayat');
+    }
+    if (isset($_POST['user'])) {
+        Redirect::to('user');
+    }
+}
+if (Location::in(3, 'booking')) {
+    if (isset($_POST['dashboard'])) {
+        Redirect::to('dashboard');
+    }
+    if (isset($_POST['inventory'])) {
+        Redirect::to('inventory');
+    }
+    if (isset($_POST['servis'])) {
+        Redirect::to('servis');
+    }
+    if (isset($_POST['history'])) {
+        Redirect::to('riwayat');
+    }
+    if (isset($_POST['user'])) {
+        Redirect::to('user');
+    }
+}
+if (Location::in(3, 'servis')) {
+    if (isset($_POST['dashboard'])) {
+        Redirect::to('dashboard');
+    }
+    if (isset($_POST['inventory'])) {
+        Redirect::to('inventory');
+    }
+    if (isset($_POST['booking'])) {
+        Redirect::to('booking');
+    }
+    if (isset($_POST['history'])) {
+        Redirect::to('riwayat');
+    }
+    if (isset($_POST['user'])) {
+        Redirect::to('user');
+    }
+}
+if (Location::in(3, 'history')) {
+    if (isset($_POST['dashboard'])) {
+        Redirect::to('dashboard');
+    }
+    if (isset($_POST['inventory'])) {
+        Redirect::to('inventory');
+    }
+    if (isset($_POST['booking'])) {
+        Redirect::to('booking');
+    }
+    if (isset($_POST['servis'])) {
+        Redirect::to('servis');
+    }
+    if (isset($_POST['user'])) {
+        Redirect::to('user');
+    }
+}
+if (Location::in(3, 'user')) {
+    if (isset($_POST['dashboard'])) {
+        Redirect::to('dashboard');
+    }
+    if (isset($_POST['inventory'])) {
+        Redirect::to('inventory');
+    }
+    if (isset($_POST['booking'])) {
+        Redirect::to('booking');
+    }
+    if (isset($_POST['servis'])) {
+        Redirect::to('servis');
+    }
+    if (isset($_POST['history'])) {
+        Redirect::to('riwayat');
     }
 }
 ?>

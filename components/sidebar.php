@@ -69,7 +69,7 @@ if (Location::in(1, 'servisSuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
-if (Location::in(1, 'historySuperAdmin')) {
+if (Location::in(1, 'riwayatSuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }

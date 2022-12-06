@@ -3,6 +3,8 @@
 require_once 'core/init.php';
 $riwayat = new ControllerRiwayat();
 
+$rent = $riwayat->h_rental();
+$jumlah_rent = $riwayat->jumlah_rent();
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +39,8 @@ $riwayat = new ControllerRiwayat();
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center -mb-3">
                                 <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">Sewa Aktif</h1>
-                                    <h2>6</h2>
+                                    <h1 class="capitalize font-semibold">Riwayat Rental</h1>
+                                    <h2><?php echo $jumlah_rent ?></h2>
                                 </div>
                                 <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                                     <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
@@ -59,6 +61,12 @@ $riwayat = new ControllerRiwayat();
                                             <td class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
                                                     <h1 class=" uppercase">nama ps</h1>
+                                                    <i class="fa-solid fa-angle-up"></i>
+                                                </button>
+                                            </td>
+                                            <td class=" ">
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                                    <h1 class="uppercase">waktu order</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
@@ -90,23 +98,28 @@ $riwayat = new ControllerRiwayat();
                                     </thead>
                                     <tbody class="overflow-y-hidden">
                                         <!-- list 1 start -->
+                                        <?php
+                                        $row = 0;
+                                        while ($row < count($rent)) { ?>
                                         <tr class="">
                                             <td class="flex flex-row gap-x-3 pb-5">
                                                 <div class="form-control ">
-                                                    <h1 class="font-semibold font-noto-sans text-xl my-auto">1</h1>
+                                                    <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $row + 1 ?></h1>
                                                 </div>
                                                 <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" alt="" class="rounded-full w-full h-full object-cover">
+                                                    <img src="<?php echo $rent[$row]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
                                                 </div>
                                                 <div class="flex flex-col gap-y-1 ml-2">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                                    <h1 class="font-semibold"><?php echo $rent[$row]['username'] ?></h1>
+                                                    <h2 class="text-neutral_400 text-xs"><?php echo $rent[$row]['id_rental'] ?></h2>
                                                 </div>
                                             </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+                                            <td class="text-center"><?php echo $rent[$row]['nama_ps'] ?></td>
+                                            <td class="text-center"><?php echo $rent[$row]['waktu_order'] ?></td>
+                                            <td class="text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
+                                            <td class=" text-center"><?php list($date, $time) = explode(" ", $rent[$row]['mulai_rental']); echo $time;?>
+                                             - <?php list($date, $time) = explode(" ", $rent[$row]['selesai_rental']); echo $time;?></td>
+                                            <td class="text-center">Rp. <?php echo $rent[$row]['bayar'] ?></td>
                                             <td class=" text-center">
                                                 <div class="dropdown dropdown-hover dropdown-right dropdown-end">
                                                     <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
@@ -131,6 +144,9 @@ $riwayat = new ControllerRiwayat();
                                                 </div>
                                             </td>
                                         </tr>
+                                        <?php $row++;
+                                        }
+                                        ?>
                                         <!-- list 1 end -->
                                     </tbody>
                                 </table>

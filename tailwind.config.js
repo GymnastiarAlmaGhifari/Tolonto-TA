@@ -1,6 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,php}", "./pages/**/*.{html,js,php}"],
+  content: [
+    "./login.php",
+    "./dashboardSuperAdmin.php",
+    "./inventorySuperAdmin.php",
+    "./bookingSuperAdmin.php",
+    "./riwayatSuperAdmin.php",
+    "./servisSuperAdmin.php",
+    "./userSuperAdmin.php",
+    "./components/header.php",
+    "./components/sidebar.php",
+  ],
   theme: {
     colors: {
       primary_050: "#FEFFA5",
@@ -53,6 +63,7 @@ module.exports = {
       error_700: "#D32F2F",
       error_800: "#C62828",
       error_900: "#B71C1C",
+      black: "#000000",
     },
     fontSize: {
       xs: "0.75rem",

@@ -1,6 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,php}", "./pages/**/*.{html,js,php}"],
+  content: [
+    "./login.php",
+    "./dashboardSuperAdmin.php",
+    "./inventorySuperAdmin.php",
+    "./bookingSuperAdmin.php",
+    "./riwayatSuperAdmin.php",
+    "./servisSuperAdmin.php",
+    "./userSuperAdmin.php",
+    "./components/header.php",
+    "./components/sidebar.php",
+  ],
   theme: {
     colors: {
       primary_050: "#FEFFA5",
@@ -53,6 +63,7 @@ module.exports = {
       error_700: "#D32F2F",
       error_800: "#C62828",
       error_900: "#B71C1C",
+      black: "#000000",
     },
     fontSize: {
       xs: "0.75rem",
@@ -122,6 +133,29 @@ module.exports = {
       animation: {
         "spin-slow": "spin 6s linear infinite",
         "spin-delay": "spin 6s linear infinite -3s",
+      },
+      backgroundImage: {
+        "foto-tambah": "url('/public/plusfoto.svg')",
+      },
+      keyframes: {
+        slidedown: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+        slideup: {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-100%)" },
+        },
+        mid: {
+          "0%": { transform: "translateY(0%)" },
+          "50%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+      },
+      animation: {
+        slidedown: "slidedown 0.5s ease-in-out",
+        slideup: "slideup 0.5s ease-in-out",
+        mid: "mid 1s ease-in-out",
       },
     },
   },

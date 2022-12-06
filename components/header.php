@@ -24,19 +24,27 @@ if (Location::in(1, "dashboardSuperAdmin")) {
         <div class="flex items-center xs:gap-x-5">
             <!-- dropdown start -->
 
-            <div id="lokasi" class="dropdown dropdown-bottom">
-                <label tabindex="0" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
+            <!-- select start -->
+
+            <!-- select end -->
+
+
+
+            <div class="dropdown dropdown-bottom">
+                <label tabindex="0" id="lok" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
                     <svg width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.75 11.875C7.9212 11.875 7.12634 11.5458 6.54029 10.9597C5.95424 10.3737 5.625 9.5788 5.625 8.75C5.625 7.9212 5.95424 7.12634 6.54029 6.54029C7.12634 5.95424 7.9212 5.625 8.75 5.625C9.5788 5.625 10.3737 5.95424 10.9597 6.54029C11.5458 7.12634 11.875 7.9212 11.875 8.75C11.875 9.16038 11.7942 9.56674 11.6371 9.94589C11.4801 10.325 11.2499 10.6695 10.9597 10.9597C10.6695 11.2499 10.325 11.4801 9.94589 11.6371C9.56674 11.7942 9.16038 11.875 8.75 11.875ZM8.75 0C6.42936 0 4.20376 0.921872 2.56282 2.56282C0.921872 4.20376 0 6.42936 0 8.75C0 15.3125 8.75 25 8.75 25C8.75 25 17.5 15.3125 17.5 8.75C17.5 6.42936 16.5781 4.20376 14.9372 2.56282C13.2962 0.921872 11.0706 0 8.75 0Z" fill="#303030" />
                     </svg>
-                    Bojonegoro
-
+                    <h1 id="lokasi" name="lokasi">Bojonegoro</h1>
+                    <i class="fa-solid fa-caret-down "></i>
                 </label>
                 <ul tabindex="0" class="dropdown-content p-2  cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-52 text-neutral_050">
                     <?php
                     $row = 0;
                     while ($row < count($lok)) { ?>
-                        <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base"><a><?php echo $lok[$row]['nama_lok'] ?></a></li>
+                        <li id="list-lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
+                            <a><?php echo $lok[$row]['nama_lok'] ?></a>
+                        </li>
                         <!-- <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base"><a>Tuban</a></li>
                             <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base "><a>Bojonegoro</a></li> -->
                     <?php $row++;
@@ -97,8 +105,20 @@ if (Location::in(1, "dashboardSuperAdmin")) {
 
 <script>
     const lokasi = document.getElementById('lokasi');
+    const list_lok = document.querySelectorAll('#list-lok');
     const lokasiUser = document.getElementById('lokasi-user');
     const tempat = document.getElementById('tempat');
+
+    // query selector all for list_lok if clicked then set lokasi with text list_lok
+    list_lok.forEach((list) => {
+        list.addEventListener('click', () => {
+            lokasi.innerHTML = list.innerHTML;
+        });
+    });
+
+
+
+
     // if window location in pages/lokasi
 
     <?php if (Location::in(1, 'dashboard')) { ?>

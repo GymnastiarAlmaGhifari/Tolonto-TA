@@ -1,14 +1,7 @@
 <!-- sidebar -->
 <?php
 
-// $location = $_SERVER['PHP_SELF'];
-// $location = explode('/', $location);
-
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'dashboardSuperAdmin')) {
-=======
 if (Location::in(1, 'dashboardSuperAdmin')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['inventory'])) {
         Redirect::to('inventorySuperAdmin');
     }
@@ -25,11 +18,8 @@ if (Location::in(1, 'dashboardSuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'inventorySuperAdmin')) {
-=======
+
 if (Location::in(1, 'inventorySuperAdmin')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -46,11 +36,8 @@ if (Location::in(1, 'inventorySuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'bookingSuperAdmin')) {
-=======
+
 if (Location::in(1, 'bookingSuperAdmin')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -67,11 +54,8 @@ if (Location::in(1, 'bookingSuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'servisSuperAdmin')) {
-=======
+
 if (Location::in(1, 'servisSuperAdmin')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -88,11 +72,8 @@ if (Location::in(1, 'servisSuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'historySuperAdmin')) {
-=======
+
 if (Location::in(1, 'historySuperAdmin')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -109,11 +90,8 @@ if (Location::in(1, 'historySuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'userSuperAdmin')) {
-=======
+
 if (Location::in(1, 'userSuperAdmin')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
     }
@@ -130,11 +108,8 @@ if (Location::in(1, 'userSuperAdmin')) {
         Redirect::to('riwayatSuperAdmin');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'dashboard')) {
-=======
 if (Location::in(1, 'dashboard')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
+
     if (isset($_POST['inventory'])) {
         Redirect::to('inventory');
     }
@@ -151,11 +126,8 @@ if (Location::in(1, 'dashboard')) {
         Redirect::to('user');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'inventory')) {
-=======
+
 if (Location::in(1, 'inventory')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
     }
@@ -172,11 +144,8 @@ if (Location::in(1, 'inventory')) {
         Redirect::to('user');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'booking')) {
-=======
+
 if (Location::in(1, 'booking')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
     }
@@ -193,11 +162,8 @@ if (Location::in(1, 'booking')) {
         Redirect::to('user');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'servis')) {
-=======
+
 if (Location::in(1, 'servis')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
     }
@@ -214,11 +180,8 @@ if (Location::in(1, 'servis')) {
         Redirect::to('user');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'history')) {
-=======
+
 if (Location::in(1, 'history')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
     }
@@ -235,11 +198,8 @@ if (Location::in(1, 'history')) {
         Redirect::to('user');
     }
 }
-<<<<<<< HEAD:pages/components/sidebar.php
-if (Location::in(3, 'user')) {
-=======
+
 if (Location::in(1, 'user')) {
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:components/sidebar.php
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
     }

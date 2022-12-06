@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD:pages/riwayatSuperAdmin.php
-require_once '../core/init.php';
-=======
 require_once 'core/init.php';
->>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:riwayatSuperAdmin.php
 $riwayat = new ControllerRiwayat();
 
 ?>

@@ -1,9 +1,6 @@
 <!-- sidebar -->
 <?php
 
-// $location = $_SERVER['PHP_SELF'];
-// $location = explode('/', $location);
-
 if (Location::in(1, 'dashboardSuperAdmin')) {
     if (isset($_POST['inventory'])) {
         Redirect::to('inventorySuperAdmin');

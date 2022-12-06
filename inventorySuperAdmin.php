@@ -5,10 +5,7 @@ $SadminPs = new ControllerSuperadminInventory();
 $ju_ps = $SadminPs->jumlah_ps();
 $ps = $SadminPs->ps_card();
 
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,8 +35,6 @@ $ps = $SadminPs->ps_card();
         <span class="loader-103"> </span>
     </div>
     <!-- loader end -->
-
-
 
     <main class=" bg-neutral_900 w-full font-noto-sans">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">

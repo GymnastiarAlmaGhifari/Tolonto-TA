@@ -22,7 +22,6 @@ $riwayat = new ControllerRiwayat();
 </head>
 
 <body>
-
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
             <form action="riwayatSuperAdmin.php" method="post">

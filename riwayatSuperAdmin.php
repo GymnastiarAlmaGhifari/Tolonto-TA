@@ -372,7 +372,6 @@ $riwayat = new ControllerRiwayat();
             loader.classList.add("hidden");
         });
 
-
         const open = document.getElementById('open');
         const atas = document.getElementById('atas');
         const table = document.getElementById('table');

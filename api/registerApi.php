@@ -48,8 +48,10 @@ if ($userapi->register_api(
         $response = [
             "status" => "success",
             "message" => "Register Berhasil",
+            "status code" => "200",
             "data" => $user_data,
         ];
+        http_response_code(200);
         echo json_encode($response);
     // $response = [
     //     "status" => "success",
@@ -61,6 +63,8 @@ if ($userapi->register_api(
     $response = [
         "status" => "error",
         "message" => "Register Gagal",
+        "status code" => "400",
     ];
+    http_response_code(400);
     echo json_encode($response);
 }

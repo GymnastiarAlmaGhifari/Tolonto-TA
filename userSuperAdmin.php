@@ -1,6 +1,7 @@
 <?php
 
-require_once "../core/init.php";
+require_once "core/init.php";
+$SadminUser = new ControllerSuperadminUser();
 
 $ju = $SadminUser->jumlah_user();
 $ja = $SadminUser->jumlah_admin();

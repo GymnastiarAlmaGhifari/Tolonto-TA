@@ -8,8 +8,6 @@ $ja = $SadminUser->jumlah_admin();
 $tb_admin = $SadminUser->table_admin();
 $tb_user = $SadminUser->table_user();
 
-
-
 // make method get_data from user_data
 ?>
 

@@ -16,7 +16,6 @@ if (Session::exists('dashboardSuperAdmin')) {
     echo Session::flash('dashboardSuperAdmin');
 }
 
-
 // pengecekan halaman admin
 if (!$user->is_superAdmin(Session::get('username'))) {
     Session::flash(

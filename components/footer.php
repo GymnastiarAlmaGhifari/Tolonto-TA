@@ -7,6 +7,18 @@
     </div>
 <?php endforeach; ?>
 
+
+            <select name="lok" id="lok" class="btn btn-ghost w-[145px] h-[25px] capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
+            <?php foreach ($lok as $l) : ?>
+                    <?php if ($l['nama_lok'] == $user_data['lok']) : ?>
+                        <option class="bg-primary_050" selected><?php echo $l['nama_lok'] ?></option>
+                    <?php else : ?>
+                        <option class="bg-primary_050"><?php echo $l['nama_lok'] ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+
+
 xs:justify-center xs:-ml-[26px] xs:z-0 xl:justify-start lg:justify-start md:justify-start sm:justify-start
 ml-5 2xl:ml-[26px] xl:ml-[26px] lg:ml-[26px] md:ml-[26px] sm:ml-[26px] mt-[28px]
 

@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="flex flex-col gap-2 justify-center items-center">
                                     <!-- show previe image from Upload::uploadimage() -->
-                                    <img src="" alt="" id="preview" class="w-[300px] h-[300px] object-cover rounded-xl shadow-elevation-dark-4">
+                                    <img src="components/kamera.png" alt="" id="preview" class="w-[300px] h-[300px] object-cover rounded-xl shadow-elevation-dark-4">
 
                                     <!-- label and input accept only .jpg .png .jpeg -->
                                     <label for="image" class="text-neutral_050 font-semibold text-lg">Gambar PS</label>
@@ -65,6 +65,9 @@
 
     const image = document.querySelector('#image');
     const preview = document.querySelector('#preview');
+
+    // if preview is null add some image
+
 
     image.addEventListener('change', function() {
         const file = image.files[0];

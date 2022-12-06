@@ -1,6 +1,6 @@
 <?php
 
-require_once "../core/init.php";
+require_once "core/init.php";
 
 $ju = $SadminUser->jumlah_user();
 $ja = $SadminUser->jumlah_admin();

@@ -34,8 +34,10 @@ if ($userapi->loginApi($email, $password)) {
         $response = [
             "status" => "success",
             "message" => "Login Berhasil",
+            "status code" => "200",
             "data" => $user_data,
         ];
+        http_response_code(200);
         echo json_encode($response);
     } else {
         // set cookie
@@ -51,20 +53,19 @@ if ($userapi->loginApi($email, $password)) {
         $response = [
             "status" => "success",
             "message" => "Login Berhasil",
+            "status code" => "200",
             "data" => $user_data,
         ];
+        http_response_code(200);
         echo json_encode($response);
     }
-
-
 } else {
     $response = [
         "status" => "Username atau password salah",
         "message" => "Login Gagal",
+        "status code" => "401",
     ];
+    http_response_code(401);
     echo json_encode($response);
 }
 // sampai sini
-
-
-

@@ -1,5 +1,6 @@
 <?php
-require_once '../core/init.php';
+require_once 'core/init.php';
+$SadminPs = new ControllerSuperadminInventory();
 
 $ju_ps = $SadminPs->jumlah_ps();
 $ps = $SadminPs->ps_card();
@@ -13,6 +14,13 @@ $ps = $SadminPs->ps_card();
 <html lang="en">
 
 <head>
+    <script>
+        function tambah() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "components/dialogBoxTambah.php", true);
+            xmlhttp.send();
+        }
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,14 +33,38 @@ $ps = $SadminPs->ps_card();
 
 <body>
 
+    <!--loader start  -->
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+        <span class="loader-103"> </span>
+    </div>
+    <!-- loader end -->
+
+
+
     <main class=" bg-neutral_900 w-full font-noto-sans">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-            <form action="inventorySuperAdmin.php" method="post">
-                <!-- header -->
-                <?php require_once 'components/header.php'; ?>
+            <!-- modal insert start -->
+            <div id="modal-hapus" class="fixed bg-primary_100/50 h-screen w-screen flex flex-row justify-center items-center z-50">
+                <div class="bg-neutral_050 w-1/2 h-1/2 rounded-2xl flex flex-col justify-center items-center">
+                    <h1 class="text-neutral_900 font-semibold text-2xl">Tambah PS</h1>
+                    <form action="inventorySuperAdmin.php" method="post" class="flex flex-col gap-4 mt-8">
+                        <input type="text" name="nama" id="nama" placeholder="Nama PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="text" name="harga" id="harga" placeholder="Harga PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="text" name="stok" id="stok" placeholder="Stok PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="text" name="deskripsi" id="deskripsi" placeholder="Deskripsi PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="text" name="gambar" id="gambar" placeholder="Gambar PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="submit" name="tambah" id="tambah" value="Tambah" class="bg-neutral_900 text-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                    </form>
+                </div>
+            </div>
+            <!-- modal insert end -->
+            <!-- header -->
+            <?php require_once 'components/header.php'; ?>
 
-                <!-- sidebar -->
-                <?php require_once 'components/sidebar.php'; ?>
+            <!-- sidebar -->
+            <?php require_once 'components/sidebar.php'; ?>
+            <form action="inventorySuperAdmin.php" method="post">
+
 
                 <?php if (isset($_POST['hapusButton'])) {
                     require_once 'components/alertHapus.php';
@@ -111,7 +143,7 @@ $ps = $SadminPs->ps_card();
                         } ?>
                         <!-- end -->
                         <div class="w-[350px] h-[230px] bg-transparent rounded-xl  flex items-center justify-center">
-                            <button id="tambah" name="tambahButton" class="flex justify-center items-center h-[150px] w-[150px] shadow-elevation-dark-4 bg-neutral_800 rounded-full ">
+                            <button id="tambah" name="tambahButton" onclick="tambah()" class="flex justify-center items-center h-[150px] w-[150px] shadow-elevation-dark-4 bg-neutral_800 rounded-full ">
                                 <span class="bg-neutral_050 w-20 h-[4px] rounded-full"></span>
                                 <span id="plus3" class="bg-neutral_050 w-[4px] h-20 absolute rounded-full"></span>
                             </button>
@@ -129,6 +161,12 @@ $ps = $SadminPs->ps_card();
 
     <script src="../assets/js/main.js"></script>
     <script>
+        var loader = document.getElementById('loader');
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
+
+
         const hapus = document.getElementById('hapus');
         const alertHapus = document.getElementById('alertHapus');
 

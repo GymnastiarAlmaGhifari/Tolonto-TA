@@ -1,29 +1,24 @@
 <?php
-require_once '../core/init.php';
-
+$Sadmin = new ControllerSuperAdmin();
 $lok = $Sadmin->lokasi();
+
 $user_data = $user->get_data(Session::get('username'));
 
 $text = "";
 
-$location = $_SERVER['PHP_SELF'];
-$location = explode('/', $location);
-
-if ($location[2] == 'dashboardSuperAdmin.php') {
+if (Location::in(1, "dashboardSuperAdmin")) {
     $text = "Dashboard Super Admin";
-} elseif ($location[2] == 'inventorySuperAdmin.php') {
+} elseif (Location::in(1, 'inventorySuperAdmin')) {
     $text = "Inventory Super Admin";
-} elseif ($location[2] == 'bookingSuperAdmin.php') {
+} elseif (Location::in(1, 'bookingSuperAdmin')) {
     $text = "Booking Super Admin";
 }
-
-
 
 ?>
 <div class="container">
     <div class=" w-screen h-[60px] fixed z-40 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
 
-        <h1 class="font-noto-sans text-lg text-neutral_900 ml-[20px] xs:ml-[48px]  font-semibold">
+        <h1 id="tempat" class="font-noto-sans text-lg text-neutral_900 ml-[20px] xs:ml-[48px]  font-semibold">
             <?php echo $text; ?>
         </h1>
         <div class="flex items-center xs:gap-x-5">
@@ -100,13 +95,16 @@ if ($location[2] == 'dashboardSuperAdmin.php') {
         </div>
     </div>
 </div>
+
 <script>
     const lokasi = document.getElementById('lokasi');
     const lokasiUser = document.getElementById('lokasi-user');
-    // if window location in pages/lokasi.php
+    const tempat = document.getElementById('tempat');
+    // if window location in pages/lokasi
 
-    <?php if ($location[2] == 'dashboard.php') { ?>
-        $text = 'Dashboard';
+    <?php if (Location::in(1, 'dashboard')) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'Dashboard';
         lokasi.classList.add('hidden');
         lokasiUser.classList.remove('hidden');
         lokasiUser.classList.add('flex');
@@ -117,7 +115,8 @@ if ($location[2] == 'dashboardSuperAdmin.php') {
         lokasiUser.classList.add('text-neutral_900');
         lokasiUser.classList.add('font-noto-sans');
     <?php } ?>
-
+</script>
+<script>
     const clock = () => {
         const today = new Date();
         const h = today.getHours();
@@ -129,7 +128,4 @@ if ($location[2] == 'dashboardSuperAdmin.php') {
         document.getElementById("seconds").innerHTML = s;
     };
     setInterval(clock, 10);
-    
-    
-
 </script>

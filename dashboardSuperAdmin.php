@@ -1,7 +1,8 @@
 <?php
 
-require_once '../core/init.php';
+require_once 'core/init.php';
 
+$Sadmin = new ControllerSuperAdmin();
 
 if (!$user->is_login()) {
     Session::flash(
@@ -50,16 +51,16 @@ $ps = $Sadmin->ps_card();
 </head>
 
 <body>
+    <!--loader start  -->
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+        <span class="loader-103"> </span>
+    </div>
+    <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
             <form action="dashboardSuperAdmin.php" method="post">
                 <!-- header -->
                 <?php include_once 'components/header.php'; ?>
-
-
-
-
-
 
                 <!-- sidebar -->
                 <?php include_once 'components/sidebar.php'; ?>
@@ -202,6 +203,11 @@ $ps = $Sadmin->ps_card();
 
     <script src="assets/js/main.js"></script>
     <script>
+        var loader = document.getElementById('loader');
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
+
         const logout = document.getElementById('logout');
 
         logout.addEventListener('click', function() {
@@ -218,7 +224,7 @@ $ps = $Sadmin->ps_card();
                     window.location.href = 'logout.php';
                 }
             })
-        })
+        });
 
 
         // ambil dari alertLogout.php

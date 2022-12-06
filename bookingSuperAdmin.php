@@ -1,6 +1,5 @@
 <?php
-
-require_once '../core/init.php';
+require_once 'core/init.php';
 
 ?>
 
@@ -17,19 +16,25 @@ require_once '../core/init.php';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Riwayat SuperAdmin</title>
+    <title>Booking SuperAdmin</title>
 </head>
 
 <body>
+    <!--loader start  -->
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+        <span class="loader-103"> </span>
+    </div>
+    <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-            <form action="riwayatSuperAdmin.php" method="post">
+            <form action="bookingSuperAdmin.php" method="post">
+
                 <!-- header -->
                 <?php require_once 'components/header.php'; ?>
                 <!-- sidebar -->
                 <?php require_once 'components/sidebar.php'; ?>
+                <!-- table start -->
             </form>
-            <!-- table start -->
             <section class="mt-24 text-neutral_050  ml-16">
                 <div class="container px-6 max-w-full ">
                     <div id="atas" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
@@ -139,6 +144,12 @@ require_once '../core/init.php';
                 </div>
             </section>
             <!-- table end -->
+
+            <!-- <div class="w-20 h-20 bg-neutral_050">
+                    <button class="btn btn-ghost">
+                        <h1>iawjdiajdoaiijoaijdawoj</h1>
+                    </button>
+                </div> -->
 
             <!-- table start -->
             <section class="mt-12 text-neutral_050  ml-16">
@@ -364,8 +375,11 @@ require_once '../core/init.php';
         </div>
     </main>
 
-    </div>
     <script>
+        var loader = document.getElementById('loader');
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
         const open = document.getElementById('open');
         const atas = document.getElementById('atas');
         const table = document.getElementById('table');
@@ -543,6 +557,5 @@ require_once '../core/init.php';
         // });
     </script>
 </body>
-
 
 </html>

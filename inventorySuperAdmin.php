@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD:pages/inventorySuperAdmin.php
+require_once '../core/init.php';
+=======
 require_once 'core/init.php';
+>>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:inventorySuperAdmin.php
 $SadminPs = new ControllerSuperadminInventory();
 
 $ju_ps = $SadminPs->jumlah_ps();
@@ -35,6 +39,10 @@ $ps = $SadminPs->ps_card();
         <span class="loader-103"> </span>
     </div>
     <!-- loader end -->
+<<<<<<< HEAD:pages/inventorySuperAdmin.php
+    <main class=" bg-neutral_900 w-full font-noto-sans">
+        <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
+=======
 
     <main class=" bg-neutral_900 w-full font-noto-sans">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
@@ -53,6 +61,7 @@ $ps = $SadminPs->ps_card();
                 </div>
             </div>
             <!-- modal insert end -->
+>>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:inventorySuperAdmin.php
             <!-- header -->
             <?php require_once 'components/header.php'; ?>
 
@@ -70,6 +79,11 @@ $ps = $SadminPs->ps_card();
                 }
                 if (isset($_POST['tambahButton'])) {
                     require_once 'components/dialogBoxTambah.php';
+                    $f = fopen('components/dialogBoxTambah.php', 'r');
+
+                    fpassthru($f);
+
+                    fclose($f);
                 }
                 ?>
             </form>

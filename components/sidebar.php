@@ -18,6 +18,7 @@ if (Location::in(1, 'dashboardSuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
+
 if (Location::in(1, 'inventorySuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
@@ -35,6 +36,7 @@ if (Location::in(1, 'inventorySuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
+
 if (Location::in(1, 'bookingSuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
@@ -52,6 +54,7 @@ if (Location::in(1, 'bookingSuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
+
 if (Location::in(1, 'servisSuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
@@ -69,6 +72,7 @@ if (Location::in(1, 'servisSuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
+
 if (Location::in(1, 'historySuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
@@ -86,6 +90,7 @@ if (Location::in(1, 'historySuperAdmin')) {
         Redirect::to('userSuperAdmin');
     }
 }
+
 if (Location::in(1, 'userSuperAdmin')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboardSuperAdmin');
@@ -104,6 +109,7 @@ if (Location::in(1, 'userSuperAdmin')) {
     }
 }
 if (Location::in(1, 'dashboard')) {
+
     if (isset($_POST['inventory'])) {
         Redirect::to('inventory');
     }
@@ -120,6 +126,7 @@ if (Location::in(1, 'dashboard')) {
         Redirect::to('user');
     }
 }
+
 if (Location::in(1, 'inventory')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
@@ -137,6 +144,7 @@ if (Location::in(1, 'inventory')) {
         Redirect::to('user');
     }
 }
+
 if (Location::in(1, 'booking')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
@@ -154,6 +162,7 @@ if (Location::in(1, 'booking')) {
         Redirect::to('user');
     }
 }
+
 if (Location::in(1, 'servis')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
@@ -171,6 +180,7 @@ if (Location::in(1, 'servis')) {
         Redirect::to('user');
     }
 }
+
 if (Location::in(1, 'history')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
@@ -188,6 +198,7 @@ if (Location::in(1, 'history')) {
         Redirect::to('user');
     }
 }
+
 if (Location::in(1, 'user')) {
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');

@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD:pages/inventorySuperAdmin.php
 require_once '../core/init.php';
+=======
+require_once 'core/init.php';
+>>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:inventorySuperAdmin.php
 $SadminPs = new ControllerSuperadminInventory();
 
 $ju_ps = $SadminPs->jumlah_ps();
@@ -38,8 +42,31 @@ $ps = $SadminPs->ps_card();
         <span class="loader-103"> </span>
     </div>
     <!-- loader end -->
+<<<<<<< HEAD:pages/inventorySuperAdmin.php
     <main class=" bg-neutral_900 w-full font-noto-sans">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
+=======
+
+
+
+    <main class=" bg-neutral_900 w-full font-noto-sans">
+        <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
+            <!-- modal insert start -->
+            <div id="modal-hapus" class="fixed bg-primary_100/50 h-screen w-screen flex flex-row justify-center items-center z-50">
+                <div class="bg-neutral_050 w-1/2 h-1/2 rounded-2xl flex flex-col justify-center items-center">
+                    <h1 class="text-neutral_900 font-semibold text-2xl">Tambah PS</h1>
+                    <form action="inventorySuperAdmin.php" method="post" class="flex flex-col gap-4 mt-8">
+                        <input type="text" name="nama" id="nama" placeholder="Nama PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="text" name="harga" id="harga" placeholder="Harga PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="text" name="stok" id="stok" placeholder="Stok PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="text" name="deskripsi" id="deskripsi" placeholder="Deskripsi PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="text" name="gambar" id="gambar" placeholder="Gambar PS" class="bg-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                        <input type="submit" name="tambah" id="tambah" value="Tambah" class="bg-neutral_900 text-neutral_050 w-1/2 h-12 rounded-2xl px-4">
+                    </form>
+                </div>
+            </div>
+            <!-- modal insert end -->
+>>>>>>> 5633731e67c3c8c3150e1c56ab410f58e564af09:inventorySuperAdmin.php
             <!-- header -->
             <?php require_once 'components/header.php'; ?>
 

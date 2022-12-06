@@ -18,6 +18,7 @@ $bojonegorolist = $game->ps_bojonegoro();
 $response = [
     "status" => "success",
     "message" => "Data Lokasi Berhasil Diambil",
+    "status code" => "200",
     "lokasi" => $lokasi,
     "bojonegoro_ps" => $bojonegorops,
     "Total_Bojonegoro" => $bojonegorototal,
@@ -27,4 +28,5 @@ $response = [
     // "Total_Tuban" => $tubantotal
     "bojonegoro_list" => $bojonegorolist
 ];
+http_response_code(200);
 echo json_encode($response);

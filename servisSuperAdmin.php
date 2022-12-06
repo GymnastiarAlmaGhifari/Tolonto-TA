@@ -1,5 +1,5 @@
 <?php
-require_once '../core/init.php';
+require_once 'core/init.php';
 
 ?>
 
@@ -16,18 +16,18 @@ require_once '../core/init.php';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Booking SuperAdmin</title>
+    <title>Servis SuperAdmin</title>
 </head>
 
 <body>
-        <!--loader start  -->
-        <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+    <!--loader start  -->
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
         <span class="loader-103"> </span>
     </div>
     <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-            <form action="bookingSuperAdmin.php" method="post">
+            <form action="servisSuperAdmin.php" method="post">
 
                 <!-- header -->
                 <?php require_once 'components/header.php'; ?>
@@ -376,10 +376,12 @@ require_once '../core/init.php';
     </main>
 
     <script>
-                var loader = document.getElementById('loader');
+        var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");
         });
+
+
         const open = document.getElementById('open');
         const atas = document.getElementById('atas');
         const table = document.getElementById('table');

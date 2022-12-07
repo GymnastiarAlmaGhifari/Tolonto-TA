@@ -134,6 +134,29 @@ module.exports = {
         "spin-slow": "spin 6s linear infinite",
         "spin-delay": "spin 6s linear infinite -3s",
       },
+      backgroundImage: {
+        "foto-tambah": "url('/public/plusfoto.svg')",
+      },
+      keyframes: {
+        slidedown: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+        slideup: {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-100%)" },
+        },
+        mid: {
+          "0%": { transform: "translateY(0%)" },
+          "50%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+      },
+      animation: {
+        slidedown: "slidedown 0.5s ease-in-out",
+        slideup: "slideup 0.5s ease-in-out",
+        mid: "mid 1s ease-in-out",
+      },
     },
   },
   plugins: [require("daisyui")],

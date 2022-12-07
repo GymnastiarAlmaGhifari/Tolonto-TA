@@ -117,7 +117,7 @@ if (isset($_POST['submit'])) {
                             </div>
                             <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
                             <div class="flex w-full">
-                                <button @click.prevent="open = true" aria-controls="basic-modal" id="login" type="submit" name="submit" class="flex justify-center items-center bg-primary_400 font-noto-sans font-semibold rounded-md mt-5 h-[48px] w-full transition duration-150 ease-in">Login</button>
+                                <button @click.prevent="open = true" aria-controls="basic-modal" id="login" type="submit" name="submit" class="flex justify-center items-center bg_pink font-noto-sans font-semibold rounded-md mt-5 h-[48px] w-full transition duration-150 ease-in">Login</button>
                             </div>
 
                         </div>

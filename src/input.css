@@ -69,13 +69,6 @@ input:valid ~ .sticker2 {
   @apply duration-100 ease-in-out transform translate-x-full hidden;
 }
 
-.activeModal {
-  @apply animate-slidedown flex flex-row;
-}
-
-.hide {
-  @apply hidden;
-}
 /* animation modal top to bbottom */
 
 /* animation gambar-active  */

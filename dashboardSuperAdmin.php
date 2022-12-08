@@ -95,7 +95,7 @@ $ps = $Sadmin->ps_card();
             </section>
             <!-- main ditempat -->
             <section id="main-ditempat" class="mt-8  text-neutral_050 ml-24">
-                <h1>Main Di tempat</h1>
+                <h1>Main Di tempat <?php print_r($_SESSION['lokasi']) ?></h1>
             </section>
             <!-- list ps -->
             <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">

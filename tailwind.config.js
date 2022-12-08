@@ -152,11 +152,6 @@ module.exports = {
           "100%": { transform: "translateY(0%)" },
         },
       },
-      animation: {
-        slidedown: "slidedown 0.5s ease-in-out",
-        slideup: "slideup 0.5s ease-in-out",
-        mid: "mid 1s ease-in-out",
-      },
     },
   },
   plugins: [require("daisyui")],

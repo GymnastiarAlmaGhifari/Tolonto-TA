@@ -29,7 +29,12 @@ $tersedia = $Sadmin->ps_tersedia();
 $maintain = $Sadmin->ps_maintain();
 $psbook = $Sadmin->ps_book();
 $laba = $Sadmin->laba();
-$ps = $Sadmin->ps_card();
+$lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
+$ps = $Sadmin->ps_card($lokasi);
+
+
+print_r($_SESSION['loksend']);
+
 
 ?>
 
@@ -46,6 +51,7 @@ $ps = $Sadmin->ps_card();
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <title>Dashboard Super Admin</title>
 </head>
 
@@ -60,8 +66,8 @@ $ps = $Sadmin->ps_card();
             <form action="dashboardSuperAdmin.php" method="post">
                 <!-- header -->
                 <?php include_once 'components/header.php';
-                
 
+                // get data from loksend
 
                 ?>
 
@@ -95,8 +101,9 @@ $ps = $Sadmin->ps_card();
             </section>
             <!-- main ditempat -->
             <section id="main-ditempat" class="mt-8  text-neutral_050 ml-24">
-                <h1>Main Di tempat <?php print_r($_SESSION['lokasi']) ?></h1>
-            </section>
+                <h1>Main Di tempat</h1>
+                <h1 id="loksend"></h1>
+                </section>
             <!-- list ps -->
             <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
                 <div class="container">
@@ -207,6 +214,8 @@ $ps = $Sadmin->ps_card();
 
     <script src="assets/js/main.js"></script>
     <script>
+        // for loop 1x isi location.reload()
+        
         // var loader = document.getElementById('loader');
         // window.addEventListener("load", () => {
         //     loader.classList.add("hidden");
@@ -229,6 +238,8 @@ $ps = $Sadmin->ps_card();
                 }
             })
         });
+
+
 
 
         // ambil dari alertLogout.php

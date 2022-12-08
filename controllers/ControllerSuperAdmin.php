@@ -48,9 +48,9 @@ class ControllerSuperAdmin extends Database
         else return "0";
     }
 
-    public function ps_card()
+    public function ps_card($lok)
     {
-        $lok = "Bojonegoro";
+          $lok = "Bojonegoro";
         $data = $this->card_ps($lok);
         return $data;
     }

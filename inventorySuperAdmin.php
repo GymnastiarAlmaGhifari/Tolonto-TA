@@ -328,16 +328,14 @@ $ps_sewa = $SadminPs->ps_cardsewa();
         }
         openModal(false)
 
-        if (tambahSewa) {
-            tambahSewa.addEventListener('click', () => {
-                openModal(true)
-            });
-        }
-        if (tambahRental) {
-            tambahRental.addEventListener('click', () => {
-                openModal(true)
-            });
-        }
+        // open modal sewa and set text modalText to 'Sewa'
+        tambahSewa.addEventListener('click', () => {
+            openModal(true)
+        });
+
+        tambahRental.addEventListener('click', () => {
+            openModal(true)
+        });
     </script>
     <script>
         const kategori = document.getElementById('kategori');

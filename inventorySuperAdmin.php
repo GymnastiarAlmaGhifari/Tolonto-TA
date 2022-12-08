@@ -2,14 +2,32 @@
 require_once 'core/init.php';
 $SadminPs = new ControllerSuperadminInventory();
 
-$ju_ps = $SadminPs->jumlah_ps();
-$ju_pssewa = $SadminPs->jumlah_pssewa();
-$ps = $SadminPs->ps_card();
-$ps_sewa = $SadminPs->ps_cardsewa();
+if (!$user->is_login()) {
+    Session::flash(
+        'login',
+        '<script>alert("Anda Harus Login")</script>'
+    );
+    Redirect::to('login');
+}
 
-$lok = (Session::get('lok'));
-echo $lok;
-die();
+if (Session::exists('dashboardSuperAdmin')) {
+    echo Session::flash('dashboardSuperAdmin');
+}
+
+// pengecekan halaman admin
+if (!$user->is_superAdmin(Session::get('username'))) {
+    Session::flash(
+        'dashboardSuperAdmin',
+        '<script>alert("Halaman Ini Khusus Super Admin")</script>'
+    );
+    Redirect::to('dashboardSuperAdmin');
+}
+
+$ju_ps = $SadminPs->jumlah_ps($_SESSION['loksend']);
+$ju_pssewa = $SadminPs->jumlah_pssewa($_SESSION['loksend']);
+$ps = $SadminPs->ps_card($_SESSION['loksend']);
+$ps_sewa = $SadminPs->ps_cardsewa($_SESSION['loksend']);
+
 
 $validation = new Validation();
 

@@ -15,10 +15,9 @@ if (Location::in(1, "dashboardSuperAdmin")) {
 }
 
 
+
 // save to seasson
 $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
-$_SESSION['lokasi'] = $lokasi;
-
 ?>
 
 <div class="container">
@@ -116,7 +115,6 @@ $_SESSION['lokasi'] = $lokasi;
     const list_lok = document.querySelectorAll('#list-lok');
     const lokasiUser = document.getElementById('lokasi-user');
     const tempat = document.getElementById('tempat');
-    const lok = document.getElementById('lok');
 
     // query selector all for list_lok if clicked then set lokasi with text list_lok
     list_lok.forEach((list) => {
@@ -136,9 +134,27 @@ $_SESSION['lokasi'] = $lokasi;
             } else {
                 localStorage.setItem('lokasi', list.innerHTML);
             }
-
-            //reload page
-            location.reload();
+            lok = list.innerHTML;
+                var res = lok.replace('<input class="hidden" name="lok">', " ");
+            function trim(res) {
+                return res.replace(/^\s+|\s+$/g, '');
+            }
+            var xhr = new XMLHttpRequest();
+            var url = "getlok.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json.email + ", " + json.password);
+                }
+            };
+            var data = JSON.stringify({"loksend": trim(res)});
+            xhr.send(data);
+            //wait 1s befor reload page
+            setTimeout(function () {
+                location.reload();
+            }, 1000);
 
         });
     });

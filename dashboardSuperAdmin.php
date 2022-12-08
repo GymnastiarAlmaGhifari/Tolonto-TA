@@ -25,11 +25,15 @@ if (!$user->is_superAdmin(Session::get('username'))) {
     Redirect::to('dashboardSuperAdmin');
 }
 $users = $user->get_users();
-$tersedia = $Sadmin->ps_tersedia();
+$tersedia = $Sadmin->ps_tersedia($_SESSION['loksend']);
 $maintain = $Sadmin->ps_maintain();
 $psbook = $Sadmin->ps_book();
 $laba = $Sadmin->laba();
-$ps = $Sadmin->ps_card();
+$ps = $Sadmin->ps_card($_SESSION['loksend']);
+
+
+print_r($_SESSION['loksend']);
+
 
 ?>
 
@@ -46,6 +50,7 @@ $ps = $Sadmin->ps_card();
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <title>Dashboard Super Admin</title>
 </head>
 
@@ -60,8 +65,8 @@ $ps = $Sadmin->ps_card();
             <form action="dashboardSuperAdmin.php" method="post">
                 <!-- header -->
                 <?php include_once 'components/header.php';
-                
 
+                // get data from loksend
 
                 ?>
 
@@ -75,7 +80,7 @@ $ps = $Sadmin->ps_card();
                 <div class="container">
                     <div class="flex flex-wrap flex-row  gap-7 font-bas sm:justify-center xs:justify-center md:justify-start xl:justify-start 2xl:justify-start xs:-ml-11 sm:ml-0 md:ml-0 xl:ml-0 2xl:ml-0">
                         <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
-                            <h1 class="ml-3 mt-3">PlayStation Tersedia</h1>
+                            <h1 class="ml-3 mt-3">Total PlayStation Rental</h1>
                             <h1 class="text-5xl ml-[105px]"><?php echo $tersedia ?></h1>
                         </div>
                         <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
@@ -95,8 +100,9 @@ $ps = $Sadmin->ps_card();
             </section>
             <!-- main ditempat -->
             <section id="main-ditempat" class="mt-8  text-neutral_050 ml-24">
-                <h1>Main Di tempat <?php print_r($_SESSION['lokasi']) ?></h1>
-            </section>
+                <h1>Main Di tempat</h1>
+                <h1 id="loksend"></h1>
+                </section>
             <!-- list ps -->
             <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
                 <div class="container">
@@ -207,6 +213,8 @@ $ps = $Sadmin->ps_card();
 
     <script src="assets/js/main.js"></script>
     <script>
+        // for loop 1x isi location.reload()
+        
         // var loader = document.getElementById('loader');
         // window.addEventListener("load", () => {
         //     loader.classList.add("hidden");
@@ -229,6 +237,8 @@ $ps = $Sadmin->ps_card();
                 }
             })
         });
+
+
 
 
         // ambil dari alertLogout.php

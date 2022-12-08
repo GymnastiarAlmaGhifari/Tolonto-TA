@@ -41,11 +41,11 @@ if (isset($_POST['submit'])) {
                     }
                 } else {
                     // animate error
-                    $errors[] = "Username Belum Terdaftar Silahkan Register Dahulu";
+                    $errors[] = "Username Atau Password Salah";
                 }
             } else {
                 // animate error
-                $errors[] = "Nama Belum Terdaftar";
+                $errors[] = "Username Belum Terdaftar Silahkan Register Dahulu";
             }
         } else {
             // untuk mengisi errornya ke array
@@ -130,84 +130,16 @@ if (isset($_POST['submit'])) {
     </div>
     <?php if (!empty($errors)) { ?>
         <?php foreach ($errors as $error) { ?>
-            <?php require_once 'components/alertLogin.php'; ?>
-
-
-            <!-- <div class="bg-neutral_050 rounded-lg border-neutral_300 border p-3 top-0 absolute shadow-primary_500 shadow-lg duration-300  notif">
-                <div class="flex flex-row">
-                    <div class="px-2">
-                        <svg width="24" height="24" viewBox="0 0 1792 1792" fill="#44C997" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1299 813l-422 422q-19 19-45 19t-45-19l-294-294q-19-19-19-45t19-45l102-102q19-19 45-19t45 19l147 147 275-275q19-19 45-19t45 19l102 102q19 19 19 45t-19 45zm141 83q0-148-73-273t-198-198-273-73-273 73-198 198-73 273 73 273 198 198 273 73 273-73 198-198 73-273zm224 0q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z" />
-                        </svg>
-                    </div>
-                    <div class="ml-2 mr-6">
-                        <span class="font-semibold"></span>
-                    </div>
-                </div> -->
-
-
-            // pertama kali load halaman modal tidak muncul
-            // button dengan id login tidak di klik saat load halaman
-
-            // modal hanya akan muncul ketika tombol di klik dan pertama kali load halaman modal tidak muncul
-
-
-
-            // jika login di klik dan durasi 3 detik
-
-
-
-            // document.getElementById('login').addEventListener('click', function() {});
-
-            // openModal('basicModal');
-
-            // Swal.fire({
-            // icon: 'error',
-            // title: 'Oops...',
-            // text: '',
-            // footer: '<a href="">Why do I have this issue?</a>',
-            // // opacity
-            // backdrop: `
-            // rgba(0,0,123,0.4)
-            // url("https://sweetalert2.github.io/images/nyan-cat.gif")
-            // left top
-            // no-repeat
-            // `,
-            // timer: 2500,
-            // })
-
-
-            // const notif = document.querySelector('.notif');
-            //notif displaynya hide dulu
-            // menggelapkan background belakangnya
-
-            // ketika muncul notif, dipangil dari kiri
-
-
-
-
-            // notif.style.left = '0';
-            // notif.style.transition = 'left 1.5s ease-in-out';
-            // notif.style.transitionDelay = '1.5s';
-
-
-
-            // // notif.style.display = 'none';
-            // // //tampilkan notif
-            // // notif.style.display = 'block';
-            // // //hilangkan notif
-            // setTimeout(() => {
-            // notif.style.left = '-80%';
-            // notif.style.transition = 'left 1.5s ease-in-out';
-            // notif.style.transitionDelay = '1.5s';
-            // }, 1500);
-            // transisi notif
-            // hilangkan notif
-
-
-            //ketika 3 detik notif akan hilang
-
-
+            <!-- alert login -->
+            <script>
+                Swal.fire({
+                    background: '#000',
+                    icon: 'error',
+                    text: '<?php echo $error; ?>',
+                    // opacity
+                    backdrop: `rgba(0,0,0,0.5)`,
+                })
+            </script>
         <?php  } ?>
     <?php } ?>
     <script src="assets/js/main.js"></script>

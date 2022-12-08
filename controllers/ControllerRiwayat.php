@@ -20,4 +20,21 @@ class ControllerRiwayat extends Database
         if ($jumlah != 0) return $jumlah;
             else return "0";
     }
+
+    public function h_sewa() 
+    {
+        $sql = "SELECT user.username, user.img, sewa.id_sewa, ps.nama_ps, sewa.waktu_order, sewa.playtime, sewa.mulai_sewa,
+        sewa.akhir_sewa, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id
+        JOIN ps ON sewa.id_ps = ps.id_ps ;";
+        $data = $this->uniquery($sql);
+        return $data;
+    }
+
+    public function jumlah_sewa()
+    {
+        $data = $this->countsemua('id_sewa', 'sewa');
+        $jumlah=$data['COUNT(id_sewa)'];
+        if ($jumlah != 0) return $jumlah;
+            else return "0";
+    }
 }

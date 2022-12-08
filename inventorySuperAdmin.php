@@ -118,7 +118,7 @@ $ps_sewa = $SadminPs->ps_cardsewa();
                 </div>
 
             </div>
-            
+
             <!-- modal insert end -->
             <!-- header -->
             <?php require_once 'components/header.php'; ?>
@@ -213,12 +213,12 @@ $ps_sewa = $SadminPs->ps_cardsewa();
 
                     </div>
                 </div>
-                </section>
-                <section id="main-ditempat" class="mt-12  text-neutral_050 ml-24 flex flex-row gap-8">
+            </section>
+            <section id="main-ditempat" class="mt-12  text-neutral_050 ml-24 flex flex-row gap-8">
                 <h1 class="capitalize font-semibold">total PS Sewa</h1>
                 <h2 class="text-neutral_300"><?php echo $ju_pssewa ?></h2>
-                </section>
-                 
+            </section>
+
             <!-- list ps -->
             <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
                 <div class="container">
@@ -277,7 +277,7 @@ $ps_sewa = $SadminPs->ps_cardsewa();
                             }
                         } ?>
                         <!-- end -->
-                        <div class="w-[350px] h-[230px] bg-transparent rounded-xl  flex items-center justify-center">
+                        <div class="w-[350px] h-[230px] bg-transparent rounded-xl  flex items-center justify-center relative">
 
                             <button id="tambahButton" name="tambahButton" onclick="tambah()" class="flex justify-center items-center h-[150px] w-[150px] shadow-elevation-dark-4 bg-neutral_800 rounded-full ">
 

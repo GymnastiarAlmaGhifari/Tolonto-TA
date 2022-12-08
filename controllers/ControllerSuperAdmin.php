@@ -35,7 +35,7 @@ public function ps_maintain()
 
     public function lokasi()
     {
-        $data = $this->fetchsemua('nama_lok', 'lokasi');
+        $data = $this->fetchsemua('id_loc', 'lokasi');
         return $data;
     }
 

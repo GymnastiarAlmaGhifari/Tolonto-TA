@@ -5,6 +5,8 @@ $riwayat = new ControllerRiwayat();
 
 $rent = $riwayat->h_rental();
 $jumlah_rent = $riwayat->jumlah_rent();
+$sewa = $riwayat->h_sewa();
+$jumlah_sewa = $riwayat->jumlah_sewa();
 ?>
 
 <!DOCTYPE html>
@@ -164,8 +166,8 @@ $jumlah_rent = $riwayat->jumlah_rent();
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center -mb-3">
                                 <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">Sewa Aktif</h1>
-                                    <h2>6</h2>
+                                    <h1 class="capitalize font-semibold">Riwayat Sewa</h1>
+                                    <h2><?php echo $jumlah_rent ?></h2>
                                 </div>
                                 <span id="open2" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                                     <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>

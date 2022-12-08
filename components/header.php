@@ -119,32 +119,26 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
     // query selector all for list_lok if clicked then set lokasi with text list_lok
     list_lok.forEach((list) => {
         //set default lokasi row 1
-        var lok = null;
-        if (lok != null) {
-            lok = lokasi.innerHTML;
+        lokasi.innerHTML = list_lok[1].innerHTML;
+        if (localStorage.getItem('lokasi') == null) {
+            localStorage.setItem('lokasi', list_lok[1].innerHTML);
         } else {
-             lok = list_lok[1].innerHTML;
+            lokasi.innerHTML = localStorage.getItem('lokasi');
         }
-            var res = lok.replace('<input class="hidden" name="lok">', " ");
-            // trim res variable
-            function trim(res) {
-                return res.replace(/^\s+|\s+$/g, '');
-            }
-            localStorage.setItem('lokasi', trim(res));
-
-            list.addEventListener('click', () => {
+        list.addEventListener('click', () => {
+            lokasi.innerHTML = list.innerHTML;
+            //set local 
             // if local storage is empty then set lokasi with text list_lok if not then set lokasi with list.innerHTML
-            if (lok == null) {
-                lok = list_lok[1].innerHTML;
+            if (localStorage.getItem('lokasi') == null) {
+                localStorage.setItem('lokasi', list_lok[1].innerHTML);
             } else {
-                lok = list.innerHTML;
+                localStorage.setItem('lokasi', list.innerHTML);
+            }
+            lok = list.innerHTML;
                 var res = lok.replace('<input class="hidden" name="lok">', " ");
             function trim(res) {
                 return res.replace(/^\s+|\s+$/g, '');
             }
-            localStorage.setItem('lokasi', trim(res));
-            console .log(localStorage.getItem('lokasi'));
-
             var xhr = new XMLHttpRequest();
             var url = "getlok.php";
             xhr.open("POST", url, true);
@@ -157,11 +151,10 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
             };
             var data = JSON.stringify({"loksend": trim(res)});
             xhr.send(data);
-
-            }
-            lokasi.innerHTML = lok;
-            //reload page
-            //  location.reload();
+            //wait 1s befor reload page
+            setTimeout(function () {
+                location.reload();
+            }, 1000);
 
         });
     });

@@ -133,8 +133,30 @@ class Database
         }
     }
 
+    public function fetchwhere( $table, $row, $value)
+    {
+        if (!is_int($value)) {
+            $value = "'" . $value . "'";
+
+                $query = "SELECT * FROM $table WHERE $row = $value ;";
+                $result = $this->conn->query($query);
+
+                while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
+                    return $row;
+                    $results[] = $row;
+                }
+                if (isset($results)) {
+                    return $results;
+                } else {
+                    return false;
+                }
+            }
+            // return $results;
+    }
+
     public function fetchsemua($id, $table)
     {
+        
         $query = "SELECT $id FROM $table;";
                 $result = $this->conn->query($query);
 

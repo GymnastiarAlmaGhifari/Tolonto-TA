@@ -23,10 +23,10 @@ if (!$user->is_superAdmin(Session::get('username'))) {
     Redirect::to('dashboardSuperAdmin');
 }
 
-$ju_ps = $SadminPs->jumlah_ps();
-$ju_pssewa = $SadminPs->jumlah_pssewa();
-$ps = $SadminPs->ps_card();
-$ps_sewa = $SadminPs->ps_cardsewa();
+$ju_ps = $SadminPs->jumlah_ps($_SESSION['loksend']);
+$ju_pssewa = $SadminPs->jumlah_pssewa($_SESSION['loksend']);
+$ps = $SadminPs->ps_card($_SESSION['loksend']);
+$ps_sewa = $SadminPs->ps_cardsewa($_SESSION['loksend']);
 
 
 $validation = new Validation();

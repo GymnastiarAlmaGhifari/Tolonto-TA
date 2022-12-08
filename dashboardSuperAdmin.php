@@ -25,12 +25,11 @@ if (!$user->is_superAdmin(Session::get('username'))) {
     Redirect::to('dashboardSuperAdmin');
 }
 $users = $user->get_users();
-$tersedia = $Sadmin->ps_tersedia();
+$tersedia = $Sadmin->ps_tersedia($_SESSION['loksend']);
 $maintain = $Sadmin->ps_maintain();
 $psbook = $Sadmin->ps_book();
 $laba = $Sadmin->laba();
-$lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
-$ps = $Sadmin->ps_card($lokasi);
+$ps = $Sadmin->ps_card($_SESSION['loksend']);
 
 
 print_r($_SESSION['loksend']);
@@ -81,7 +80,7 @@ print_r($_SESSION['loksend']);
                 <div class="container">
                     <div class="flex flex-wrap flex-row  gap-7 font-bas sm:justify-center xs:justify-center md:justify-start xl:justify-start 2xl:justify-start xs:-ml-11 sm:ml-0 md:ml-0 xl:ml-0 2xl:ml-0">
                         <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
-                            <h1 class="ml-3 mt-3">PlayStation Tersedia</h1>
+                            <h1 class="ml-3 mt-3">Total PlayStation Rental</h1>
                             <h1 class="text-5xl ml-[105px]"><?php echo $tersedia ?></h1>
                         </div>
                         <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">

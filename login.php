@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
                 if ($user->login(Input::get('username'), Input::get('password'))) {
                     Session::set('username', Input::get('username'));
                     // set seasson loksend
-                    // $_SESSION['loksend'] = 'Bojonegoro';
+                    $_SESSION['loksend'] = 'Bojonegoro';
                     if ($user->is_superAdmin(Session::get('username'))) {
                         Redirect::to('dashboardSuperAdmin');
                     } else {

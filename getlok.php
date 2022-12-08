@@ -9,4 +9,4 @@ $data = json_decode($json);
 // $loksend = $data->loksend;
 $loksend = $data->loksend;
 $_SESSION['loksend'] = $loksend;
-echo json_encode($_SESSION['loksend']);
+// echo json_encode($_SESSION['loksend']);

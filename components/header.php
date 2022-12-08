@@ -14,7 +14,13 @@ if (Location::in(1, "dashboardSuperAdmin")) {
     $text = "Booking Super Admin";
 }
 
-?>
+// if (isset($_POST['lok'])) {
+//     Session::setlok('lok', $_POST['lok']);
+// }
+// echo Session::getlok('lok');
+//     echo "jkhkdskajdkjasd";
+//     die();
+// ?>
 <div class="container">
     <div class=" w-screen h-[60px] fixed z-40 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
 
@@ -43,7 +49,7 @@ if (Location::in(1, "dashboardSuperAdmin")) {
                     $row = 0;
                     while ($row < count($lok)) { ?>
                         <li id="list-lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
-                            <a><?php echo $lok[$row]['id_loc'] ?></a>
+                            <input class="text-sm cursor-pointer w-36 hidden" type="hidden" id="lok" name="lok"><?php echo $lok[$row]['id_loc'] ?></input>
                         </li>
                         <!-- <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base"><a>Tuban</a></li>
                             <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base "><a>Bojonegoro</a></li> -->
@@ -77,13 +83,14 @@ if (Location::in(1, "dashboardSuperAdmin")) {
             <div class="flex items-center justify-start">
                 <div class="dropdown dropdown-bottom">
                     <label tabindex="0" class="btn btn-ghost h-full capitalize font-semibold font-noto-san gap-2 -mr-5 -ml-4 text-neutral_900">
-                        <?php echo $user_data['username'] ?>
+                        <?php echo $user_data['username'];  echo $_SESSION['lok']; ?>
                         <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" alt="" class="rounded-full w-[48px] h-[48px]">
                     </label>
                     <ul tabindex="0" class="dropdown-content p-2  cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-32 text-neutral_050 -right-5 mt-1">
                         <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
                             <i class="fa-regular fa-user mr-1"></i>
-                            <a>Profile</a>
+                            <a>Profile </a>
+                                    
                         </li>
 
                         <li id="logout" class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
@@ -108,6 +115,7 @@ if (Location::in(1, "dashboardSuperAdmin")) {
     const list_lok = document.querySelectorAll('#list-lok');
     const lokasiUser = document.getElementById('lokasi-user');
     const tempat = document.getElementById('tempat');
+    const lok = document.getElementById('lok');
 
     // query selector all for list_lok if clicked then set lokasi with text list_lok
     list_lok.forEach((list) => {
@@ -115,8 +123,20 @@ if (Location::in(1, "dashboardSuperAdmin")) {
         lokasi.innerHTML = list_lok[1].innerHTML;
         list.addEventListener('click', () => {
             lokasi.innerHTML = list.innerHTML;
+            var lok = lokasi.innerHTML;
+            var res = lok.replace('<input class="text-sm cursor-pointer w-36 hidden" type="hidden" id="lok" name="lok">', " ");
+            // trim res variable
+            function trim(res) {
+                return res.replace(/^\s+|\s+$/g, '');
+            }
+            console.log(trim(res));
+            window.location.href = window.location.href+'?a='+trim(res);
+            <?php $lok = '<script>document.writeln(res);</script>';
+            $_SESSION['lok'] = $lok ; ?>
         });
     });
+
+    
 
 
 

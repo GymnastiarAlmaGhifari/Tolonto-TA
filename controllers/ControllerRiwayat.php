@@ -23,7 +23,7 @@ class ControllerRiwayat extends Database
 
     public function h_sewa() 
     {
-        $sql = "SELECT user.username, user.img, sewa.id_sewa, ps.nama_ps, sewa.waktu_order, sewa.playtime, sewa.mulai_sewa,
+        $sql = "SELECT user.username, user.img, sewa.id_sewa, ps.nama_ps, sewa.status, sewa.waktu_order, sewa.playtime, sewa.mulai_sewa,
         sewa.akhir_sewa, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id
         JOIN ps ON sewa.id_ps = ps.id_ps ;";
         $data = $this->uniquery($sql);

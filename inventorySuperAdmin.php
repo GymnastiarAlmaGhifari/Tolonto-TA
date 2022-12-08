@@ -7,6 +7,34 @@ $ju_pssewa = $SadminPs->jumlah_pssewa();
 $ps = $SadminPs->ps_card();
 $ps_sewa = $SadminPs->ps_cardsewa();
 
+$lok = (Session::get('lok'));
+echo $lok;
+die();
+
+$validation = new Validation();
+
+// metode check
+$validation = $validation->check(array(
+    'nama-ps' => array(
+        'required' => true,
+
+    ),
+    'harga-ps' => array(
+        'required' => true,
+
+    )
+
+));
+// pengujian cek nama
+if ($validation->passed()) {
+
+    if ($user->cek_nama(Input::get('nama-ps'))) {
+        
+    } else {
+    // untuk mengisi errornya ke array
+    $errors = $validation->errors();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -223,7 +251,7 @@ $ps_sewa = $SadminPs->ps_cardsewa();
                             <svg width="21" height="24" viewBox="0 0 21 24" class="my-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.28571 0C1.01714 0 0 1.01714 0 2.28571V20.5714C0 21.1776 0.240816 21.759 0.66947 22.1877C1.09812 22.6163 1.67951 22.8571 2.28571 22.8571H6.85714V20.6743L9.24572 18.2857H2.28571V16H11.5314L13.8171 13.7143H2.28571V11.4286H16.1029L18.2857 9.24572V6.85714L11.4286 0H2.28571ZM10.2857 1.71429L16.5714 8H10.2857V1.71429ZM18.4571 12.5714C18.2857 12.5714 18.1257 12.6286 18 12.7543L16.8343 13.92L19.2229 16.2971L20.3886 15.1429C20.6286 14.8914 20.6286 14.48 20.3886 14.24L18.9029 12.7543C18.7771 12.6286 18.6171 12.5714 18.4571 12.5714ZM16.16 14.5943L9.14286 21.6229V24H11.52L18.5486 16.9714L16.16 14.5943Z" fill="#FAFAFA" />
                             </svg>
-                            <h1 id="mdoalText" class="text-neutral_050 font-base font-noto-sans text-xl">Tambah PlayStation Baru</h1>
+                            <h1 id="mdoalText" class="text-neutral_050 font-base font-noto-sans text-xl">Tambah PlayStation Rental Baru</h1>
                         </div>
                         <span class="w-11/12 h-0.5 mx-auto -mt-4 bg-neutral_600"></span>
                         <form action="inventorySuperAdmin.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2">
@@ -328,16 +356,14 @@ $ps_sewa = $SadminPs->ps_cardsewa();
         }
         openModal(false)
 
-        if (tambahSewa) {
-            tambahSewa.addEventListener('click', () => {
-                openModal(true)
-            });
-        }
-        if (tambahRental) {
-            tambahRental.addEventListener('click', () => {
-                openModal(true)
-            });
-        }
+        // open modal sewa and set text modalText to 'Sewa'
+        tambahSewa.addEventListener('click', () => {
+            openModal(true)
+        });
+
+        tambahRental.addEventListener('click', () => {
+            openModal(true)
+        });
     </script>
     <script>
         const kategori = document.getElementById('kategori');

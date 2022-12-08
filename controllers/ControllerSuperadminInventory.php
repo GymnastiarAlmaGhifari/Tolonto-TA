@@ -35,4 +35,14 @@ public function ps_cardsewa()
     return $data;
 }
 
+public function add_rental($id_ps, $nama_ps, $status, $lok, $harga, $img)
+{
+    $data = $this->insert('ps', 'id_ps', $id_ps, 'nama_ps', $nama_ps, 'status', $status, 'lok', $lok, 'harga', $harga, 'img', $img);
+    if ($data) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 }

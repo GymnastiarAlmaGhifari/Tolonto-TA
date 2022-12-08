@@ -14,11 +14,13 @@ if (Location::in(1, "dashboardSuperAdmin")) {
     $text = "Booking Super Admin";
 }
 
+
 // save to seasson
 $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
 $_SESSION['lokasi'] = $lokasi;
 
 ?>
+
 <div class="container">
     <div class=" w-screen h-[60px] fixed z-40 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
 
@@ -46,6 +48,7 @@ $_SESSION['lokasi'] = $lokasi;
                     <?php
                     $row = 0;
                     while ($row < count($lok)) { ?>
+
                         <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
                             <input class="hidden" name="lok"><?php echo $lok[$row]['id_loc'] ?></input>
                         </li>
@@ -113,6 +116,7 @@ $_SESSION['lokasi'] = $lokasi;
     const list_lok = document.querySelectorAll('#list-lok');
     const lokasiUser = document.getElementById('lokasi-user');
     const tempat = document.getElementById('tempat');
+    const lok = document.getElementById('lok');
 
     // query selector all for list_lok if clicked then set lokasi with text list_lok
     list_lok.forEach((list) => {

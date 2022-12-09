@@ -1,12 +1,14 @@
 <?php
 
 require_once 'core/init.php';
+
 $riwayat = new ControllerRiwayat();
 
-$rent = $riwayat->h_rental();
-$jumlah_rent = $riwayat->jumlah_rent();
-$sewa = $riwayat->h_sewa();
-$jumlah_sewa = $riwayat->jumlah_sewa();
+
+$rent = $riwayat->h_rental($_SESSION['loksend']);
+$jumlah_rent = $riwayat->jumlah_rent($_SESSION['loksend']);
+$sewa = $riwayat->h_sewa($_SESSION['loksend']);
+$jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +104,9 @@ $jumlah_sewa = $riwayat->jumlah_sewa();
                                         <!-- list 1 start -->
                                         <?php
                                         $row = 0;
+                                        if (empty($rent)) {
+                                            echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                        } else {
                                         while ($row < count($rent)) { ?>
                                         <tr class="">
                                             <td class="flex flex-row gap-x-3 pb-5">
@@ -146,9 +151,8 @@ $jumlah_sewa = $riwayat->jumlah_sewa();
                                                 </div>
                                             </td>
                                         </tr>
-                                        <?php $row++;
-                                        }
-                                        ?>
+                                        <?php  $row++; }
+                                        } ?>
                                         <!-- list 1 end -->
                                     </tbody>
                                 </table>
@@ -226,27 +230,30 @@ $jumlah_sewa = $riwayat->jumlah_sewa();
                                     <tbody class="overflow-y-hidden">
                                         <!-- list 1 start -->
                                         <?php
-                                        $row = 0;
-                                        while ($row < count($sewa)) { ?>
+                                        $rows = 0;
+                                        if (empty($sewa)) {
+                                            echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                        } else {
+                                        while ($rows < count($sewa)) { ?>
                                         <tr class="">
                                             <td class="flex flex-row gap-x-3 pb-5">
                                                 <div class="form-control ">
-                                                    <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $row + 1 ?></h1>
+                                                    <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                                 </div>
                                                 <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                    <img src="<?php echo $sewa[$row]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
+                                                    <img src="<?php echo $sewa[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
                                                 </div>
                                                 <div class="flex flex-col gap-y-1 ml-2">
-                                                    <h1 class="font-semibold"><?php echo $sewa[$row]['username'] ?></h1>
-                                                    <h2 class="text-neutral_400 text-xs"><?php echo $sewa[$row]['id_sewa'] ?></h2>
+                                                    <h1 class="font-semibold"><?php echo $sewa[$rows]['username'] ?></h1>
+                                                    <h2 class="text-neutral_400 text-xs"><?php echo $sewa[$rows]['id_sewa'] ?></h2>
                                                 </div>
                                             </td>
-                                            <td class="text-center"><?php echo $sewa[$row]['nama_ps'] ?></td>
-                                            <td class="text-center"><?php echo $sewa[$row]['waktu_order'] ?></td>
-                                            <td class="text-center"><?php echo $sewa[$row]['playtime'] ?> Hari</td>
-                                            <td class=" text-center"><?php list($date, $time) = explode(" ", $sewa[$row]['mulai_sewa']); echo $time;?>
-                                             - <?php list($date, $time) = explode(" ", $sewa[$row]['akhir_sewa']); echo $time;?></td>
-                                            <td class="text-center">Rp. <?php echo $sewa[$row]['bayar'] ?></td>
+                                            <td class="text-center"><?php echo $sewa[$rows]['nama_ps'] ?></td>
+                                            <td class="text-center"><?php echo $sewa[$rows]['waktu_order'] ?></td>
+                                            <td class="text-center"><?php echo $sewa[$rows]['playtime'] ?> Hari</td>
+                                            <td class=" text-center"><?php list($date, $time) = explode(" ", $sewa[$rows]['mulai_sewa']); echo $time;?>
+                                             - <?php list($date, $time) = explode(" ", $sewa[$rows]['akhir_sewa']); echo $time;?></td>
+                                            <td class="text-center">Rp. <?php echo $sewa[$rows]['bayar'] ?></td>
                                             <td class=" text-center">
                                                 <div class="dropdown dropdown-hover dropdown-right dropdown-end">
                                                     <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
@@ -271,9 +278,8 @@ $jumlah_sewa = $riwayat->jumlah_sewa();
                                                 </div>
                                             </td>
                                         </tr>
-                                        <?php $row++;
-                                        }
-                                        ?>
+                                        <?php $rows++; }
+                                        } ?>
                                         <!-- list 1 end -->
                                     </tbody>
                                 </table>

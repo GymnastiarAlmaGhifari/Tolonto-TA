@@ -36,7 +36,7 @@ require_once 'core/init.php';
                 <!-- table start -->
             </form>
             <section class="mt-24 text-neutral_050  ml-16">
-                <div class="container px-6 max-w-full ">
+                <div class="container px-6 max-w-full" >
                     <div id="atas" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center -mb-3">

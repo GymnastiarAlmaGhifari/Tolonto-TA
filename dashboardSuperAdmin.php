@@ -57,9 +57,9 @@ print_r($_SESSION);
 
 <body>
     <!--loader start  -->
-    <!-- <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
         <span class="loader-103"> </span>
-    </div> -->
+    </div>
     <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
@@ -216,10 +216,10 @@ print_r($_SESSION);
     <script>
         // for loop 1x isi location.reload()
         
-        // var loader = document.getElementById('loader');
-        // window.addEventListener("load", () => {
-        //     loader.classList.add("hidden");
-        // });
+        var loader = document.getElementById('loader');
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
 
         const logout = document.getElementById('logout');
 

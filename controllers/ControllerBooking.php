@@ -39,4 +39,5 @@ class ControllerBooking extends Database
         if ($jumlah != 0) return $jumlah;
             else return "0";
     }
+
 }

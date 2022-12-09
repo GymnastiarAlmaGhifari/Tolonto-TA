@@ -35,11 +35,13 @@ $tb_user = $SadminUser->table_user();
     <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-
+            <form action="userSuperAdmin.php" method="post">
             <!-- header -->
             <?php require_once 'components/header.php'; ?>
             <!-- sidebar -->
             <?php require_once 'components/sidebar.php'; ?>
+
+            </form>
             <!-- table start -->
             <section class="mt-24 text-neutral_050  ml-16">
                 <div class="container px-6 max-w-full ">

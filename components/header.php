@@ -14,11 +14,12 @@ if (Location::in(1, "dashboardSuperAdmin")) {
     $text = "Booking Super Admin";
 }
 
+
+
 // save to seasson
 $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
-$_SESSION['lokasi'] = $lokasi;
-
 ?>
+
 <div class="container">
     <div class=" w-screen h-[60px] fixed z-40 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
 
@@ -46,6 +47,7 @@ $_SESSION['lokasi'] = $lokasi;
                     <?php
                     $row = 0;
                     while ($row < count($lok)) { ?>
+
                         <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
                             <input class="hidden" name="lok"><?php echo $lok[$row]['id_loc'] ?></input>
                         </li>
@@ -132,9 +134,27 @@ $_SESSION['lokasi'] = $lokasi;
             } else {
                 localStorage.setItem('lokasi', list.innerHTML);
             }
-
-            //reload page
-            location.reload();
+            lok = list.innerHTML;
+                var res = lok.replace('<input class="hidden" name="lok">', " ");
+            function trim(res) {
+                return res.replace(/^\s+|\s+$/g, '');
+            }
+            var xhr = new XMLHttpRequest();
+            var url = "getlok.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json.email + ", " + json.password);
+                }
+            };
+            var data = JSON.stringify({"loksend": trim(res)});
+            xhr.send(data);
+            //wait 1s befor reload page
+            setTimeout(function () {
+                location.reload();
+            }, 500);
 
         });
     });

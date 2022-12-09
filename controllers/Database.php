@@ -43,69 +43,6 @@ class Database
 
     public function insert($table, $fields = [])
     {
-        //     $columns = implode(',', array_keys($fields));
-
-        //     $valuesArray = array_values($fields);
-        //     $i = 0;
-        //     foreach ($fields as $key => $values) {
-        //         $fields[$key] = $values;
-        //         if (is_int($values)) {
-        //             $valuesArray[$key] =  (int) $values;
-        //         } else {
-        //             $valuesArray[$key] = "'" . $values . "'";
-        //         }
-
-        //         $i++;
-        //     }
-        //     $values = implode(',', $valuesArray);
-
-        //     $sql = "INSERT INTO $table ($columns) VALUES ($values)";
-
-        //     $stmt = $this->conn->prepare($sql);
-        //     if ($stmt->execute()) {
-        //         return true;
-        //     }
-        //     return false;
-        // }
-
-
-
-
-        // if ($this->conn) {
-        //     $columns = implode(',', array_keys($fields));
-        //     $values = ':' . implode(', :', array_keys($fields));
-        //     $sql = "INSERT INTO {$table} ({$columns}) VALUES ({$values})";
-        //     if ($stmt = $this->conn->prepare($sql)) {
-        //         foreach ($fields as $key => $data) {
-        //             $stmt->bindValue(':' . $key, $data);
-        //         }
-        //         $stmt->execute();
-        //         return $stmt;
-        //     }
-        // }
-
-        // $columns = implode(',', array_keys($fields));
-
-        // $values = ':' . implode(', :', array_keys($fields));
-        // $sql = "INSERT INTO {$table} ({$columns}) VALUES ({$values})";
-
-        // //hilangkan tanda petik satu pada kolom fields create_at
-        // $sql = str_replace("'create_at'", "create_at", $sql);
-
-        // if ($stmt = $this->conn->prepare($sql)) {
-        //     foreach ($fields as $key => $data) {
-        //         $stmt->bindValue(':' . $key, $data);
-        //     }
-        //     $stmt->execute();
-        //     return $this->conn->lastInsertId();
-        // }
-
-
-
-        // get array index fields 7
-
-        // if ($fields == ['create_at', 'update_at']) {
-        //     $values = "'" . $fields['create_at'] . "'";
 
         if (count($fields)) {
 
@@ -196,8 +133,30 @@ class Database
         }
     }
 
+    public function fetchwhere( $table, $row, $value)
+    {
+        if (!is_int($value)) {
+            $value = "'" . $value . "'";
+
+                $query = "SELECT * FROM $table WHERE $row = $value ;";
+                $result = $this->conn->query($query);
+
+                while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
+                    return $row;
+                    $results[] = $row;
+                }
+                if (isset($results)) {
+                    return $results;
+                } else {
+                    return false;
+                }
+            }
+            // return $results;
+    }
+
     public function fetchsemua($id, $table)
     {
+        
         $query = "SELECT $id FROM $table;";
                 $result = $this->conn->query($query);
 
@@ -219,6 +178,23 @@ class Database
                 $result = $this->conn->query($query);
 
                 while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
+                    return $row;
+                    $results[] = $row;
+                }
+                if (isset($results)) {
+                    return $results;
+                } else {
+                    return false;
+                }
+            // return $results;
+    }
+
+    public function uniquerycount($thequery)
+    {
+        $query = "$thequery";
+                $result = $this->conn->query($query);
+
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     return $row;
                     $results[] = $row;
                 }

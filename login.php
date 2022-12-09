@@ -9,6 +9,9 @@ if (Session::exists('login')) {
     echo Session::flash('login');
 }
 
+
+
+
 $errors = array();
 
 
@@ -34,6 +37,8 @@ if (isset($_POST['submit'])) {
             if ($user->cek_nama(Input::get('username'))) {
                 if ($user->login(Input::get('username'), Input::get('password'))) {
                     Session::set('username', Input::get('username'));
+                    // set seasson loksend
+                    $_SESSION['loksend'] = 'Bojonegoro';
                     if ($user->is_superAdmin(Session::get('username'))) {
                         Redirect::to('dashboardSuperAdmin');
                     } else {
@@ -147,6 +152,11 @@ if (isset($_POST['submit'])) {
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");
+        });
+        const login = document.getElementById('login');
+
+        login.addEventListener('click', function() {
+            localStorage.setItem('lokasi', 'Bojonegoro');
         });
     </script>
 </body>

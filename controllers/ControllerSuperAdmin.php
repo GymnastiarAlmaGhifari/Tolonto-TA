@@ -8,9 +8,9 @@ include_once 'Database.php';
 class ControllerSuperAdmin extends Database
 {
 
-    public function ps_tersedia()
+    public function ps_tersedia($lok)
     {
-        $data = $this->count('id_ps', 'ps', 'status', 'tidak aktif');
+        $data = $this->count('id_ps', 'ps', 'lok', $lok);
         $jumlah = $data['COUNT(id_ps)'];
         if ($jumlah != 0) return $jumlah;
         else return "0";
@@ -48,9 +48,9 @@ class ControllerSuperAdmin extends Database
         else return "0";
     }
 
-    public function ps_card()
+    public function ps_card($lok)
     {
-        $lok = "Bojonegoro";
+        //   $lok = "Bojonegoro";
         $data = $this->card_ps($lok);
         return $data;
     }

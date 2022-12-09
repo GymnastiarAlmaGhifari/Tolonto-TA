@@ -32,19 +32,19 @@ print_r($_SESSION);
 
 $errors = array();
 
-if (isset($_POST['Konfirmasi'])) {
+if (isset($_POST['Konfirmasi-rental'])) {
 
 
             // $_SESSION['nama_ps'] = $_POST['nama-ps'];
             // $_SESSION['harga_ps'] = $_POST['harga-ps'];
             // $_SESSION['kategori_ps'] = $_POST['kategori-ps'];
 
-            $id_ps = $SadminPs->idps($_POST['kategori-ps'], $_SESSION['loksend']);
+            $id_ps = $SadminPs->idps($_POST['kategori-ps-rental'], $_SESSION['loksend']);
 
-            $namaFile = $_FILES['image']['name'];
+            $namaFile = $_FILES['image-rental']['name-ps-rental'];
             $fileNameParts = explode('.', $namaFile);
             $ext = end($fileNameParts);
-            $namaSementara = $_FILES['image']['tmp_name'];
+            $namaSementara = $_FILES['image-rental']['tmp_name'];
             
             // tentukan lokasi file akan dipindahkan
             // create folder if not exist
@@ -64,11 +64,11 @@ if (isset($_POST['Konfirmasi'])) {
                 if ($SadminPs->add_rental(
                     [
                         'id_ps' => $id_ps,
-                        'nama_ps' => $_POST['nama-ps'],
-                        'harga' => $_POST['harga-ps'],
+                        'nama_ps' => $_POST['nama-ps-rental'],
+                        'harga' => $_POST['harga-ps-rental'],
                         'status' => 'tidak aktif',
                         'lok' => $_SESSION['loksend'],
-                        'jenis' => $_POST['kategori-ps'],
+                        'jenis' => $_POST['kategori-ps-rental'],
                         'img' => $dirUpload.$filename
                     ]
                 )) // jika berhasil refresh page tanpa submit ulang
@@ -314,7 +314,7 @@ if (isset($_POST['Konfirmasi'])) {
                             <!-- gambar start -->
                             <div class="flex flex-col justify-center items-center relative">
                                 <!-- show previe image from Upload::uploadimage() -->
-                                <img src="components/kamera.png" alt="" id="preview" class="w-[100px] h-[100px] object-cover rounded-full shadow-elevation-dark-4 bg-transparent">
+                                <img src="components/kamera.png" alt="" id="preview-rental" class="w-[100px] h-[100px] object-cover rounded-full shadow-elevation-dark-4 bg-transparent">
                                 <label>
                                     <input class="text-sm cursor-pointer w-36 hidden" accept="image/*" type="file" name="image-rental" id="image-rental" />
                                     <div class="cursor-pointer rounded-full bg-primary_400 w-[35px] h-[35px] flex flex-row justify-center items-center absolute  bottom-1 -right-1.5">
@@ -576,8 +576,8 @@ if (isset($_POST['Konfirmasi'])) {
         // })
     </script>
     <script>
-        const imginp = document.getElementById('image');
-        const prev = document.getElementById('preview');
+        const imginp = document.getElementById('image-rental');
+        const prev = document.getElementById('preview-rental');
 
         imginp.onchange = evt => {
             const [file] = imginp.files

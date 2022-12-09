@@ -352,7 +352,6 @@ if (isset($_POST['Konfirmasi'])) {
 
                                     </label>
                                     <ul tabindex="0" id="content" class="dropdown-content p-2 w-full cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg text-neutral_050">
-
                                         <li id="list-kategori" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
                                             <a>PS-3</a>
                                         </li>
@@ -430,8 +429,6 @@ if (isset($_POST['Konfirmasi'])) {
         list_kategori.forEach((list) => {
             list.addEventListener('click', () => {
                 kategori.innerHTML = list.innerHTML;
-                // required 
-                kategori.value = list.innerHTML;
                 content.classList.add('hidden');
             });
         });

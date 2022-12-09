@@ -1,6 +1,13 @@
 <?php
 require_once 'core/init.php';
 
+$booking = new ControllerBooking();
+
+$rent = $booking->b_rental($_SESSION['loksend']);
+$jumlah_rent = $booking->jumlah_rent($_SESSION['loksend']);
+$sewa = $booking->b_sewa($_SESSION['loksend']);
+$jumlah_sewa = $booking->jumlah_sewa($_SESSION['loksend']);
+
 ?>
 
 <!DOCTYPE html>
@@ -41,8 +48,8 @@ require_once 'core/init.php';
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center -mb-3">
                                 <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">Sewa Aktif</h1>
-                                    <h2>6</h2>
+                                    <h1 class="capitalize font-semibold">Rental Aktif dan Pending</h1>
+                                    <h2><?php echo $jumlah_rent ?></h2>
                                 </div>
                                 <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                                     <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
@@ -52,7 +59,7 @@ require_once 'core/init.php';
                             <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
                             <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table">
                                 <table class="w-full table-auto">
-                                    <thead>
+                                <thead>
                                         <tr class="font-semibold ">
                                             <td class="relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
@@ -63,6 +70,12 @@ require_once 'core/init.php';
                                             <td class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
                                                     <h1 class=" uppercase">nama ps</h1>
+                                                    <i class="fa-solid fa-angle-up"></i>
+                                                </button>
+                                            </td>
+                                            <td class=" ">
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                                    <h1 class="uppercase">waktu order</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
@@ -94,23 +107,31 @@ require_once 'core/init.php';
                                     </thead>
                                     <tbody class="overflow-y-hidden">
                                         <!-- list 1 start -->
+                                        <?php
+                                        $row = 0;
+                                        if (empty($rent)) {
+                                            echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                        } else {
+                                        while ($row < count($rent)) { ?>
                                         <tr class="">
                                             <td class="flex flex-row gap-x-3 pb-5">
                                                 <div class="form-control ">
-                                                    <h1 class="font-semibold font-noto-sans text-xl my-auto">1</h1>
+                                                    <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $row + 1 ?></h1>
                                                 </div>
                                                 <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" alt="" class="rounded-full w-full h-full object-cover">
+                                                    <img src="<?php echo $rent[$row]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
                                                 </div>
                                                 <div class="flex flex-col gap-y-1 ml-2">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                                    <h1 class="font-semibold"><?php echo $rent[$row]['username'] ?></h1>
+                                                    <h2 class="text-neutral_400 text-xs"><?php echo $rent[$row]['id_rental'] ?></h2>
                                                 </div>
                                             </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+                                            <td class="text-center"><?php echo $rent[$row]['nama_ps'] ?></td>
+                                            <td class="text-center"><?php echo $rent[$row]['waktu_order'] ?></td>
+                                            <td class="text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
+                                            <td class=" text-center"><?php list($date, $time) = explode(" ", $rent[$row]['mulai_rental']); echo $time;?>
+                                             - <?php list($date, $time) = explode(" ", $rent[$row]['selesai_rental']); echo $time;?></td>
+                                            <td class="text-center">Rp. <?php echo $rent[$row]['bayar'] ?></td>
                                             <td class=" text-center">
                                                 <div class="dropdown dropdown-hover dropdown-right dropdown-end">
                                                     <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
@@ -135,6 +156,8 @@ require_once 'core/init.php';
                                                 </div>
                                             </td>
                                         </tr>
+                                        <?php  $row++; }
+                                        } ?>
                                         <!-- list 1 end -->
                                     </tbody>
                                 </table>
@@ -158,8 +181,8 @@ require_once 'core/init.php';
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center -mb-3">
                                 <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">Sewa Aktif</h1>
-                                    <h2>6</h2>
+                                    <h1 class="capitalize font-semibold">Sewa Aktif dan Pending</h1>
+                                    <h2><?php echo $jumlah_sewa ?></h2>
                                 </div>
                                 <span id="open2" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                                     <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
@@ -169,7 +192,7 @@ require_once 'core/init.php';
                             <span id="garis2" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
                             <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table2">
                                 <table class="w-full table-auto">
-                                    <thead>
+                                <thead>
                                         <tr class="font-semibold ">
                                             <td class="relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
@@ -185,7 +208,13 @@ require_once 'core/init.php';
                                             </td>
                                             <td class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">play time</h1>
+                                                    <h1 class="uppercase">Waktu order</h1>
+                                                    <i class="fa-solid fa-angle-up"></i>
+                                                </button>
+                                            </td>
+                                            <td class=" ">
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                                    <h1 class="uppercase">lama sewa</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
@@ -211,23 +240,31 @@ require_once 'core/init.php';
                                     </thead>
                                     <tbody class="overflow-y-hidden">
                                         <!-- list 1 start -->
+                                        <?php
+                                        $rows = 0;
+                                        if (empty($sewa)) {
+                                            echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                        } else {
+                                        while ($rows < count($sewa)) { ?>
                                         <tr class="">
                                             <td class="flex flex-row gap-x-3 pb-5">
                                                 <div class="form-control ">
-                                                    <h1 class="font-semibold font-noto-sans text-xl my-auto">1</h1>
+                                                    <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                                 </div>
                                                 <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" alt="" class="rounded-full w-full h-full object-cover">
+                                                    <img src="<?php echo $sewa[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
                                                 </div>
                                                 <div class="flex flex-col gap-y-1 ml-2">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                                    <h1 class="font-semibold"><?php echo $sewa[$rows]['username'] ?></h1>
+                                                    <h2 class="text-neutral_400 text-xs"><?php echo $sewa[$rows]['id_sewa'] ?></h2>
                                                 </div>
                                             </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
+                                            <td class="text-center"><?php echo $sewa[$rows]['nama_ps'] ?></td>
+                                            <td class="text-center"><?php echo $sewa[$rows]['waktu_order'] ?></td>
+                                            <td class="text-center"><?php echo $sewa[$rows]['playtime'] ?> Hari</td>
+                                            <td class=" text-center"><?php list($date, $time) = explode(" ", $sewa[$rows]['mulai_sewa']); echo $time;?>
+                                             - <?php list($date, $time) = explode(" ", $sewa[$rows]['akhir_sewa']); echo $time;?></td>
+                                            <td class="text-center">Rp. <?php echo $sewa[$rows]['bayar'] ?></td>
                                             <td class=" text-center">
                                                 <div class="dropdown dropdown-hover dropdown-right dropdown-end">
                                                     <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
@@ -252,6 +289,8 @@ require_once 'core/init.php';
                                                 </div>
                                             </td>
                                         </tr>
+                                        <?php $rows++; }
+                                        } ?>
                                         <!-- list 1 end -->
                                     </tbody>
                                 </table>

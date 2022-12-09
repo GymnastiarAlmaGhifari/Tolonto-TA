@@ -188,6 +188,23 @@ class Database
                 }
             // return $results;
     }
+
+    public function uniquerycount($thequery)
+    {
+        $query = "$thequery";
+                $result = $this->conn->query($query);
+
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    return $row;
+                    $results[] = $row;
+                }
+                if (isset($results)) {
+                    return $results;
+                } else {
+                    return false;
+                }
+            // return $results;
+    }
     
     public function card_ps($lok = '') 
     {

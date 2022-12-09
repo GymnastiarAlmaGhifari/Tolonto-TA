@@ -33,26 +33,12 @@ print_r($_SESSION);
 $errors = array();
 
 if (isset($_POST['Konfirmasi'])) {
-        // $validation = new Validation();
 
-        // // metode check
-        // $validation = $validation->check(array(
-        //     'nama-ps' => array(
-        //         'required' => true,
-        //     ),
-        //     'harga-ps' => array(
-        //         'required' => true,
-        //     ),
-        //     'kategori' => array(
-        //         'required' => true,
-        //     )
+            // $_SESSION['nama_ps'] = $_POST['nama-ps'];
+            // $_SESSION['harga_ps'] = $_POST['harga-ps'];
+            // $_SESSION['kategori_ps'] = $_POST['kategori-ps'];
 
-        // ));
-        // // pengujian cek nama
-        // if ($validation->passed()) {
-            $_SESSION['nama_ps'] = $_POST['nama-ps'];
-            $_SESSION['harga_ps'] = $_POST['harga-ps'];
-            $_SESSION['kategori_ps'] = $_POST['kategori-ps'];
+            $id_ps = $SadminPs->idps($_POST['kategori-ps'], $_SESSION['loksend']);
 
             $namaFile = $_FILES['image']['name'];
             $fileNameParts = explode('.', $namaFile);
@@ -74,9 +60,25 @@ if (isset($_POST['Konfirmasi'])) {
             if ($terupload) {
                 echo "Upload berhasil!<br/>";
                 echo "Link: <a href='".$dirUpload.$filename."'>".$filename."</a>";
+                if ($SadminPs->add_rental(
+                    [
+                        'id_ps' => $id_ps,
+                        'nama_ps' => $_POST['nama-ps'],
+                        'harga' => $_POST['harga-ps'],
+                        'status' => 'tidak aktif',
+                        'lok' => $_SESSION['loksend'],
+                        'jenis' => $_POST['kategori-ps'],
+                        'img' => $dirUpload.$filename
+                    ]
+                )) // jika berhasil refresh page tanpa submit ulang
+                {
+                    echo "<script>location.href='inventorySuperAdmin.php'</script>";
+                } else {}
             } else {
                 echo "Upload Gagal!";
             }
+
+            
 
         //     if ($user->cek_nama(Input::get('nama-ps'))) {
                 
@@ -115,7 +117,7 @@ if (isset($_POST['Konfirmasi'])) {
 
     <!--loader start  -->
     <!-- <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
-        <span class="loader-103"> </span>s
+        <span class="loader-103"> </span>
     </div> -->
     <!-- loader end -->
 
@@ -441,37 +443,37 @@ if (isset($_POST['Konfirmasi'])) {
         hapus.addEventListener('click', () => {
             alertHapus.classList.toggle('activeAlert');
         })
-        const image = document.querySelector('#image');
-        const preview = document.querySelector('#preview');
+        // const image = document.querySelector('#image');
+        // const preview = document.querySelector('#preview');
 
-        // if preview is null add some image
+        // // if preview is null add some image
 
 
-        image.addEventListener('change', function() {
-            const file = image.files[0];
-            const type = file.type;
-            const size = file.size;
-            const name = file.name;
+        // image.addEventListener('change', function() {
+        //     const file = image.files[0];
+        //     const type = file.type;
+        //     const size = file.size;
+        //     const name = file.name;
 
-            if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
-                alert('type file harus .jpg .png .jpeg');
-                image.value = '';
-                return false;
-            }
+        //     if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+        //         alert('type file harus .jpg .png .jpeg');
+        //         image.value = '';
+        //         return false;
+        //     }
 
-            if (size > 2000000) {
-                alert('ukuran file maksimal 2mb');
-                image.value = '';
-                return false;
-            }
+        //     if (size > 2000000) {
+        //         alert('ukuran file maksimal 2mb');
+        //         image.value = '';
+        //         return false;
+        //     }
 
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
+        //     const fileReader = new FileReader();
+        //     fileReader.readAsDataURL(file);
 
-            fileReader.onload = function(e) {
-                preview.src = e.target.result;
-            }
-        })
+        //     fileReader.onload = function(e) {
+        //         preview.src = e.target.result;
+        //     }
+        // })
     </script>
     <script>
         const imginp = document.getElementById('image');

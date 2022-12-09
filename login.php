@@ -153,6 +153,11 @@ if (isset($_POST['submit'])) {
         window.addEventListener("load", () => {
             loader.classList.add("hidden");
         });
+        const login = document.getElementById('login');
+
+        login.addEventListener('click', function() {
+            localStorage.setItem('lokasi', 'Bojonegoro');
+        });
     </script>
 </body>
 

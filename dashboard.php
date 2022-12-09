@@ -1,5 +1,5 @@
 <?php
-require_once '../core/init.php';
+require_once 'core/init.php';
 
 if (!$user->is_login()) {
     Session::flash('login', '<script>alert("Anda Harus Login")</script>');

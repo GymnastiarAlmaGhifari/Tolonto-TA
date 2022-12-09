@@ -24,6 +24,7 @@ if (!$user->is_superAdmin(Session::get('username'))) {
     );
     Redirect::to('dashboardSuperAdmin');
 }
+
 $users = $user->get_users();
 $tersedia = $Sadmin->ps_tersedia($_SESSION['loksend']);
 $maintain = $Sadmin->ps_maintain();
@@ -32,7 +33,7 @@ $laba = $Sadmin->laba();
 $ps = $Sadmin->ps_card($_SESSION['loksend']);
 
 
-print_r($_SESSION['loksend']);
+print_r($_SESSION);
 
 
 ?>
@@ -101,7 +102,7 @@ print_r($_SESSION['loksend']);
             <!-- main ditempat -->
             <section id="main-ditempat" class="mt-8  text-neutral_050 ml-24">
                 <h1>Main Di tempat</h1>
-                <h1 id="loksend"></h1>
+
                 </section>
             <!-- list ps -->
             <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">

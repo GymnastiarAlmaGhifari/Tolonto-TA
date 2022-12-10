@@ -45,6 +45,16 @@ class ControllerSuperadminInventory extends Database
         }
     }
 
+    public function add_sewa($fields = [])
+    {
+        $data = $this->insert('ps_sewa', $fields);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //sql untuk select max dengan format PS3-BOJONEGORO-001 kemudian +1 if data kosong maka 001
     public function idps($kategori, $lok)
     {

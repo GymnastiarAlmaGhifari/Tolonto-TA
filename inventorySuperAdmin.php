@@ -502,7 +502,11 @@ if (isset($_POST['Konfirmasi-sewa'])) {
             }
         }
         openModalRental(false)
-
+        
+        tambahRental.addEventListener('click', () => {
+            openModalRental(true)
+        });
+        
         const openModalSewa = (value) => {
             const modalClSewa = modal_sewa.classList
             const overlayClSewa = modal_overlay_sewa
@@ -527,9 +531,6 @@ if (isset($_POST['Konfirmasi-sewa'])) {
 
         // open modal sewa and set text modalText to 'Sewa'
 
-        tambahRental.addEventListener('click', () => {
-            openModalRental(true)
-        });
         tambahSewa.addEventListener('click', () => {
             openModalSewa(true)
         });

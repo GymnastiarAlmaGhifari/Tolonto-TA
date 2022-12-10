@@ -132,10 +132,17 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
             if (localStorage.getItem('lokasi') == null) {
                 localStorage.setItem('lokasi', list_lok[1].innerHTML);
             } else {
-                localStorage.setItem('lokasi', list.innerHTML);
+                localstore = list.innerHTML;
+                var resloc = localstore.replace('<input class="hidden" name="lok">', " ");
+
+                function trim(resloc) {
+                    return resloc.replace(/^\s+|\s+$/g, '');
+                }
+                localStorage.setItem('lokasi', trim(resloc));
             }
             lok = list.innerHTML;
-                var res = lok.replace('<input class="hidden" name="lok">', " ");
+            var res = lok.replace('<input class="hidden" name="lok">', " ");
+
             function trim(res) {
                 return res.replace(/^\s+|\s+$/g, '');
             }
@@ -143,16 +150,18 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
             var url = "getlok.php";
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
                     console.log(json.email + ", " + json.password);
                 }
             };
-            var data = JSON.stringify({"loksend": trim(res)});
+            var data = JSON.stringify({
+                "loksend": trim(res)
+            });
             xhr.send(data);
             //wait 1s befor reload page
-            setTimeout(function () {
+            setTimeout(function() {
                 location.reload();
             }, 500);
 

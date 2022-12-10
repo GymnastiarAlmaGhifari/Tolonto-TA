@@ -33,9 +33,6 @@ $laba = $Sadmin->laba();
 $ps = $Sadmin->ps_card($_SESSION['loksend']);
 
 
-print_r($_SESSION);
-
-
 ?>
 
 

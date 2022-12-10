@@ -35,59 +35,60 @@ $errors = array();
 if (isset($_POST['Konfirmasi-rental'])) {
 
 
-            // $_SESSION['nama_ps'] = $_POST['nama-ps'];
-            // $_SESSION['harga_ps'] = $_POST['harga-ps'];
-            // $_SESSION['kategori_ps'] = $_POST['kategori-ps'];
+    // $_SESSION['nama_ps'] = $_POST['nama-ps'];
+    // $_SESSION['harga_ps'] = $_POST['harga-ps'];
+    // $_SESSION['kategori_ps'] = $_POST['kategori-ps'];
 
-            $id_ps = $SadminPs->idps($_POST['kategori-ps-rental'], $_SESSION['loksend']);
+    $id_ps = $SadminPs->idps($_POST['kategori-ps-rental'], $_SESSION['loksend']);
 
-            $namaFile = $_FILES['image-rental']['name-ps-rental'];
-            $fileNameParts = explode('.', $namaFile);
-            $ext = end($fileNameParts);
-            $namaSementara = $_FILES['image-rental']['tmp_name'];
-            
-            // tentukan lokasi file akan dipindahkan
-            // create folder if not exist
-            if (!file_exists('img/ps')) {
-                mkdir('img/ps', 0777, true);
-            }
-            $dirUpload = "img/ps/";
-            // genearete datetimestamp
-            $filename = date('YmdHis') . '.' . $ext;
-            
-            // pindahkan file 
-            $terupload = move_uploaded_file($namaSementara, $dirUpload.$filename);
-            
-            if ($terupload) {
-                echo "Upload berhasil!<br/>";
-                echo "Link: <a href='".$dirUpload.$filename."'>".$filename."</a>";
-                if ($SadminPs->add_rental(
-                    [
-                        'id_ps' => $id_ps,
-                        'nama_ps' => $_POST['nama-ps-rental'],
-                        'harga' => $_POST['harga-ps-rental'],
-                        'status' => 'tidak aktif',
-                        'lok' => $_SESSION['loksend'],
-                        'jenis' => $_POST['kategori-ps-rental'],
-                        'img' => $dirUpload.$filename
-                    ]
-                )) // jika berhasil refresh page tanpa submit ulang
-                {
-                    echo "<script>location.href='inventorySuperAdmin.php'</script>";
-                } else {}
-            } else {
-                echo "Upload Gagal!";
-            }
+    $namaFile = $_FILES['image-rental']['name-ps-rental'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-rental']['tmp_name'];
 
-            
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps')) {
+        mkdir('img/ps', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = date('YmdHis') . '.' . $ext;
 
-        //     if ($user->cek_nama(Input::get('nama-ps'))) {
-                
-        //     } else {
-        //     // untuk mengisi errornya ke array
-        //     $errors = $validation->errors();
-        //     }
-        // }
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        echo "Upload berhasil!<br/>";
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($SadminPs->add_rental(
+            [
+                'id_ps' => $id_ps,
+                'nama_ps' => $_POST['nama-ps-rental'],
+                'harga' => $_POST['harga-ps-rental'],
+                'status' => 'tidak aktif',
+                'lok' => $_SESSION['loksend'],
+                'jenis' => $_POST['kategori-ps-rental'],
+                'img' => $dirUpload . $filename
+            ]
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventorySuperAdmin.php'</script>";
+        } else {
+        }
+    } else {
+        echo "Upload Gagal!";
+    }
+
+
+
+    //     if ($user->cek_nama(Input::get('nama-ps'))) {
+
+    //     } else {
+    //     // untuk mengisi errornya ke array
+    //     $errors = $validation->errors();
+    //     }
+    // }
 
 
 }
@@ -457,6 +458,20 @@ if (isset($_POST['Konfirmasi-rental'])) {
         const tambahSewa = document.querySelector('#tambahSewa');
         const tambahRental = document.querySelector('#tambahRental');
 
+        const show = () => {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("showimg").classList.add("hidden");
+                document.getElementById("hideimg").classList.remove("hidden");
+            } else {
+                x.type = "password";
+                document.getElementById("showimg").classList.remove("hidden");
+                document.getElementById("hideimg").classList.add("hidden");
+                labelInput.classList.remove("text-transparent");
+            }
+        };
+
 
         const openModalRental = (value) => {
             const modalClRental = modal_rental.classList
@@ -479,11 +494,11 @@ if (isset($_POST['Konfirmasi-rental'])) {
             }
         }
         openModalRental(false)
-        
+
         tambahRental.addEventListener('click', () => {
             openModalRental(true)
         });
-        
+
         const openModalSewa = (value) => {
             const modalClSewa = modal_sewa.classList
             const overlayClSewa = modal_overlay_sewa

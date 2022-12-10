@@ -32,44 +32,45 @@ $errors = array();
 
 if (isset($_POST['Konfirmasi-rental'])) {
 
-            $id_ps = $SadminPs->idps($_POST['kategori-ps-rental'], $_SESSION['loksend']);
-            $namaFile = $_FILES['image-rental']['name'];
-            $fileNameParts = explode('.', $namaFile);
-            $ext = end($fileNameParts);
-            $namaSementara = $_FILES['image-rental']['tmp_name'];
+    $id_ps = $SadminPs->idps($_POST['kategori-ps-rental'], $_SESSION['loksend']);
+    $namaFile = $_FILES['image-rental']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-rental']['tmp_name'];
 
-            // tentukan lokasi file akan dipindahkan
-            // create folder if not exist
-            if (!file_exists('img/ps')) {
-                mkdir('img/ps', 0777, true);
-            }
-            $dirUpload = "img/ps/";
-            // genearete datetimestamp
-            $filename = date('YmdHis') . '.' . $ext;
-            
-            // pindahkan file 
-            $terupload = move_uploaded_file($namaSementara, $dirUpload.$filename);
-            
-            if ($terupload) {
-                echo "Upload berhasil!<br/>";
-                echo "Link: <a href='".$dirUpload.$filename."'>".$filename."</a>";
-                if ($SadminPs->add_rental(
-                    [
-                        'id_ps' => $id_ps,
-                        'nama_ps' => $_POST['nama-ps-rental'],
-                        'harga' => $_POST['harga-ps-rental'],
-                        'status' => 'tidak aktif',
-                        'lok' => $_SESSION['loksend'],
-                        'jenis' => $_POST['kategori-ps-rental'],
-                        'img' => $dirUpload.$filename
-                    ]
-                )) // jika berhasil refresh page tanpa submit ulang
-                {
-                    echo "<script>location.href='inventorySuperAdmin.php'</script>";
-                } else {}
-            } else {
-                echo "Upload Gagal!";
-            }
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps')) {
+        mkdir('img/ps', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = date('YmdHis') . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        echo "Upload berhasil!<br/>";
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($SadminPs->add_rental(
+            [
+                'id_ps' => $id_ps,
+                'nama_ps' => $_POST['nama-ps-rental'],
+                'harga' => $_POST['harga-ps-rental'],
+                'status' => 'tidak aktif',
+                'lok' => $_SESSION['loksend'],
+                'jenis' => $_POST['kategori-ps-rental'],
+                'img' => $dirUpload . $filename
+            ]
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventorySuperAdmin.php'</script>";
+        } else {
+        }
+    } else {
+        echo "Upload Gagal!";
+    }
 }
 
 if (isset($_POST['Konfirmasi-sewa'])) {
@@ -88,13 +89,13 @@ if (isset($_POST['Konfirmasi-sewa'])) {
     $dirUpload = "img/ps/";
     // genearete datetimestamp
     $filename = date('YmdHis') . '.' . $ext;
-    
+
     // pindahkan file 
-    $terupload = move_uploaded_file($namaSementara, $dirUpload.$filename);
-    
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
     if ($terupload) {
         echo "Upload berhasil!<br/>";
-        echo "Link: <a href='".$dirUpload.$filename."'>".$filename."</a>";
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
         if ($SadminPs->add_sewa(
             [
                 'id_ps' => $id_ps,
@@ -103,12 +104,13 @@ if (isset($_POST['Konfirmasi-sewa'])) {
                 'status' => 'tidak aktif',
                 'lok' => $_SESSION['loksend'],
                 'jenis' => $_POST['kategori-ps-sewa'],
-                'img' => $dirUpload.$filename
+                'img' => $dirUpload . $filename
             ]
         )) // jika berhasil refresh page tanpa submit ulang
         {
             echo "<script>location.href='inventorySuperAdmin.php'</script>";
-        } else {}
+        } else {
+        }
     } else {
         echo "Upload Gagal!";
     }
@@ -480,6 +482,20 @@ if (isset($_POST['Konfirmasi-sewa'])) {
         const tambahSewa = document.querySelector('#tambahSewa');
         const tambahRental = document.querySelector('#tambahRental');
 
+        const show = () => {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("showimg").classList.add("hidden");
+                document.getElementById("hideimg").classList.remove("hidden");
+            } else {
+                x.type = "password";
+                document.getElementById("showimg").classList.remove("hidden");
+                document.getElementById("hideimg").classList.add("hidden");
+                labelInput.classList.remove("text-transparent");
+            }
+        };
+
 
         const openModalRental = (value) => {
             const modalClRental = modal_rental.classList
@@ -502,11 +518,11 @@ if (isset($_POST['Konfirmasi-sewa'])) {
             }
         }
         openModalRental(false)
-        
+
         tambahRental.addEventListener('click', () => {
             openModalRental(true)
         });
-        
+
         const openModalSewa = (value) => {
             const modalClSewa = modal_sewa.classList
             const overlayClSewa = modal_overlay_sewa
@@ -567,7 +583,6 @@ if (isset($_POST['Konfirmasi-sewa'])) {
         hapus.addEventListener('click', () => {
             alertHapus.classList.toggle('activeAlert');
         })
-
     </script>
     <script>
         const imginp_rental = document.getElementById('image-rental');

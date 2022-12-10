@@ -50,46 +50,46 @@ require_once 'core/init.php';
                                 </span>
                             </div>
                             <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table">
+                            <div class="w-full mx-auto  relative block max-h-[360px] overflow-y-auto mt-2" id="table">
                                 <table class="w-full table-auto">
-                                    <thead>
+                                    <thead class="bg-neutral_800 sticky top-0">
                                         <tr class="font-semibold ">
-                                            <td class="relative">
+                                            <th scope="col" class="text-left relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
                                                     <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                                 </div>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
                                                     <h1 class=" uppercase">nama ps</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">play time</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">waktu</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class="">
+                                            </th>
+                                            <th scope="col" class="text-left ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">total</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                                     <h1 class="capitalize font-normal">option</h1>
                                                     <i class="fa-solid fa-caret-down"></i>
                                                 </button>
-                                            </td>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="overflow-y-hidden">
@@ -167,46 +167,46 @@ require_once 'core/init.php';
                                 </span>
                             </div>
                             <span id="garis2" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table2">
+                            <div class="w-full mx-auto  relative max-h-[360px] block overflow-y-auto mt-2" id="table2">
                                 <table class="w-full table-auto">
-                                    <thead>
+                                    <thead class="bg-neutral_800 sticky top-0">
                                         <tr class="font-semibold ">
-                                            <td class="relative">
+                                            <th scope="col" class="text-left relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
                                                     <input type="text" id="search2" name="search2" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                                 </div>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
                                                     <h1 class=" uppercase">nama ps</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">play time</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">waktu</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class="">
+                                            </th>
+                                            <th scope="col" class="text-left ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">total</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                                     <h1 class="capitalize font-normal">option</h1>
                                                     <i class="fa-solid fa-caret-down"></i>
                                                 </button>
-                                            </td>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="overflow-y-hidden">
@@ -277,46 +277,46 @@ require_once 'core/init.php';
                                 </span>
                             </div>
                             <span id="garis3" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table3">
+                            <div class="w-full mx-auto  relative max-h-[360px] block overflow-y-auto mt-2" id="table3">
                                 <table class="w-full table-auto">
-                                    <thead>
+                                    <thead class="bg-neutral_800 sticky top-0">
                                         <tr class="font-semibold ">
-                                            <td class="relative">
+                                            <th scope="col" class="text-leftrelative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
                                                     <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                                 </div>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
                                                     <h1 class=" uppercase">nama ps</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">play time</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">waktu</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class="">
+                                            </th>
+                                            <th scope="col" class="text-left">
                                                 <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
                                                     <h1 class="uppercase">total</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left ">
                                                 <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                                     <h1 class="capitalize font-normal">option</h1>
                                                     <i class="fa-solid fa-caret-down"></i>
                                                 </button>
-                                            </td>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="overflow-y-hidden">

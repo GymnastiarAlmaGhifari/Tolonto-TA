@@ -59,40 +59,40 @@ $tb_user = $SadminUser->table_user();
                                 </span>
                             </div>
                             <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table">
-                                <table class="w-full table-auto">
-                                    <thead>
+                            <div class="w-full mx-auto relative block max-h-[360px] overflow-y-auto mt-2" id="table">
+                                <table class="w-full">
+                                    <thead class="bg-neutral_800 sticky top-0">
                                         <tr class="font-semibold ">
-                                            <td class="relative">
+                                            <th scope="col" class="text-left relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
                                                     <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                                 </div>
-                                            </td>
-                                            <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
                                                     <h1 class=" uppercase">No. Hp</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                                     <h1 class="uppercase">Saldo</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                                     <h1 class="uppercase">Play Time</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                                     <h1 class="capitalize font-normal">option</h1>
                                                     <i class="fa-solid fa-caret-down"></i>
                                                 </button>
-                                            </td>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="overflow-y-hidden">
@@ -164,34 +164,34 @@ $tb_user = $SadminUser->table_user();
                                 </div>
                             </div>
                             <span id="garis3" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table3">
-                                <table class="w-full table-auto">
-                                    <thead>
+                            <div class="w-full mx-auto relative block max-h-[360px] overflow-y-auto mt-2" id="table3">
+                                <table class="w-full">
+                                    <thead class="bg-neutral_800 sticky top-0">
                                         <tr class="font-semibold ">
-                                            <td class="relative">
+                                            <th scope="col" class="text-left relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
                                                     <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                                 </div>
-                                            </td>
-                                            <td class=" ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                                     <h1 class="uppercase">level</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class="">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                            </th>
+                                            <th scope="col" class="text-left ">
+                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                                     <h1 class="uppercase">lokasi</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
-                                            </td>
-                                            <td class=" ">
+                                            </th>
+                                            <th scope="col" class="text-left  ">
                                                 <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                                     <h1 class="capitalize font-normal">option</h1>
                                                     <i class="fa-solid fa-caret-down"></i>
                                                 </button>
-                                            </td>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="overflow-y-hidden">
@@ -206,11 +206,11 @@ $tb_user = $SadminUser->table_user();
                                                     </div>
                                                     <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
                                                         <img src="<?php echo $tb_admin[$row]['img'] ?>" " alt="" class=" rounded-full w-full h-full object-cover">
-                                                        </>
-                                                        <div class="flex flex-col gap-y-1">
-                                                            <h1 class="font-semibold"><?php echo $tb_admin[$row]['username'] ?></h1>
-                                                            <h2 class="text-neutral_400 text-xs"><?php echo $tb_admin[$row]['id_admin'] ?></h2>
-                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col gap-y-1">
+                                                        <h1 class="font-semibold"><?php echo $tb_admin[$row]['username'] ?></h1>
+                                                        <h2 class="text-neutral_400 text-xs"><?php echo $tb_admin[$row]['id_admin'] ?></h2>
+                                                    </div>
                                                 </td>
                                                 <td class="text-center">
                                                     <?php
@@ -224,13 +224,13 @@ $tb_user = $SadminUser->table_user();
                                                 </td>
                                                 <td class=" text-center">
                                                     <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
-                                                        <button class=" bg-primary_600 w-[35px] h-[28px] rounded-3xl relative">
+                                                        <button class=" bg-neutral_900/20 border border-neutral_900 w-[35px] h-[28px] rounded-3xl relative">
                                                             <svg width="19" class="mx-auto" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="#303030" />
                                                             </svg>
                                                         </button>
                                                         <span class="w-0.5 h-6 bg-neutral_900"></span>
-                                                        <button class="bg-primary_600 w-[35px] h-[28px] rounded-3xl relative">
+                                                        <button class="bg-neutral_900/20 border border-neutral_900 w-[35px] h-[28px] rounded-3xl relative">
                                                             <svg width="16" class="mx-auto" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
                                                             </svg>

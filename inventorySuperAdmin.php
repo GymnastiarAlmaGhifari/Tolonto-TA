@@ -28,24 +28,16 @@ $ju_pssewa = $SadminPs->jumlah_pssewa($_SESSION['loksend']);
 $ps = $SadminPs->ps_card($_SESSION['loksend']);
 $ps_sewa = $SadminPs->ps_cardsewa($_SESSION['loksend']);
 
-print_r($_SESSION);
-
 $errors = array();
 
 if (isset($_POST['Konfirmasi-rental'])) {
 
-
-            // $_SESSION['nama_ps'] = $_POST['nama-ps'];
-            // $_SESSION['harga_ps'] = $_POST['harga-ps'];
-            // $_SESSION['kategori_ps'] = $_POST['kategori-ps'];
-
             $id_ps = $SadminPs->idps($_POST['kategori-ps-rental'], $_SESSION['loksend']);
-
-            $namaFile = $_FILES['image-rental']['name-ps-rental'];
+            $namaFile = $_FILES['image-rental']['name'];
             $fileNameParts = explode('.', $namaFile);
             $ext = end($fileNameParts);
             $namaSementara = $_FILES['image-rental']['tmp_name'];
-            
+
             // tentukan lokasi file akan dipindahkan
             // create folder if not exist
             if (!file_exists('img/ps')) {
@@ -78,18 +70,48 @@ if (isset($_POST['Konfirmasi-rental'])) {
             } else {
                 echo "Upload Gagal!";
             }
+}
 
-            
+if (isset($_POST['Konfirmasi-sewa'])) {
 
-        //     if ($user->cek_nama(Input::get('nama-ps'))) {
-                
-        //     } else {
-        //     // untuk mengisi errornya ke array
-        //     $errors = $validation->errors();
-        //     }
-        // }
+    $id_ps = $SadminPs->idps($_POST['kategori-ps-sewa'], $_SESSION['loksend']);
+    $namaFile = $_FILES['image-sewa']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-sewa']['tmp_name'];
 
-
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps')) {
+        mkdir('img/ps', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = date('YmdHis') . '.' . $ext;
+    
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload.$filename);
+    
+    if ($terupload) {
+        echo "Upload berhasil!<br/>";
+        echo "Link: <a href='".$dirUpload.$filename."'>".$filename."</a>";
+        if ($SadminPs->add_sewa(
+            [
+                'id_ps' => $id_ps,
+                'nama_ps' => $_POST['nama-ps-sewa'],
+                'harga' => $_POST['harga-ps-sewa'],
+                'status' => 'tidak aktif',
+                'lok' => $_SESSION['loksend'],
+                'jenis' => $_POST['kategori-ps-sewa'],
+                'img' => $dirUpload.$filename
+            ]
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventorySuperAdmin.php'</script>";
+        } else {}
+    } else {
+        echo "Upload Gagal!";
+    }
 }
 ?>
 
@@ -111,6 +133,7 @@ if (isset($_POST['Konfirmasi-rental'])) {
     <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Inventory Superadmin</title>
 </head>
 
@@ -387,7 +410,7 @@ if (isset($_POST['Konfirmasi-rental'])) {
                             <!-- gambar start -->
                             <div class="flex flex-col justify-center items-center relative">
                                 <!-- show previe image from Upload::uploadimage() -->
-                                <img src="components/kamera.png" alt="" id="preview" class="w-[100px] h-[100px] object-cover rounded-full shadow-elevation-dark-4 bg-transparent">
+                                <img src="components/kamera.png" alt="" id="preview-sewa" class="w-[100px] h-[100px] object-cover rounded-full shadow-elevation-dark-4 bg-transparent">
                                 <label>
                                     <input class="text-sm cursor-pointer w-36 hidden" accept="image/*" type="file" name="image-sewa" id="image-sewa" />
                                     <div class="cursor-pointer rounded-full bg-primary_400 w-[35px] h-[35px] flex flex-row justify-center items-center absolute  bottom-1 -right-1.5">
@@ -544,41 +567,36 @@ if (isset($_POST['Konfirmasi-rental'])) {
         hapus.addEventListener('click', () => {
             alertHapus.classList.toggle('activeAlert');
         })
-        // const image = document.querySelector('#image');
-        // const preview = document.querySelector('#preview');
 
-        // // if preview is null add some image
-
-
-        // image.addEventListener('change', function() {
-        //     const file = image.files[0];
-        //     const type = file.type;
-        //     const size = file.size;
-        //     const name = file.name;
-
-        //     if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
-        //         alert('type file harus .jpg .png .jpeg');
-        //         image.value = '';
-        //         return false;
-        //     }
-
-        //     if (size > 2000000) {
-        //         alert('ukuran file maksimal 2mb');
-        //         image.value = '';
-        //         return false;
-        //     }
-
-        //     const fileReader = new FileReader();
-        //     fileReader.readAsDataURL(file);
-
-        //     fileReader.onload = function(e) {
-        //         preview.src = e.target.result;
-        //     }
-        // })
     </script>
     <script>
-        const imginp = document.getElementById('image-rental');
-        const prev = document.getElementById('preview-rental');
+        const imginp_rental = document.getElementById('image-rental');
+        const prev_rental = document.getElementById('preview-rental');
+
+        imginp_rental.onchange = evt => {
+            const [file_rental] = imginp_rental.files
+            if (file_rental) {
+                //if size is more than 2mb alert
+                if (file_rental.size > 2000000) {
+                    alert('ukuran file maksimal 2mb');
+                    imginp_rental.value = '';
+                    return false;
+                } else if (file_rental.type != 'image/jpeg' && file_rental.type != 'image/png' && file_rental.type != 'image/jpg') {
+                    alert('type file harus .jpg .png .jpeg');
+                    imginp_rental.value = '';
+                    return false;
+                } else {
+                    prev_rental.src = URL.createObjectURL(file_rental)
+                    //rename file to datetimenow and save to folder
+
+                    console.log(file_rental);
+                }
+
+            }
+        }
+
+        const imginp = document.getElementById('image-sewa');
+        const prev = document.getElementById('preview-sewa');
 
         imginp.onchange = evt => {
             const [file] = imginp.files

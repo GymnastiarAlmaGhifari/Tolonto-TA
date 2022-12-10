@@ -311,8 +311,8 @@ $tb_user = $SadminUser->table_user();
                                     </svg>
                                     <select name="kategori-ps-Admin" id="kategori-ps-Admin" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-16  pr-3 outline-none">
                                         <option value="" class="text-neutral_500 text-base" hidden>Level</option>
-                                        <option id="option" value="Superadmin" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Super Admin</option>
-                                        <option id="option" value="Admin" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Admin</option>
+                                        <option id="option" value="1" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Super Admin</option>
+                                        <option id="option" value="0" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Admin</option>
                                     </select>
                                     <i id="arrow_addAdmin" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3"></i>
                                 </div>

@@ -153,7 +153,6 @@ $tb_user = $SadminUser->table_user();
             </section>
             <!-- table end -->
 
-
             <!-- table start -->
             <section class="mt-12 mb-8 text-neutral_050  ml-16">
                 <div class="container px-6 max-w-full ">

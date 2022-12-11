@@ -7,6 +7,50 @@ $ju = $SadminUser->jumlah_user();
 $ja = $SadminUser->jumlah_admin();
 $tb_admin = $SadminUser->table_admin();
 $tb_user = $SadminUser->table_user();
+$lokasi = $SadminUser->lokasi();
+
+if (isset($_POST['Konfirmasi-Admin'])) {
+
+    $namaFile = $_FILES['image-Admin']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-Admin']['tmp_name'];
+
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/admin')) {
+        mkdir('img/admin', 0777, true);
+    }
+    $dirUpload = "img/admin/";
+    // genearete datetimestamp
+    $filename = date('YmdHis') . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        echo "Upload berhasil!<br/>";
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($SadminUser->add_admin(
+            [
+                'id_admin' => $_POST['username'],
+                'username' => $_POST['username'],
+                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                'create_at' => date('Y-m-d H:i:s'),
+                'update_at' => date('Y-m-d H:i:s'),
+                'level' => $_POST['level'],
+                'lok' => $_POST['lokasi'],
+                'img' => $dirUpload . $filename
+            ]
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventorySuperAdmin.php'</script>";
+        } else {
+        }
+    } else {
+        echo "Upload Gagal!";
+    }
+}
 
 // make method get_data from user_data
 ?>
@@ -29,9 +73,9 @@ $tb_user = $SadminUser->table_user();
 
 <body>
     <!--loader start  -->
-    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+    <!-- <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
         <span class="loader-103"> </span>
-    </div>
+    </div> -->
     <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
@@ -309,7 +353,7 @@ $tb_user = $SadminUser->table_user();
                                     <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6.12 20.2267L1.89333 16L0.0133336 17.88L6.12 24L12.24 17.88L10.3467 16M6.12 3.77333L10.3467 8L12.2267 6.12L6.12 0L0 6.12L1.89333 8L6.12 3.77333Z" fill="black" />
                                     </svg>
-                                    <select name="kategori-ps-Admin" id="kategori-ps-Admin" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-16  pr-3 outline-none">
+                                    <select name="level-Admin" id="level-Admin" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-16  pr-3 outline-none">
                                         <option value="" class="text-neutral_500 text-base" hidden>Level</option>
                                         <option id="option" value="1" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Super Admin</option>
                                         <option id="option" value="0" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Admin</option>
@@ -320,11 +364,14 @@ $tb_user = $SadminUser->table_user();
                                     <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6.12 20.2267L1.89333 16L0.0133336 17.88L6.12 24L12.24 17.88L10.3467 16M6.12 3.77333L10.3467 8L12.2267 6.12L6.12 0L0 6.12L1.89333 8L6.12 3.77333Z" fill="black" />
                                     </svg>
-                                    <select name="kategori-ps-Admin" id="kategori-ps-Admin" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-16  pr-3 outline-none">
+                                    <select name="lokasi-Admin" id="lokasi-Admin" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-16  pr-3 outline-none">
                                         <option value="" class="text-neutral_500 text-base" hidden>Lokasi</option>
-                                        <option id="option" value="Bojonegoro" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Bojonegoro</option>
-                                        <option id="option" value="Tuban" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Tuban</option>
-                                        <option id="option" value="Babat" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Babat</option>
+                                        <?php
+                                        $row = 0;
+                                        while ($row < count($lokasi)) { ?>
+                                        <option id="option" value="<?php echo $lokasi[$row]['id_loc'] ?>" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer"><?php echo $lokasi[$row]['id_loc'] ?></option>
+                                        <?php $row++;
+                                        } ?>
                                     </select>
                                     <i id="arrow_addAdmin" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3"></i>
                                 </div>
@@ -568,6 +615,57 @@ $tb_user = $SadminUser->table_user();
         //         checkbox.checked = e.target.checked;
         //     });
         // });
+    </script>
+        <script>
+        // const imginp_rental = document.getElementById('image-rental');
+        // const prev_rental = document.getElementById('preview-rental');
+
+        // imginp_rental.onchange = evt => {
+        //     const [file_rental] = imginp_rental.files
+        //     if (file_rental) {
+        //         //if size is more than 2mb alert
+        //         if (file_rental.size > 2000000) {
+        //             alert('ukuran file maksimal 2mb');
+        //             imginp_rental.value = '';
+        //             return false;
+        //         } else if (file_rental.type != 'image/jpeg' && file_rental.type != 'image/png' && file_rental.type != 'image/jpg') {
+        //             alert('type file harus .jpg .png .jpeg');
+        //             imginp_rental.value = '';
+        //             return false;
+        //         } else {
+        //             prev_rental.src = URL.createObjectURL(file_rental)
+        //             //rename file to datetimenow and save to folder
+
+        //             console.log(file_rental);
+        //         }
+
+        //     }
+        // }
+
+        const imginp = document.getElementById('image-Admin');
+        const prev = document.getElementById('preview-Admin');
+
+        imginp.onchange = evt => {
+            const [file] = imginp.files
+            if (file) {
+                //if size is more than 2mb alert
+                if (file.size > 2000000) {
+                    alert('ukuran file maksimal 2mb');
+                    imginp.value = '';
+                    return false;
+                } else if (file.type != 'image/jpeg' && file.type != 'image/png' && file.type != 'image/jpg') {
+                    alert('type file harus .jpg .png .jpeg');
+                    imginp.value = '';
+                    return false;
+                } else {
+                    prev.src = URL.createObjectURL(file)
+                    //rename file to datetimenow and save to folder
+
+                    console.log(file);
+                }
+
+            }
+        }
     </script>
 </body>
 

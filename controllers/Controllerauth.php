@@ -9,7 +9,7 @@ class Controllerauth extends Database
     public function login($username, $password)
     {
         $data = $this->fetch('manage', 'username', $username);
-        if ($data['password'] == $password) {
+        if (password_verify($password, $data['password'])) {
             return true;
         } else {
             return false;

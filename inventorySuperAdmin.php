@@ -178,10 +178,10 @@ if (isset($_POST['Konfirmasi-sewa'])) {
             <!-- modal insert end -->
             <!-- header -->
             <form action="inventorySuperAdmin.php" method="post">
-                <?php require_once 'components/header.php'; ?>
-
+                <!-- header -->
+                <?php require_once 'components/main/header.php'; ?>
                 <!-- sidebar -->
-                <?php require_once 'components/sidebar.php'; ?>
+                <?php require_once 'components/main/sidebar.php'; ?>
 
 
                 <?php if (isset($_POST['hapusButton'])) {

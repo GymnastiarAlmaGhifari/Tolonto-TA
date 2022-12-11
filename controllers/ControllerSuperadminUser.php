@@ -44,6 +44,7 @@ class ControllerSuperadminUser extends Database
 
     public function add_admin($fields = [])
     {
+
         $data = $this->insert('manage', $fields);
         if ($data) {
             return true;

@@ -31,8 +31,20 @@ $ps_sewa = $SadminPs->ps_cardsewa($_SESSION['loksend']);
 $errors = array();
 
 if (isset($_POST['Konfirmasi-rental'])) {
+    
+    switch($_SESSION['loksend']) {
+        case 'Bojonegoro':
+            $lok = 'bjn';
+            break;
+        case 'Babat':
+            $lok = 'bbt';
+            break;
+        case 'Tuban':
+            $lok = 'tbn';
+            break;
+    }
 
-    $id_ps = $SadminPs->idps($_POST['kategori-ps-rental'], $_SESSION['loksend']);
+    $id_ps = $SadminPs->idps($lok);
     $namaFile = $_FILES['image-rental']['name'];
     $fileNameParts = explode('.', $namaFile);
     $ext = end($fileNameParts);
@@ -75,7 +87,19 @@ if (isset($_POST['Konfirmasi-rental'])) {
 
 if (isset($_POST['Konfirmasi-sewa'])) {
 
-    $id_ps = $SadminPs->idps($_POST['kategori-ps-sewa'], $_SESSION['loksend']);
+    switch($_SESSION['loksend']) {
+        case 'Bojonegoro':
+            $lok = 'bjn';
+            break;
+        case 'Babat':
+            $lok = 'bbt';
+            break;
+        case 'Tuban':
+            $lok = 'tbn';
+            break;
+    }
+
+    $id_ps = $SadminPs->idps_sewa($lok);
     $namaFile = $_FILES['image-sewa']['name'];
     $fileNameParts = explode('.', $namaFile);
     $ext = end($fileNameParts);
@@ -83,10 +107,10 @@ if (isset($_POST['Konfirmasi-sewa'])) {
 
     // tentukan lokasi file akan dipindahkan
     // create folder if not exist
-    if (!file_exists('img/ps')) {
-        mkdir('img/ps', 0777, true);
+    if (!file_exists('img/ps-sewa')) {
+        mkdir('img/ps-sewa', 0777, true);
     }
-    $dirUpload = "img/ps/";
+    $dirUpload = "img/ps-sewa/";
     // genearete datetimestamp
     $filename = date('YmdHis') . '.' . $ext;
 

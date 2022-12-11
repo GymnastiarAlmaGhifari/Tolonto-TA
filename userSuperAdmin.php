@@ -73,9 +73,9 @@ if (isset($_POST['Konfirmasi-Admin'])) {
 
 <body>
     <!--loader start  -->
-    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+    <!-- <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
         <span class="loader-103"> </span>
-    </div>
+    </div> -->
     <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
@@ -95,11 +95,9 @@ if (isset($_POST['Konfirmasi-Admin'])) {
             <?php require_once 'components/usersuper/modals/editAdmin.php'; ?>
 
             <?php require_once 'components/usersuper/modals/topup.php'; ?>
-
         </div>
     </main>
-
-    </div>
+    
     <script>
         const table_admin = document.getElementById('table-admin');
 
@@ -162,6 +160,57 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         //         checkbox.checked = e.target.checked;
         //     });
         // });
+    </script>
+        <script>
+        // const imginp_rental = document.getElementById('image-rental');
+        // const prev_rental = document.getElementById('preview-rental');
+
+        // imginp_rental.onchange = evt => {
+        //     const [file_rental] = imginp_rental.files
+        //     if (file_rental) {
+        //         //if size is more than 2mb alert
+        //         if (file_rental.size > 2000000) {
+        //             alert('ukuran file maksimal 2mb');
+        //             imginp_rental.value = '';
+        //             return false;
+        //         } else if (file_rental.type != 'image/jpeg' && file_rental.type != 'image/png' && file_rental.type != 'image/jpg') {
+        //             alert('type file harus .jpg .png .jpeg');
+        //             imginp_rental.value = '';
+        //             return false;
+        //         } else {
+        //             prev_rental.src = URL.createObjectURL(file_rental)
+        //             //rename file to datetimenow and save to folder
+
+        //             console.log(file_rental);
+        //         }
+
+        //     }
+        // }
+
+        const imginp = document.getElementById('image-Admin');
+        const prev = document.getElementById('preview-Admin');
+
+        imginp.onchange = evt => {
+            const [file] = imginp.files
+            if (file) {
+                //if size is more than 2mb alert
+                if (file.size > 2000000) {
+                    alert('ukuran file maksimal 2mb');
+                    imginp.value = '';
+                    return false;
+                } else if (file.type != 'image/jpeg' && file.type != 'image/png' && file.type != 'image/jpg') {
+                    alert('type file harus .jpg .png .jpeg');
+                    imginp.value = '';
+                    return false;
+                } else {
+                    prev.src = URL.createObjectURL(file)
+                    //rename file to datetimenow and save to folder
+
+                    console.log(file);
+                }
+
+            }
+        }
     </script>
 </body>
 

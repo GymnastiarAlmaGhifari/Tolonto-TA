@@ -8,8 +8,11 @@ module.exports = {
     "./riwayatSuperAdmin.php",
     "./servisSuperAdmin.php",
     "./userSuperAdmin.php",
-    "./components/header.php",
-    "./components/sidebar.php",
+    // "./components/main/header.php",
+    // "./components/main/sidebar.php",
+    "./components/**/*.{html,js,php}",
+    // "./components/usersuper/tables/admin.php",
+    // "./components/usersuper/modals/addAdmin.php",
   ],
   theme: {
     colors: {

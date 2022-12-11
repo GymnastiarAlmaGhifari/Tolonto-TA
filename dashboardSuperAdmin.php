@@ -62,15 +62,9 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
             <form action="dashboardSuperAdmin.php" method="post">
                 <!-- header -->
-                <?php include_once 'components/header.php';
-
-                // get data from loksend
-
-                ?>
-
+                <?php require_once 'components/main/header.php'; ?>
                 <!-- sidebar -->
-                <?php include_once 'components/sidebar.php'; ?>
-
+                <?php require_once 'components/main/sidebar.php'; ?>
             </form>
 
             <!-- list control -->
@@ -100,7 +94,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
             <section id="main-ditempat" class="mt-8  text-neutral_050 ml-24">
                 <h1>Main Di tempat</h1>
 
-                </section>
+            </section>
             <!-- list ps -->
             <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
                 <div class="container">
@@ -212,7 +206,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
     <script src="assets/js/main.js"></script>
     <script>
         // for loop 1x isi location.reload()
-        
+
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");

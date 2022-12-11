@@ -32,9 +32,9 @@ $jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
             <form action="riwayatSuperAdmin.php" method="post">
                 <!-- header -->
-                <?php require_once 'components/header.php'; ?>
+                <?php require_once 'components/main/header.php'; ?>
                 <!-- sidebar -->
-                <?php require_once 'components/sidebar.php'; ?>
+                <?php require_once 'components/main/sidebar.php'; ?>
             </form>
             <!-- table start -->
             <section class="mt-24 text-neutral_050  ml-16">

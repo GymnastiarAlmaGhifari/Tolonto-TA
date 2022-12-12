@@ -30,9 +30,9 @@ require_once 'core/init.php';
             <form action="servisSuperAdmin.php" method="post">
 
                 <!-- header -->
-                <?php require_once 'components/header.php'; ?>
+                <?php require_once 'components/main/header.php'; ?>
                 <!-- sidebar -->
-                <?php require_once 'components/sidebar.php'; ?>
+                <?php require_once 'components/main/sidebar.php'; ?>
                 <!-- table start -->
             </form>
             <section class="mt-24 text-neutral_050  ml-16">

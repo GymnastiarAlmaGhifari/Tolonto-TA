@@ -1,15 +1,9 @@
-<?php
-
-
-
-?>
-
-<!-- modal_tambah admin end -->
+<!-- modal Rental tambah start -->
 <section>
-    <div id="modal_overlay_addAdmin" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">
+    <div id="modal_overlay_addadmin" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">
 
         <!-- modal -->
-        <div id="modal_addAdmin" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[520px] w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
+        <div id="modal_addadmin" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[520px] w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
             <div class="flex flex-row justify-start ml-[23px]  gap-3 mb-3">
                 <svg width="28" height="18" viewBox="0 0 28 18" class="mt-1" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.746 11.25C14.494 11.25 8.00219 12.7462 8.00219 15.75V18H27.4898V15.75C27.4898 12.7462 20.998 11.25 17.746 11.25ZM6.78421 6.75V3.375H4.34826V6.75H0.694336V9H4.34826V12.375H6.78421V9H10.4381V6.75M17.746 9C19.0381 9 20.2773 8.52589 21.1909 7.68198C22.1046 6.83807 22.6179 5.69347 22.6179 4.5C22.6179 3.30653 22.1046 2.16193 21.1909 1.31802C20.2773 0.474106 19.0381 0 17.746 0C16.4539 0 15.2147 0.474106 14.301 1.31802C13.3874 2.16193 12.8741 3.30653 12.8741 4.5C12.8741 5.69347 13.3874 6.83807 14.301 7.68198C15.2147 8.52589 16.4539 9 17.746 9Z" fill="#ffffff" />
@@ -47,7 +41,7 @@
                     <svg width="24" height="24" class="absolute top-4 left-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19.3641 4.18529C18.1054 2.51807 16.3654 1.80474 14.28 2.0456C10.21 2.51373 7.99626 6.93336 10.0813 10.4413C10.2909 10.7941 10.2438 10.9592 9.98357 11.2174C7.86643 13.3168 5.75642 15.4233 3.65354 17.537C3.5147 17.669 3.38524 17.8106 3.26609 17.9606C2.90957 18.4345 2.9006 18.8061 3.30425 19.2253C4.11387 20.0666 4.94006 20.8921 5.78283 21.7019C6.21655 22.1191 6.69364 22.0859 7.07561 21.6805C7.42924 21.3046 7.41507 20.8709 7.01489 20.4256C6.73557 20.1147 6.44006 19.8184 6.14744 19.5191C5.19904 18.5464 5.20482 18.5539 6.19429 17.6336C6.40045 17.4416 6.51871 17.4601 6.70029 17.6446C7.20168 18.154 7.70653 18.6609 8.23278 19.1452C8.71681 19.592 9.17945 19.5923 9.57009 19.1892C9.95552 18.7916 9.92545 18.3255 9.47264 17.8559C9.00104 17.3664 8.53783 16.867 8.03992 16.4053C7.77766 16.1621 7.8138 16.0166 8.04628 15.7879C9.17723 14.6749 10.2986 13.5525 11.4105 12.4208C11.6193 12.208 11.7532 12.2352 11.9819 12.3809C12.8533 12.9435 13.8723 13.2345 14.9095 13.2168C17.2646 13.0853 19.0689 12.1062 20.0358 9.85173C20.8995 7.83608 20.6702 5.91527 19.3641 4.18529ZM14.9401 11.3825C12.8085 11.3911 11.0985 9.70079 11.115 7.59001C11.1324 5.35952 12.9606 3.81258 14.8933 3.83109C17.0278 3.85277 18.6866 5.46506 18.6968 7.58163C18.7069 9.69819 17.0524 11.3738 14.9413 11.3825H14.9401Z" fill="#303030" />
                     </svg>
-                    <svg width="24" onclick="show()" id="showimg" class="absolute right-5 cursor-pointer top-4 z-20" onclick="showPass()" aria-hidden="true" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="24" onclick="show()" id="showimg" class="absolute right-5 cursor-pointer top-4 z-20" aria-hidden="true" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.70933 6.89903C8.09369 5.82092 9.86868 4.99999 11.9999 4.99999C14.5249 4.99999 16.5467 6.15123 18.0186 7.51871C19.4811 8.87495 20.4592 10.4718 20.9217 11.6156C21.0248 11.8624 21.0248 12.1374 20.9217 12.3843C20.503 13.3937 19.6623 14.8155 18.4249 16.0843L21.7123 18.6592C22.0373 18.9155 22.0967 19.3874 21.8405 19.7124C21.5842 20.0374 21.1123 20.0967 20.7873 19.8405L2.28737 5.3403C1.96137 5.08467 1.90421 4.61343 2.15974 4.28737C2.4153 3.96137 2.88655 3.90421 3.2128 4.15974L6.70933 6.89903ZM7.93119 7.85934L9.36868 8.98433C10.0718 8.37183 10.9937 7.99996 11.9999 7.99996C14.2093 7.99996 15.9999 9.79057 15.9999 11.9999C15.9999 12.6624 15.8405 13.2843 15.5561 13.8343L17.2374 15.153C18.2842 14.0874 19.0592 12.8468 19.4561 11.9999C19.003 11.0343 18.1999 9.73432 16.9967 8.61558C15.7124 7.42497 14.0374 6.47185 11.9999 6.47185C10.4218 6.47185 9.03431 7.05403 7.93119 7.85934ZM14.3405 12.8812C14.4436 12.6062 14.4999 12.3093 14.4999 11.9718C14.4999 10.6187 13.3811 9.47182 11.9999 9.47182C11.978 9.47182 11.9593 9.49995 11.9093 9.49995C11.978 9.65932 11.9999 9.82807 11.9999 9.97182C11.9999 10.3187 11.9249 10.6187 11.7937 10.8843L14.3405 12.8812ZM14.6343 16.953L15.9436 17.9843C14.8093 18.5967 13.4936 18.9999 11.9999 18.9999C9.47493 18.9999 7.45307 17.8499 5.98121 16.4811C4.51935 15.0968 3.54186 13.4999 3.07686 12.3843C2.97436 12.1374 2.97436 11.8624 3.07686 11.6156C3.37498 10.8999 3.88404 9.97494 4.59653 9.04683L5.77496 9.97494C5.19059 10.7031 4.80497 11.4249 4.54529 11.9718C4.96934 12.9374 5.79996 14.2655 7.00308 15.3843C8.28744 16.5749 9.96243 17.4999 11.9999 17.4999C12.9593 17.4999 13.8374 17.2936 14.6343 16.953ZM7.99994 11.9718C7.99994 11.9093 8.00307 11.8218 8.00932 11.7343L9.76243 13.1155C10.0906 13.7749 10.703 14.2687 11.4374 14.4093L13.1937 15.8186C12.8155 15.9093 12.4155 15.9999 11.9718 15.9999C9.79055 15.9999 7.97182 14.2093 7.97182 11.9718H7.99994Z" fill="#303030" />
                     </svg>
                     <svg width="24" onclick="show()" height="24" id="hideimg" class="absolute right-4 cursor-pointer hidden top-5 z-20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +75,7 @@
                 </div>
 
                 <div class="flex flex-row gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalAddAdmin(false)" name="Batal-Admin" id="Batal-Admin" value="Batal-Admin" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl">
+                    <button type="button" onclick="openModalAddadmin(false)" name="Batal-Admin" id="Batal-Admin" value="Batal-Admin" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl">
                         Batal
                     </button>
                     <button type="submit" name="Konfirmasi-Admin" id="Konfirmasi-Admin" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl">Konfirmasi</button>
@@ -92,11 +86,11 @@
 
     </div>
 </section>
-<!-- modal_tambah admin end -->
+<!-- modal_addadmin tambah end -->
 
 <script>
-    const modal_overlay_addAdmin = document.querySelector('#modal_overlay_addAdmin');
-    const modal_addAdmin = document.querySelector('#modal_addAdmin');
+    const modal_overlay_addadmin = document.querySelector('#modal_overlay_addadmin');
+    const modal_addadmin = document.querySelector('#modal_addadmin');
     const tambahAdmin = document.querySelector('#tambahAdmin');
     const imginp = document.getElementById('image-Admin');
     const prev = document.getElementById('preview-Admin');
@@ -137,29 +131,31 @@
         }
     };
 
-    const openModalAddAdmin = (value) => {
-        const modalClAdmin = modal_addAdmin.classList
-        const overlayClAdmin = modal_overlay_addAdmin
+
+
+    const openModalAddadmin = (value) => {
+        const modalClAddadmin = modal_addadmin.classList
+        const overlayClAddadmin = modal_overlay_addadmin
 
         if (value) {
-            overlayClAdmin.classList.remove('hidden')
+            overlayClAddadmin.classList.remove('hidden')
             setTimeout(() => {
-                modalClAdmin.remove('opacity-0')
-                modalClAdmin.remove('-translate-y-full')
-                modalClAdmin.remove('scale-150')
+                modalClAddadmin.remove('opacity-0')
+                modalClAddadmin.remove('-translate-y-full')
+                modalClAddadmin.remove('scale-150')
             }, 100);
         } else {
-            modalClAdmin.add('-translate-y-full')
+            modalClAddadmin.add('-translate-y-full')
             setTimeout(() => {
-                modalClAdmin.add('opacity-0')
-                modalClAdmin.add('scale-150')
+                modalClAddadmin.add('opacity-0')
+                modalClAddadmin.add('scale-150')
             }, 100);
-            setTimeout(() => overlayClAdmin.classList.add('hidden'), 300);
+            setTimeout(() => overlayClAddadmin.classList.add('hidden'), 300);
         }
     }
-    openModalAddAdmin(false)
+    openModalAddadmin(false)
 
     tambahAdmin.addEventListener('click', () => {
-        openModalAddAdmin(true)
+        openModalAddadmin(true)
     });
 </script>

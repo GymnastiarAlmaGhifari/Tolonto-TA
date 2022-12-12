@@ -55,20 +55,43 @@ class ControllerSuperadminInventory extends Database
         }
     }
 
-    //sql untuk select max dengan format PS3-BOJONEGORO-001 kemudian +1 if data kosong maka 001
-    public function idps($kategori, $lok)
+    public function idps($lok)
+    //sql untuk select max dengan format bjn-001 kemudian +1 if data kosong maka 001
     {
-        $sql = "SELECT MAX(id_ps) AS id_ps FROM ps WHERE id_ps LIKE '$kategori-$lok%' ORDER BY id_ps DESC";
+        $sql = "SELECT MAX(id_ps) AS id_ps FROM ps WHERE id_ps LIKE '%$lok%' ORDER BY id_ps DESC";
         $data = $this->uniquery($sql);
         $id = $data[0]['id_ps'];
         if ($id == null) {
-            $id = $kategori . "-" . $lok . "-001";
+            $id = $lok . "-001";
             return $id;
         } else {
-            $id = (int) substr($id, 10, 3);
-            $id++;
-            $id = $kategori . "-" . $lok . "-" . sprintf("%03s", $id);
+            $id = $data[0]['id_ps'];
+            $id = substr($id, 4, 7);
+            $id = (int) $id;
+            $id = $id + 1;
+            $id = $lok . "-" . sprintf("%03s", $id);
             return $id;
         }
+        
+    }
+
+    public function idps_sewa($lok)
+    //sql untuk select max dengan format sewa-bjn-001 kemudian +1 if data kosong maka 001
+    {
+        $sql = "SELECT MAX(id_ps) AS id_ps FROM ps_sewa WHERE id_ps LIKE '%$lok%' ORDER BY id_ps DESC";
+        $data = $this->uniquery($sql);
+        $id = $data[0]['id_ps'];
+        if ($id == null) {
+            $id = "sewa-" . $lok . "-001";
+            return $id;
+        } else {
+            $id = $data[0]['id_ps'];
+            $id = substr($id, 9, 7);
+            $id = (int) $id;
+            $id = $id + 1;
+            $id = "sewa-" . $lok . "-" . sprintf("%03s", $id);
+            return $id;
+        }
+        
     }
 }

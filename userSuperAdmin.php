@@ -86,15 +86,13 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                 <?php require_once 'components/main/sidebar.php'; ?>
             </form>
 
-            <?php require_once 'components/usersuper/tables/user.php'; ?>
-
-            <?php require_once 'components/usersuper/tables/admin.php'; ?>
-
-            <?php require_once 'components/usersuper/modals/addAdmin.php'; ?>
-
-            <?php require_once 'components/usersuper/modals/editAdmin.php'; ?>
-
-            <?php require_once 'components/usersuper/modals/topup.php'; ?>
+            <?php
+            require_once 'components/usersuper/tables/user.php';
+            require_once 'components/usersuper/tables/admin.php';
+            require_once 'components/usersuper/modals/editAdmin.php';
+            require_once 'components/usersuper/modals/addAdmin.php';
+            require_once 'components/usersuper/modals/topup.php';
+            ?>
 
         </div>
     </main>

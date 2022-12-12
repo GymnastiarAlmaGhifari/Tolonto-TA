@@ -87,7 +87,7 @@
  <script>
      const modal_overlay_editadmin = document.querySelector('#modal_overlay_editadmin');
      const modal_editadmin = document.querySelector('#modal_editadmin');
-     const editAdmin = document.querySelector('#editAdmin');
+     const editAdmin = document.querySelectorAll('#editAdmin');
      const imginpedit = document.getElementById('image-Admin-edit');
      const prevedit = document.getElementById('preview-Admin-Edit');
 
@@ -149,9 +149,9 @@
      }
      openModalEditadmin(false)
 
-     // open modal sewa and set text modalText to 'Sewa'
-
-     editAdmin.addEventListener('click', () => {
-         openModalEditadmin(true)
-     });
+     editAdmin.forEach((editAdmin) => {
+         editAdmin.addEventListener('click', () => {
+             openModalEditadmin(true)
+         })
+     })
  </script>

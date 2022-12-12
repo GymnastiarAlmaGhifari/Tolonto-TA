@@ -85,22 +85,18 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                 <!-- sidebar -->
                 <?php require_once 'components/main/sidebar.php'; ?>
             </form>
-
-            <?php require_once 'components/usersuper/tables/user.php'; ?>
-
-            <?php require_once 'components/usersuper/tables/admin.php'; ?>
-
-            <?php require_once 'components/usersuper/modals/addAdmin.php'; ?>
-
-            <?php require_once 'components/usersuper/modals/editAdmin.php'; ?>
-
-            <?php require_once 'components/usersuper/modals/topup.php'; ?>
+            <?php
+            require_once 'components/usersuper/tables/user.php';
+            require_once 'components/usersuper/tables/admin.php';
+            require_once 'components/usersuper/modals/addAdmin.php';
+            require_once 'components/usersuper/modals/topup.php';
+            ?>
         </div>
     </main>
-    
+
     <script>
         const table_admin = document.getElementById('table-admin');
-
+        const editAdmin = document.querySelectorAll('#editAdmin');
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");
@@ -115,103 +111,14 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                 console.log(localStorage.getItem('lokasi'))
             }
         })
+
+        editAdmin.forEach((item) => {
+            item.addEventListener('click', () => {
+                openModalEditadmin(true)
+            })
+        });
     </script>
-    <script>
-        // sorting table by column
-        // const table = document.querySelector('.table');
-        // const tbody = table.querySelector('tbody');
-        // const thead = table.querySelector('thead');
-        // const ths = thead.querySelectorAll('th');
-        // const tds = tbody.querySelectorAll('td');
-        // const trs = tbody.querySelectorAll('tr');
-        // const tfoot = table.querySelector('tfoot');
 
-        // ths.forEach((th, index) => {
-        //     th.addEventListener('click', () => {
-        //         const sortedRows = Array.from(trs).sort((a, b) => {
-        //             const aColText = a.querySelector(`td:nth-child(${index + 1})`).textContent.trim();
-        //             const bColText = b.querySelector(`td:nth-child(${index + 1})`).textContent.trim();
-        //             return aColText > bColText ? 1 : -1;
-        //         });
-        //         tbody.append(...sortedRows);
-        //     });
-        // });
-
-        // // search table
-        // const search = document.querySelector('.search');
-        // search.addEventListener('input', (e) => {
-        //     const searchText = e.target.value;
-        //     const rows = tbody.querySelectorAll('tr');
-        //     rows.forEach((row) => {
-        //         const rowText = row.textContent;
-        //         if (rowText.toLowerCase().includes(searchText.toLowerCase())) {
-        //             row.style.display = 'table-row';
-        //         } else {
-        //             row.style.display = 'none';
-        //         }
-        //     });
-        // });
-
-        // // select all checkbox
-        // const selectAll = document.querySelector('.select-all');
-        // selectAll.addEventListener('click', (e) => {
-        //     const checkboxes = tbody.querySelectorAll('input[type="checkbox"]');
-        //     checkboxes.forEach((checkbox) => {
-        //         checkbox.checked = e.target.checked;
-        //     });
-        // });
-    </script>
-        <script>
-        // const imginp_rental = document.getElementById('image-rental');
-        // const prev_rental = document.getElementById('preview-rental');
-
-        // imginp_rental.onchange = evt => {
-        //     const [file_rental] = imginp_rental.files
-        //     if (file_rental) {
-        //         //if size is more than 2mb alert
-        //         if (file_rental.size > 2000000) {
-        //             alert('ukuran file maksimal 2mb');
-        //             imginp_rental.value = '';
-        //             return false;
-        //         } else if (file_rental.type != 'image/jpeg' && file_rental.type != 'image/png' && file_rental.type != 'image/jpg') {
-        //             alert('type file harus .jpg .png .jpeg');
-        //             imginp_rental.value = '';
-        //             return false;
-        //         } else {
-        //             prev_rental.src = URL.createObjectURL(file_rental)
-        //             //rename file to datetimenow and save to folder
-
-        //             console.log(file_rental);
-        //         }
-
-        //     }
-        // }
-
-        const imginp = document.getElementById('image-Admin');
-        const prev = document.getElementById('preview-Admin');
-
-        imginp.onchange = evt => {
-            const [file] = imginp.files
-            if (file) {
-                //if size is more than 2mb alert
-                if (file.size > 2000000) {
-                    alert('ukuran file maksimal 2mb');
-                    imginp.value = '';
-                    return false;
-                } else if (file.type != 'image/jpeg' && file.type != 'image/png' && file.type != 'image/jpg') {
-                    alert('type file harus .jpg .png .jpeg');
-                    imginp.value = '';
-                    return false;
-                } else {
-                    prev.src = URL.createObjectURL(file)
-                    //rename file to datetimenow and save to folder
-
-                    console.log(file);
-                }
-
-            }
-        }
-    </script>
 </body>
 
 

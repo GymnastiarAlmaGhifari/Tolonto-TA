@@ -12,8 +12,8 @@ module.exports = {
     // "./components/main/sidebar.php",
     "./components/**/*.{html,js,php}",
     // "./components/usersuper/tables/admin.php",
-    "./components/usersuper/modals/editAdmin.php",
-    "./components/usersuper/modals/addAdmin.php",
+    // "./components/usersuper/modals/editAdmin.php",
+    // "./components/usersuper/modals/addAdmin.php",
   ],
   theme: {
     colors: {

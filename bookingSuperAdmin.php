@@ -8,6 +8,7 @@ $jumlah_rent = $booking->jumlah_rent($_SESSION['loksend']);
 $sewa = $booking->b_sewa($_SESSION['loksend']);
 $jumlah_sewa = $booking->jumlah_sewa($_SESSION['loksend']);
 
+
 ?>
 
 <!DOCTYPE html>
@@ -45,9 +46,10 @@ $jumlah_sewa = $booking->jumlah_sewa($_SESSION['loksend']);
                     <div id="atas" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
                         <div class="flex flex-wrap flex-col ">
                             <div class=" flex flex-row justify-between items-center -mb-3">
-                                <div class="flex gap-4">
+                                <div class="flex gap-4 items-center">
                                     <h1 class="capitalize font-semibold">Rental Aktif dan Pending</h1>
                                     <h2><?php echo $jumlah_rent ?></h2>
+                                    <h1 id="text-data" class="text-2xl pl-4 ml-4 gap-4 hidden">Tidak Ada Data</h1>
                                 </div>
                                 <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                                     <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
@@ -108,7 +110,11 @@ $jumlah_sewa = $booking->jumlah_sewa($_SESSION['loksend']);
                                         <?php
                                         $row = 0;
                                         if (empty($rent)) {
-                                            echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                            echo '<script>
+                                            const textData = document.getElementById("text-data");
+
+                                            textData.classList.remove("hidden");
+                                            </script>';
                                         } else {
                                             while ($row < count($rent)) { ?>
                                                 <tr class="">
@@ -157,6 +163,10 @@ $jumlah_sewa = $booking->jumlah_sewa($_SESSION['loksend']);
                                                     </td>
                                                 </tr>
                                         <?php $row++;
+                                                echo '<script>
+                                        const textData = document.getElementById("text-data");
+                                        textData.classList.add("hidden");
+                                        </script>';
                                             }
                                         } ?>
                                         <!-- list 1 end -->

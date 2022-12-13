@@ -8,6 +8,7 @@
                 <path d="M16.5625 0V3.33333H0V10H3.3125V53.3333C3.3125 55.1014 4.01049 56.7971 5.25292 58.0474C6.49535 59.2976 8.18044 60 9.9375 60H43.0625C44.8196 60 46.5047 59.2976 47.7471 58.0474C48.9895 56.7971 49.6875 55.1014 49.6875 53.3333V10H53V3.33333H36.4375V0H16.5625ZM9.9375 10H43.0625V53.3333H9.9375V10ZM16.5625 16.6667V46.6667H23.1875V16.6667H16.5625ZM29.8125 16.6667V46.6667H36.4375V16.6667H29.8125Z" fill="#E53935" />
             </svg>
             <h1>Apakah Anda Yakin</h1>
+            <input class="" id="getName" name="getName"></input>
             <h2 class="mx-auto">Apakah anda benar ingin menghapus akun agim? proses ini tidak bisa dikembalikan </h2>
 
 
@@ -25,7 +26,6 @@
     </div>
 </section>
 <!-- modal_deleteadmin tambah end -->
-
 <script>
     const modal_overlay_deleteadmin = document.querySelector('#modal_overlay_deleteadmin');
     const modal_deleteadmin = document.querySelector('#modal_deleteadmin');
@@ -53,10 +53,14 @@
         }
     }
     openModalDeleteadmin(false)
-
-    deleteAdmin.forEach((item) => {
-        item.addEventListener('click', () => {
+    // foreach modals with jquery openmodal delete true 
+    deleteAdmin.forEach((button) => {
+        button.addEventListener('click', () => {
             openModalDeleteadmin(true)
+            // isi value dari button delete admin
+            document.getElementById("getName").value = button.value;
+
+            console.log(button.value);
         })
     })
 </script>

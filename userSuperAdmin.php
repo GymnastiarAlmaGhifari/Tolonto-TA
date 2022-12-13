@@ -88,34 +88,17 @@ if (isset($_POST['Konfirmasi-Admin'])) {
             <?php
             require_once 'components/usersuper/tables/user.php';
             require_once 'components/usersuper/tables/admin.php';
-            require_once 'components/usersuper/modals/addAdmin.php';
-            require_once 'components/usersuper/modals/topup.php';
+
             ?>
+
         </div>
     </main>
 
     <script>
         const table_admin = document.getElementById('table-admin');
-        const editAdmin = document.querySelectorAll('#editAdmin');
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");
-        });
-
-        window.addEventListener('load', () => {
-            if (localStorage.getItem('lokasi') !== 'Bojonegoro') {
-                table_admin.classList.add('hidden')
-                console.log(localStorage.getItem('lokasi'))
-            } else {
-                table_admin.classList.remove('hidden')
-                console.log(localStorage.getItem('lokasi'))
-            }
-        })
-
-        editAdmin.forEach((item) => {
-            item.addEventListener('click', () => {
-                openModalEditadmin(true)
-            })
         });
     </script>
 

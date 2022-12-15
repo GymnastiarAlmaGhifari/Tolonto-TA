@@ -133,111 +133,111 @@ class Database
         }
     }
 
-    public function fetchwhere( $table, $row, $value)
+    public function fetchwhere($table, $row, $value)
     {
         if (!is_int($value)) {
             $value = "'" . $value . "'";
 
-                $query = "SELECT * FROM $table WHERE $row = $value ;";
-                $result = $this->conn->query($query);
+            $query = "SELECT * FROM $table WHERE $row = $value ;";
+            $result = $this->conn->query($query);
 
-                while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
-                    return $row;
-                    $results[] = $row;
-                }
-                if (isset($results)) {
-                    return $results;
-                } else {
-                    return false;
-                }
+            while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
+                return $row;
+                $results[] = $row;
             }
-            // return $results;
+            if (isset($results)) {
+                return $results;
+            } else {
+                return false;
+            }
+        }
+        // return $results;
     }
 
     public function fetchsemua($id, $table)
     {
-        
-        $query = "SELECT $id FROM $table;";
-                $result = $this->conn->query($query);
 
-                while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
-                    return $row;
-                    $results[] = $row;
-                }
-                if (isset($results)) {
-                    return $results;
-                } else {
-                    return false;
-                }
-            // return $results;
+        $query = "SELECT $id FROM $table;";
+        $result = $this->conn->query($query);
+
+        while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
     }
 
     public function uniquery($thequery)
     {
         $query = "$thequery";
-                $result = $this->conn->query($query);
+        $result = $this->conn->query($query);
 
-                while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
-                    return $row;
-                    $results[] = $row;
-                }
-                if (isset($results)) {
-                    return $results;
-                } else {
-                    return false;
-                }
-            // return $results;
+        while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
     }
 
     public function uniquerycount($thequery)
     {
         $query = "$thequery";
-                $result = $this->conn->query($query);
+        $result = $this->conn->query($query);
 
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    return $row;
-                    $results[] = $row;
-                }
-                if (isset($results)) {
-                    return $results;
-                } else {
-                    return false;
-                }
-            // return $results;
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
     }
-    
-    public function card_ps($lok = '') 
+
+    public function card_ps($lok = '')
     {
         $query = "SELECT ps.id_ps, ps.nama_ps, ps.status, jenis.nama_jenis, ps.img 
         FROM ps JOIN jenis on ps.jenis = jenis.id_jenis WHERE ps.lok = '$lok' ;";
-                $result = $this->conn->query($query);
+        $result = $this->conn->query($query);
 
-                while ($row = $result->fetchAll(PDO::FETCH_BOTH)) {
-                    return $row;
-                    $results[] = $row;
-                }
-                if (isset($results)) {
-                    return $results;
-                } else {
-                    return false;
-                }
+        while ($row = $result->fetchAll(PDO::FETCH_BOTH)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
+            return $results;
+        } else {
+            return false;
+        }
     }
 
-    public function is_aktif($idps = '') 
+    public function is_aktif($idps = '')
     {
         $query = "SELECT rental.playtime, rental.bayar, user.username 
         FROM rental JOIN user ON rental.id_user = user.user_id WHERE id_ps = '$idps' ;";
-                $result = $this->conn->query($query);
+        $result = $this->conn->query($query);
 
-                while ($row = $result->fetchAll(PDO::FETCH_BOTH)) {
-                    return $row;
-                    $results[] = $row;
-                }
-                if (isset($results)) {
-                    return $results;
-                } else {
-                    return false;
-                }
+        while ($row = $result->fetchAll(PDO::FETCH_BOTH)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
+            return $results;
+        } else {
+            return false;
+        }
     }
 
     public function count($id, $table, $row = '', $value = '')
@@ -272,72 +272,79 @@ class Database
     public function countsemua($id, $table)
     {
 
-                $query = "SELECT COUNT($id) FROM $table";
-                $result = $this->conn->query($query);
+        $query = "SELECT COUNT($id) FROM $table";
+        $result = $this->conn->query($query);
 
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    return $row;
-                }
-            if (isset($results)) {
-                return $results;
-            } else {
-                return false;
-            }
-            // return $results;
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
+        }
+        if (isset($results)) {
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
     }
 
-    public function counttgl($id, $table, $row = '', $value )
+    public function counttgl($id, $table, $row = '', $value)
     {
         $query = "SELECT COUNT($id) FROM $table WHERE $row LIKE '%$value%';";
-                $result = $this->conn->query($query);
+        $result = $this->conn->query($query);
 
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    return $row;
-                    $results[] = $row;
-                }
-                if (isset($results)) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
 
-                    return $results;
-                } else {
-                    return false;
-                }
-            // return $results;
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
     }
 
-    public function select_countgroup($id, $table, $row, $value )
+    public function select_countgroup($id, $table, $row, $value)
     {
         $query = "SELECT $id, COUNT($id) FROM $table RIGHT join jenis ON ps.jenis = jenis.id_jenis WHERE $row = $value GROUP BY $id;";
-                $result = $this->conn->query($query);
+        $result = $this->conn->query($query);
 
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    return $row;
-                    $results[] = $row;
-                }
-                if (isset($results)) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
 
-                    return $results;
-                } else {
-                    return false;
-                }
-            // return $results;
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
     }
 
-    public function sum($id, $table, $row = '', $value )
+    public function sum($id, $table, $row = '', $value)
     {
         $query = "SELECT SUM($id) FROM $table WHERE $row LIKE '%$value%';";
-                $result = $this->conn->query($query);
+        $result = $this->conn->query($query);
 
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    return $row;
-                    $results[] = $row;
-                }
-                if (isset($results)) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
 
-                    return $results;
-                } else {
-                    return false;
-                }
-            // return $results;
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
+    }
+
+    public function hapus_admin($table, $column, $value)
+    {
+        $sql = "DELETE FROM $table WHERE $column = '$value'";
+        $result = $this->conn->query($sql);
+        return $result;
     }
 
     // public function insert()

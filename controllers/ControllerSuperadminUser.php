@@ -52,4 +52,13 @@ class ControllerSuperadminUser extends Database
             return false;
         }
     }
+    public function delete_admin($id)
+    {
+        $data = $this->hapus_admin('manage', 'id_admin', $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

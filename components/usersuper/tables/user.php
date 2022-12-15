@@ -18,7 +18,7 @@
                       </span>
                   </div>
                   <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                  <div class="w-full mx-auto relative block max-h-[360px] overflow-y-auto mt-2" id="table">
+                  <div class="w-full mx-auto relative block h-[360px] overflow-y-auto mt-2" id="table">
                       <table class="w-full">
                           <thead class="bg-neutral_800 sticky top-0">
                               <tr class="font-semibold ">

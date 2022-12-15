@@ -51,22 +51,28 @@ input:valid ~ .sticker2 {
   @apply w-[200px] shadow-elevation-light-4 duration-300 ease-in;
 }
 .text-active {
-  @apply block;
+  @apply block text-left;
 }
+/* .svg-active {
+  @apply block ml-8;
+} */
 .toggle-active {
   @apply -right-[48px]  bg-primary_600/90 rounded-r-lg absolute w-12 h-12 justify-center my-2 duration-300 ease-in;
 }
 .flexing-active {
-  @apply flex flex-row bg-transparent h-16 w-full duration-300 ease-in;
+  @apply flex flex-row bg-primary_600 ml-0 h-16 w-full duration-300 ease-in-out;
 }
 .gambar-active {
-  @apply w-10 h-10 rounded-full mx-6 my-auto block;
+  @apply duration-100 ease-in-out w-10 h-10 rounded-full mx-6 my-auto block;
 }
 .activeAlert {
   @apply duration-100 ease-in-out transform translate-x-0 block;
 }
 .hideAlert {
   @apply duration-100 ease-in-out transform translate-x-full hidden;
+}
+.bungkus-active {
+  @apply duration-300 ease-in ml-3 justify-start pl-3 w-[180px];
 }
 
 /* animation modal top to bbottom */

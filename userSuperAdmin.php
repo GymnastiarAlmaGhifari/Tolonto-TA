@@ -51,6 +51,28 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         echo "Upload Gagal!";
     }
 }
+// 
+// if (isset($_POST['Konfirmasi-delet'])) {
+//     // redirect to dashboardSuperAdmin
+//     // Redirect::to('dashboardSuperAdmin');
+//     $id = '<script>document.write(id)</script>';
+
+//     // if ($SadminUser->delete_admin($_POST['getName'])) {
+//     //     Redirect::to('userSuperAdmin');
+//     // } else {
+//     //     echo "gagal";
+//     // }
+//     // mencocokkan id database dengan text getName
+
+
+
+
+
+//     $SadminUser->delete_admin($_POST[$id]);
+// }
+
+
+
 
 // make method get_data from user_data
 ?>

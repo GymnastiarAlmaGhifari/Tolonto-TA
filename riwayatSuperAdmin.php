@@ -52,8 +52,8 @@ $jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
                                 </span>
                             </div>
                             <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="w-full mx-auto  relative max-h-[360px] block overflow-y-auto mt-2" id="table">
-                                <table class="w-full table-auto">
+                            <div class="w-full mx-auto relative h-[360px] block overflow-y-auto mt-2" id="table">
+                                <table class="w-full">
                                     <thead class="bg-neutral_800 sticky top-0">
                                         <tr class="font-semibold ">
                                             <th scope="col" class="text-left relative">
@@ -182,7 +182,7 @@ $jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
                                 </span>
                             </div>
                             <span id="garis2" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="w-full mx-auto  relative max-h-[360px] block overflow-y-auto mt-2" id="table2">
+                            <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table2">
                                 <table class="w-full table-auto">
                                     <thead class="bg-neutral_800 sticky top-0">
                                         <tr class="font-semibold ">
@@ -311,7 +311,7 @@ $jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
                                 </span>
                             </div>
                             <span id="garis3" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="w-full mx-auto  relative max-h-[360px] block overflow-y-auto mt-2" id="table3">
+                            <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table3">
                                 <table class="w-full table-auto">
                                     <thead class="bg-neutral_800 sticky top-0">
                                         <tr class="font-semibold ">

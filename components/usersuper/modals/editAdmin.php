@@ -153,6 +153,92 @@
      editAdmin.forEach((editAdmin) => {
          editAdmin.addEventListener('click', () => {
              openModalEditadmin(true)
+             //  ambil value dari data attribute
+             const id = editAdmin.value;
+             const username_edit = document.getElementById('username-edit');
+             const password_edit = document.getElementById('password-edit');
+             //  gunakan varibale id untuk mengirim season ke php
+             //  gunakan variable id untuk mengambil data dari database        
+
+             var http = new XMLHttpRequest();
+             var url = 'http://10.1.1.20/getuser.php';
+             var params = 'id=' + id;
+             http.open('POST', url, true);
+             http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+             http.onreadystatechange = function() {
+                 if (http.readyState == 4 && http.status == 200) {
+                     var myArr = JSON.parse(this.responseText);
+                     username_edit.value = myArr[0].username;
+                     password_edit.value = myArr[0].password;
+                     //  document.getElementById("demo").innerHTML = myArr[0].name;
+                 }
+             }
+             http.send(params);
+
+
+
+
+             // post id ke php
+             //<?php
+                // $id = '<script>document.write(id)</script>';
+                // $keluar = $id;
+                // echo "<script type='text/javascript'>alert('$keluar');</script>";
+
+
+                // echo '<script>document.getElementById("id-edit").value = "' . $id . '"</script>';
+                // 
+                // private const DBHOST = '10.1.1.7';
+                // private const DBUSER = 'root';
+                // private const DBPASS = 'abogoboga';
+                // private const DBNAME = 'tolonto';
+
+                // $host = '10.1.1.7';
+                // $user = 'root';
+                // $pass = 'abogoboga';
+                // $db = 'tolonto';
+
+                // $conn = mysqli_connect($host, $user, $pass, $db);
+                // $query = mysqli_query($conn, "SELECT * FROM manage WHERE id = '$id'");
+                // $data = mysqli_fetch_assoc($query);
+
+                // echo "<script>document.getElementById('username-edit').value = '$data[username]'</script>";
+                // echo "<script>document.getElementById('password-edit').value = '$data[password]'</script>";
+                //
+                ?>
+
+             //  fecth data dari database
+             // $.ajax({
+             //     url: 'http://localhost/rental-mobil/admin/data-admin.php',
+             //     type: 'POST',
+             //     data: {
+             //         id: id
+             //     },
+             //     success: function(data) {
+             //         var data = JSON.parse(data);
+             //         document.getElementById('id-edit').value = data.id;
+             //         document.getElementById('username-edit').value = data.username;
+             //         document.getElementById('password-edit').value = data.password;
+             //         document.getElementById('nama-edit').value = data.nama;
+             //         document.getElementById('alamat-edit').value = data.alamat;
+             //         document.getElementById('nohp-edit').value = data.nohp;
+             //         document.getElementById('email-edit').value = data.email;
+             //         document.getElementById('role-edit').value = data.role;
+             //         document.getElementById('cabang-edit').value = data.cabang;
+             //     }
+
+
+
+
+
+
+             //  //  ambil data dari database
+             //  fetch('http://localhost/rental-mobil/admin/data-admin.php?id=' + id)
+             //      .then(response => response.json())
+             //      .then(data => {
+             //          //  set value ke form
+             //          document.getElementById('username-edit').value = data.nama;
+             //          document.getElementById('password-edit').value = data.password;
+             //      })
          })
      })
  </script>

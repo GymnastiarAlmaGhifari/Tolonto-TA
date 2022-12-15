@@ -35,8 +35,8 @@ if (Input::get('nama')) {
 
 <body>
 
-    <?php require_once 'components/header.php'; ?>
-    <?php require_once 'components/sidebar.php'; ?>
+    <?php require_once 'components/main/header.php'; ?>
+    <?php require_once 'components/main/sidebar.php'; ?>
 
     <!-- fungsi multi level user       -->
 </body>

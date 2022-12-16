@@ -81,7 +81,7 @@ class Database
 
     }
 
-    public function update($table, $id, $fields = [])
+    public function update($table, $id, $val, $fields = [])
     {
         $columns = '';
         $i = 1;
@@ -92,10 +92,11 @@ class Database
             }
             $i++;
         }
-        $sql = "UPDATE {$table} SET {$columns} WHERE id = {$id}";
+        $sql = "UPDATE {$table} SET {$columns} WHERE $id = '$val'";
         if ($stmt = $this->conn->prepare($sql)) {
             foreach ($fields as $key => $value) {
                 $stmt->bindValue(':' . $key, $value);
+                print_r($stmt);
             }
             $stmt->execute();
             return true;
@@ -345,6 +346,16 @@ class Database
         $sql = "DELETE FROM $table WHERE $column = '$value'";
         $result = $this->conn->query($sql);
         return $result;
+    }
+
+    public function RandomString($length) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
     // public function insert()

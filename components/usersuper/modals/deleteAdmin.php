@@ -21,7 +21,7 @@
                      <button type="button" onclick="openModalDeleteadmin(false)" name="Batal-Admin" id="Batal-Admin" value="Batal-Admin" class="bg-neutral_050 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl">
                          Batal
                      </button>
-                     <button type="submit" name="Konfirmasi-delet" id="Konfirmasi-delet" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl">Konfirmasi</button>
+                     <button type="submit" name="Konfirmasi-delete" id="Konfirmasi-delete" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl">Konfirmasi</button>
                  </div>
              </form>
 
@@ -64,12 +64,35 @@
              // isi value dari button delete admin
              document.getElementById("getName").value = button.value;
              console.log(document.getElementById("getName").value);
-
-             const id = document.getElementById("getName").value;
-             sessionStorage.setItem("delete", id);
-
-
          })
-
      })
+
+     const konfirmasiDelete = document.querySelector('#Konfirmasi-delete');
+     konfirmasiDelete.addEventListener('click' , () =>{
+        const id = document.getElementById("getName").value;
+        konfirmasiDelete.value = id;
+        console.log(konfirmasiDelete.value);
+
+        var xhr = new XMLHttpRequest();
+            // path getuser.php in main dir
+            var url = "..\\..\\..\\deluser.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json.status );
+                    if (json.status == "success") {
+                        alert("berhasil");
+                    } else {
+                        alert("gagal");
+                    }
+                }
+            };
+            var data = JSON.stringify({
+                "id": id
+            });
+            xhr.send(data);
+     })
+
  </script>

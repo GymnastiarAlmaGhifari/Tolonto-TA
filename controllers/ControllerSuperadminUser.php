@@ -42,6 +42,19 @@ class ControllerSuperadminUser extends Database
         return $this->fetchsemua('*', 'user');
     }
 
+    public function idadmin()
+    //buat id admin dengan generate 8 random string and loop 1 time if exist in db
+    {
+        $id = $this->RandomString(8);
+        $sql = "SELECT id_admin FROM manage WHERE id_admin = '$id'";
+        $data = $this->uniquery($sql);
+        if ($data) {
+            $this->idadmin();
+        } else {
+            return $id;
+        }
+    }
+
     public function add_admin($fields = [])
     {
 
@@ -60,5 +73,27 @@ class ControllerSuperadminUser extends Database
         } else {
             return false;
         }
+    }
+
+    public function fetchadmin($id)
+    {
+        $data = $this->fetch('manage', 'id_admin', $id);
+        return $data;
+    }
+
+    public function update_admin($fields = [], $val)
+    {
+        $data = $this->update('manage', 'id_admin', $val, $fields);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function fetch_img($id)
+    {
+        $data = $this->fetch('manage', 'id_admin', $id);
+        return $data['img'];
     }
 }

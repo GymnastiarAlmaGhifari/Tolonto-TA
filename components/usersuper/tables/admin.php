@@ -1,4 +1,3 @@
-
 <!-- table start -->
 <section id="table-admin" class="mt-12 mb-8 text-neutral_050  ml-16">
     <div class="container px-6 max-w-full ">
@@ -76,14 +75,14 @@
                                     <td class="text-center"><?php echo $tb_admin[$row]['lok']; ?></td>
                                     <td class=" text-center">
                                         <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
-                                            <button id="editAdmin" name="editAdmin" type="submit" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl relative">
+                                            <button id="editAdmin" name="editAdmin" type="submit" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
                                                 <svg width="19" class="mx-auto" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="#303030" />
                                                 </svg>
                                                 <input type="hidden" name="inputpost">
                                             </button>
                                             <span class="w-0.5 h-6 bg-neutral_900"></span>
-                                            <button id="deleteAdmin" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class="hover:bg-neutral_900/20 w-[35px] h-[28px] rounded-3xl relative">
+                                            <button id="deleteAdmin" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class="hover:bg-neutral_900/20 w-[35px] h-[28px] rounded-3xl">
                                                 <svg width="16" class="mx-auto" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
                                                 </svg>

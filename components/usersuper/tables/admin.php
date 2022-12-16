@@ -1,6 +1,4 @@
-<?php
 
-?>
 <!-- table start -->
 <section id="table-admin" class="mt-12 mb-8 text-neutral_050  ml-16">
     <div class="container px-6 max-w-full ">

@@ -9,21 +9,24 @@ $tb_admin = $SadminUser->table_admin();
 $tb_user = $SadminUser->table_user();
 $lokasi = $SadminUser->lokasi();
 
+
+//delete local img if path doesnt exist in db
+
 if (isset($_POST['Konfirmasi-Admin'])) {
+
+    $idadmin = $SadminUser->idadmin();
 
     $namaFile = $_FILES['image-Admin']['name'];
     $fileNameParts = explode('.', $namaFile);
     $ext = end($fileNameParts);
     $namaSementara = $_FILES['image-Admin']['tmp_name'];
-
-    // tentukan lokasi file akan dipindahkan
     // create folder if not exist
     if (!file_exists('img/admin')) {
         mkdir('img/admin', 0777, true);
     }
     $dirUpload = "img/admin/";
     // genearete datetimestamp
-    $filename = date('YmdHis') . '.' . $ext;
+    $filename = $idadmin . '.' . $ext;
 
     // pindahkan file 
     $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
@@ -33,7 +36,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
         if ($SadminUser->add_admin(
             [
-                'id_admin' => $_POST['username'],
+                'id_admin' => $idadmin,
                 'username' => $_POST['username'],
                 'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
                 'create_at' => date('Y-m-d H:i:s'),
@@ -51,27 +54,93 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         echo "Upload Gagal!";
     }
 }
-// 
-// if (isset($_POST['Konfirmasi-delet'])) {
-//     // redirect to dashboardSuperAdmin
-//     // Redirect::to('dashboardSuperAdmin');
-//     $id = '<script>document.write(id)</script>';
 
-//     // if ($SadminUser->delete_admin($_POST['getName'])) {
-//     //     Redirect::to('userSuperAdmin');
-//     // } else {
-//     //     echo "gagal";
-//     // }
-//     // mencocokkan id database dengan text getName
+if (isset($_POST['Konfirmasi-Admin-Edit'])) {
+    // $idmin = $_POST['id-admin-edit'];
+    // echo $idmin;
 
+    $namaFile = $_FILES['image-Admin-edit']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-Admin-edit']['tmp_name'];
+    // create folder if not exist
+    if (!file_exists('img/admin')) {
+        mkdir('img/admin', 0777, true);
+    }
+    $dirUpload = "img/admin/";
+    // genearete datetimestamp
+    $filename = $_POST['id-admin-edit'] . '.' . $ext;
 
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
 
+    if ($terupload) {
+        echo "Upload berhasil!<br/>";
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($_POST['password-edit'] == '') {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                    'img' => $dirUpload . $filename
+                ], $_POST['id-admin-edit']
+            ))
+            {
+                Redirect::to('userSuperAdmin');
+            } else {
+            }
+        } else {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                    'img' => $dirUpload . $filename
+                ], $_POST['id-admin-edit']
+            )) // jika berhasil refresh page tanpa submit ulang
+            {
+                Redirect::to('userSuperAdmin');
+            } else {
+            }
+        }
+    } else {
+        echo "Upload Gagal!";
+        if ($_POST['password-edit'] == '') {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                ], $_POST['id-admin-edit']
+            ))
+            {
+                Redirect::to('userSuperAdmin');
+            } else {
+            }
+        } else {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                ], $_POST['id-admin-edit']
+            )) // jika berhasil refresh page tanpa submit ulang
+            {
+                Redirect::to('userSuperAdmin');
+            } else {
+            }
+        }
+    }
+}
 
-
-//     $SadminUser->delete_admin($_POST[$id]);
-// }
-
-
+// while loop if img name doesnt exist in database then delete img
 
 
 // make method get_data from user_data

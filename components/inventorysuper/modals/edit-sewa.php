@@ -12,6 +12,7 @@
             <span class="w-11/12 h-0.5 mx-auto -mt-4 bg-neutral_600"></span>
             <form action="inventorySuperAdmin.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
                 <!-- gambar start -->
+                <input type="hidden" name="id-sewa-edit" id="id-sewa-edit">
                 <div class="flex flex-col justify-center items-center relative">
                     <!-- show previe image from Upload::uploadimage() -->
                     <img src="components/kamera.png" alt="" id="preview-sewa-edit" class="w-[100px] h-[100px] object-cover rounded-full shadow-elevation-dark-4 bg-transparent">
@@ -102,6 +103,7 @@
     editSewa.forEach((editSewa) => {
         editSewa.addEventListener('click', () => {
             openModalSewaEdit(true)
+            const id = editSewa.value
         })
     })
 

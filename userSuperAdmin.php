@@ -9,9 +9,6 @@ $tb_admin = $SadminUser->table_admin();
 $tb_user = $SadminUser->table_user();
 $lokasi = $SadminUser->lokasi();
 
-
-//delete local img if path doesnt exist in db
-
 if (isset($_POST['Konfirmasi-Admin'])) {
 
     $idadmin = $SadminUser->idadmin();
@@ -85,9 +82,9 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                     'level' => $_POST['level-edit'],
                     'lok' => $_POST['lokasi-edit'],
                     'img' => $dirUpload . $filename
-                ], $_POST['id-admin-edit']
-            ))
-            {
+                ],
+                $_POST['id-admin-edit']
+            )) {
                 Redirect::to('userSuperAdmin');
             } else {
             }
@@ -100,7 +97,8 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                     'level' => $_POST['level-edit'],
                     'lok' => $_POST['lokasi-edit'],
                     'img' => $dirUpload . $filename
-                ], $_POST['id-admin-edit']
+                ],
+                $_POST['id-admin-edit']
             )) // jika berhasil refresh page tanpa submit ulang
             {
                 Redirect::to('userSuperAdmin');
@@ -116,9 +114,9 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                     'update_at' => date('Y-m-d H:i:s'),
                     'level' => $_POST['level-edit'],
                     'lok' => $_POST['lokasi-edit'],
-                ], $_POST['id-admin-edit']
-            ))
-            {
+                ],
+                $_POST['id-admin-edit']
+            )) {
                 Redirect::to('userSuperAdmin');
             } else {
             }
@@ -130,7 +128,8 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                     'update_at' => date('Y-m-d H:i:s'),
                     'level' => $_POST['level-edit'],
                     'lok' => $_POST['lokasi-edit'],
-                ], $_POST['id-admin-edit']
+                ],
+                $_POST['id-admin-edit']
             )) // jika berhasil refresh page tanpa submit ulang
             {
                 Redirect::to('userSuperAdmin');
@@ -158,6 +157,7 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
     <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>

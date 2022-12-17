@@ -23,6 +23,7 @@ $jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
     <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Riwayat SuperAdmin</title>
 </head>

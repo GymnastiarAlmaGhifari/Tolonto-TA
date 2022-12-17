@@ -20,7 +20,7 @@
                  <!-- gambar end -->
 
                  <div class="relative z-0 w-11/12 mt-5">
-                     <input disabled type="text" id="email-user" name="email-user" class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 peer" />
+                     <input readonly type="text" id="email-user" name="email-user" class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 peer" />
 
                      <svg class="absolute top-[18px] left-5" width="25" height="20" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                          <path d="M27 6L15 13.5L3 6V3L15 10.5L27 3M27 0H3C1.335 0 0 1.335 0 3V21C0 21.7956 0.31607 22.5587 0.87868 23.1213C1.44129 23.6839 2.20435 24 3 24H27C27.7956 24 28.5587 23.6839 29.1213 23.1213C29.6839 22.5587 30 21.7956 30 21V3C30 1.335 28.65 0 27 0Z" fill="black" />
@@ -29,7 +29,7 @@
                  </div>
                  <div class="relative z-0 w-11/12">
                      <input type="text" id="topup" name="topup" class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 peer" placeholder=" " />
-                     <label for="topup" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Nilai Topup</label>
+                     <label for="topup" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Jumlah Topup</label>
                      <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                          <path d="M0 16H2.66667C2.66667 17.44 4.49333 18.6667 6.66667 18.6667C8.84 18.6667 10.6667 17.44 10.6667 16C10.6667 14.5333 9.28 14 6.34667 13.2933C3.52 12.5867 0 11.7067 0 8C0 5.61333 1.96 3.58667 4.66667 2.90667V0H8.66667V2.90667C11.3733 3.58667 13.3333 5.61333 13.3333 8H10.6667C10.6667 6.56 8.84 5.33333 6.66667 5.33333C4.49333 5.33333 2.66667 6.56 2.66667 8C2.66667 9.46667 4.05333 10 6.98667 10.7067C9.81333 11.4133 13.3333 12.2933 13.3333 16C13.3333 18.3867 11.3733 20.4133 8.66667 21.0933V24H4.66667V21.0933C1.96 20.4133 0 18.3867 0 16Z" fill="#303030" />
                      </svg>
@@ -86,26 +86,22 @@
              //  const level_edit = document.getElementById('level-edit');
              //  const lokasi_edit = document.getElementById('lokasi-edit');
 
-             //  var xhr = new XMLHttpRequest();
-             //  var url = "..\\..\\..\\getuser.php";
-             //  xhr.open("POST", url, true);
-             //  xhr.setRequestHeader("Content-Type", "application/json");
-             //  xhr.onreadystatechange = function() {
-             //      if (xhr.readyState === 4 && xhr.status === 200) {
-             //          var json = JSON.parse(xhr.responseText);
-             //          console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_user);
-             //          username_edit.value = json.username;
-             //          level_edit.value = json.level;
-             //          lokasi_edit.value = json.lokasi;
-             //          prevuser.src = json.img;
-             //          id_user.value = json.id_user;
-             //      }
-             //  };
-             //  var data = JSON.stringify({
-             //      "id": id
-             //  });
-             //  xhr.send(data);
-             //wait 1s befor reload page
+              var xhr = new XMLHttpRequest();
+              var url = "..\\..\\..\\getimguser.php";
+              xhr.open("POST", url, true);
+              xhr.setRequestHeader("Content-Type", "application/json");
+              xhr.onreadystatechange = function() {
+                  if (xhr.readyState === 4 && xhr.status === 200) {
+                      var json = JSON.parse(xhr.responseText);
+                      console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_user);
+                      prevuser.src = json.img;
+                  }
+              };
+              var data = JSON.stringify({
+                  "id": id
+              });
+              xhr.send(data);
+
          })
      })
  </script>

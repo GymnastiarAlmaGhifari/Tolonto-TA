@@ -3,6 +3,8 @@
 require_once "core/init.php";
 $SadminUser = new ControllerSuperadminUser();
 
+$user_data = $user->get_data(Session::get('username'));
+
 $ju = $SadminUser->jumlah_user();
 $ja = $SadminUser->jumlah_admin();
 $tb_admin = $SadminUser->table_admin();
@@ -136,6 +138,25 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
             } else {
             }
         }
+    }
+}
+
+if (isset($_POST['Konfirmasi-topup'])) {
+
+    $idtopup = $SadminUser->idtopup();
+    $iduser = $SadminUser->fetch_user($_POST['email-user']);
+    if ($SadminUser->add_topup(
+        [
+            'id_topup' => $idtopup,
+            'id_user' => $iduser['user_id'],
+            'jml_topup' => $_POST['topup'],
+            'waktu' => date('Y-m-d H:i:s'),
+            'id_admin' => $user_data['id_admin']
+        ]
+    )) // jika berhasil refresh page tanpa submit ulang
+    {
+        Redirect::to('userSuperAdmin');
+    } else {
     }
 }
 

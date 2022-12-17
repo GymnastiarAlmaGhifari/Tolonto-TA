@@ -108,12 +108,4 @@ class Controllerauth extends Database
     //     return true;
     // }
 
-    // Delete an user from database
-    public function delete($id)
-    {
-        $sql = 'DELETE FROM users WHERE id = :id';
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute(['id' => $id]);
-        return true;
-    }
 }

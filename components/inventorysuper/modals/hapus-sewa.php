@@ -26,6 +26,7 @@
      const modal_overlay_delete_ps_sewa = document.querySelector('#modal_overlay_delete_ps_sewa');
      const modal_delete_ps_sewa = document.querySelector('#modal_delete_ps_sewa');
      const hapusSewa = document.querySelectorAll('#hapusSewa');
+     const konfirmasiDeletePsSewa = document.querySelector('#Konfirmasi-delete-ps-sewa');
 
      const openModalDeletePsSewa = (value) => {
          const modalClDeletePsSewa = modal_delete_ps_sewa.classList
@@ -53,7 +54,50 @@
          button.addEventListener('click', () => {
              openModalDeletePsSewa(true)
              const id = button.value
-             console.log(id)
+
+             var xhr = new XMLHttpRequest();
+             // path getuser.php in main dir
+             var url = "..\\..\\..\\getps.php";
+             xhr.open("POST", url, true);
+             xhr.setRequestHeader("Content-Type", "application/json");
+             xhr.onreadystatechange = function() {
+                 if (xhr.readyState === 4 && xhr.status === 200) {
+                     var json = JSON.parse(xhr.responseText);
+                     console.log(json.status + ", " + json.nama_ps);
+                     document.getElementById("getName").innerHTML = json.username;
+                     konfirmasiDeletePsSewa.value = json.id_ps;
+                 }
+             };
+             var data = JSON.stringify({
+                 "id": id,
+                 "table": "ps_sewa"
+             });
+             xhr.send(data);
          })
+     })
+
+     konfirmasiDeletePsSewa.addEventListener('click', () => {
+         const id = document.getElementById('Konfirmasi-delete-ps-sewa').value
+         console.log(id)
+         var xhr = new XMLHttpRequest();
+         // path getuser.php in main dir
+         var url = "..\\..\\..\\delps.php";
+         xhr.open("POST", url, true);
+         xhr.setRequestHeader("Content-Type", "application/json");
+         xhr.onreadystatechange = function() {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 var json = JSON.parse(xhr.responseText);
+                 console.log(json.status);
+                 if (json.status == "success") {
+                     openModalDeletePsSewa(false)
+                     location.reload()
+                 }
+             }
+         };
+         var data = JSON.stringify({
+             "id": id,
+             "table": "ps_sewa"
+         });
+         xhr.send(data);
      })
  </script>

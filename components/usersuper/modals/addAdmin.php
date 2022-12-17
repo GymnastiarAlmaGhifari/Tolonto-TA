@@ -109,9 +109,7 @@
                 return false;
             } else {
                 prev.src = URL.createObjectURL(file)
-                //rename file to datetimenow and save to folder
 
-                console.log(file);
             }
 
         }

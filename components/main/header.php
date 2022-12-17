@@ -94,7 +94,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
 
                         <li id="logout" class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
 
-                            <button type="submit" name="logout">
+                            <button type="button" name="logout">
                                 <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>
                                 <a>
                                     Logout
@@ -118,12 +118,10 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
     const lokasi_drop = document.getElementById('lokasi-drop');
 
 
-    // console.log value of lokas
-    console.log(lokas);
+
     // trim lokas menjadi htmlnya saja
     var res = lokas.innerHTML.trim();
-    // console.log value of res
-    console.log(res);
+
 
     // query selector all for list_lok if clicked then set lokasi with text list_lok
     list_lok.forEach((list) => {

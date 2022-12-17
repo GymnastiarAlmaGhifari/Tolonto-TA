@@ -77,6 +77,11 @@
     const arrow_rental_edit = document.querySelector('#arrow_rental_edit');
     const imginp_rental_edit = document.getElementById('image-rental-edit');
     const prev_rental_edit = document.getElementById('preview-rental-edit');
+    const id_rental_edit = document.getElementById('id-rental-edit');
+    const nama_rental_edit = document.getElementById('nama-ps-rental-edit');
+    const harga_rental_edit = document.getElementById('harga-ps-rental-edit');
+    
+
 
     const openModalRentalEdit = (value) => {
         const modalClRentalEdit = modal_rental_edit.classList
@@ -104,6 +109,28 @@
         editRental.addEventListener('click', () => {
             openModalRentalEdit(true)
             const id = editRental.value
+
+            var xhr = new XMLHttpRequest();
+             // path getuser.php in main dir
+             var url = "..\\..\\..\\getps.php";
+             xhr.open("POST", url, true);
+             xhr.setRequestHeader("Content-Type", "application/json");
+             xhr.onreadystatechange = function() {
+                 if (xhr.readyState === 4 && xhr.status === 200) {
+                     var json = JSON.parse(xhr.responseText);
+                     console.log(json.status + ", " + json.id_ps + ", " + json.nama_ps + ", " + json.harga_ps +", " + json.kategori + ", " + json.img );
+                     nama_rental_edit.value = json.nama_ps;
+                     harga_rental_edit.value = json.harga_ps;
+                     kategori_ps_rental_edit.value = json.kategori;
+                     prev_rental_edit.src = json.img;
+                     id_rental_edit.value = json.id_ps;
+                 }
+             };
+             var data = JSON.stringify({
+                 "id": id,
+                 "table": "ps"
+             });
+             xhr.send(data);
             console.log(id)
         })
     })

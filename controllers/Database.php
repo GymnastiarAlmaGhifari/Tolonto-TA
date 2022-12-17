@@ -341,7 +341,7 @@ class Database
         // return $results;
     }
 
-    public function hapus_admin($table, $column, $value)
+    public function delete($table, $column, $value)
     {
         $sql = "DELETE FROM $table WHERE $column = '$value'";
         $result = $this->conn->query($sql);

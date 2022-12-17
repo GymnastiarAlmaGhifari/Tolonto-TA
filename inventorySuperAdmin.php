@@ -57,13 +57,12 @@ if (isset($_POST['Konfirmasi-rental'])) {
     }
     $dirUpload = "img/ps/";
     // genearete datetimestamp
-    $filename = date('YmdHis') . '.' . $ext;
+    $filename = $id_ps . '.' . $ext;
 
     // pindahkan file 
     $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
 
     if ($terupload) {
-        echo "Upload berhasil!<br/>";
         echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
         if ($SadminPs->add_rental(
             [
@@ -81,7 +80,59 @@ if (isset($_POST['Konfirmasi-rental'])) {
         } else {
         }
     } else {
-        echo "Upload Gagal!";
+
+    }
+}
+
+if (isset($_POST['Konfirmasi-rental-edit'])) {
+
+    $namaFile = $_FILES['image-rental-edit']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-rental-edit']['tmp_name'];
+
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps')) {
+        mkdir('img/ps', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = $_POST['id-rental-edit'] . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($SadminPs->update_psrental(
+            [
+                'nama_ps' => $_POST['nama-ps-rental-edit'],
+                'harga' => $_POST['harga-ps-rental-edit'],
+                'jenis' => $_POST['kategori-ps-rental-edit'],
+                'img' => $dirUpload . $filename
+            ], $_POST['id-rental-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+             echo "<script>location.href='inventorySuperAdmin.php'</script>";
+        } else {
+            //error
+        }
+    } else {
+
+        if ($SadminPs->update_psrental(
+            [
+                'nama_ps' => $_POST['nama-ps-rental-edit'],
+                'harga' => $_POST['harga-ps-rental-edit'],
+                'jenis' => $_POST['kategori-ps-rental-edit'],
+
+            ], $_POST['id-rental-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventorySuperAdmin.php'</script>";
+        } else {
+            //error
+        }
     }
 }
 
@@ -112,14 +163,12 @@ if (isset($_POST['Konfirmasi-sewa'])) {
     }
     $dirUpload = "img/ps-sewa/";
     // genearete datetimestamp
-    $filename = date('YmdHis') . '.' . $ext;
+    $filename = $id_ps . '.' . $ext;
 
     // pindahkan file 
     $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
 
     if ($terupload) {
-        echo "Upload berhasil!<br/>";
-        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
         if ($SadminPs->add_sewa(
             [
                 'id_ps' => $id_ps,
@@ -136,9 +185,60 @@ if (isset($_POST['Konfirmasi-sewa'])) {
         } else {
         }
     } else {
-        echo "Upload Gagal!";
     }
 }
+
+if (isset($_POST['Konfirmasi-sewa-edit'])) {
+
+    $namaFile = $_FILES['image-sewa-edit']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-sewa-edit']['tmp_name'];
+
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps-sewa')) {
+        mkdir('img/ps-sewa', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = $_POST['id-sewa-edit'] . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        if ($SadminPs->update_pssewa(
+            [
+                'nama_ps' => $_POST['nama-ps-sewa-edit'],
+                'harga' => $_POST['harga-ps-sewa-edit'],
+                'jenis' => $_POST['kategori-ps-sewa-edit'],
+                'img' => $dirUpload . $filename
+            ], $_POST['id-sewa-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+             echo "<script>location.href='inventorySuperAdmin.php'</script>";
+        } else {
+            //error
+        }
+    } else {
+        echo "gagal";
+        if ($SadminPs->update_pssewa(
+            [
+                'nama_ps' => $_POST['nama-ps-sewa-edit'],
+                'harga' => $_POST['harga-ps-sewa-edit'],
+                'jenis' => $_POST['kategori-ps-sewa-edit'],
+
+            ], $_POST['id-sewa-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventorySuperAdmin.php'</script>";
+        } else {
+            //error
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>

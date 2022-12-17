@@ -94,4 +94,46 @@ class ControllerSuperadminInventory extends Database
         }
         
     }
+
+    public function fetch_ps($table, $id_ps, $id)
+    {
+        $data = $this->fetch($table, $id_ps, $id);
+        return $data;
+    }
+
+    public function fetch_img($table, $id_ps, $id)
+    {
+        $data = $this->fetch($table, $id_ps, $id);
+        return $data['img'];
+    }
+
+    public function delete_ps($table, $id_ps, $id)
+    {
+        $data = $this->delete($table, $id_ps, $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function update_psrental($fields = [], $val)
+    {
+        $data = $this->update('ps', 'id_ps', $val, $fields);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function update_pssewa($fields = [], $val)
+    {
+        $data = $this->update('ps_sewa', 'id_ps', $val, $fields);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

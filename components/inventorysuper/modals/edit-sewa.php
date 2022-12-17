@@ -28,15 +28,15 @@
                 <!-- gambar end -->
 
                 <div class="relative z-0 w-11/12 mt-5">
-                    <input type="text" id="nama-ps-rental-edit" name="nama-ps-rental-edit" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 valid:text-neutral_500 peer" placeholder=" " />
-                    <label for="nama-ps-rental-edit" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Nama PS</label>
+                    <input type="text" id="nama-ps-sewa-edit" name="nama-ps-sewa-edit" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 valid:text-neutral_500 peer" placeholder=" " />
+                    <label for="nama-ps-sewa-edit" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Nama PS</label>
                     <svg width="30" height="24" class="absolute top-4 left-5" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M27 0C27.7956 0 28.5587 0.31607 29.1213 0.87868C29.6839 1.44129 30 2.20435 30 3V21C30 21.7956 29.6839 22.5587 29.1213 23.1213C28.5587 23.6839 27.7956 24 27 24H3C2.20435 24 1.44129 23.6839 0.87868 23.1213C0.31607 22.5587 0 21.7956 0 21V3C0 2.20435 0.31607 1.44129 0.87868 0.87868C1.44129 0.31607 2.20435 0 3 0H27ZM13.5 13.5H10.5V16.5H13.5V13.5ZM25.5 13.5H16.5V16.5H25.5V13.5ZM7.5 7.5H4.5V10.5H7.5V7.5ZM25.5 7.5H10.5V10.5H25.5V7.5Z" fill="#303030" />
                     </svg>
                 </div>
                 <div class="relative z-0 w-11/12">
-                    <input type="text" id="harga-ps-rental-edit" name="harga-ps-rental-edit" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 peer" placeholder=" " />
-                    <label for="harga-ps-rental-edit" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Harga PS</label>
+                    <input type="text" id="harga-ps-sewa-edit" name="harga-ps-sewa-edit" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 peer" placeholder=" " />
+                    <label for="harga-ps-sewa-edit" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Harga PS</label>
                     <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 16H2.66667C2.66667 17.44 4.49333 18.6667 6.66667 18.6667C8.84 18.6667 10.6667 17.44 10.6667 16C10.6667 14.5333 9.28 14 6.34667 13.2933C3.52 12.5867 0 11.7067 0 8C0 5.61333 1.96 3.58667 4.66667 2.90667V0H8.66667V2.90667C11.3733 3.58667 13.3333 5.61333 13.3333 8H10.6667C10.6667 6.56 8.84 5.33333 6.66667 5.33333C4.49333 5.33333 2.66667 6.56 2.66667 8C2.66667 9.46667 4.05333 10 6.98667 10.7067C9.81333 11.4133 13.3333 12.2933 13.3333 16C13.3333 18.3867 11.3733 20.4133 8.66667 21.0933V24H4.66667V21.0933C1.96 20.4133 0 18.3867 0 16Z" fill="#303030" />
                     </svg>
@@ -61,7 +61,7 @@
                     <button type="button" onclick="openModalSewaEdit(false)" name="batal-rental-edit" id="batal-rental-edit" value="batal-rental-edit" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-rental-edit" id="Konfirmasi-rental-edit" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl px-4">Konfirmasi</button>
+                    <button type="submit" name="Konfirmasi-sewa-edit" id="Konfirmasi-sewa-edit" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl px-4">Konfirmasi</button>
                 </div>
             </form>
         </div>
@@ -77,6 +77,10 @@
     const arrow_sewa_edit = document.querySelector('#arrow_sewa_edit');
     const imginp_sewa_edit = document.getElementById('image-sewa-edit');
     const prev_sewa_edit = document.getElementById('preview-sewa-edit');
+    const id_sewa_edit = document.getElementById('id-sewa-edit');
+    const nama_sewa_edit = document.getElementById('nama-ps-sewa-edit');
+    const harga_sewa_edit = document.getElementById('harga-ps-sewa-edit');
+
 
     const openModalSewaEdit = (value) => {
         const modalClSewaEdit = modal_sewa_edit.classList
@@ -104,6 +108,28 @@
         editSewa.addEventListener('click', () => {
             openModalSewaEdit(true)
             const id = editSewa.value
+
+            var xhr = new XMLHttpRequest();
+             // path getuser.php in main dir
+             var url = "..\\..\\..\\getps.php";
+             xhr.open("POST", url, true);
+             xhr.setRequestHeader("Content-Type", "application/json");
+             xhr.onreadystatechange = function() {
+                 if (xhr.readyState === 4 && xhr.status === 200) {
+                     var json = JSON.parse(xhr.responseText);
+                     console.log(json.status + ", " + json.id_ps + ", " + json.nama_ps + ", " + json.harga_ps +", " + json.kategori + ", " + json.img );
+                     nama_sewa_edit.value = json.nama_ps;
+                     harga_sewa_edit.value = json.harga_ps;
+                     kategori_ps_sewa_edit.value = json.kategori;
+                     prev_sewa_edit.src = json.img;
+                     id_sewa_edit.value = json.id_ps;
+                 }
+             };
+             var data = JSON.stringify({
+                 "id": id,
+                 "table": "ps_sewa"
+             });
+             xhr.send(data);
         })
     })
 

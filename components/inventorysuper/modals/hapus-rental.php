@@ -26,6 +26,7 @@
      const modal_overlay_delete_ps_rental = document.querySelector('#modal_overlay_delete_ps_rental');
      const modal_delete_ps_rental = document.querySelector('#modal_delete_ps_rental');
      const hapusRental = document.querySelectorAll('#hapusRental');
+     const konfirmasiDeleteRental = document.querySelector('#Konfirmasi-delete-ps-rental');
 
 
      const openModalDeletePsRental = (value) => {
@@ -54,7 +55,48 @@
          button.addEventListener('click', () => {
              openModalDeletePsRental(true)
              const id = button.value
-             console.log(id)
+
+             var xhr = new XMLHttpRequest();
+             // path getuser.php in main dir
+             var url = "..\\..\\..\\getps.php";
+             xhr.open("POST", url, true);
+             xhr.setRequestHeader("Content-Type", "application/json");
+             xhr.onreadystatechange = function() {
+                 if (xhr.readyState === 4 && xhr.status === 200) {
+                     var json = JSON.parse(xhr.responseText);
+                     console.log(json.status + ", " + json.nama_ps);
+                     document.getElementById("getName").innerHTML = json.username;
+                     konfirmasiDeleteRental.value = json.id_ps;
+                 }
+             };
+             var data = JSON.stringify({
+                 "id": id,
+                 "table": "ps"
+             });
+             xhr.send(data);
          })
+     })
+
+     konfirmasiDeleteRental.addEventListener('click', () => {
+         const id = document.getElementById('Konfirmasi-delete-ps-rental').value;
+         console.log(id)
+         
+         var xhr = new XMLHttpRequest();
+         // path getuser.php in main dir
+         var url = "..\\..\\..\\delps.php";
+         xhr.open("POST", url, true);
+         xhr.setRequestHeader("Content-Type", "application/json");
+         xhr.onreadystatechange = function() {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 var json = JSON.parse(xhr.responseText);
+                 console.log(json.status + ", " + json.nama_ps);
+                 if (json.status == "success") {
+             }
+         };
+         var data = JSON.stringify({
+             "id": id,
+             "table": "ps"
+         });
+         xhr.send(data);
      })
  </script>

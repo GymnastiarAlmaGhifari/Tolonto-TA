@@ -20,16 +20,17 @@
                      </button>
                      <button type="submit" name="Konfirmasi-delete" id="Konfirmasi-delete" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">Konfirmasi</button>
                  </div>
-             </form>
-         </div>
-     </div>
- </section>
- <!-- modal_delete  end -->
- <script>
-     const modal_overlay_deleteadmin = document.querySelector('#modal_overlay_deleteadmin');
-     const modal_deleteadmin = document.querySelector('#modal_deleteadmin');
-     const deleteAdmin = document.querySelectorAll('#deleteAdmin');
-
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- modal_delete  end -->
+    <script>
+        const modal_overlay_deleteadmin = document.querySelector('#modal_overlay_deleteadmin');
+        const modal_deleteadmin = document.querySelector('#modal_deleteadmin');
+        const deleteAdmin = document.querySelectorAll('#deleteAdmin');
+        const konfirmasiDelete = document.querySelector('#Konfirmasi-delete');
+        
 
      const openModalDeleteadmin = (value) => {
          const modalClDeleteadmin = modal_deleteadmin.classList
@@ -68,6 +69,7 @@
                      var json = JSON.parse(xhr.responseText);
                      //  console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
                      document.getElementById("getName").innerHTML = json.username;
+                     konfirmasiDelete.value = json.id_admin;
                  }
              };
              var data = JSON.stringify({
@@ -82,9 +84,8 @@
          })
      })
 
-     const konfirmasiDelete = document.querySelector('#Konfirmasi-delete');
      konfirmasiDelete.addEventListener('click', () => {
-         const id = document.getElementById("getName").value;
+         const id = document.getElementById("Konfirmasi-delete").value;
 
          konfirmasiDelete.value = id;
          console.log(konfirmasiDelete.value);

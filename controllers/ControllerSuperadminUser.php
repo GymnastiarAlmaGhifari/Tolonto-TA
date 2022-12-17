@@ -67,7 +67,7 @@ class ControllerSuperadminUser extends Database
     }
     public function delete_admin($id)
     {
-        $data = $this->hapus_admin('manage', 'id_admin', $id);
+        $data = $this->delete('manage', 'id_admin', $id);
         if ($data) {
             return true;
         } else {

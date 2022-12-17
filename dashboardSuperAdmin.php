@@ -47,7 +47,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
     <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="https://ih1.redbubble.net/image.2436453168.0825/st,small,507x507-pad,600x600,f8f8f8.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <title>Dashboard Super Admin</title>

@@ -158,6 +158,7 @@ if (isset($_POST['Konfirmasi-sewa'])) {
     <link rel="stylesheet" href="dist/output.css">
     <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
+    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Inventory Superadmin</title>

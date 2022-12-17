@@ -12,7 +12,7 @@
              </div>
              <span class="w-11/12 h-0.5 mx-auto -mt-5 bg-neutral_600"></span>
              <form action="userSuperAdmin.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
-                <input type="text" name="id-admin-edit" id="id-admin-edit">
+                 <input type="hidden" name="id-admin-edit" id="id-admin-edit">
                  <!-- gambar start -->
                  <div class="flex flex-col justify-center items-center relative">
                      <!-- show previe image from Upload::uploadimage() -->
@@ -92,8 +92,8 @@
      const editAdmin = document.querySelectorAll('#editAdmin');
      const imginpedit = document.getElementById('image-Admin-edit');
      const prevedit = document.getElementById('preview-Admin-Edit');
-     const id_admin = document.getElementById('id-admin-edit'); 
-     
+     const id_admin = document.getElementById('id-admin-edit');
+
      imginpedit.onchange = evt => {
          const [file] = imginpedit.files
          if (file) {
@@ -162,30 +162,29 @@
              const lokasi_edit = document.getElementById('lokasi-edit');
              //  gunakan varibale id untuk mengirim season ke php
              //  gunakan variable id untuk mengambil data dari database        
-            //  username_edit.value = id;
+             //  username_edit.value = id;
 
-            var xhr = new XMLHttpRequest();
-            // path getuser.php in main dir
-            var url = "..\\..\\..\\getuser.php";
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var json = JSON.parse(xhr.responseText);
-                    console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
-                    username_edit.value = json.username;
-                    level_edit.value = json.level;
-                    lokasi_edit.value = json.lokasi;   
-                    prevedit.src = json.img;
-                    id_admin.value = json.id_admin;
-
-                }
-            };
-            var data = JSON.stringify({
-                "id": id
-            });
-            xhr.send(data);
-            //wait 1s befor reload page
+             var xhr = new XMLHttpRequest();
+             // path getuser.php in main dir
+             var url = "..\\..\\..\\getuser.php";
+             xhr.open("POST", url, true);
+             xhr.setRequestHeader("Content-Type", "application/json");
+             xhr.onreadystatechange = function() {
+                 if (xhr.readyState === 4 && xhr.status === 200) {
+                     var json = JSON.parse(xhr.responseText);
+                     console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
+                     username_edit.value = json.username;
+                     level_edit.value = json.level;
+                     lokasi_edit.value = json.lokasi;
+                     prevedit.src = json.img;
+                     id_admin.value = json.id_admin;
+                 }
+             };
+             var data = JSON.stringify({
+                 "id": id
+             });
+             xhr.send(data);
+             //wait 1s befor reload page
 
 
 

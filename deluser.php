@@ -20,5 +20,3 @@ if ($SadminUser->delete_admin($id)) {
 } else {
     echo json_encode(['status' => 'failed']);
 }
-
-

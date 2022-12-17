@@ -3,7 +3,7 @@
      <div id="modal_overlay_sewa" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">
          <!-- modal -->
          <div id="modal_sewa" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[520px] w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
-             <div class="flex flex-row justify-start ml-[23px]  gap-3 mb-3">
+             <div class="flex flex-row justify-start ml-[25px]  gap-3 mb-3">
                  <svg width="21" height="24" viewBox="0 0 21 24" class="my-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path d="M2.28571 0C1.01714 0 0 1.01714 0 2.28571V20.5714C0 21.1776 0.240816 21.759 0.66947 22.1877C1.09812 22.6163 1.67951 22.8571 2.28571 22.8571H6.85714V20.6743L9.24572 18.2857H2.28571V16H11.5314L13.8171 13.7143H2.28571V11.4286H16.1029L18.2857 9.24572V6.85714L11.4286 0H2.28571ZM10.2857 1.71429L16.5714 8H10.2857V1.71429ZM18.4571 12.5714C18.2857 12.5714 18.1257 12.6286 18 12.7543L16.8343 13.92L19.2229 16.2971L20.3886 15.1429C20.6286 14.8914 20.6286 14.48 20.3886 14.24L18.9029 12.7543C18.7771 12.6286 18.6171 12.5714 18.4571 12.5714ZM16.16 14.5943L9.14286 21.6229V24H11.52L18.5486 16.9714L16.16 14.5943Z" fill="#FAFAFA" />
                  </svg>
@@ -68,6 +68,8 @@
      const modal_overlay_sewa = document.querySelector('#modal_overlay_sewa');
      const modal_sewa = document.querySelector('#modal_sewa');
      const tambahSewa = document.querySelector('#tambahSewa');
+     const imginp = document.getElementById('image-sewa');
+     const prev = document.getElementById('preview-sewa');
 
      const openModalSewa = (value) => {
          const modalClSewa = modal_sewa.classList
@@ -96,4 +98,27 @@
      tambahSewa.addEventListener('click', () => {
          openModalSewa(true)
      });
+
+
+     imginp.onchange = evt => {
+         const [file] = imginp.files
+         if (file) {
+             //if size is more than 2mb alert
+             if (file.size > 2000000) {
+                 alert('ukuran file maksimal 2mb');
+                 imginp.value = '';
+                 return false;
+             } else if (file.type != 'image/jpeg' && file.type != 'image/png' && file.type != 'image/jpg') {
+                 alert('type file harus .jpg .png .jpeg');
+                 imginp.value = '';
+                 return false;
+             } else {
+                 prev.src = URL.createObjectURL(file)
+                 //rename file to datetimenow and save to folder
+
+                 console.log(file);
+             }
+
+         }
+     }
  </script>

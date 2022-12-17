@@ -163,7 +163,7 @@ if (isset($_POST['Konfirmasi-sewa'])) {
     }
     $dirUpload = "img/ps-sewa/";
     // genearete datetimestamp
-    $filename = date('YmdHis') . '.' . $ext;
+    $filename = $id_ps . '.' . $ext;
 
     // pindahkan file 
     $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);

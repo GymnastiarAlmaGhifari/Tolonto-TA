@@ -113,15 +113,15 @@
     const openTable3 = () => {
         open3.addEventListener("click", function() {
             if (atas3.classList.contains('h-[77px]')) {
-                localStorage.setItem("open-table3", "true");
+                localStorage.setItem("open-table-admin", "true");
             } else {
-                localStorage.setItem("open-table3", "false");
+                localStorage.setItem("open-table-admin", "false");
             }
-            themeMode();
+            openTab();
         });
 
-        function themeMode() {
-            if (localStorage.getItem("open-table3") == "false") {
+        function openTab() {
+            if (localStorage.getItem("open-table-admin") == "false") {
                 garis3.classList.add('hidden');
                 plus3.classList.add('hidden');
                 table3.classList.add('hidden');
@@ -139,8 +139,8 @@
                 }, 100);
             }
         }
-        if (localStorage.getItem("open-table3") !== null) {
-            themeMode();
+        if (localStorage.getItem("open-table-admin") !== null) {
+            openTab();
         }
         if (atas3.classList.contains("h-[450px]")) {
             open3.checked = true;
@@ -150,10 +150,8 @@
     window.addEventListener('load', () => {
         if (localStorage.getItem('lokasi') !== 'Bojonegoro') {
             table_admin.classList.add('hidden')
-            console.log(localStorage.getItem('lokasi'))
         } else {
             table_admin.classList.remove('hidden')
-            console.log(localStorage.getItem('lokasi'))
         }
     })
 </script>

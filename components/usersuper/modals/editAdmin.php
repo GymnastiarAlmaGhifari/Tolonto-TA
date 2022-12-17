@@ -108,9 +108,6 @@
                  return false;
              } else {
                  prevedit.src = URL.createObjectURL(file)
-                 //rename file to datetimenow and save to folder
-
-                 console.log(file);
              }
 
          }
@@ -172,7 +169,6 @@
              xhr.onreadystatechange = function() {
                  if (xhr.readyState === 4 && xhr.status === 200) {
                      var json = JSON.parse(xhr.responseText);
-                     console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
                      username_edit.value = json.username;
                      level_edit.value = json.level;
                      lokasi_edit.value = json.lokasi;

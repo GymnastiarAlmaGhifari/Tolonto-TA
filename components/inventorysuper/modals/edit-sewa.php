@@ -28,7 +28,7 @@
                 <!-- gambar end -->
 
                 <div class="relative z-0 w-11/12 mt-5">
-                    <input type="text" id="nama-ps-sewa-edit" name="nama-ps-sewa-edit" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 valid:text-neutral_500 peer" placeholder=" " />
+                    <input type="text" id="nama-ps-sewa-edit" name="nama-ps-sewa-edit" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 peer" placeholder=" " />
                     <label for="nama-ps-sewa-edit" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Nama PS</label>
                     <svg width="30" height="24" class="absolute top-4 left-5" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M27 0C27.7956 0 28.5587 0.31607 29.1213 0.87868C29.6839 1.44129 30 2.20435 30 3V21C30 21.7956 29.6839 22.5587 29.1213 23.1213C28.5587 23.6839 27.7956 24 27 24H3C2.20435 24 1.44129 23.6839 0.87868 23.1213C0.31607 22.5587 0 21.7956 0 21V3C0 2.20435 0.31607 1.44129 0.87868 0.87868C1.44129 0.31607 2.20435 0 3 0H27ZM13.5 13.5H10.5V16.5H13.5V13.5ZM25.5 13.5H16.5V16.5H25.5V13.5ZM7.5 7.5H4.5V10.5H7.5V7.5ZM25.5 7.5H10.5V10.5H25.5V7.5Z" fill="#303030" />
@@ -110,26 +110,26 @@
             const id = editSewa.value
 
             var xhr = new XMLHttpRequest();
-             // path getuser.php in main dir
-             var url = "..\\..\\..\\getps.php";
-             xhr.open("POST", url, true);
-             xhr.setRequestHeader("Content-Type", "application/json");
-             xhr.onreadystatechange = function() {
-                 if (xhr.readyState === 4 && xhr.status === 200) {
-                     var json = JSON.parse(xhr.responseText);
-                     console.log(json.status + ", " + json.id_ps + ", " + json.nama_ps + ", " + json.harga_ps +", " + json.kategori + ", " + json.img );
-                     nama_sewa_edit.value = json.nama_ps;
-                     harga_sewa_edit.value = json.harga_ps;
-                     kategori_ps_sewa_edit.value = json.kategori;
-                     prev_sewa_edit.src = json.img;
-                     id_sewa_edit.value = json.id_ps;
-                 }
-             };
-             var data = JSON.stringify({
-                 "id": id,
-                 "table": "ps_sewa"
-             });
-             xhr.send(data);
+            // path getuser.php in main dir
+            var url = "..\\..\\..\\getps.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json.status + ", " + json.id_ps + ", " + json.nama_ps + ", " + json.harga_ps + ", " + json.kategori + ", " + json.img);
+                    nama_sewa_edit.value = json.nama_ps;
+                    harga_sewa_edit.value = json.harga_ps;
+                    kategori_ps_sewa_edit.value = json.kategori;
+                    prev_sewa_edit.src = json.img;
+                    id_sewa_edit.value = json.id_ps;
+                }
+            };
+            var data = JSON.stringify({
+                "id": id,
+                "table": "ps_sewa"
+            });
+            xhr.send(data);
         })
     })
 

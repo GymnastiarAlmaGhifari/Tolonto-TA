@@ -15,22 +15,22 @@
              <h2 class="mx-auto text-base font-medium text-error_600 -mt-4"> proses ini tidak bisa dikembalikan</h2>
              <form action="userSuperAdmin.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                  <div class="flex flex-row gap-[42px] mt-2 items-center justify-center w-full">
-                     <button type="button" onclick="openModalDeleteadmin(false)" name="Batal-Admin" id="Batal-Admin" value="Batal-Admin" class="bg-neutral_050 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
+                     <button type="button" onclick="openModalDeleteadmin(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                          Batal
                      </button>
                      <button type="submit" name="Konfirmasi-delete" id="Konfirmasi-delete" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">Konfirmasi</button>
                  </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    <!-- modal_delete  end -->
-    <script>
-        const modal_overlay_deleteadmin = document.querySelector('#modal_overlay_deleteadmin');
-        const modal_deleteadmin = document.querySelector('#modal_deleteadmin');
-        const deleteAdmin = document.querySelectorAll('#deleteAdmin');
-        const konfirmasiDelete = document.querySelector('#Konfirmasi-delete');
-        
+             </form>
+         </div>
+     </div>
+ </section>
+ <!-- modal_delete  end -->
+ <script>
+     const modal_overlay_deleteadmin = document.querySelector('#modal_overlay_deleteadmin');
+     const modal_deleteadmin = document.querySelector('#modal_deleteadmin');
+     const deleteAdmin = document.querySelectorAll('#deleteAdmin');
+     const konfirmasiDelete = document.querySelector('#Konfirmasi-delete');
+
 
      const openModalDeleteadmin = (value) => {
          const modalClDeleteadmin = modal_deleteadmin.classList
@@ -88,7 +88,6 @@
          const id = document.getElementById("Konfirmasi-delete").value;
 
          konfirmasiDelete.value = id;
-         console.log(konfirmasiDelete.value);
 
          var xhr = new XMLHttpRequest();
          // path getuser.php in main dir
@@ -98,7 +97,6 @@
          xhr.onreadystatechange = function() {
              if (xhr.readyState === 4 && xhr.status === 200) {
                  var json = JSON.parse(xhr.responseText);
-                 console.log(json.status);
 
                  if (json.status == "success") {
                      alert("berhasil");

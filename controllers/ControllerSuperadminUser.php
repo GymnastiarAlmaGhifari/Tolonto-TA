@@ -65,6 +65,7 @@ class ControllerSuperadminUser extends Database
             return false;
         }
     }
+
     public function delete_admin($id)
     {
         $data = $this->delete('manage', 'id_admin', $id);
@@ -95,5 +96,42 @@ class ControllerSuperadminUser extends Database
     {
         $data = $this->fetch('manage', 'id_admin', $id);
         return $data['img'];
+    }
+
+    public function fetch_user($id)
+    {
+        $data = $this->fetch('user', 'email', $id);
+        return $data;
+    }
+
+    public function idtopup()
+    //sql untuk select max dengan format TP-001-171222 kemudian +1 if data kosong maka 001
+    {
+        $tgl = date('dmy');
+        $sql = "SELECT MAX(id_topup) AS id_topup FROM topup WHERE id_topup LIKE '%$tgl%' ORDER BY id_topup DESC";
+        $data = $this->uniquery($sql);
+        if ($data[0]['id_topup'] == null) {
+            $id = "TP-001-$tgl";
+            return $id;
+        } else {
+            $id = $data[0]['id_topup'];
+            $id = substr($id, 3, 3);
+            $id = (int)$id;
+            $id = $id + 1;
+            $id = str_pad($id, 3, '0', STR_PAD_LEFT);
+            $id = "TP-$id-$tgl";
+            return $id;
+        }
+    }
+
+    public function add_topup($fields = [])
+    {
+
+        $data = $this->insert('topup', $fields);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

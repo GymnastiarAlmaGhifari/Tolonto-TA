@@ -82,25 +82,21 @@
              openModalTopup(true)
              const id = topupUser.value;
              email_user.value = id;
-             //  const username_edit = document.getElementById('username-edit');
-             //  const level_edit = document.getElementById('level-edit');
-             //  const lokasi_edit = document.getElementById('lokasi-edit');
-
-              var xhr = new XMLHttpRequest();
-              var url = "..\\..\\..\\getimguser.php";
-              xhr.open("POST", url, true);
-              xhr.setRequestHeader("Content-Type", "application/json");
-              xhr.onreadystatechange = function() {
-                  if (xhr.readyState === 4 && xhr.status === 200) {
-                      var json = JSON.parse(xhr.responseText);
-                      console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_user);
-                      prevuser.src = json.img;
-                  }
-              };
-              var data = JSON.stringify({
-                  "id": id
-              });
-              xhr.send(data);
+             var xhr = new XMLHttpRequest();
+             var url = "..\\..\\..\\getimguser.php";
+             xhr.open("POST", url, true);
+             xhr.setRequestHeader("Content-Type", "application/json");
+             xhr.onreadystatechange = function() {
+                 if (xhr.readyState === 4 && xhr.status === 200) {
+                     var json = JSON.parse(xhr.responseText);
+                     console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_user);
+                     prevuser.src = json.img;
+                 }
+             };
+             var data = JSON.stringify({
+                 "id": id
+             });
+             xhr.send(data);
 
          })
      })

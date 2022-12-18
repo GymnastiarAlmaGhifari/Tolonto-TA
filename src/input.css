@@ -74,6 +74,18 @@ input:valid ~ .sticker2 {
 .bungkus-active {
   @apply duration-300 ease-in ml-3 justify-start pl-3 w-[180px];
 }
+.span1-active {
+  @apply transform transition duration-700 rotate-45 translate-x-0.5;
+}
+.span2-active {
+  @apply transform transition duration-700;
+}
+.span3-active {
+  @apply transform transition duration-700 -rotate-45 translate-x-0.5;
+}
+.putar-active {
+  @apply mt-7 transform transition-all duration-500 origin-center overflow-hidden -rotate-180;
+}
 
 /* animation modal top to bbottom */
 

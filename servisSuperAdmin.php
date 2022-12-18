@@ -1,6 +1,10 @@
 <?php
 require_once 'core/init.php';
 
+$servis = new ControllerServis();
+
+$service = $servis->h_servis($_SESSION['loksend']);
+$jumlah_servis = $servis->jumlah_servis($_SESSION['loksend']);
 ?>
 
 <!DOCTYPE html>

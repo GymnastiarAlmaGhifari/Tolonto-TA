@@ -221,13 +221,16 @@ if (Location::in(1, 'user')) {
 
 <div class="container">
     <div class="flex flex-wrap ">
-        <div id="sidebar" class="w-[60px] bg-primary_500 z-40 h-screen fixed text-neutral_900 font-noto-sans duration-300">
+        <div id="backdrop" class="hidden z-20 w-screen h-screen bg-black/50 fixed transition duration-300 ease-in-out"></div>
+        <div id="sidebar" class="w-[60px] bg-primary_500 z-30 h-screen fixed text-neutral_900 font-noto-sans duration-300">
             <div id="flexing" class="ml-1">
-                <div id="sidebarToggle" class="flex flex-col items-center space-y-1.5 mt-5 mb-8 cursor-pointer ">
-                    <span class="block w-7 h-1 bg-neutral_900 rounded-4xl"></span>
-                    <span class="block w-7 h-1 bg-neutral_900 rounded-4xl"></span>
-                    <span class="block w-7 h-1 bg-neutral_900 rounded-4xl"></span>
-                </div>
+                <button type="button" id="sidebarToggle" class="flex items-center justify-center mx-auto">
+                    <div id="putar" class="flex flex-col items-center w-full h-full rounded-full justify-center space-y-1.5 mt-5 mb-8">
+                        <span id="span1" class="block w-7 h-1 bg-neutral_900 rounded-4xl"></span>
+                        <span id="span2" class="block w-7 h-1 bg-neutral_900 rounded-4xl"></span>
+                        <span id="span3" class="block w-7 h-1 bg-neutral_900 rounded-4xl"></span>
+                    </div>
+                </button>
                 <img src="<?php echo $user_data['img']; ?>" id="gambar" width="80px" height="80px" alt="" class="hidden">
                 <h1 id="text" class="font-semibold my-auto hidden text-base">Tolonto</h1>
             </div>
@@ -248,7 +251,6 @@ if (Location::in(1, 'user')) {
                             <svg id="svg" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.1063 13.0068C16.115 13.6002 15.7002 14.0473 15.1268 14.0629C14.5725 14.0786 14.1403 13.6569 14.1229 13.0826C14.1046 12.4682 14.5351 12.0055 15.1242 12.0055C15.6801 12.0055 16.0975 12.4316 16.1063 13.0068ZM10.0289 10.6905C9.72824 10.667 9.33958 10.8221 9.15048 10.626C8.94656 10.4143 9.09819 10.0204 9.08077 9.70665C9.05288 9.20732 8.75746 8.88228 8.31477 8.87705C7.88777 8.87182 7.58103 9.21255 7.5575 9.71014C7.54268 10.0125 7.6795 10.3803 7.49824 10.599C7.31698 10.8177 6.9292 10.653 6.63552 10.6905C6.59195 10.6957 6.54838 10.6966 6.50568 10.7027C5.99153 10.7803 5.73272 11.0434 5.73795 11.4818C5.74317 11.9201 6.04992 12.2077 6.56581 12.253C6.87778 12.2809 7.28213 12.1162 7.48256 12.3271C7.69867 12.5554 7.53223 12.9649 7.56098 13.2943C7.58713 13.6046 7.69519 13.8625 8.00106 13.9845C8.12739 14.0425 8.26713 14.0651 8.40529 14.0497C8.54345 14.0344 8.67483 13.9817 8.78535 13.8974C9.04678 13.6926 9.08425 13.3919 9.08251 13.0765C9.07641 12.2573 9.08251 12.2556 9.87987 12.2539C10.053 12.2546 10.2253 12.2302 10.3914 12.1815C10.7591 12.0709 10.8533 11.7789 10.9143 11.4844C10.9108 11.0129 10.5883 10.7341 10.0289 10.6905ZM17.2173 8.87705C16.6283 8.87182 16.2239 9.28924 16.223 9.90272C16.223 10.4988 16.6439 10.9389 17.213 10.9389C17.782 10.9389 18.1785 10.4927 18.1716 9.88007C18.1646 9.26745 17.8056 8.88315 17.2173 8.87705ZM22.1845 18.1674C20.4887 20.5203 17.057 20.3294 15.6 17.8101C15.5912 17.7985 15.5845 17.7856 15.5799 17.7718C15.3237 16.7949 14.6701 16.5866 13.7299 16.6711C12.7216 16.7583 11.6986 16.7243 10.6842 16.6781C10.1709 16.6546 9.89991 16.8184 9.7143 17.2881C9.4442 17.9833 8.98249 18.5876 8.38275 19.031C7.11132 19.9896 5.32227 20.0767 4.00205 19.2628C3.32476 18.8324 2.78723 18.2143 2.45489 17.4839C2.12255 16.7534 2.00974 15.9421 2.13021 15.1488C2.45206 13.1915 2.7559 11.2314 3.04173 9.26832C3.23432 7.9542 3.86524 6.99214 5.08524 6.39956C6.38716 5.7669 7.76839 5.50721 9.18882 5.37476C10.2999 5.27106 11.4145 5.23446 12.6214 5.20831C14.6004 5.285 16.677 5.28848 18.6866 5.89674C19.3542 6.09267 19.987 6.39201 20.5619 6.78386C21.3706 7.3442 21.8142 8.13981 21.9649 9.09491C22.249 10.8822 22.4878 12.6765 22.7928 14.4603C23.0193 15.7779 22.9984 17.0389 22.1845 18.1674ZM21.3619 15.4084C21.1004 13.5732 20.8198 11.7414 20.5541 9.90708C20.3345 8.38643 19.7393 7.70846 18.2369 7.37557C16.5242 6.99737 14.7777 6.793 13.024 6.76556C10.8332 6.71983 8.64514 6.9461 6.51004 7.43918C5.37717 7.70061 4.70355 8.46747 4.53798 9.59162C4.25651 11.4966 3.97939 13.4024 3.67526 15.303C3.59775 15.7313 3.61982 16.1717 3.73975 16.5901C4.24867 18.2955 6.44119 18.8454 7.70564 17.5957C8.15443 17.1522 8.39756 16.5918 8.62675 16.035C8.90822 15.3474 9.40407 15.1165 10.096 15.1287C10.9082 15.1427 11.7212 15.1287 12.536 15.1287C13.3778 15.1287 14.2196 15.1287 15.0632 15.1287C15.6688 15.1287 16.1272 15.3283 16.3468 15.9505C16.4609 16.2755 16.6431 16.5788 16.8034 16.8864C17.2295 17.7021 17.8822 18.2084 18.8182 18.2676C20.4416 18.3704 21.5902 17.0206 21.3636 15.4084H21.3619Z" fill="#303030" />
                             </svg>
-
                             <h1 id="text" class="font-medium my-auto hidden text-left">Inventory</h1>
                         </div>
                     </button>
@@ -312,8 +314,11 @@ if (Location::in(1, 'user')) {
         // svg = document.querySelectorAll('#svg'),
         bungkus = document.querySelectorAll('#bungkus'),
         sidebarToggle = document.getElementById('sidebarToggle');
-
-
+    const backdrop = document.getElementById('backdrop');
+    const span1 = document.getElementById('span1');
+    const span2 = document.getElementById('span2');
+    const span3 = document.getElementById('span3');
+    const putar = document.getElementById('putar');
 
     sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('active');
@@ -323,6 +328,12 @@ if (Location::in(1, 'user')) {
         // svg.forEach((item) => {
         //     item.classList.toggle('svg-active');
         // });
+
+        putar.classList.toggle('putar-active');
+        span1.classList.toggle('span1-active');
+        span2.classList.toggle('span2-active');
+        span3.classList.toggle('span3-active');
+
 
         bungkus.forEach((item) => {
             item.classList.toggle('bungkus-active');
@@ -334,7 +345,16 @@ if (Location::in(1, 'user')) {
         // }, 100);
         flexing.classList.toggle('flexing-active');
         gambar.classList.toggle('gambar-active');
+
+        backdrop.classList.toggle('hidden')
     })
+
+    backdrop.addEventListener('click', () => {
+        sidebarToggle.click();
+    });
+
+
+
     <?php if (Location::in(1, 'dashboard')) { ?>
         if (res !== "Bojonegoro") {
             servis_list.classList.add('hidden');

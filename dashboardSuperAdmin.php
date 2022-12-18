@@ -213,27 +213,6 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
             loader.classList.add("hidden");
         });
 
-        const logout = document.getElementById('logout');
-
-        logout.addEventListener('click', function() {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Anda akan keluar dari akun ini",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Keluar!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'logout.php';
-                }
-            })
-        });
-
-
-
-
         // ambil dari alertLogout.php
     </script>
 

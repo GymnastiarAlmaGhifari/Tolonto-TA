@@ -26,7 +26,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
 
 
 <div class="container">
-    <div class=" w-screen h-[60px] fixed z-30 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
+    <div class=" w-screen h-[60px] fixed z-20 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
 
         <h1 id="tempat" class="font-noto-sans text-lg text-neutral_900 ml-[20px] xs:ml-[48px]  font-semibold">
             <?php echo $text; ?>
@@ -116,6 +116,23 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
     const tempat = document.getElementById('tempat');
     const lokas = document.getElementById('lokas');
     const lokasi_drop = document.getElementById('lokasi-drop');
+    const logout = document.getElementById('logout');
+
+    logout.addEventListener('click', function() {
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Anda akan keluar dari akun ini",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Keluar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'logout.php';
+            }
+        })
+    });
 
 
 

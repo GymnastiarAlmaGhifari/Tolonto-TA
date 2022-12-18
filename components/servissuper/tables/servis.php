@@ -76,26 +76,19 @@
                                 <td class=" text-center">10.00 - 12.00</td>
                                 <td class="text-center">Rp.8000</td>
                                 <td class=" text-center">
-                                    <div class="dropdown dropdown-hover dropdown-right dropdown-end">
-                                        <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
-                                            <i class="fa-solid fa-ellipsis"></i>
-                                        </label>
-                                        <ul tabindex="0" class="dropdown-content -mb-1  shadow-elevation-light-4 bg-neutral_050 rounded-lg w-12 text-neutral_050">
-                                            <li class="cursor-pointer active:bg-primary_500 active:text-neutral_900 hover:bg-neutral_500 rounded-sm h-8 font-noto-sans text-base">
-                                                <button>
-                                                    <svg class="mx-auto my-1.5" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="#303030" />
-                                                    </svg>
-                                                </button>
-                                            </li>
-                                            <li class="cursor-pointer active:bg-primary_500 active:text-neutral_900  hover:bg-neutral_500 rounded-sm h-8 font-noto-sans text-base">
-                                                <button>
-                                                    <svg class="mx-auto my-1.5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
-                                                    </svg>
-                                                </button>
-                                            </li>
-                                        </ul>
+                                    <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
+                                        <button id="editAdmin" name="editAdmin" type="submit" value="<?php ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
+                                            <svg class="mx-auto" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9 7H11V5H9M10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM10 0C8.68678 0 7.38642 0.258658 6.17317 0.761205C4.95991 1.26375 3.85752 2.00035 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C3.85752 17.9997 4.95991 18.7362 6.17317 19.2388C7.38642 19.7413 8.68678 20 10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 8.68678 19.7413 7.38642 19.2388 6.17317C18.7362 4.95991 17.9997 3.85752 17.0711 2.92893C16.1425 2.00035 15.0401 1.26375 13.8268 0.761205C12.6136 0.258658 11.3132 0 10 0ZM9 15H11V9H9V15Z" fill="#303030" />
+                                            </svg>
+                                            <input type="hidden" name="inputpost">
+                                        </button>
+                                        <span class="w-0.5 h-6 bg-neutral_900"></span>
+                                        <button id="editServis" value="<?php  ?>" class="hover:bg-neutral_900/20 w-[35px] h-[28px] rounded-3xl">
+                                            <svg class="mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M2 0C0.89 0 0 0.89 0 2V16C0 16.5304 0.210714 17.0391 0.585786 17.4142C0.960859 17.7893 1.46957 18 2 18H16C16.5304 18 17.0391 17.7893 17.4142 17.4142C17.7893 17.0391 18 16.5304 18 16V9H16V16H2V2H9V0H2ZM14.78 1C14.61 1 14.43 1.07 14.3 1.2L13.08 2.41L15.58 4.91L16.8 3.7C17.06 3.44 17.06 3 16.8 2.75L15.25 1.2C15.12 1.07 14.95 1 14.78 1ZM12.37 3.12L5 10.5V13H7.5L14.87 5.62L12.37 3.12Z" fill="#303030" />
+                                            </svg>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>

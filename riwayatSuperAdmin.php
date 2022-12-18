@@ -9,6 +9,9 @@ $rent = $riwayat->h_rental($_SESSION['loksend']);
 $jumlah_rent = $riwayat->jumlah_rent($_SESSION['loksend']);
 $sewa = $riwayat->h_sewa($_SESSION['loksend']);
 $jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
+$topup = $riwayat->h_topup();
+$jumlah_topup = $riwayat->jumlah_topup();
+
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +44,7 @@ $jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
             <?php
             require_once 'components/riwayatsuper/tables/rental.php';
             require_once 'components/riwayatsuper/tables/sewa.php';
-            require_once 'components/riwayatsuper/tables/aktif.php';
+            require_once 'components/riwayatsuper/tables/topup.php';
             ?>
         </div>
     </main>

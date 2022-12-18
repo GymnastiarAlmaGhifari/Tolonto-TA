@@ -37,4 +37,20 @@ class ControllerRiwayat extends Database
         if ($jumlah != 0) return $jumlah;
             else return "0";
     }
+
+    public function h_topup() 
+    {
+        $sql = "SELECT user.username, user.img, user.email, topup.id_topup, topup.waktu, topup.jml_topup, manage.username AS admin 
+        FROM `topup` JOIN user ON topup.id_user = user.user_id JOIN manage ON topup.id_admin = manage.id_admin ;";
+        $data = $this->uniquery($sql);
+        return $data;
+    }
+
+    public function jumlah_topup()
+    {
+        $data = $this->countsemua('id_topup', 'topup');
+        $jumlah=$data['COUNT(id_topup)'];
+        if ($jumlah != 0) return $jumlah;
+            else return "0";
+    }
 }

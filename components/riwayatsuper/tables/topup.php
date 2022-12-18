@@ -5,8 +5,8 @@
             <div class="flex flex-wrap flex-col ">
                 <div class=" flex flex-row justify-between items-center -mb-3">
                     <div class="flex gap-4">
-                        <h1 class="capitalize font-semibold">Sewa Aktif</h1>
-                        <h2>6</h2>
+                        <h1 class="capitalize font-semibold">Topup</h1>
+                        <h2><?php echo $jumlah_topup ?></h2>
                     </div>
                     <span id="open3" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                         <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
@@ -26,13 +26,13 @@
                                 </th>
                                 <th scope="col" class="text-left  ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class=" uppercase">nama ps</h1>
+                                        <h1 class=" uppercase">Email User</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left  ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">play time</h1>
+                                        <h1 class="uppercase">Nominal</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
@@ -44,7 +44,7 @@
                                 </th>
                                 <th scope="col" class="text-left ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">total</h1>
+                                        <h1 class="uppercase">Admin</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
@@ -58,23 +58,29 @@
                         </thead>
                         <tbody class="overflow-y-hidden">
                             <!-- list 1 start -->
+                            <?php
+                            $rows = 0;
+                            if (empty($topup)) {
+                                echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                            } else {
+                                while ($rows < count($topup)) { ?>
                             <tr class="">
                                 <td class="flex flex-row gap-x-3 pb-5">
                                     <div class="form-control ">
-                                        <h1 class="font-semibold font-noto-sans text-xl my-auto">1</h1>
+                                        <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                     </div>
                                     <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                        <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" alt="" class="rounded-full w-full h-full object-cover">
+                                        <img src="<?php echo $topup[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
                                     </div>
                                     <div class="flex flex-col gap-y-1 ml-2">
-                                        <h1 class="font-semibold">john</h1>
-                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                        <h1 class="font-semibold"><?php echo $topup[$rows]['username'] ?></h1>
+                                        <h2 class="text-neutral_400 text-xs"><?php echo $topup[$rows]['id_topup'] ?></h2>
                                     </div>
                                 </td>
-                                <td class="text-center">PS No.1</td>
-                                <td class="text-center">2 Jam</td>
-                                <td class=" text-center">10.00 - 12.00</td>
-                                <td class="text-center">Rp.8000</td>
+                                <td class="text-center"><?php echo $topup[$rows]['email'] ?></td>
+                                <td class="text-center">Rp. <?php echo $topup[$rows]['jml_topup'] ?></td>
+                                <td class=" text-center"><?php echo $topup[$rows]['waktu'] ?></td>
+                                <td class="text-center"><?php echo $topup[$rows]['admin'] ?></td>
                                 <td class=" text-center">
                                     <div class="dropdown dropdown-hover dropdown-right dropdown-end">
                                         <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
@@ -99,6 +105,9 @@
                                     </div>
                                 </td>
                             </tr>
+                            <?php $rows++;
+                                }
+                            } ?>
                             <!-- list 1 end -->
                         </tbody>
                     </table>

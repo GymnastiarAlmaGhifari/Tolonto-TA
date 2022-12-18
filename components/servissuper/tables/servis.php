@@ -5,8 +5,8 @@
             <div class="flex flex-wrap flex-col ">
                 <div class=" flex flex-row justify-between items-center -mb-3">
                     <div class="flex gap-4">
-                        <h1 class="capitalize font-semibold">Sewa</h1>
-                        <h2>6</h2>
+                        <h1 class="capitalize font-semibold">Service</h1>
+                        <h2><?php echo $jumlah_servis ?></h2>
                     </div>
                     <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                         <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
@@ -26,25 +26,31 @@
                                 </th>
                                 <th scope="col" class="text-left  ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class=" uppercase">nama ps</h1>
+                                        <h1 class=" uppercase">nama barang</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left  ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">play time</h1>
+                                        <h1 class="uppercase">kerusakan</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left  ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">waktu</h1>
+                                        <h1 class="uppercase">waktu service</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">total</h1>
+                                        <h1 class="uppercase">status</h1>
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </button>
+                                </th>
+                                <th scope="col" class="text-left ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                        <h1 class="uppercase">Est. Jadi</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
@@ -58,23 +64,30 @@
                         </thead>
                         <tbody class="overflow-y-hidden">
                             <!-- list 1 start -->
+                            <?php
+                            $rows = 0;
+                            if (empty($service)) {
+                                echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                            } else {
+                                while ($rows < count($service)) { ?>
                             <tr class="">
                                 <td class="flex flex-row gap-x-3 pb-5">
                                     <div class="form-control ">
-                                        <h1 class="font-semibold font-noto-sans text-xl my-auto">1</h1>
+                                        <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                     </div>
                                     <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                        <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" alt="" class="rounded-full w-full h-full object-cover">
+                                        <img src="<?php echo $service[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
                                     </div>
                                     <div class="flex flex-col gap-y-1 ml-2">
-                                        <h1 class="font-semibold">john</h1>
-                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                        <h1 class="font-semibold"><?php echo $service[$rows]['username'] ?></h1>
+                                        <h2 class="text-neutral_400 text-xs"><?php echo $service[$rows]['id_servis'] ?></h2>
                                     </div>
                                 </td>
-                                <td class="text-center">PS No.1</td>
-                                <td class="text-center">2 Jam</td>
-                                <td class=" text-center">10.00 - 12.00</td>
-                                <td class="text-center">Rp.8000</td>
+                                <td class="text-center"><?php echo $service[$rows]['nama_barang'] ?></td>
+                                <td class="text-center"><?php echo $service[$rows]['kerusakan'] ?></td>
+                                <td class=" text-center"><?php echo $service[$rows]['waktu_submit'] ?></td>
+                                <td class="text-center"><?php echo $service[$rows]['status'] ?></td>
+                                <td class="text-center"><?php echo $service[$rows]['est_selesai'] ?></td>
                                 <td class=" text-center">
                                     <div class="dropdown dropdown-hover dropdown-right dropdown-end">
                                         <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
@@ -99,6 +112,9 @@
                                     </div>
                                 </td>
                             </tr>
+                            <?php $rows++;
+                                }
+                            } ?>
                             <!-- list 1 end -->
                         </tbody>
                     </table>

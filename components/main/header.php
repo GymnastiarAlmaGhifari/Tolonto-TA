@@ -16,6 +16,8 @@ if (Location::in(1, "dashboardSuperAdmin")) {
     $text = "Riwayat Super Admin";
 } elseif (Location::in(1, 'userSuperAdmin')) {
     $text = "User Super Admin";
+} elseif (Location::in(1, 'profile')) {
+    $text = "Profile";
 }
 
 
@@ -87,7 +89,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                         <img src="<?php echo $user_data['img']; ?>" alt="" class="rounded-full w-[48px] h-[48px]">
                     </label>
                     <ul tabindex="0" class="dropdown-content p-2  cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-32 text-neutral_050 -right-5 mt-1">
-                        <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
+                        <li id="profile" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
                             <i class="fa-regular fa-user mr-1"></i>
                             <a>Profile </a>
                         </li>
@@ -117,6 +119,12 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
     const lokas = document.getElementById('lokas');
     const lokasi_drop = document.getElementById('lokasi-drop');
     const logout = document.getElementById('logout');
+    const profile = document.getElementById('profile');
+
+
+    profile.addEventListener('click', function() {
+        window.location.href = 'profile.php';
+    });
 
     logout.addEventListener('click', function() {
         Swal.fire({

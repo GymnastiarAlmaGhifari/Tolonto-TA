@@ -21,6 +21,8 @@ $jumlah_servis = $servis->jumlah_servis($_SESSION['loksend']);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     <title>Servis SuperAdmin</title>
 </head>
 
@@ -40,14 +42,9 @@ $jumlah_servis = $servis->jumlah_servis($_SESSION['loksend']);
             </form>
             <?php require_once 'components/servissuper/tables/servis.php'; ?>
 
-            <!-- <div class="w-20 h-20 bg-neutral_050">
-                    <button class="btn btn-ghost">
-                        <h1>iawjdiajdoaiijoaijdawoj</h1>
-                    </button>
-                </div> -->
-
-        </div>
     </main>
+
+
     <script>
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {

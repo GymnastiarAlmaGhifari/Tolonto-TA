@@ -80,7 +80,7 @@
     const id_rental_edit = document.getElementById('id-rental-edit');
     const nama_rental_edit = document.getElementById('nama-ps-rental-edit');
     const harga_rental_edit = document.getElementById('harga-ps-rental-edit');
-    
+
 
 
     const openModalRentalEdit = (value) => {
@@ -111,26 +111,27 @@
             const id = editRental.value
 
             var xhr = new XMLHttpRequest();
-             // path getuser.php in main dir
-             var url = "..\\..\\..\\getps.php";
-             xhr.open("POST", url, true);
-             xhr.setRequestHeader("Content-Type", "application/json");
-             xhr.onreadystatechange = function() {
-                 if (xhr.readyState === 4 && xhr.status === 200) {
-                     var json = JSON.parse(xhr.responseText);
-                     console.log(json.status + ", " + json.id_ps + ", " + json.nama_ps + ", " + json.harga_ps +", " + json.kategori + ", " + json.img );
-                     nama_rental_edit.value = json.nama_ps;
-                     harga_rental_edit.value = json.harga_ps;
-                     kategori_ps_rental_edit.value = json.kategori;
-                     prev_rental_edit.src = json.img;
-                     id_rental_edit.value = json.id_ps;
-                 }
-             };
-             var data = JSON.stringify({
-                 "id": id,
-                 "table": "ps"
-             });
-             xhr.send(data);
+            // path getuser.php in main dir
+            var url = "..\\..\\..\\getps.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json.status + ", " + json.id_ps + ", " + json.nama_ps + ", " + json.harga_ps + ", " + json.kategori + ", " + json.img);
+                    nama_rental_edit.value = json.nama_ps;
+                    harga_rental_edit.value = json.harga_ps;
+                    kategori_ps_rental_edit.value = json.kategori;
+                    prev_rental_edit.src = json.img;
+                    id_rental_edit.value = json.id_ps;
+                    harga_rental_edit.value = formatRupiah(this.value, 'Rp. ');
+                }
+            };
+            var data = JSON.stringify({
+                "id": id,
+                "table": "ps"
+            });
+            xhr.send(data);
             console.log(id)
         })
     })
@@ -167,5 +168,29 @@
                 console.log(file_rental);
             }
         }
+    }
+
+    harga_rental_edit.addEventListener("keyup", function(e) {
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+        harga_rental_edit.value = formatRupiah(this.value, "Rp. ");
+    });
+
+    /* Fungsi formatRupiah */
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, "").toString(),
+            split = number_string.split(","),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? "." : "";
+            rupiah += separator + ribuan.join(".");
+        }
+
+        rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+        return prefix == undefined ? rupiah : rupiah ? "Rp " + rupiah : "";
     }
 </script>

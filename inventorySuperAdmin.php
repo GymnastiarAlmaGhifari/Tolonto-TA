@@ -68,7 +68,7 @@ if (isset($_POST['Konfirmasi-rental'])) {
             [
                 'id_ps' => $id_ps,
                 'nama_ps' => $_POST['nama-ps-rental'],
-                'harga' => $_POST['harga-ps-rental'],
+                'harga' => Rupiah::clear($_POST['harga-ps-rental']),
                 'status' => 'tidak aktif',
                 'lok' => $_SESSION['loksend'],
                 'jenis' => $_POST['kategori-ps-rental'],
@@ -80,7 +80,6 @@ if (isset($_POST['Konfirmasi-rental'])) {
         } else {
         }
     } else {
-
     }
 }
 
@@ -104,29 +103,33 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
     $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
 
     if ($terupload) {
+
         echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
         if ($SadminPs->update_psrental(
             [
                 'nama_ps' => $_POST['nama-ps-rental-edit'],
-                'harga' => $_POST['harga-ps-rental-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-rental-edit']),
                 'jenis' => $_POST['kategori-ps-rental-edit'],
                 'img' => $dirUpload . $filename
-            ], $_POST['id-rental-edit']
+            ],
+            $_POST['id-rental-edit']
         )) // jika berhasil refresh page tanpa submit ulang
         {
-             echo "<script>location.href='inventorySuperAdmin.php'</script>";
+            echo "<script>location.href='inventorySuperAdmin.php'</script>";
         } else {
             //error
         }
     } else {
 
         if ($SadminPs->update_psrental(
+            // rubah harga dengan Rupiah::clear
             [
                 'nama_ps' => $_POST['nama-ps-rental-edit'],
-                'harga' => $_POST['harga-ps-rental-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-rental-edit']),
                 'jenis' => $_POST['kategori-ps-rental-edit'],
 
-            ], $_POST['id-rental-edit']
+            ],
+            $_POST['id-rental-edit']
         )) // jika berhasil refresh page tanpa submit ulang
         {
             echo "<script>location.href='inventorySuperAdmin.php'</script>";
@@ -173,7 +176,7 @@ if (isset($_POST['Konfirmasi-sewa'])) {
             [
                 'id_ps' => $id_ps,
                 'nama_ps' => $_POST['nama-ps-sewa'],
-                'harga' => $_POST['harga-ps-sewa'],
+                'harga' => Rupiah::clear($_POST['harga-ps-sewa']),
                 'status' => 'tidak aktif',
                 'lok' => $_SESSION['loksend'],
                 'jenis' => $_POST['kategori-ps-sewa'],
@@ -211,13 +214,14 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
         if ($SadminPs->update_pssewa(
             [
                 'nama_ps' => $_POST['nama-ps-sewa-edit'],
-                'harga' => $_POST['harga-ps-sewa-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-sewa-edit']),
                 'jenis' => $_POST['kategori-ps-sewa-edit'],
                 'img' => $dirUpload . $filename
-            ], $_POST['id-sewa-edit']
+            ],
+            $_POST['id-sewa-edit']
         )) // jika berhasil refresh page tanpa submit ulang
         {
-             echo "<script>location.href='inventorySuperAdmin.php'</script>";
+            echo "<script>location.href='inventorySuperAdmin.php'</script>";
         } else {
             //error
         }
@@ -226,10 +230,11 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
         if ($SadminPs->update_pssewa(
             [
                 'nama_ps' => $_POST['nama-ps-sewa-edit'],
-                'harga' => $_POST['harga-ps-sewa-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-sewa-edit']),
                 'jenis' => $_POST['kategori-ps-sewa-edit'],
 
-            ], $_POST['id-sewa-edit']
+            ],
+            $_POST['id-sewa-edit']
         )) // jika berhasil refresh page tanpa submit ulang
         {
             echo "<script>location.href='inventorySuperAdmin.php'</script>";

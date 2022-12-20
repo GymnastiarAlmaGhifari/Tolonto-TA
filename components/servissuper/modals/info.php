@@ -44,9 +44,7 @@
                     </a>
                 </div>
             </form>
-
         </div>
-
     </div>
 </section>
 <!-- modal_info tambah end -->

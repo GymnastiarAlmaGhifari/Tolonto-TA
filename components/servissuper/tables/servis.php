@@ -25,31 +25,31 @@
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
                                         <h1 class=" uppercase">nama barang</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
                                         <h1 class="uppercase">kerusakan</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
                                         <h1 class="uppercase">waktu service</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
                                         <h1 class="uppercase">status</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
                                         <h1 class="uppercase">Est. Jadi</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
@@ -70,6 +70,13 @@
                                 echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
                             } else {
                                 while ($rows < count($service)) { ?>
+                                    <?php
+                                    // set $service[$rows]['waktu_service'] format date to $valid_date = date( 'm/d/y g:i A', strtotime($date));
+
+                                    // set $service[$rows]['est_jadi'] format date to $valid_date = date( 'm/d/y g:i A', strtotime($date));
+
+
+                                    ?>
                                     <tr class="">
                                         <td class="flex flex-row gap-x-3 pb-5">
                                             <div class="form-control ">
@@ -85,7 +92,11 @@
                                         </td>
                                         <td class="text-center"><?php echo $service[$rows]['nama_barang'] ?></td>
                                         <td class="text-center"><?php echo $service[$rows]['kerusakan'] ?></td>
-                                        <td class=" text-center"><?php echo $service[$rows]['waktu_submit'] ?></td>
+                                        <td id="waktu_submit" class=" text-center"><?php $date = $service[$rows]['waktu_submit'];
+                                                                                    $valid_date = date('H:i:s m/d/y', strtotime($date));
+                                                                                    echo $valid_date;
+
+                                                                                    ?></td>
                                         <td class="text-center"><?php echo $service[$rows]['status'] ?></td>
                                         <td class="text-center"><?php echo $service[$rows]['est_selesai'] ?></td>
                                         <td class=" text-center">
@@ -124,6 +135,11 @@
     const table = document.getElementById('table');
     const garis = document.getElementById('garis');
     const plus = document.getElementById('plus');
+    const waktu_submit = document.querySelectorAll('#waktu_submit');
+
+    waktu_submit.forEach((waktu) => {
+        waktu.innerHTML = waktu.innerHTML.replace(' ', ' - ');
+    });
 
 
     const openTable = () => {
@@ -211,3 +227,4 @@
     // });
 </script>
 <?php require_once 'components/servissuper/modals/info.php'; ?>
+<?php require_once 'components/servissuper/modals/edit.php'; ?>

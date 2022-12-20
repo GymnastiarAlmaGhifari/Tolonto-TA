@@ -87,21 +87,4 @@ input:valid ~ .sticker2 {
   @apply mt-7 transform transition-all duration-500 origin-center overflow-hidden -rotate-180;
 }
 
-/* animation modal top to bbottom */
-
-/* animation gambar-active  */
-
-/* input[type="checkbox"]:checked ~ .check {
-  @apply bg-neutral_050 shadow-elevation-dark-4;
-}
-input[type="checkbox"]:checked ~ .check::before {
-  @apply transform translate-x-[50px];
-}
-input[type="checkbox"]:checked ~ .check::after {
-  @apply transform translate-x-[0px];
-} */
-
-/* input[type="text"]: ~ .valid {
-  @apply opacity-100;
-} */
-/* input notfocus */ ;
+/* animation wave  0% left 100% rigy*/

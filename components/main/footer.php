@@ -1,3 +1,140 @@
+<script>
+    const MONTH_NAMES = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    const DAYS = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+
+    function app() {
+        return {
+            showDatepicker: false,
+            datepickerValue: '',
+            month: '',
+            year: '',
+            no_of_days: [],
+            blankdays: [],
+            days: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
+
+            initDate() {
+                let today = new Date();
+                this.day = today.getDate();
+                this.month = today.getMonth();
+                this.year = today.getFullYear();
+                this.dateFormat = today.toDateString();
+                this.datepickerValue = new Date(this.year, this.month, this.day).toDateString();
+                // this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
+            },
+            isToday(date) {
+                const today = new Date();
+                const d = new Date(this.year, this.month, date);
+
+                return today.toDateString() === d.toDateString() ? true : false;
+            },
+            getDateValue(date) {
+                let selectedDate = new Date(this.year, this.month, date);
+                this.datepickerValue = selectedDate.toDateString();
+                // this.$refs.date.value = selectedDate.getFullYear() + "-" + ('0' + selectedDate.getMonth()).slice(-2) + "-" + ('0' + selectedDate.getDate()).slice(-2);
+                // add one day
+                console.log(this.$refs.date.value);
+                this.showDatepicker = false;
+            },
+
+            getNoOfDays() {
+                let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
+
+                // find where to start calendar day of week
+                let dayOfWeek = new Date(this.year, this.month).getDay();
+                let blankdaysArray = [];
+                for (var i = 1; i <= dayOfWeek; i++) {
+                    blankdaysArray.push(i);
+                }
+                let daysArray = [];
+                for (var i = 1; i <= daysInMonth; i++) {
+                    // disabled previous today
+                    daysArray.push(i);
+                }
+                this.blankdays = blankdaysArray;
+                this.no_of_days = daysArray;
+            },
+            isPastDay(date) {
+                let today = new Date();
+                let d = new Date(this.year, this.month, date);
+                if (d < today - 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            // previous today disabled
+
+
+
+            // isPrevMonthDisabled() {
+            //     let today = new Date();
+            //     if (this.month == today.getMonth() && this.year == today.getFullYear()) {
+            //         return true;
+            //     } else {
+            //         return false;
+            //     }
+            // }
+        }
+    }
+</script>
+<div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
+    <div class="container mx-auto px-4 py-2 md:py-10">
+        <div class="mb-5 w-64">
+            <label for="datepicker" class="font-bold mb-1 text-neutral_700 block">Select Date</label>
+            <div class="relative">
+                <input type="hidden" name="date" x-ref="date">
+                <input type="text" readonly x-model="datepickerValue" @click="showDatepicker = !showDatepicker" @keydown.escape="showDatepicker = false" class="w-full pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-neutral_600 font-medium" placeholder="Select date">
+
+                <div class="absolute top-0 right-0 px-3 py-2">
+                    <svg class="h-6 w-6 text-neutral_400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <div class="bg-neutral_050 mt-12 rounded-lg shadow p-4 absolute top-0 left-0" style="width: 17rem" x-show.transition="showDatepicker" @click.away="showDatepicker = false">
+                    <div class="flex justify-between items-center mb-2">
+                        <div>
+                            <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-neutral_800"></span>
+                            <span x-text="year" class="ml-1 text-lg text-neutral_600 font-normal"></span>
+                        </div>
+                        <div>
+                            <button type="button" class="transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-teriary_200 p-1 rounded-full" :disabled="isToday && month == new Date().getMonth()" @click="if (month == 0) { month = 11; year--;} else {month--;} getNoOfDays()">
+                                <svg class="h-6 w-6 text-neutral_500 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button type="button" class="transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-teriary_200 p-1 rounded-full" @click="if (month == 11) { month = 0; year++;} else {month++;} getNoOfDays()">
+                                <svg class="h-6 w-6 text-neutral_500 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap mb-3 -mx-1">
+                        <template x-for="(day, index) in DAYS" :key="index">
+                            <div style="width: 14.26%" class="px-1">
+                                <div x-text="day" class="text-neutral_800 font-medium text-center text-xs">
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="flex flex-wrap -mx-1">
+                        <template x-for="blankday in blankdays">
+                            <div style="width: 14.28%" class="text-center border p-1 border-transparent text-sm"></div>
+                        </template>
+                        <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
+                            <div style="width: 14.28%" class="px-1 mb-1">
+                                <div @click="getDateValue(date)" x-text="date" class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition ease-in-out duration-100" :class="{
+                                                'cursor-not-allowed hidden': isPastDay(date) == true,
+                                                
+                                            }"></div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- <h2 class="judul">Halaman Admin</h2>
 
 <?php foreach ($users as $_user) : ?>
@@ -84,517 +221,517 @@ ml-5 2xl:ml-[26px] xl:ml-[26px] lg:ml-[26px] md:ml-[26px] sm:ml-[26px] mt-[28px]
 </div> -->
 
 <section id="table-user2" class="mt-12 text-neutral_050  ml-16">
-                <div class="container px-6  max-w-full xl:w-11/12 2xl:max-w-full md:w-11/12">
-                    <div id="atas2" class="relative h-[450px] bg-neutral_800 rounded-xl px-8 duration-300 ease-in-out">
-                        <div class="flex flex-wrap flex-col ">
-                            <div class=" flex flex-row justify-between items-center h-[77px] -mb-3">
-                                <div class="flex gap-4">
-                                    <h1 class="capitalize font-semibold">history rental</h1>
-                                    <h2>6</h2>
-                                </div>
-                                <span id="open2" onclick="openTable2()" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
-                                    <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
-                                    <span id="plus2" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
-                                </span>
-                            </div>
-                            <span id="garis2" class="w-full mx-auto -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
-                            <div class="absolute w-full mt-12" id="table2">
-                                <table class="w-full mt-12 table-auto">
-                                    <thead>
-                                        <tr class="font-semibold ">
-                                            <td class="py-2  relative">
-                                                <div class="flex flex-row gap-x-3 items-center">
-                                                    <i class="fa-solid fa-magnifying-glass  mt-1"></i>
-                                                    <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
-                                                    <label for="search" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
-                                                </div>
-                                            </td>
-                                            <td class="py-2 ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
-                                                    <h1 class=" uppercase">nama ps</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="py-2 ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">play time</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="py-2 ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">waktu</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="py-2">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">total</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="py-2 ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="capitalize font-normal">option</h1>
-                                                    <i class="fa-solid fa-caret-down"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="overflow-y-scroll w-full" style="height: 50vh;">
-                                        <!-- list 1 start -->
-                                        <tr class="">
-                                            <td class="flex flex-row gap-x-3 pb-5">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 1 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+    <div class="container px-6  max-w-full xl:w-11/12 2xl:max-w-full md:w-11/12">
+        <div id="atas2" class="relative h-[450px] bg-neutral_800 rounded-xl px-8 duration-300 ease-in-out">
+            <div class="flex flex-wrap flex-col ">
+                <div class=" flex flex-row justify-between items-center h-[77px] -mb-3">
+                    <div class="flex gap-4">
+                        <h1 class="capitalize font-semibold">history rental</h1>
+                        <h2>6</h2>
                     </div>
+                    <span id="open2" onclick="openTable2()" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                        <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
+                        <span id="plus2" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
+                    </span>
                 </div>
-            </section>
+                <span id="garis2" class="w-full mx-auto -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
+                <div class="absolute w-full mt-12" id="table2">
+                    <table class="w-full mt-12 table-auto">
+                        <thead>
+                            <tr class="font-semibold ">
+                                <td class="py-2  relative">
+                                    <div class="flex flex-row gap-x-3 items-center">
+                                        <i class="fa-solid fa-magnifying-glass  mt-1"></i>
+                                        <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
+                                        <label for="search" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
+                                    </div>
+                                </td>
+                                <td class="py-2 ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
+                                        <h1 class=" uppercase">nama ps</h1>
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </button>
+                                </td>
+                                <td class="py-2 ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                        <h1 class="uppercase">play time</h1>
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </button>
+                                </td>
+                                <td class="py-2 ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                        <h1 class="uppercase">waktu</h1>
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </button>
+                                </td>
+                                <td class="py-2">
+                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                        <h1 class="uppercase">total</h1>
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </button>
+                                </td>
+                                <td class="py-2 ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                                        <h1 class="capitalize font-normal">option</h1>
+                                        <i class="fa-solid fa-caret-down"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody class="overflow-y-scroll w-full" style="height: 50vh;">
+                            <!-- list 1 start -->
+                            <tr class="">
+                                <td class="flex flex-row gap-x-3 pb-5">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 1 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                            <!-- list 2 start -->
+                            <tr>
+                                <td class="flex flex-row gap-x-3">
+                                    <div class="form-control -ml-2">
+                                        <label class="label cursor-pointer">
+                                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                                        </label>
+                                    </div>
+                                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                                    <div class="flex flex-col gap-y-1">
+                                        <h1 class="font-semibold">john</h1>
+                                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                                    </div>
+                                </td>
+                                <td class="text-center">PS No.1</td>
+                                <td class="text-center">2 Jam</td>
+                                <td class=" text-center">10.00 - 12.00</td>
+                                <td class="text-center">Rp.8000</td>
+                                <td class=" text-center">
+                                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- list 2 end -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
-            <div class="" id="table">
-                                <table class="w-full table-auto">
-                                    <thead>
-                                        <tr class="font-semibold ">
-                                            <td class="py-2  relative">
-                                                <div class="flex flex-row gap-x-3 items-center">
-                                                    <i class="fa-solid fa-magnifying-glass  mt-1"></i>
-                                                    <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
-                                                    <label for="search" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
-                                                </div>
-                                            </td>
-                                            <td class="py-2 ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
-                                                    <h1 class=" uppercase">nama ps</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="py-2 ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">play time</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="py-2 ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">waktu</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="py-2">
-                                                <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="uppercase">total</h1>
-                                                    <i class="fa-solid fa-angle-up"></i>
-                                                </button>
-                                            </td>
-                                            <td class="py-2 ">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
-                                                    <h1 class="capitalize font-normal">option</h1>
-                                                    <i class="fa-solid fa-caret-down"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- list 1 start -->
-                                        <tr class="">
-                                            <td class="flex flex-row gap-x-3 pb-5">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 1 end -->
-                                        <!-- list 2 start -->
-                                        <tr>
-                                            <td class="flex flex-row gap-x-3">
-                                                <div class="form-control -ml-2">
-                                                    <label class="label cursor-pointer">
-                                                        <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
-                                                    </label>
-                                                </div>
-                                                <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
-                                                <div class="flex flex-col gap-y-1">
-                                                    <h1 class="font-semibold">john</h1>
-                                                    <h2 class="text-neutral_400 text-xs">rent-001</h2>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">PS No.1</td>
-                                            <td class="text-center">2 Jam</td>
-                                            <td class=" text-center">10.00 - 12.00</td>
-                                            <td class="text-center">Rp.8000</td>
-                                            <td class=" text-center">
-                                                <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- list 2 end -->
-                                    </tbody>
-                                </table>
-                            </div>
+<div class="" id="table">
+    <table class="w-full table-auto">
+        <thead>
+            <tr class="font-semibold ">
+                <td class="py-2  relative">
+                    <div class="flex flex-row gap-x-3 items-center">
+                        <i class="fa-solid fa-magnifying-glass  mt-1"></i>
+                        <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none focus:border-neutral_700 peer" placeholder=" " required>
+                        <label for="search" id="placeholderSearch" class=" absolute ml-7 peer-focus:hidden peer-valid:hidden text-neutral_300 text-base">search</label>
+                    </div>
+                </td>
+                <td class="py-2 ">
+                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100">
+                        <h1 class=" uppercase">nama ps</h1>
+                        <i class="fa-solid fa-angle-up"></i>
+                    </button>
+                </td>
+                <td class="py-2 ">
+                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                        <h1 class="uppercase">play time</h1>
+                        <i class="fa-solid fa-angle-up"></i>
+                    </button>
+                </td>
+                <td class="py-2 ">
+                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                        <h1 class="uppercase">waktu</h1>
+                        <i class="fa-solid fa-angle-up"></i>
+                    </button>
+                </td>
+                <td class="py-2">
+                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                        <h1 class="uppercase">total</h1>
+                        <i class="fa-solid fa-angle-up"></i>
+                    </button>
+                </td>
+                <td class="py-2 ">
+                    <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 ">
+                        <h1 class="capitalize font-normal">option</h1>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- list 1 start -->
+            <tr class="">
+                <td class="flex flex-row gap-x-3 pb-5">
+                    <div class="form-control -ml-2">
+                        <label class="label cursor-pointer">
+                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                        </label>
+                    </div>
+                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                    <div class="flex flex-col gap-y-1">
+                        <h1 class="font-semibold">john</h1>
+                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                    </div>
+                </td>
+                <td class="text-center">PS No.1</td>
+                <td class="text-center">2 Jam</td>
+                <td class=" text-center">10.00 - 12.00</td>
+                <td class="text-center">Rp.8000</td>
+                <td class=" text-center">
+                    <button class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                </td>
+            </tr>
+            <!-- list 1 end -->
+            <!-- list 2 start -->
+            <tr>
+                <td class="flex flex-row gap-x-3">
+                    <div class="form-control -ml-2">
+                        <label class="label cursor-pointer">
+                            <input type="checkbox" checked="checked" class="checkbox rounded-full bg-neutral_800 border-2 border-neutral_050" />
+                        </label>
+                    </div>
+                    <img src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" width="42px" height="42px" alt="" class="rounded-full">
+                    <div class="flex flex-col gap-y-1">
+                        <h1 class="font-semibold">john</h1>
+                        <h2 class="text-neutral_400 text-xs">rent-001</h2>
+                    </div>
+                </td>
+                <td class="text-center">PS No.1</td>
+                <td class="text-center">2 Jam</td>
+                <td class=" text-center">10.00 - 12.00</td>
+                <td class="text-center">Rp.8000</td>
+                <td class=" text-center">
+                    <button id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-3.5 px-6 text-neutral_100 ">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                </td>
+            </tr>
+            <!-- list 2 end -->
+        </tbody>
+    </table>
+</div>

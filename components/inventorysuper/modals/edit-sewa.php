@@ -1,4 +1,4 @@
-<!-- modal Rental edit start -->
+<!-- modal sewa edit start -->
 <section>
     <div id="modal_overlay_sewa_edit" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">
         <!-- modal -->
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="flex flex-row gap-11 mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalSewaEdit(false)" name="batal-rental-edit" id="batal-rental-edit" value="batal-rental-edit" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4">
+                    <button type="button" onclick="openModalSewaEdit(false)" name="batal-sewa-edit" id="batal-sewa-edit" value="batal-sewa-edit" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4">
                         Batal
                     </button>
                     <button type="submit" name="Konfirmasi-sewa-edit" id="Konfirmasi-sewa-edit" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl px-4">Konfirmasi</button>
@@ -67,7 +67,7 @@
         </div>
     </div>
 </section>
-<!-- modal_rental edit  end -->
+<!-- modal_sewa edit  end -->
 
 <script>
     const modal_overlay_sewa_edit = document.querySelector('#modal_overlay_sewa_edit');
@@ -123,6 +123,7 @@
                     kategori_ps_sewa_edit.value = json.kategori;
                     prev_sewa_edit.src = json.img;
                     id_sewa_edit.value = json.id_ps;
+                    harga_sewa_edit.value = formatRupiah(this.value, 'Rp. ');
                 }
             };
             var data = JSON.stringify({
@@ -148,22 +149,45 @@
     });
 
     imginp_sewa_edit.onchange = evt => {
-        const [file_rental] = imginp_sewa_edit.files
-        if (file_rental) {
+        const [file_sewa] = imginp_sewa_edit.files
+        if (file_sewa) {
             //if size is more than 2mb alert
-            if (file_rental.size > 2000000) {
+            if (file_sewa.size > 2000000) {
                 alert('ukuran file maksimal 2mb');
                 imginp_sewa_edit.value = '';
                 return false;
-            } else if (file_rental.type != 'image/jpeg' && file_rental.type != 'image/png' && file_rental.type != 'image/jpg') {
+            } else if (file_sewa.type != 'image/jpeg' && file_sewa.type != 'image/png' && file_sewa.type != 'image/jpg') {
                 alert('type file harus .jpg .png .jpeg');
                 imginp_sewa_edit.value = '';
                 return false;
             } else {
-                prev_sewa_edit.src = URL.createObjectURL(file_rental)
+                prev_sewa_edit.src = URL.createObjectURL(file_sewa)
                 //rename file to datetimenow and save to folder
-                console.log(file_rental);
+                console.log(file_sewa);
             }
         }
+    }
+    harga_sewa_edit.addEventListener("keyup", function(e) {
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+        harga_sewa_edit.value = formatRupiah(this.value, "Rp. ");
+    });
+
+    /* Fungsi formatRupiah */
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, "").toString(),
+            split = number_string.split(","),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? "." : "";
+            rupiah += separator + ribuan.join(".");
+        }
+
+        rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+        return prefix == undefined ? rupiah : rupiah ? "Rp " + rupiah : "";
     }
 </script>

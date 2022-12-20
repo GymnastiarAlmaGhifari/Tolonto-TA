@@ -149,7 +149,7 @@ if (isset($_POST['Konfirmasi-topup'])) {
         [
             'id_topup' => $idtopup,
             'id_user' => $iduser['user_id'],
-            'jml_topup' => $_POST['topup'],
+            'jml_topup' => Rupiah::clear($_POST['topup']),
             'waktu' => date('Y-m-d H:i:s'),
             'id_admin' => $user_data['id_admin']
         ]

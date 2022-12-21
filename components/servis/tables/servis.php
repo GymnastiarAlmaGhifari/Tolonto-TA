@@ -226,5 +226,5 @@
     //     });
     // });
 </script>
-<?php require_once 'components/servissuper/modals/info.php'; ?>
-<?php require_once 'components/servissuper/modals/edit.php'; ?>
+<?php require_once 'components/servis/modals/info.php'; ?>
+<?php require_once 'components/servis/modals/edit.php'; ?>

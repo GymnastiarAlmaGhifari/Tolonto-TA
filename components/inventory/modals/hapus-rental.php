@@ -9,7 +9,7 @@
              <h1 class="font-semibold mx-auto text-xl">Apakah Anda Yakin ?</h1>
              <h2 class="mx-auto">Apakah anda benar ingin menghapus ps sewa <span class="font-semibold text-error_600" id="namaPsRental" name="namaPsRental"></span> ?</h2>
              <h2 class="mx-auto text-base font-medium text-error_600 -mt-4"> proses ini tidak bisa dikembalikan</h2>
-             <form action="inventorySuperAdmin.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
+             <form action="inventory.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                  <input type="hidden" name="id-rental-hapus" id="id-rental-hapus" value="">
                  <div class="flex flex-row gap-[42px] mt-2 items-center justify-center w-full">
                      <button type="button" onclick="openModalDeletePsRental(false)" name="Batal-Rental-Ps" id="Batal-Rental-Ps" value="Batal-Rental-Ps" class="bg-neutral_050 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">

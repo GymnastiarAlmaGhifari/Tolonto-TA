@@ -1,5 +1,6 @@
 <?php
-require_once '../core/init.php';
+require_once 'core/init.php';
+$SadminPs = new ControllerSuperadminInventory();
 
 if (!$user->is_login()) {
     Session::flash(
@@ -9,141 +10,295 @@ if (!$user->is_login()) {
     Redirect::to('login');
 }
 
-if (Session::exists('dashboard')) {
-    echo Session::flash('dashboard');
+
+
+$user_data = $user->get_data(Session::get('username'));
+$ju_ps = $SadminPs->jumlah_ps($_SESSION['loksend']);
+$ju_pssewa = $SadminPs->jumlah_pssewa($_SESSION['loksend']);
+$ps = $SadminPs->ps_card($_SESSION['loksend']);
+$ps_sewa = $SadminPs->ps_cardsewa($_SESSION['loksend']);
+
+$errors = array();
+
+if (isset($_POST['Konfirmasi-rental'])) {
+
+    switch ($_SESSION['loksend']) {
+        case 'Bojonegoro':
+            $lok = 'bjn';
+            break;
+        case 'Babat':
+            $lok = 'bbt';
+            break;
+        case 'Tuban':
+            $lok = 'tbn';
+            break;
+    }
+
+    $id_ps = $SadminPs->idps($lok);
+    $namaFile = $_FILES['image-rental']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-rental']['tmp_name'];
+
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps')) {
+        mkdir('img/ps', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = $id_ps . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($SadminPs->add_rental(
+            [
+                'id_ps' => $id_ps,
+                'nama_ps' => $_POST['nama-ps-rental'],
+                'harga' => Rupiah::clear($_POST['harga-ps-rental']),
+                'status' => 'tidak aktif',
+                'lok' => $_SESSION['loksend'],
+                'jenis' => $_POST['kategori-ps-rental'],
+                'img' => $dirUpload . $filename
+            ]
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+        }
+    } else {
+    }
 }
 
-// pengecekan halaman admin
-if (!$user->is_superAdmin(Session::get('username'))) {
-    Session::flash(
-        'dashboard',
-        '<script>alert("Halaman Ini Khusus Admin")</script>'
-    );
-    Redirect::to('dashboard');
-}
-$users = $user->get_users();
-$tersedia = $Sadmin->ps_tersedia();
-$maintain = $Sadmin->ps_maintain();
-$psbook = $Sadmin->ps_book();
-$laba = $Sadmin->laba();
-$ps = $Sadmin->ps_card();
+if (isset($_POST['Konfirmasi-rental-edit'])) {
 
+    $namaFile = $_FILES['image-rental-edit']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-rental-edit']['tmp_name'];
+
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps')) {
+        mkdir('img/ps', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = $_POST['id-rental-edit'] . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($SadminPs->update_psrental(
+            [
+                'nama_ps' => $_POST['nama-ps-rental-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-rental-edit']),
+                'jenis' => $_POST['kategori-ps-rental-edit'],
+                'img' => $dirUpload . $filename
+            ],
+            $_POST['id-rental-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+            //error
+        }
+    } else {
+
+        if ($SadminPs->update_psrental(
+            // rubah harga dengan Rupiah::clear
+            [
+                'nama_ps' => $_POST['nama-ps-rental-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-rental-edit']),
+                'jenis' => $_POST['kategori-ps-rental-edit'],
+
+            ],
+            $_POST['id-rental-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+            //error
+        }
+    }
+}
+
+if (isset($_POST['Konfirmasi-sewa'])) {
+
+    switch ($_SESSION['loksend']) {
+        case 'Bojonegoro':
+            $lok = 'bjn';
+            break;
+        case 'Babat':
+            $lok = 'bbt';
+            break;
+        case 'Tuban':
+            $lok = 'tbn';
+            break;
+    }
+
+    $id_ps = $SadminPs->idps_sewa($lok);
+    $namaFile = $_FILES['image-sewa']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-sewa']['tmp_name'];
+
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps-sewa')) {
+        mkdir('img/ps-sewa', 0777, true);
+    }
+    $dirUpload = "img/ps-sewa/";
+    // genearete datetimestamp
+    $filename = $id_ps . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        if ($SadminPs->add_sewa(
+            [
+                'id_ps' => $id_ps,
+                'nama_ps' => $_POST['nama-ps-sewa'],
+                'harga' => Rupiah::clear($_POST['harga-ps-sewa']),
+                'status' => 'tidak aktif',
+                'lok' => $_SESSION['loksend'],
+                'jenis' => $_POST['kategori-ps-sewa'],
+                'img' => $dirUpload . $filename
+            ]
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+        }
+    } else {
+    }
+}
+
+if (isset($_POST['Konfirmasi-sewa-edit'])) {
+
+    $namaFile = $_FILES['image-sewa-edit']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-sewa-edit']['tmp_name'];
+
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps-sewa')) {
+        mkdir('img/ps-sewa', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = $_POST['id-sewa-edit'] . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        if ($SadminPs->update_pssewa(
+            [
+                'nama_ps' => $_POST['nama-ps-sewa-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-sewa-edit']),
+                'jenis' => $_POST['kategori-ps-sewa-edit'],
+                'img' => $dirUpload . $filename
+            ],
+            $_POST['id-sewa-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+            //error
+        }
+    } else {
+        echo "gagal";
+        if ($SadminPs->update_pssewa(
+            [
+                'nama_ps' => $_POST['nama-ps-sewa-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-sewa-edit']),
+                'jenis' => $_POST['kategori-ps-sewa-edit'],
+
+            ],
+            $_POST['id-sewa-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+            //error
+        }
+    }
+}
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <script>
+        function tambah() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "components/dialogBoxTambah.php", true);
+            xmlhttp.send();
+        }
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../dist/output.css">
+    <link rel="stylesheet" href="dist/output.css">
     <link rel="stylesheet" href="assets/styles/animation.css">
-    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css" />
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
+    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Inventory</title>
 </head>
 
 <body>
 
-    <main class=" bg-neutral_900 w-full font-noto-sans">
+    <!--loader start  -->
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+        <span class="loader-103"> </span>
+    </div>
+    <!-- loader end -->
+
+    <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
-            <form action="inventorySuperAdmin.php" method="post">
+            <!-- modal insert start -->
+
+            <!-- modal insert end -->
+            <!-- header -->
+            <form action="inventory.php" method="post">
                 <!-- header -->
-                <?php require_once 'components/header.php'; ?>
-
+                <?php require_once 'components/main/header.php'; ?>
                 <!-- sidebar -->
-                <?php require_once 'components/sidebar.php'; ?>
+                <?php require_once 'components/main/sidebar.php'; ?>
 
-                <?php if (isset($_POST['hapusButton'])) {
-                    require_once 'components/alertHapus.php';
-                }
+            </form>
+            <!-- list ps -->
+            <?php require_once 'components/inventory/lists/rental.php' ?>
 
-                if (isset($_POST['editButton'])) {
-                    require_once 'components/dialogBoxEdit.php';
-                }
-                if (isset($_POST['tambahButton'])) {
-                    require_once 'components/dialogBoxTambah.php';
-                }
-                ?>
-                <!-- list control -->
-                <!-- main ditempat -->
-                <section id="main-ditempat" class="mt-24  text-neutral_050 ml-24 flex flex-row gap-8">
-                    <h1 class="capitalize font-semibold">total inventory</h1>
-                    <h2 class="text-neutral_300">6</h2>
-                </section>
-                <!-- list ps -->
-                <section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
-                    <div class="container">
-                        <div class="flex flex-wrap gap-7 flex-row">
-                            <!-- start -->
-                            <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
-                                <div class="flex justify-between mt-2 mx-5">
-                                    <h1>ps 1</h1>
-                                    <div class="flex flex-row gap-2">
-                                        <button id="edit" name="editButton" class="w-[30px] h-[30px] bg-neutral_050  rounded-full relative">
-                                            <svg class="mx-auto my-1.5" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="#303030" />
-                                            </svg>
-                                        </button>
-                                        <button id="hapus" name="hapusButton" class=" w-[30px] h-[30px] bg-neutral_050 rounded-full relative">
-                                            <svg class="mx-auto my-1.5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
-                                            </svg>
-
-                                        </button>
-                                    </div>
-                                </div>
-                                <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
-                                <div class="flex justify-center items-center relative">
-                                    <img class="h-[110px] m-2" src="https://awsimages.detik.net.id/community/media/visual/2017/05/30/05284fac-29fb-448d-a43f-cbade1c0eedb_169.jpg?w=700&q=90" alt="">
-                                </div>
-                                <h1 class="uppercase font-noto-sans font-semibold px-5">ps 3</h1>
-                                <div class="flex flex-row justify-between px-5">
-                                    <div class="flex flex-row items-center gap-x-2">
-                                        <span class="w-3 h-3 rounded-full bg-[#32FC00]"></span>
-                                        <h1>aktif</h1>
-                                    </div>
-                                    <div class="flex flex-row items-center gap-x-2">
-                                        <h1>3 jam</h1>
-                                        <i class="fa-regular fa-clock"></i>
-                                    </div>
-                                </div>
-                                <div class="flex flex-row justify-between px-5">
-                                    <div class="flex flex-row items-center gap-x-2">
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        <h1>Rp. 12000</h1>
-                                    </div>
-                                    <div class="flex flex-row items-center gap-x-2">
-                                        <h1>agim</h1>
-                                        <i class="fas fa-user"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end -->
-                            <div class="w-[350px] h-[250px] bg-transparent rounded-xl  flex items-center justify-center">
-                                <button id="tambah" name="tambahButton" class="flex justify-center items-center h-[150px] w-[150px] shadow-elevation-dark-4 bg-neutral_800 rounded-full ">
-                                    <span class="bg-neutral_050 w-20 h-[4px] rounded-full"></span>
-                                    <span id="plus3" class="bg-neutral_050 w-[4px] h-20 absolute rounded-full"></span>
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-        </div>
-        </section>
-
+            <?php if ($user_data['username'] == Session::get('username') && $user_data['lok'] == 'Bojonegoro') { ?>
+                <?php require_once 'components/inventory/lists/sewa.php' ?>
+            <?php } ?>
 
         </div>
-        </div>
-        </form>
+
     </main>
 
-    <script src="../assets/js/main.js"></script>
+
+    <script src="assets/js/main.js"></script>
     <script>
+        var loader = document.getElementById('loader');
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
+
         const hapus = document.getElementById('hapus');
         const alertHapus = document.getElementById('alertHapus');
 

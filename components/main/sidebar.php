@@ -1,114 +1,6 @@
 <!-- sidebar -->
 <?php
 
-if (Location::in(1, 'dashboardSuperAdmin')) {
-    $active = "bg-primary_600 rounded-2xl";
-    if (isset($_POST['inventory'])) {
-        Redirect::to('inventorySuperAdmin');
-    }
-    if (isset($_POST['booking'])) {
-        Redirect::to('bookingSuperAdmin');
-    }
-    if (isset($_POST['servis'])) {
-        Redirect::to('servisSuperAdmin');
-    }
-    if (isset($_POST['history'])) {
-        Redirect::to('riwayatSuperAdmin');
-    }
-    if (isset($_POST['user'])) {
-        Redirect::to('userSuperAdmin');
-    }
-}
-if (Location::in(1, 'inventorySuperAdmin')) {
-    $active2 = "bg-primary_600 rounded-2xl";
-    if (isset($_POST['dashboard'])) {
-        Redirect::to('dashboardSuperAdmin');
-    }
-    if (isset($_POST['booking'])) {
-        Redirect::to('bookingSuperAdmin');
-    }
-    if (isset($_POST['servis'])) {
-        Redirect::to('servisSuperAdmin');
-    }
-    if (isset($_POST['history'])) {
-        Redirect::to('riwayatSuperAdmin');
-    }
-    if (isset($_POST['user'])) {
-        Redirect::to('userSuperAdmin');
-    }
-}
-if (Location::in(1, 'bookingSuperAdmin')) {
-    $active3 = "bg-primary_600 rounded-2xl";
-    if (isset($_POST['dashboard'])) {
-        Redirect::to('dashboardSuperAdmin');
-    }
-    if (isset($_POST['inventory'])) {
-        Redirect::to('inventorySuperAdmin');
-    }
-    if (isset($_POST['servis'])) {
-        Redirect::to('servisSuperAdmin');
-    }
-    if (isset($_POST['history'])) {
-        Redirect::to('riwayatSuperAdmin');
-    }
-    if (isset($_POST['user'])) {
-        Redirect::to('userSuperAdmin');
-    }
-}
-if (Location::in(1, 'servisSuperAdmin')) {
-    $active4 = "bg-primary_600 rounded-2xl";
-    if (isset($_POST['dashboard'])) {
-        Redirect::to('dashboardSuperAdmin');
-    }
-    if (isset($_POST['inventory'])) {
-        Redirect::to('inventorySuperAdmin');
-    }
-    if (isset($_POST['booking'])) {
-        Redirect::to('bookingSuperAdmin');
-    }
-    if (isset($_POST['history'])) {
-        Redirect::to('riwayatSuperAdmin');
-    }
-    if (isset($_POST['user'])) {
-        Redirect::to('userSuperAdmin');
-    }
-}
-if (Location::in(1, 'riwayatSuperAdmin')) {
-    $active5 = "bg-primary_600 rounded-2xl";
-    if (isset($_POST['dashboard'])) {
-        Redirect::to('dashboardSuperAdmin');
-    }
-    if (isset($_POST['inventory'])) {
-        Redirect::to('inventorySuperAdmin');
-    }
-    if (isset($_POST['booking'])) {
-        Redirect::to('bookingSuperAdmin');
-    }
-    if (isset($_POST['servis'])) {
-        Redirect::to('servisSuperAdmin');
-    }
-    if (isset($_POST['user'])) {
-        Redirect::to('userSuperAdmin');
-    }
-}
-if (Location::in(1, 'userSuperAdmin')) {
-    $active6 = "bg-primary_600 rounded-2xl";
-    if (isset($_POST['dashboard'])) {
-        Redirect::to('dashboardSuperAdmin');
-    }
-    if (isset($_POST['inventory'])) {
-        Redirect::to('inventorySuperAdmin');
-    }
-    if (isset($_POST['booking'])) {
-        Redirect::to('bookingSuperAdmin');
-    }
-    if (isset($_POST['servis'])) {
-        Redirect::to('servisSuperAdmin');
-    }
-    if (isset($_POST['history'])) {
-        Redirect::to('riwayatSuperAdmin');
-    }
-}
 if (Location::in(1, 'dashboard')) {
     $active = "bg-primary_600 rounded-2xl";
     if (isset($_POST['inventory'])) {
@@ -181,7 +73,7 @@ if (Location::in(1, 'servis')) {
         Redirect::to('user');
     }
 }
-if (Location::in(1, 'history')) {
+if (Location::in(1, 'riwayat')) {
     $active5 = "bg-primary_600 rounded-2xl";
     if (isset($_POST['dashboard'])) {
         Redirect::to('dashboard');
@@ -355,7 +247,27 @@ if (Location::in(1, 'user')) {
 
 
 
-    <?php if (Location::in(1, 'dashboard')) { ?>
+    <?php if (Location::in(1, 'dashboard') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        if (res !== "Bojonegoro") {
+            servis_list.classList.add('hidden');
+        }
+    <?php } ?>
+    <?php if (Location::in(1, 'inventory') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        if (res !== "Bojonegoro") {
+            servis_list.classList.add('hidden');
+        }
+    <?php } ?>
+    <?php if (Location::in(1, 'booking') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        if (res !== "Bojonegoro") {
+            servis_list.classList.add('hidden');
+        }
+    <?php } ?>
+    <?php if (Location::in(1, 'riwayat') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        if (res !== "Bojonegoro") {
+            servis_list.classList.add('hidden');
+        }
+    <?php } ?>
+    <?php if (Location::in(1, 'user') && !$user->is_superAdmin(Session::get('username'))) { ?>
         if (res !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }

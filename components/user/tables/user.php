@@ -74,7 +74,10 @@
                                           </div>
                                       </td>
                                       <td class="text-center"><?php echo $tb_user[$row]['hp'] ?></td>
-                                      <td class="text-center">Rp. <?php echo $tb_user[$row]['saldo'] ?></td>
+                                      <td class="text-center"><?php
+                                                                $saldo = Rupiah::to($tb_user[$row]['saldo']);
+                                                                echo $saldo
+                                                                ?></td>
                                       <td class=" text-center"><?php echo $tb_user[$row]['playtime'] ?> Jam</td>
                                       <td class=" text-center">
                                           <button id="topupUser" value="<?php echo $tb_user[$row]['email'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
@@ -143,4 +146,4 @@
       }
       openTable();
   </script>
-  <?php require_once 'components/usersuper/modals/topup.php'; ?>
+  <?php require_once 'components/user/modals/topup.php'; ?>

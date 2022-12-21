@@ -4,17 +4,19 @@ $lok = $Sadmin->lokasi();
 
 $user_data = $user->get_data(Session::get('username'));
 
-if (Location::in(1, "dashboardSuperAdmin")) {
+if (Location::in(1, "dashboard") && $user->is_superAdmin(Session::get('username'))) {
     $text = "Dashboard Super Admin";
-} elseif (Location::in(1, 'inventorySuperAdmin')) {
+} elseif (Location::in(1, "dashboard") && !$user->is_superAdmin(Session::get('username'))) {
+    $text = "Dashboard Admin";
+} elseif (Location::in(1, 'inventory')) {
     $text = "Inventory Super Admin";
-} elseif (Location::in(1, 'bookingSuperAdmin')) {
+} elseif (Location::in(1, 'booking')) {
     $text = "Booking Super Admin";
-} elseif (Location::in(1, 'servisSuperAdmin')) {
+} elseif (Location::in(1, 'servis')) {
     $text = "Servis Super Admin";
-} elseif (Location::in(1, 'riwayatSuperAdmin')) {
+} elseif (Location::in(1, 'riwayat')) {
     $text = "Riwayat Super Admin";
-} elseif (Location::in(1, 'userSuperAdmin')) {
+} elseif (Location::in(1, 'user')) {
     $text = "User Super Admin";
 } elseif (Location::in(1, 'profile')) {
     $text = "Profile";
@@ -201,10 +203,60 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
     });
 
     // if window location in pages/lokasi
-
-    <?php if (Location::in(1, 'dashboard')) { ?>
-        // set tempat with text dashboard
+    <?php if (Location::in(1, 'dashboard') && !$user->is_superAdmin(Session::get('username'))) { ?>
         tempat.innerHTML = 'Dashboard';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
+    <?php if (Location::in(1, 'booking')) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'Booking';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
+    <?php if (Location::in(1, 'inventory')  && !$user->is_superAdmin(Session::get('username'))) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'Inventory';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
+    <?php if (Location::in(1, 'user') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'User';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
+    <?php if (Location::in(1, 'riwayat') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'History';
         lokasi_drop.classList.add('hidden');
         lokasiUser.classList.remove('hidden');
         lokasiUser.classList.add('flex');

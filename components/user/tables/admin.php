@@ -157,6 +157,6 @@
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<?php require_once 'components/usersuper/modals/addAdmin.php'; ?>
-<?php require_once 'components/usersuper/modals/editAdmin.php'; ?>
-<?php require_once 'components/usersuper/modals/deleteAdmin.php'; ?>
+<?php require_once 'components/user/modals/addAdmin.php'; ?>
+<?php require_once 'components/user/modals/editAdmin.php'; ?>
+<?php require_once 'components/user/modals/deleteAdmin.php'; ?>

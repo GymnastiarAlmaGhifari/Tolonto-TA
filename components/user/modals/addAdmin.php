@@ -12,7 +12,7 @@
                 <h1 id="mdoalText" class="text-neutral_050 font-base font-noto-sans text-xl">Tambah Admin
             </div>
             <span class="w-11/12 h-0.5 mx-auto -mt-5 bg-neutral_600"></span>
-            <form action="userSuperAdmin.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
+            <form action="user.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
                 <!-- gambar start -->
                 <div class="flex flex-col justify-center items-center relative">
                     <!-- show previe image from Upload::uploadimage() -->

@@ -10,7 +10,7 @@
                 <h1 id="mdoalText" class="text-neutral_050 font-base font-noto-sans text-xl">Tambah PlayStation Rental Baru</h1>
             </div>
             <span class="w-11/12 h-0.5 mx-auto -mt-4 bg-neutral_600"></span>
-            <form action="inventorySuperAdmin.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
+            <form action="inventory.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
                 <!-- gambar start -->
                 <div class="flex flex-col justify-center items-center relative">
                     <!-- show previe image from Upload::uploadimage() -->

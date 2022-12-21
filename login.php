@@ -1,16 +1,18 @@
 <?php
 require_once "core/init.php";
+$user = new Controllerauth();
 
 if ($user->is_login()) {
-    Redirect::to('dashboard');
+    if ($user->is_superAdmin(Session::get('username'))) {
+        Redirect::to('dashboard');
+    } else {
+        Redirect::to('dashboard');
+    }
 }
 
 if (Session::exists('login')) {
     echo Session::flash('login');
 }
-
-
-
 
 $errors = array();
 
@@ -37,13 +39,11 @@ if (isset($_POST['submit'])) {
             if ($user->cek_nama(Input::get('username'))) {
                 if ($user->login(Input::get('username'), Input::get('password'))) {
                     Session::set('username', Input::get('username'));
-                    // set seasson loksend
-                    $_SESSION['loksend'] = 'Bojonegoro';
-                    if ($user->is_superAdmin(Session::get('username'))) {
-                        Redirect::to('dashboardSuperAdmin');
-                    } else {
-                        Redirect::to('dashboard');
-                    }
+                    // set seasson loksend untuk menentukan lokasi
+                    $user_data = $user->get_data(Session::get('username'));
+                    $_SESSION['loksend'] = $user_data['lok'];
+
+                    Redirect::to('dashboard');
                 } else {
                     // animate error
                     $errors[] = "Password Yang Anda Masukkan Salah";
@@ -150,8 +150,21 @@ if (isset($_POST['submit'])) {
             </script>
         <?php  } ?>
     <?php } ?>
-    <script src="assets/js/main.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
     <script>
+        const show = () => {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("showimg").classList.add("hidden");
+                document.getElementById("hideimg").classList.remove("hidden");
+            } else {
+                x.type = "password";
+                document.getElementById("showimg").classList.remove("hidden");
+                document.getElementById("hideimg").classList.add("hidden");
+                labelInput.classList.remove("text-transparent");
+            }
+        };
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");

@@ -96,15 +96,13 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                             <a>Profile </a>
                         </li>
 
-                        <li id="logout" class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
-
-                            <button type="button" name="logout">
+                        <li class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
+                            <button type="button" onclick="openModalLogout(true)" id="logout" name="logout">
                                 <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>
                                 <a>
                                     Logout
                                 </a>
                             </button>
-
                         </li>
                     </ul>
                 </div>
@@ -120,7 +118,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
     const tempat = document.getElementById('tempat');
     const lokas = document.getElementById('lokas');
     const lokasi_drop = document.getElementById('lokasi-drop');
-    const logout = document.getElementById('logout');
+    // const logout = document.getElementById('logout');
     const profile = document.getElementById('profile');
 
 
@@ -128,21 +126,21 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
         window.location.href = 'profile.php';
     });
 
-    logout.addEventListener('click', function() {
-        Swal.fire({
-            title: 'Apakah anda yakin?',
-            text: "Anda akan keluar dari akun ini",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Keluar!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'logout.php';
-            }
-        })
-    });
+    // logout.addEventListener('click', function() {
+    //     Swal.fire({
+    //         title: 'Apakah anda yakin?',
+    //         text: "Anda akan keluar dari akun ini",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Ya, Keluar!'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             window.location.href = 'logout.php';
+    //         }
+    //     })
+    // });
 
 
 

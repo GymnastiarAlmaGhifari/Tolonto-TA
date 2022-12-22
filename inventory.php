@@ -10,6 +10,9 @@ if (!$user->is_login()) {
     Redirect::to('login');
 }
 
+if (Session::exists('inventory')) {
+    echo Session::flash('inventory');
+}
 
 
 $user_data = $user->get_data(Session::get('username'));
@@ -307,7 +310,7 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
             alertHapus.classList.toggle('activeAlert');
         })
     </script>
-
+    <?php require_once 'components/main/modalLogout.php'; ?>
 </body>
 
 </html>

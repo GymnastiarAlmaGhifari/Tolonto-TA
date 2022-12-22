@@ -5,7 +5,20 @@ $servis = new ControllerServis();
 
 $service = $servis->h_servis($_SESSION['loksend']);
 $jumlah_servis = $servis->jumlah_servis($_SESSION['loksend']);
+
+if (!$user->is_login()) {
+    Session::flash(
+        'login',
+        '<script>alert("Anda Harus Login")</script>'
+    );
+    Redirect::to('login');
+}
+
+if (Session::exists('servis')) {
+    echo Session::flash('servis');
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +64,7 @@ $jumlah_servis = $servis->jumlah_servis($_SESSION['loksend']);
             loader.classList.add("hidden");
         });
     </script>
-
+    <?php require_once 'components/main/modalLogout.php'; ?>
 </body>
 
 </html>

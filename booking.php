@@ -8,14 +8,11 @@ $jumlah_rent = $booking->jumlah_rent($_SESSION['loksend']);
 $sewa = $booking->b_sewa($_SESSION['loksend']);
 $jumlah_sewa = $booking->jumlah_sewa($_SESSION['loksend']);
 
-$user = new Controllerauth();
 
 if (!$user->is_login()) {
     Session::flash(
         'login',
-        '<script>
-            alert("Login Dulu");
-        </script>'
+        '<script>alert("Anda Harus Login")</script>'
     );
     Redirect::to('login');
 }
@@ -472,6 +469,7 @@ if (Session::exists('booking')) {
         //     });
         // });
     </script>
+    <?php require_once 'components/main/modalLogout.php'; ?>
 </body>
 
 </html>

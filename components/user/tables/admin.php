@@ -1,3 +1,134 @@
+<?php
+if (isset($_POST['Konfirmasi-Admin'])) {
+
+    $idadmin = $SadminUser->idadmin();
+
+    $namaFile = $_FILES['image-Admin']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-Admin']['tmp_name'];
+    // create folder if not exist
+    if (!file_exists('img/admin')) {
+        mkdir('img/admin', 0777, true);
+    }
+    $dirUpload = "img/admin/";
+    // genearete datetimestamp
+    $filename = $idadmin . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        echo "Upload berhasil!<br/>";
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($SadminUser->add_admin(
+            [
+                'id_admin' => $idadmin,
+                'username' => $_POST['username'],
+                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                'create_at' => date('Y-m-d H:i:s'),
+                'update_at' => date('Y-m-d H:i:s'),
+                'level' => $_POST['level-Admin'],
+                'lok' => $_POST['lokasi-Admin'],
+                'img' => $dirUpload . $filename
+            ]
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            Redirect::to('user');
+        } else {
+        }
+    } else {
+        echo "Upload Gagal!";
+    }
+}
+
+if (isset($_POST['Konfirmasi-Admin-Edit'])) {
+    // $idmin = $_POST['id-admin-edit'];
+    // echo $idmin;
+
+    $namaFile = $_FILES['image-Admin-edit']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-Admin-edit']['tmp_name'];
+    // create folder if not exist
+    if (!file_exists('img/admin')) {
+        mkdir('img/admin', 0777, true);
+    }
+    $dirUpload = "img/admin/";
+    // genearete datetimestamp
+    $filename = $_POST['id-admin-edit'] . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        echo "Upload berhasil!<br/>";
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($_POST['password-edit'] == '') {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                    'img' => $dirUpload . $filename
+                ],
+                $_POST['id-admin-edit']
+            )) {
+                Redirect::to('user');
+            } else {
+            }
+        } else {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                    'img' => $dirUpload . $filename
+                ],
+                $_POST['id-admin-edit']
+            )) // jika berhasil refresh page tanpa submit ulang
+            {
+                Redirect::to('user');
+            } else {
+            }
+        }
+    } else {
+        echo "Upload Gagal!";
+        if ($_POST['password-edit'] == '') {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                ],
+                $_POST['id-admin-edit']
+            )) {
+                Redirect::to('user');
+            } else {
+            }
+        } else {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                ],
+                $_POST['id-admin-edit']
+            )) // jika berhasil refresh page tanpa submit ulang
+            {
+                Redirect::to('user');
+            } else {
+            }
+        }
+    }
+}
+?>
 <!-- table start -->
 <section id="table-admin" class="mt-12 mb-8 text-neutral_050  ml-16">
     <div class="container px-6 max-w-full ">

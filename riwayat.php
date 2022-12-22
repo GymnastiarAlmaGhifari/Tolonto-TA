@@ -12,6 +12,19 @@ $jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
 $topup = $riwayat->h_topup();
 $jumlah_topup = $riwayat->jumlah_topup();
 
+
+if (!$user->is_login()) {
+    Session::flash(
+        'login',
+        '<script>alert("Anda Harus Login")</script>'
+    );
+    Redirect::to('login');
+}
+
+if (Session::exists('riwayat')) {
+    echo Session::flash('riwayat');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -99,6 +112,7 @@ $jumlah_topup = $riwayat->jumlah_topup();
         //     });
         // });
     </script>
+        <?php require_once 'components/main/modalLogout.php'; ?>
 </body>
 
 

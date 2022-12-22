@@ -203,7 +203,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
 
         // ambil dari alertLogout.php
     </script>
-
+    <?php require_once 'components/main/modalLogout.php'; ?>
 </body>
 
 </html>

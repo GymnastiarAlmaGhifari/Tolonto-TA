@@ -19,7 +19,7 @@
                   </div>
                   <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
                   <div class="w-full mx-auto relative block h-[360px] overflow-y-auto mt-2" id="table">
-                      <table class="w-full">
+                      <table id="table" class="w-full">
                           <thead class="bg-neutral_800 sticky top-0">
                               <tr class="font-semibold ">
                                   <th scope="col" class="text-left relative">
@@ -107,6 +107,7 @@
       const table = document.getElementById('table');
       const garis = document.getElementById('garis');
       const plus = document.getElementById('plus');
+      const search = document.getElementById('search');
 
       const openTable = () => {
           open.addEventListener("click", function() {
@@ -127,7 +128,9 @@
                   atas.classList.add('h-[77px]');
               } else {
                   setTimeout(() => {
-                      table.classList.remove('hidden');
+                      setTimeout(() => {
+                          table.classList.remove('hidden');
+                      }, 150);
                       garis.classList.remove('hidden');
                       plus.classList.remove('hidden');
                       garis.classList.add('ease-in-out');
@@ -145,5 +148,24 @@
           }
       }
       openTable();
+
+      const searchUser = () => {
+          const input = document.getElementById('search');
+          const filter = input.value.toUpperCase();
+          const table = document.getElementById('table');
+          const tr = table.getElementsByTagName('tr');
+          for (let i = 0; i < tr.length; i++) {
+              const td = tr[i].getElementsByTagName('td')[0];
+              if (td) {
+                  const txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      tr[i].style.display = "";
+                  } else {
+                      tr[i].style.display = "none";
+                  }
+              }
+          }
+      }
+      search.addEventListener('keyup', searchUser);
   </script>
   <?php require_once 'components/user/modals/topup.php'; ?>

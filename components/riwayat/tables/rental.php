@@ -133,6 +133,7 @@
      const table = document.getElementById('table');
      const garis = document.getElementById('garis');
      const plus = document.getElementById('plus');
+     const search = document.getElementById('search');
 
      const openTable = () => {
          open.addEventListener("click", function() {
@@ -153,7 +154,9 @@
                  atas.classList.add('h-[77px]');
              } else {
                  setTimeout(() => {
-                     table.classList.remove('hidden');
+                     setTimeout(() => {
+                         table.classList.remove('hidden');
+                     }, 150);
                      garis.classList.remove('hidden');
                      plus.classList.remove('hidden');
                      garis.classList.add('ease-in-out');
@@ -171,4 +174,22 @@
          }
      }
      openTable();
+     const searchRiwayatRental = () => {
+         const input = document.getElementById('search');
+         const filter = input.value.toUpperCase();
+         const table = document.getElementById('table');
+         const tr = table.getElementsByTagName('tr');
+         for (let i = 0; i < tr.length; i++) {
+             const td = tr[i].getElementsByTagName('td')[0];
+             if (td) {
+                 const txtValue = td.textContent || td.innerText;
+                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                     tr[i].style.display = "";
+                 } else {
+                     tr[i].style.display = "none";
+                 }
+             }
+         }
+     }
+     search.addEventListener('keyup', searchRiwayatRental);
  </script>

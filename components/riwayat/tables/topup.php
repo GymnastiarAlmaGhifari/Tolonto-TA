@@ -64,47 +64,47 @@
                                 echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
                             } else {
                                 while ($rows < count($topup)) { ?>
-                            <tr class="">
-                                <td class="flex flex-row gap-x-3 pb-5">
-                                    <div class="form-control ">
-                                        <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
-                                    </div>
-                                    <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                        <img src="<?php echo $topup[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
-                                    </div>
-                                    <div class="flex flex-col gap-y-1 ml-2">
-                                        <h1 class="font-semibold"><?php echo $topup[$rows]['username'] ?></h1>
-                                        <h2 class="text-neutral_400 text-xs"><?php echo $topup[$rows]['id_topup'] ?></h2>
-                                    </div>
-                                </td>
-                                <td class="text-center"><?php echo $topup[$rows]['email'] ?></td>
-                                <td class="text-center">Rp. <?php echo $topup[$rows]['jml_topup'] ?></td>
-                                <td class=" text-center"><?php echo $topup[$rows]['waktu'] ?></td>
-                                <td class="text-center"><?php echo $topup[$rows]['admin'] ?></td>
-                                <td class=" text-center">
-                                    <div class="dropdown dropdown-hover dropdown-right dropdown-end">
-                                        <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
-                                            <i class="fa-solid fa-ellipsis"></i>
-                                        </label>
-                                        <ul tabindex="0" class="dropdown-content -mb-1  shadow-elevation-light-4 bg-neutral_050 rounded-lg w-12 text-neutral_050">
-                                            <li class="cursor-pointer active:bg-primary_500 active:text-neutral_900 hover:bg-neutral_500 rounded-sm h-8 font-noto-sans text-base">
-                                                <button>
-                                                    <svg class="mx-auto my-1.5" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="#303030" />
-                                                    </svg>
-                                                </button>
-                                            </li>
-                                            <li class="cursor-pointer active:bg-primary_500 active:text-neutral_900  hover:bg-neutral_500 rounded-sm h-8 font-noto-sans text-base">
-                                                <button>
-                                                    <svg class="mx-auto my-1.5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
-                                                    </svg>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                                    <tr class="">
+                                        <td class="flex flex-row gap-x-3 pb-5">
+                                            <div class="form-control ">
+                                                <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
+                                            </div>
+                                            <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
+                                                <img src="<?php echo $topup[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
+                                            </div>
+                                            <div class="flex flex-col gap-y-1 ml-2">
+                                                <h1 class="font-semibold"><?php echo $topup[$rows]['username'] ?></h1>
+                                                <h2 class="text-neutral_400 text-xs"><?php echo $topup[$rows]['id_topup'] ?></h2>
+                                            </div>
+                                        </td>
+                                        <td class="text-center"><?php echo $topup[$rows]['email'] ?></td>
+                                        <td class="text-center">Rp. <?php echo $topup[$rows]['jml_topup'] ?></td>
+                                        <td class=" text-center"><?php echo $topup[$rows]['waktu'] ?></td>
+                                        <td class="text-center"><?php echo $topup[$rows]['admin'] ?></td>
+                                        <td class=" text-center">
+                                            <div class="dropdown dropdown-hover dropdown-right dropdown-end">
+                                                <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
+                                                    <i class="fa-solid fa-ellipsis"></i>
+                                                </label>
+                                                <ul tabindex="0" class="dropdown-content -mb-1  shadow-elevation-light-4 bg-neutral_050 rounded-lg w-12 text-neutral_050">
+                                                    <li class="cursor-pointer active:bg-primary_500 active:text-neutral_900 hover:bg-neutral_500 rounded-sm h-8 font-noto-sans text-base">
+                                                        <button>
+                                                            <svg class="mx-auto my-1.5" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="#303030" />
+                                                            </svg>
+                                                        </button>
+                                                    </li>
+                                                    <li class="cursor-pointer active:bg-primary_500 active:text-neutral_900  hover:bg-neutral_500 rounded-sm h-8 font-noto-sans text-base">
+                                                        <button>
+                                                            <svg class="mx-auto my-1.5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
+                                                            </svg>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
                             <?php $rows++;
                                 }
                             } ?>
@@ -123,6 +123,7 @@
     const table3 = document.getElementById('table3');
     const garis3 = document.getElementById('garis3');
     const plus3 = document.getElementById('plus3');
+    const search3 = document.getElementById('search3');
 
     const openTable3 = () => {
         open3.addEventListener("click", function() {
@@ -143,7 +144,9 @@
                 atas3.classList.add('h-[77px]');
             } else {
                 setTimeout(() => {
-                    table3.classList.remove('hidden');
+                    setTimeout(() => {
+                        table3.classList.remove('hidden');
+                    }, 150);
                     garis3.classList.remove('hidden');
                     plus3.classList.remove('hidden');
                     garis3.classList.add('ease-in-out');
@@ -161,4 +164,23 @@
         }
     }
     openTable3();
+
+    const searchRiwayatTopup = () => {
+        const input = document.getElementById('search3');
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById('table3');
+        const tr = table.getElementsByTagName('tr');
+        for (let i = 0; i < tr.length; i++) {
+            const td = tr[i].getElementsByTagName('td')[0];
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    search3.addEventListener('keyup', searchRiwayatTopup);
 </script>

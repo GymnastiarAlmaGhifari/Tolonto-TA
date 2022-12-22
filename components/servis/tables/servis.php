@@ -15,7 +15,7 @@
                 </div>
                 <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
                 <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table">
-                    <table class="w-full table-auto">
+                    <table id="table" class="w-full table-auto">
                         <thead class="bg-neutral_800 sticky top-0">
                             <tr class="font-semibold ">
                                 <th scope="col" class="text-left relative">
@@ -136,6 +136,7 @@
     const garis = document.getElementById('garis');
     const plus = document.getElementById('plus');
     const waktu_submit = document.querySelectorAll('#waktu_submit');
+    const search = document.getElementById('search');
 
     waktu_submit.forEach((waktu) => {
         waktu.innerHTML = waktu.innerHTML.replace(' ', ' - ');
@@ -161,7 +162,9 @@
                 atas.classList.add('h-[77px]');
             } else {
                 setTimeout(() => {
-                    table.classList.remove('hidden');
+                    setTimeout(() => {
+                        table.classList.remove('hidden');
+                    }, 150);
                     garis.classList.remove('hidden');
                     plus.classList.remove('hidden');
                     garis.classList.add('ease-in-out');
@@ -180,6 +183,24 @@
     }
     openTable();
 
+    const searchServis = () => {
+        const input = document.getElementById('search');
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById('table');
+        const tr = table.getElementsByTagName('tr');
+        for (let i = 0; i < tr.length; i++) {
+            const td = tr[i].getElementsByTagName('td')[0];
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    search.addEventListener('keyup', searchServis);
 
 
     // sorting table by column

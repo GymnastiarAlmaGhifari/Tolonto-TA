@@ -155,7 +155,7 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                 </div>
                 <span id="garis3" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
                 <div class="w-full mx-auto relative block h-[360px] overflow-y-auto mt-2" id="table3">
-                    <table class="w-full">
+                    <table id="table3" class="w-full">
                         <thead class="bg-neutral_800 sticky top-0">
                             <tr class="font-semibold ">
                                 <th scope="col" class="text-left relative">
@@ -239,6 +239,7 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
     const table3 = document.getElementById('table3');
     const garis3 = document.getElementById('garis3');
     const plus3 = document.getElementById('plus3');
+    const search3 = document.getElementById('search3');
 
 
     const openTable3 = () => {
@@ -260,7 +261,9 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                 atas3.classList.add('h-[77px]');
             } else {
                 setTimeout(() => {
-                    table3.classList.remove('hidden');
+                    setTimeout(() => {
+                        table3.classList.remove('hidden');
+                    }, 150);
                     garis3.classList.remove('hidden');
                     plus3.classList.remove('hidden');
                     garis3.classList.add('ease-in-out');
@@ -285,6 +288,25 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
             table_admin.classList.remove('hidden')
         }
     })
+
+    const searchAdmin = () => {
+        const input = document.getElementById('search3');
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById('table3');
+        const tr = table.getElementsByTagName('tr');
+        for (let i = 0; i < tr.length; i++) {
+            const td = tr[i].getElementsByTagName('td')[0];
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    search3.addEventListener('keyup', searchAdmin);
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

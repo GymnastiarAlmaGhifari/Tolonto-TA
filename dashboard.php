@@ -108,7 +108,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
                                         <label for="switch-1"></label>
                                     </div>
                                 </div> -->
-                                            <input type="checkbox" class="toggle toggle-md   checked:bg-[#32FC00]" checked />
+                                            <input type="checkbox" class="toggle toggle-md checked:bg-[#32FC00]" checked />
                                         </div>
                                         <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
                                         <div class="flex justify-center items-center relative">

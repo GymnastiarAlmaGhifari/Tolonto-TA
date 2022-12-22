@@ -133,7 +133,7 @@
      const table = document.getElementById('table');
      const garis = document.getElementById('garis');
      const plus = document.getElementById('plus');
-     const search = document.getElementById('search');
+     const search = document.getElementById('search'); 
 
      const openTable = () => {
          open.addEventListener("click", function() {

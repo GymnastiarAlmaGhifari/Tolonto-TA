@@ -55,7 +55,7 @@
                         <label for="datepicker" class="text-neutral_050 font-medium mb-2 ml-3">Estimasi Selesai</label>
                         <div class="relative w-full mt-1">
                             <input type="hidden" name="date" x-ref="date">
-                            <input type="text" readonly x-model="datepickerValue" @click="showDatepicker = !showDatepicker" @keydown.escape="showDatepicker = false" class="w-full h-14 pl-16 pr-10 py-3 leading-none rounded-2xl shadow-sm focus:outline-none focus:shadow-outline bg-neutral_050 text-neutral_600 font-medium cursor-pointer" placeholder="Select date">
+                            <input id="datepickerValue" type="text" readonly x-model="datepickerValue" @click="showDatepicker = !showDatepicker" @keydown.escape="showDatepicker = false" class="w-full h-14 pl-16 pr-10 py-3 leading-none rounded-2xl shadow-sm focus:outline-none focus:shadow-outline bg-neutral_050 text-neutral_600 font-medium cursor-pointer" placeholder="Select date">
                             <div class="absolute top-0 left-4 px-2 py-4">
                                 <svg class="h-6 w-6 text-neutral_400" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14.4 13.0909H16.2V16.1673L19.128 17.7055L18.228 19.1236L14.4 17.1164V13.0909ZM19.2 7.63636H2.4V19.6364H8.004C7.488 18.6436 7.2 17.5309 7.2 16.3636C7.2 14.3383 8.085 12.396 9.6603 10.9639C11.2356 9.53182 13.3722 8.72727 15.6 8.72727C16.884 8.72727 18.108 8.98909 19.2 9.45818V7.63636ZM2.4 21.8182C1.068 21.8182 0 20.8364 0 19.6364V4.36364C0 3.15273 1.068 2.18182 2.4 2.18182H3.6V0H6V2.18182H15.6V0H18V2.18182H19.2C19.8365 2.18182 20.447 2.41169 20.8971 2.82086C21.3471 3.23003 21.6 3.78498 21.6 4.36364V11.0182C23.088 12.3927 24 14.28 24 16.3636C24 18.3889 23.115 20.3313 21.5397 21.7634C19.9644 23.1955 17.8278 24 15.6 24C13.308 24 11.232 23.1709 9.72 21.8182H2.4ZM15.6 11.0727C14.0564 11.0727 12.5761 11.6302 11.4846 12.6224C10.3932 13.6146 9.78 14.9604 9.78 16.3636C9.78 19.2873 12.384 21.6545 15.6 21.6545C16.3643 21.6545 17.1211 21.5177 17.8272 21.2518C18.5333 20.9859 19.1749 20.5962 19.7154 20.1049C20.2558 19.6136 20.6845 19.0303 20.977 18.3884C21.2695 17.7465 21.42 17.0584 21.42 16.3636C21.42 13.44 18.816 11.0727 15.6 11.0727Z" fill="#303030" />
@@ -124,6 +124,8 @@
     const editServis = document.querySelectorAll('#editServis');
     const id_servis_edit = document.querySelector('#id_servis_edit');
     const bayar = document.querySelector('#bayar');
+    const datepickerValue = document.querySelector('#datepickerValue');
+
 
     const openModalEdit = (value) => {
         const modalClEdit = modal_edit.classList
@@ -150,10 +152,11 @@
     editServis.forEach((item) => {
         item.addEventListener('click', () => {
             openModalEdit(true)
-
             const id = item.value
             id_servis_edit.innerHTML = id
-
+            console.log(id_servis_edit)
+            // format ke dalam bentuk database
+            console.log(datepickerValue.value)
         })
     })
 </script>

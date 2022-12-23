@@ -4,18 +4,22 @@ $lok = $Sadmin->lokasi();
 
 $user_data = $user->get_data(Session::get('username'));
 
-if (Location::in(1, "dashboardSuperAdmin")) {
+if (Location::in(1, "dashboard") && $user->is_superAdmin(Session::get('username'))) {
     $text = "Dashboard Super Admin";
-} elseif (Location::in(1, 'inventorySuperAdmin')) {
+} elseif (Location::in(1, "dashboard") && !$user->is_superAdmin(Session::get('username'))) {
+    $text = "Dashboard Admin";
+} elseif (Location::in(1, 'inventory')) {
     $text = "Inventory Super Admin";
-} elseif (Location::in(1, 'bookingSuperAdmin')) {
+} elseif (Location::in(1, 'booking')) {
     $text = "Booking Super Admin";
-} elseif (Location::in(1, 'servisSuperAdmin')) {
+} elseif (Location::in(1, 'servis')) {
     $text = "Servis Super Admin";
-} elseif (Location::in(1, 'riwayatSuperAdmin')) {
+} elseif (Location::in(1, 'riwayat')) {
     $text = "Riwayat Super Admin";
-} elseif (Location::in(1, 'userSuperAdmin')) {
+} elseif (Location::in(1, 'user')) {
     $text = "User Super Admin";
+} elseif (Location::in(1, 'profile')) {
+    $text = "Profile";
 }
 
 
@@ -87,20 +91,18 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                         <img src="<?php echo $user_data['img']; ?>" alt="" class="rounded-full w-[48px] h-[48px]">
                     </label>
                     <ul tabindex="0" class="dropdown-content p-2  cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-32 text-neutral_050 -right-5 mt-1">
-                        <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
+                        <li id="profile" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">
                             <i class="fa-regular fa-user mr-1"></i>
                             <a>Profile </a>
                         </li>
 
-                        <li id="logout" class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
-
-                            <button type="button" name="logout">
+                        <li class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
+                            <button type="button" onclick="openModalLogout(true)" id="logout" name="logout">
                                 <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>
                                 <a>
                                     Logout
                                 </a>
                             </button>
-
                         </li>
                     </ul>
                 </div>
@@ -116,23 +118,29 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
     const tempat = document.getElementById('tempat');
     const lokas = document.getElementById('lokas');
     const lokasi_drop = document.getElementById('lokasi-drop');
-    const logout = document.getElementById('logout');
+    // const logout = document.getElementById('logout');
+    const profile = document.getElementById('profile');
 
-    logout.addEventListener('click', function() {
-        Swal.fire({
-            title: 'Apakah anda yakin?',
-            text: "Anda akan keluar dari akun ini",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Keluar!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'logout.php';
-            }
-        })
+
+    profile.addEventListener('click', function() {
+        window.location.href = 'profile.php';
     });
+
+    // logout.addEventListener('click', function() {
+    //     Swal.fire({
+    //         title: 'Apakah anda yakin?',
+    //         text: "Anda akan keluar dari akun ini",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Ya, Keluar!'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             window.location.href = 'logout.php';
+    //         }
+    //     })
+    // });
 
 
 
@@ -187,16 +195,66 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
             //wait 1s befor reload page
             setTimeout(function() {
                 location.reload();
-            }, 500);
+            }, 10);
 
         });
     });
 
     // if window location in pages/lokasi
-
-    <?php if (Location::in(1, 'dashboard')) { ?>
-        // set tempat with text dashboard
+    <?php if (Location::in(1, 'dashboard') && !$user->is_superAdmin(Session::get('username'))) { ?>
         tempat.innerHTML = 'Dashboard';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
+    <?php if (Location::in(1, 'booking')) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'Booking';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
+    <?php if (Location::in(1, 'inventory')  && !$user->is_superAdmin(Session::get('username'))) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'Inventory';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
+    <?php if (Location::in(1, 'user') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'User';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
+    <?php if (Location::in(1, 'riwayat') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'History';
         lokasi_drop.classList.add('hidden');
         lokasiUser.classList.remove('hidden');
         lokasiUser.classList.add('flex');

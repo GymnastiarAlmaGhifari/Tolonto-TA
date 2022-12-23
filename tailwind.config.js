@@ -2,12 +2,12 @@
 module.exports = {
   content: [
     "./login.php",
-    "./dashboardSuperAdmin.php",
-    "./inventorySuperAdmin.php",
-    "./bookingSuperAdmin.php",
-    "./riwayatSuperAdmin.php",
-    "./servisSuperAdmin.php",
-    "./userSuperAdmin.php",
+    "./dashboard.php",
+    "./inventory.php",
+    "./booking.php",
+    "./riwayat.php",
+    "./servis.php",
+    "./user.php",
     // "./components/main/header.php",
     // "./components/main/sidebar.php",
     "./components/**/*.{html,js,php}",

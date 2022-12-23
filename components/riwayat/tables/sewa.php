@@ -153,17 +153,17 @@
                 atas2.classList.remove('h-[450px]');
                 atas2.classList.add('h-[77px]');
             } else {
+
                 setTimeout(() => {
-                    setTimeout(() => {
-                        table2.classList.remove('hidden');
-                    }, 150);
-                    garis2.classList.remove('hidden');
-                    plus2.classList.remove('hidden');
-                    garis2.classList.add('ease-in-out');
-                    table2.classList.add('ease-in-out');
-                    atas2.classList.add('h-[450px]');
-                    atas2.classList.remove('h-[77px]');
-                }, 100);
+                    table2.classList.remove('hidden');
+                }, 150);
+                garis2.classList.remove('hidden');
+                plus2.classList.remove('hidden');
+                garis2.classList.add('ease-in-out');
+                table2.classList.add('ease-in-out');
+                atas2.classList.add('h-[450px]');
+                atas2.classList.remove('h-[77px]');
+
             }
         }
         if (localStorage.getItem("open-table-riwayat-sewa") !== null) {
@@ -176,21 +176,21 @@
     openTable2();
 
     const searchRiwayatSewa = () => {
-          const input = document.getElementById('search2');
-          const filter = input.value.toUpperCase();
-          const table = document.getElementById('table2');
-          const tr = table.getElementsByTagName('tr');
-          for (let i = 0; i < tr.length; i++) {
-              const td = tr[i].getElementsByTagName('td')[0];
-              if (td) {
-                  const txtValue = td.textContent || td.innerText;
-                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                      tr[i].style.display = "";
-                  } else {
-                      tr[i].style.display = "none";
-                  }
-              }
-          }
-      }
-      search2.addEventListener('keyup', searchRiwayatSewa);
+        const input = document.getElementById('search2');
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById('table2');
+        const tr = table.getElementsByTagName('tr');
+        for (let i = 0; i < tr.length; i++) {
+            const td = tr[i].getElementsByTagName('td')[0];
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    search2.addEventListener('keyup', searchRiwayatSewa);
 </script>

@@ -1,3 +1,57 @@
+<?
+if (isset($_POST['Konfirmasi-sewa-edit'])) {
+
+    $namaFile = $_FILES['image-sewa-edit']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-sewa-edit']['tmp_name'];
+
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps-sewa')) {
+        mkdir('img/ps-sewa', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = $_POST['id-sewa-edit'] . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        if ($SadminPs->update_pssewa(
+            [
+                'nama_ps' => $_POST['nama-ps-sewa-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-sewa-edit']),
+                'jenis' => $_POST['kategori-ps-sewa-edit'],
+                'img' => $dirUpload . $filename
+            ],
+            $_POST['id-sewa-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+            //error
+        }
+    } else {
+        echo "gagal";
+        if ($SadminPs->update_pssewa(
+            [
+                'nama_ps' => $_POST['nama-ps-sewa-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-sewa-edit']),
+                'jenis' => $_POST['kategori-ps-sewa-edit'],
+
+            ],
+            $_POST['id-sewa-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+            //error
+        }
+    }
+}
+?>
 <!-- modal sewa edit start -->
 <section>
     <div id="modal_overlay_sewa_edit" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">

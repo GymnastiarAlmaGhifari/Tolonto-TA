@@ -261,16 +261,14 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                 atas3.classList.add('h-[77px]');
             } else {
                 setTimeout(() => {
-                    setTimeout(() => {
-                        table3.classList.remove('hidden');
-                    }, 150);
-                    garis3.classList.remove('hidden');
-                    plus3.classList.remove('hidden');
-                    garis3.classList.add('ease-in-out');
-                    table3.classList.add('ease-in-out');
-                    atas3.classList.add('h-[450px]');
-                    atas3.classList.remove('h-[77px]');
-                }, 100);
+                    table3.classList.remove('hidden');
+                }, 150);
+                garis3.classList.remove('hidden');
+                plus3.classList.remove('hidden');
+                garis3.classList.add('ease-in-out');
+                table3.classList.add('ease-in-out');
+                atas3.classList.add('h-[450px]');
+                atas3.classList.remove('h-[77px]');
             }
         }
         if (localStorage.getItem("open-table-admin") !== null) {
@@ -281,13 +279,6 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
         }
     }
     openTable3();
-    window.addEventListener('load', () => {
-        if (localStorage.getItem('lokasi') !== 'Bojonegoro') {
-            table_admin.classList.add('hidden')
-        } else {
-            table_admin.classList.remove('hidden')
-        }
-    })
 
     const searchAdmin = () => {
         const input = document.getElementById('search3');

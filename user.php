@@ -18,17 +18,9 @@ if (!$user->is_login()) {
     );
     Redirect::to('login');
 }
-
 if (Session::exists('user')) {
     echo Session::flash('user');
 }
-
-
-
-// while loop if img name doesnt exist in database then delete img
-
-
-// make method get_data from user_data
 ?>
 
 <!DOCTYPE html>
@@ -45,14 +37,14 @@ if (Session::exists('user')) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>User</title>
 </head>
 
 <body>
     <!--loader start  -->
-    <!-- <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
         <span class="loader-103"> </span>
-    </div> -->
+    </div>
     <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">

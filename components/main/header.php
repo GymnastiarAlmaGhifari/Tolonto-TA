@@ -195,7 +195,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
             //wait 1s befor reload page
             setTimeout(function() {
                 location.reload();
-            }, 500);
+            }, 10);
 
         });
     });

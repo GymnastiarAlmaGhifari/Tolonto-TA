@@ -1,3 +1,57 @@
+ <?php
+    if (isset($_POST['Konfirmasi-sewa'])) {
+
+        switch ($_SESSION['loksend']) {
+            case 'Bojonegoro':
+                $lok = 'bjn';
+                break;
+            case 'Babat':
+                $lok = 'bbt';
+                break;
+            case 'Tuban':
+                $lok = 'tbn';
+                break;
+        }
+
+        $id_ps = $SadminPs->idps_sewa($lok);
+        $namaFile = $_FILES['image-sewa']['name'];
+        $fileNameParts = explode('.', $namaFile);
+        $ext = end($fileNameParts);
+        $namaSementara = $_FILES['image-sewa']['tmp_name'];
+
+        // tentukan lokasi file akan dipindahkan
+        // create folder if not exist
+        if (!file_exists('img/ps-sewa')) {
+            mkdir('img/ps-sewa', 0777, true);
+        }
+        $dirUpload = "img/ps-sewa/";
+        // genearete datetimestamp
+        $filename = $id_ps . '.' . $ext;
+
+        // pindahkan file 
+        $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+        if ($terupload) {
+            if ($SadminPs->add_sewa(
+                [
+                    'id_ps' => $id_ps,
+                    'nama_ps' => $_POST['nama-ps-sewa'],
+                    'harga' => Rupiah::clear($_POST['harga-ps-sewa']),
+                    'status' => 'tidak aktif',
+                    'lok' => $_SESSION['loksend'],
+                    'jenis' => $_POST['kategori-ps-sewa'],
+                    'img' => $dirUpload . $filename
+                ]
+            )) // jika berhasil refresh page tanpa submit ulang
+            {
+                echo "<script>location.href='inventory.php'</script>";
+            } else {
+            }
+        } else {
+        }
+    }
+    ?>
+
  <!-- modal Sewa tambah start -->
  <section>
      <div id="modal_overlay_sewa" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">

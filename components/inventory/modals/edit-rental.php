@@ -1,3 +1,60 @@
+<?php
+if (isset($_POST['Konfirmasi-rental-edit'])) {
+
+    $namaFile = $_FILES['image-rental-edit']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-rental-edit']['tmp_name'];
+
+    // tentukan lokasi file akan dipindahkan
+    // create folder if not exist
+    if (!file_exists('img/ps')) {
+        mkdir('img/ps', 0777, true);
+    }
+    $dirUpload = "img/ps/";
+    // genearete datetimestamp
+    $filename = $_POST['id-rental-edit'] . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+
+        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+        if ($SadminPs->update_psrental(
+            [
+                'nama_ps' => $_POST['nama-ps-rental-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-rental-edit']),
+                'jenis' => $_POST['kategori-ps-rental-edit'],
+                'img' => $dirUpload . $filename
+            ],
+            $_POST['id-rental-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+            //error
+        }
+    } else {
+
+        if ($SadminPs->update_psrental(
+            // rubah harga dengan Rupiah::clear
+            [
+                'nama_ps' => $_POST['nama-ps-rental-edit'],
+                'harga' => Rupiah::clear($_POST['harga-ps-rental-edit']),
+                'jenis' => $_POST['kategori-ps-rental-edit'],
+
+            ],
+            $_POST['id-rental-edit']
+        )) // jika berhasil refresh page tanpa submit ulang
+        {
+            echo "<script>location.href='inventory.php'</script>";
+        } else {
+            //error
+        }
+    }
+}
+?>
 <!-- modal Rental edit start -->
 <section>
     <div id="modal_overlay_rental_edit" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">

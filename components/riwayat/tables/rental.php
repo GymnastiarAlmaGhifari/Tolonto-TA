@@ -133,7 +133,7 @@
      const table = document.getElementById('table');
      const garis = document.getElementById('garis');
      const plus = document.getElementById('plus');
-     const search = document.getElementById('search'); 
+     const search = document.getElementById('search');
 
      const openTable = () => {
          open.addEventListener("click", function() {
@@ -154,16 +154,14 @@
                  atas.classList.add('h-[77px]');
              } else {
                  setTimeout(() => {
-                     setTimeout(() => {
-                         table.classList.remove('hidden');
-                     }, 150);
-                     garis.classList.remove('hidden');
-                     plus.classList.remove('hidden');
-                     garis.classList.add('ease-in-out');
-                     table.classList.add('ease-in-out');
-                     atas.classList.add('h-[450px]');
-                     atas.classList.remove('h-[77px]');
-                 }, 100);
+                     table.classList.remove('hidden');
+                 }, 150);
+                 garis.classList.remove('hidden');
+                 plus.classList.remove('hidden');
+                 garis.classList.add('ease-in-out');
+                 table.classList.add('ease-in-out');
+                 atas.classList.add('h-[450px]');
+                 atas.classList.remove('h-[77px]');
              }
          }
          if (localStorage.getItem("open-table-riwayat-rental") !== null) {

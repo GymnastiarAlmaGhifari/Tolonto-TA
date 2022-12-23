@@ -1,10 +1,10 @@
-<section id="main-ditempat" class="mt-12  text-neutral_050 ml-24 flex flex-row gap-8">
+<section id="main-ditempat-sewa" class="mt-12  text-neutral_050 ml-24 flex flex-row gap-8">
     <h1 class="capitalize font-semibold">total PS Sewa</h1>
     <h2 class="text-neutral_300"><?php echo $ju_pssewa ?></h2>
 </section>
 
 <!-- list ps -->
-<section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
+<section id="list-ps-sewa" class="mt-8  text-neutral_050 ml-24 mb-12">
     <div class="container">
         <div class="flex flex-wrap gap-7 flex-row">
             <!-- start -->
@@ -70,6 +70,19 @@
         </div>
     </div>
 </section>
+<SCript>
+    const list_ps_sewa = document.querySelector('#list-ps-sewa')
+    const main_ditempat_sewa = document.querySelector('#main-ditempat-sewa')
+    window.addEventListener('load', () => {
+        if (localStorage.getItem('lokasi') !== 'Bojonegoro') {
+            list_ps_sewa.classList.add('hidden');
+            main_ditempat_sewa.classList.add('hidden');
+        } else {
+            list_ps_sewa.classList.remove('hidden');
+            main_ditempat_sewa.classList.remove('hidden');
+        }
+    })
+</SCript>
 <?php require_once 'components/inventory/modals/sewa.php' ?>
 <?php require_once 'components/inventory/modals/edit-sewa.php' ?>
 <?php require_once 'components/inventory/modals/hapus-sewa.php' ?>

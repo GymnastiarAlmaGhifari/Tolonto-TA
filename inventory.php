@@ -22,15 +22,6 @@ $ps = $SadminPs->ps_card($_SESSION['loksend']);
 $ps_sewa = $SadminPs->ps_cardsewa($_SESSION['loksend']);
 
 $errors = array();
-
-
-
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>

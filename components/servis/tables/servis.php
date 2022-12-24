@@ -14,6 +14,7 @@
                     </span>
                 </div>
                 <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
+                <h1 id="data-kosong" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
                 <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table">
                     <table id="table" class="w-full table-auto">
                         <thead class="bg-neutral_800 sticky top-0">
@@ -67,16 +68,21 @@
                             <?php
                             $rows = 0;
                             if (empty($service)) {
-                                echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                echo
+                                '<script>
+                                document.getElementById("table").style.display = "none"
+                                    
+                                document.getElementById("data-kosong").classList.remove("hidden") 
+            
+                                document.getElementById("atas").classList.add("h-[450px]") 
+
+                                if (document.getElementById("atas").classList.contains("h-[77px]")) {
+                                    document.getElementById("data-kosong").classList.add("hidden")
+                                }
+
+                                    </script> ';
                             } else {
                                 while ($rows < count($service)) { ?>
-                                    <?php
-                                    // set $service[$rows]['waktu_service'] format date to $valid_date = date( 'm/d/y g:i A', strtotime($date));
-
-                                    // set $service[$rows]['est_jadi'] format date to $valid_date = date( 'm/d/y g:i A', strtotime($date));
-
-
-                                    ?>
                                     <tr class="">
                                         <td class="flex flex-row gap-x-3 pb-5">
                                             <div class="form-control ">
@@ -137,6 +143,29 @@
     const plus = document.getElementById('plus');
     const waktu_submit = document.querySelectorAll('#waktu_submit');
     const search = document.getElementById('search');
+    const data_kosong = document.getElementById('data-kosong');
+
+    window.addEventListener("load", () => {
+        if (localStorage.getItem("open-table-sewa") == "false") {
+            data_kosong.classList.add('hidden');
+        }
+    });
+
+    <?php if (empty($service)) { ?>
+        data_kosong.classList.remove('hidden');
+        table.classList.add('hidden');
+        open.addEventListener("click", () => {
+            if (localStorage.getItem("open-table-sewa") == "false") {
+                data_kosong.classList.remove('hidden');
+                table.classList.add('hidden');
+            } else {
+                data_kosong.classList.add('hidden');
+                table.classList.add('hidden');
+            }
+        });
+
+    <?php } ?>
+
 
     waktu_submit.forEach((waktu) => {
         waktu.innerHTML = waktu.innerHTML.replace(' ', ' - ');

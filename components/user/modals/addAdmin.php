@@ -1,9 +1,9 @@
 <!-- modal Rental tambah start -->
 <section>
-    <div id="modal_overlay_addadmin" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">
+    <div id="modal_overlay_addadmin" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-center pt-10 md:pt-0 z-50">
 
         <!-- modal -->
-        <div id="modal_addadmin" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[520px] w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
+        <div id="modal_addadmin" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[520px] xs:w-[345px] sm:w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
             <div class="flex flex-row justify-start ml-[23px]  gap-3 mb-3">
                 <svg width="28" height="18" viewBox="0 0 28 18" class="mt-1" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.746 11.25C14.494 11.25 8.00219 12.7462 8.00219 15.75V18H27.4898V15.75C27.4898 12.7462 20.998 11.25 17.746 11.25ZM6.78421 6.75V3.375H4.34826V6.75H0.694336V9H4.34826V12.375H6.78421V9H10.4381V6.75M17.746 9C19.0381 9 20.2773 8.52589 21.1909 7.68198C22.1046 6.83807 22.6179 5.69347 22.6179 4.5C22.6179 3.30653 22.1046 2.16193 21.1909 1.31802C20.2773 0.474106 19.0381 0 17.746 0C16.4539 0 15.2147 0.474106 14.301 1.31802C13.3874 2.16193 12.8741 3.30653 12.8741 4.5C12.8741 5.69347 13.3874 6.83807 14.301 7.68198C15.2147 8.52589 16.4539 9 17.746 9Z" fill="#ffffff" />
@@ -48,12 +48,12 @@
                         <path d="M7.5558 11.7781C7.5558 9.32315 9.54547 7.33348 12.0004 7.33348C14.4554 7.33348 16.4451 9.32315 16.4451 11.7781C16.4451 14.2331 14.4554 16.2227 12.0004 16.2227C9.54547 16.2227 7.5558 14.2331 7.5558 11.7781ZM12.0004 14.556C13.5352 14.556 14.7783 13.3129 14.7783 11.7781C14.7783 10.2433 13.5352 9.00022 12.0004 9.00022C11.9761 9.00022 11.9553 9.00022 11.8997 9.00022C11.9761 9.17731 12.0004 9.36481 12.0004 9.5558C12.0004 10.7815 11.0039 11.7781 9.77812 11.7781C9.58714 11.7781 9.39963 11.7538 9.22254 11.6774C9.22254 11.733 9.22254 11.7538 9.22254 11.7469C9.22254 13.3129 10.4656 14.556 12.0004 14.556ZM5.31334 6.79873C6.94813 5.27922 9.19476 4 12.0004 4C14.8061 4 17.0527 5.27922 18.6882 6.79873C20.3133 8.30574 21.4002 10.0801 21.9141 11.351C22.0286 11.6253 22.0286 11.9309 21.9141 12.2052C21.4002 13.4449 20.3133 15.2192 18.6882 16.7575C17.0527 18.2784 14.8061 19.5562 12.0004 19.5562C9.19476 19.5562 6.94813 18.2784 5.31334 16.7575C3.68827 15.2192 2.60211 13.4449 2.08546 12.2052C1.97151 11.9309 1.97151 11.6253 2.08546 11.351C2.60211 10.0801 3.68827 8.30574 5.31334 6.79873ZM12.0004 5.66674C9.73645 5.66674 7.87526 6.69456 6.44811 8.01753C5.11125 9.26064 4.18829 10.7052 3.71675 11.7781C4.18829 12.8198 5.11125 14.2956 6.44811 15.5387C7.87526 16.8617 9.73645 17.8895 12.0004 17.8895C14.2644 17.8895 16.1256 16.8617 17.5528 15.5387C18.8896 14.2956 19.782 12.8198 20.2855 11.7781C19.782 10.7052 18.8896 9.26064 17.5528 8.01753C16.1256 6.69456 14.2644 5.66674 12.0004 5.66674Z" fill="#303030" />
                     </svg>
                 </div>
-                <div class="flex flex-row gap-[42px]  justify-center items-center w-full ">
+                <div class="flex flex-row xs:gap-6 md:gap-[42px]  justify-center items-center w-full ">
                     <div class="relative z-0 w-5/12 ">
-                        <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="14" height="24" class="absolute top-4 xs:left-5 md:left-7" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.12 20.2267L1.89333 16L0.0133336 17.88L6.12 24L12.24 17.88L10.3467 16M6.12 3.77333L10.3467 8L12.2267 6.12L6.12 0L0 6.12L1.89333 8L6.12 3.77333Z" fill="black" />
                         </svg>
-                        <select name="level-Admin" id="level-Admin" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-16  pr-3 outline-none">
+                        <select name="level-Admin" id="level-Admin" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl xs:pl-12 md:pl-16 pr-3 outline-none">
                             <option value="" class="text-neutral_500 text-base" hidden>Level</option>
                             <option id="option" value="1" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Super Admin</option>
                             <option id="option" value="0" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Admin</option>
@@ -61,10 +61,10 @@
                         <i id="arrow_addAdmin" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3"></i>
                     </div>
                     <div class="relative z-0 w-5/12 ">
-                        <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="14" height="24" class="absolute top-4 xs:left-5 md:left-7" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.12 20.2267L1.89333 16L0.0133336 17.88L6.12 24L12.24 17.88L10.3467 16M6.12 3.77333L10.3467 8L12.2267 6.12L6.12 0L0 6.12L1.89333 8L6.12 3.77333Z" fill="black" />
                         </svg>
-                        <select name="lokasi-Admin" id="lokasi-Admin" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-16  pr-3 outline-none">
+                        <select name="lokasi-Admin" id="lokasi-Admin" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl xs:pl-12 md:pl-16  pr-3 outline-none">
                             <option value="" class="text-neutral_500 text-base" hidden>Lokasi</option>
                             <option id="option" value="Bojonegoro" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Bojonegoro</option>
                             <option id="option" value="Tuban" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Tuban</option>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-row gap-[42px] mt-2 items-center justify-center w-full">
+                <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
                     <button type="button" onclick="openModalAddadmin(false)" name="Batal-Admin" id="Batal-Admin" value="Batal-Admin" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl">
                         Batal
                     </button>

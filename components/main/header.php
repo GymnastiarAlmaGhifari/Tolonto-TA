@@ -32,19 +32,21 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
 <div class="container">
     <div class=" w-screen h-[60px] fixed z-20 bg-primary_500 flex items-center  justify-between pr-20 ml-12">
 
-        <h1 id="tempat" class="font-noto-sans text-lg text-neutral_900 ml-[20px] xs:ml-[48px]  font-semibold">
+        <h1 id="tempat" class="font-noto-sans xs:text-base md:text-lg text-sm text-neutral_900 cursor-default sm:ml-[48px] ml-10 font-semibold">
             <?php echo $text; ?>
         </h1>
         <div class="flex items-center xs:gap-x-5">
             <div id="lokasi-drop" class="dropdown dropdown-bottom">
                 <label tabindex="0" id="lok" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
-                    <svg width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="hidden xs:block " width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.75 11.875C7.9212 11.875 7.12634 11.5458 6.54029 10.9597C5.95424 10.3737 5.625 9.5788 5.625 8.75C5.625 7.9212 5.95424 7.12634 6.54029 6.54029C7.12634 5.95424 7.9212 5.625 8.75 5.625C9.5788 5.625 10.3737 5.95424 10.9597 6.54029C11.5458 7.12634 11.875 7.9212 11.875 8.75C11.875 9.16038 11.7942 9.56674 11.6371 9.94589C11.4801 10.325 11.2499 10.6695 10.9597 10.9597C10.6695 11.2499 10.325 11.4801 9.94589 11.6371C9.56674 11.7942 9.16038 11.875 8.75 11.875ZM8.75 0C6.42936 0 4.20376 0.921872 2.56282 2.56282C0.921872 4.20376 0 6.42936 0 8.75C0 15.3125 8.75 25 8.75 25C8.75 25 17.5 15.3125 17.5 8.75C17.5 6.42936 16.5781 4.20376 14.9372 2.56282C13.2962 0.921872 11.0706 0 8.75 0Z" fill="#303030" />
                     </svg>
-                    <h1 id="lokasi" name="lokasi"></h1>
-                    <i class="fa-solid fa-caret-down "></i>
+                    <h1 id="lokasi" name="lokasi" class="hidden sm:block"></h1>
+                    <div class="hidden sm:block">
+                        <i class="fa-solid fa-caret-down "></i>
+                    </div>
                 </label>
-                <ul tabindex="0" class="dropdown-content p-2  cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-52 text-neutral_050">
+                <ul tabindex="0" class="dropdown-content p-2  cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-52 text-neutral_050 -left-12 sm:left-0">
                     <?php
                     $row = 0;
                     while ($row < count($lok)) { ?>
@@ -62,33 +64,37 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                 <svg width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.75 11.875C7.9212 11.875 7.12634 11.5458 6.54029 10.9597C5.95424 10.3737 5.625 9.5788 5.625 8.75C5.625 7.9212 5.95424 7.12634 6.54029 6.54029C7.12634 5.95424 7.9212 5.625 8.75 5.625C9.5788 5.625 10.3737 5.95424 10.9597 6.54029C11.5458 7.12634 11.875 7.9212 11.875 8.75C11.875 9.16038 11.7942 9.56674 11.6371 9.94589C11.4801 10.325 11.2499 10.6695 10.9597 10.9597C10.6695 11.2499 10.325 11.4801 9.94589 11.6371C9.56674 11.7942 9.16038 11.875 8.75 11.875ZM8.75 0C6.42936 0 4.20376 0.921872 2.56282 2.56282C0.921872 4.20376 0 6.42936 0 8.75C0 15.3125 8.75 25 8.75 25C8.75 25 17.5 15.3125 17.5 8.75C17.5 6.42936 16.5781 4.20376 14.9372 2.56282C13.2962 0.921872 11.0706 0 8.75 0Z" fill="#303030" />
                 </svg>
-                <h1 id="lokas" name="lokas" value="<?php echo $user_data['lok']; ?>">
+                <h1 id="lokas" name="lokas" class="xs:text-base md:text-lg text-sm" value="<?php echo $user_data['lok']; ?>">
                     <?php echo $user_data['lok']; ?>
                 </h1>
             </div>
             <!-- dropdown end -->
-            <div class="text-neutral_900 font-noto-sans font-semibold xs:hidden xl:block md:block sm:hidden 2xl:block">
+            <div class="text-neutral_900 font-noto-sans font-semibold hidden md:block">
                 <span id="hours">00</span>
                 <span>:</span>
                 <span id="minutes">00</span>
                 <span>:</span>
                 <span id="seconds">00</span>
             </div>
-            <div class="cursor-pointer relative">
-                <div class="rounded-full bg-error_500 absolute w-[24px] left-[12px] bottom-3 text-center">
-                    <span class="text-neutral_050">99</span>
+            <button type="button" class="btn btn-ghost -mr-3  md:-ml-3 -ml-4">
+                <div class="relative w-full">
+                    <div class="w-[24px] h-[24px] rounded-full bg-error_500 absolute left-[12px] bottom-3 flex items-center justify-center">
+                        <span class="text-neutral_050">99</span>
+                    </div>
+                    <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.5 21.25V22.5H0V21.25L2.5 18.75V11.25C2.5 7.375 5.0375 3.9625 8.75 2.8625C8.75 2.7375 8.75 2.625 8.75 2.5C8.75 1.83696 9.01339 1.20107 9.48223 0.732233C9.95107 0.263392 10.587 0 11.25 0C11.913 0 12.5489 0.263392 13.0178 0.732233C13.4866 1.20107 13.75 1.83696 13.75 2.5C13.75 2.625 13.75 2.7375 13.75 2.8625C17.4625 3.9625 20 7.375 20 11.25V18.75L22.5 21.25ZM13.75 23.75C13.75 24.413 13.4866 25.0489 13.0178 25.5178C12.5489 25.9866 11.913 26.25 11.25 26.25C10.587 26.25 9.95107 25.9866 9.48223 25.5178C9.01339 25.0489 8.75 24.413 8.75 23.75" fill="#303030" />
+                    </svg>
                 </div>
-                <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.5 21.25V22.5H0V21.25L2.5 18.75V11.25C2.5 7.375 5.0375 3.9625 8.75 2.8625C8.75 2.7375 8.75 2.625 8.75 2.5C8.75 1.83696 9.01339 1.20107 9.48223 0.732233C9.95107 0.263392 10.587 0 11.25 0C11.913 0 12.5489 0.263392 13.0178 0.732233C13.4866 1.20107 13.75 1.83696 13.75 2.5C13.75 2.625 13.75 2.7375 13.75 2.8625C17.4625 3.9625 20 7.375 20 11.25V18.75L22.5 21.25ZM13.75 23.75C13.75 24.413 13.4866 25.0489 13.0178 25.5178C12.5489 25.9866 11.913 26.25 11.25 26.25C10.587 26.25 9.95107 25.9866 9.48223 25.5178C9.01339 25.0489 8.75 24.413 8.75 23.75" fill="#303030" />
-                </svg>
-            </div>
-            <span class="bg-neutral_600 h-[40px] w-0.5"></span>
+            </button>
+            <span class="bg-neutral_600 h-[40px] w-0.5 hidden md:block"></span>
             <div class="flex items-center justify-start">
                 <div class="dropdown dropdown-bottom">
-                    <label tabindex="0" class="btn btn-ghost h-full capitalize font-semibold font-noto-san gap-2 -mr-5 -ml-4 text-neutral_900">
-                        <?php echo $user_data['username'];
-                        ?>
-                        <img src="<?php echo $user_data['img']; ?>" alt="" class="rounded-full w-[48px] h-[48px]">
+                    <label tabindex="0" class="btn btn-ghost h-full capitalize font-semibold font-noto-san gap-2 -mr-7  md:-ml-3 -ml-4 text-neutral_900 ">
+                        <h1 class="hidden md:block"> <?php echo $user_data['username'];
+                                                        ?></h1>
+                        <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
+                            <img src="<?php echo $user_data['img']; ?>" alt="Gambar Profile" class="rounded-full w-full h-full object-cover">
+                        </div>
                     </label>
                     <ul tabindex="0" class="dropdown-content p-2  cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-32 text-neutral_050 -right-5 mt-1">
                         <li id="profile" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-12 pt-3 font-noto-sans text-base">

@@ -5,7 +5,7 @@
             <div class="flex flex-wrap flex-col ">
                 <div class=" flex flex-row justify-between items-center -mb-3">
                     <div class="flex gap-4">
-                        <h1 class="capitalize font-semibold">Riwayat Sewa</h1>
+                        <h1 class="capitalize font-semibold">Sewa</h1>
                         <h2><?php echo $jumlah_sewa ?></h2>
                     </div>
                     <span id="open2" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
@@ -14,6 +14,7 @@
                     </span>
                 </div>
                 <span id="garis2" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
+                <h1 id="data-kosong2" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
                 <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table2">
                     <table class="w-full table-auto">
                         <thead class="bg-neutral_800 sticky top-0">
@@ -67,7 +68,19 @@
                             <?php
                             $rows = 0;
                             if (empty($sewa)) {
-                                echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                echo
+                                '<script>
+                                document.getElementById("table2").style.display = "none"
+                                    
+                                document.getElementById("data-kosong2").classList.remove("hidden") 
+            
+                                document.getElementById("atas2").classList.add("h-[450px]") 
+
+                                if (document.getElementById("atas2").classList.contains("h-[77px]")) {
+                                    document.getElementById("data-kosong2").classList.add("hidden")
+                                }
+
+                                    </script> ';
                             } else {
                                 while ($rows < count($sewa)) { ?>
                                     <tr class="">
@@ -134,6 +147,28 @@
     const garis2 = document.getElementById('garis2');
     const plus2 = document.getElementById('plus2');
     const search2 = document.getElementById('search2');
+    const data_kosong2 = document.getElementById('data-kosong2');
+
+    window.addEventListener("load", () => {
+        if (localStorage.getItem("open-table-riwayat-sewa") == "false") {
+            data_kosong2.classList.add('hidden');
+        }
+    });
+
+    <?php if (empty($sewa)) { ?>
+        data_kosong2.classList.remove('hidden');
+        table2.classList.add('hidden');
+        open2.addEventListener("click", () => {
+            if (localStorage.getItem("open-table-riwayat-sewa") == "false") {
+                data_kosong2.classList.remove('hidden');
+                table2.classList.add('hidden');
+            } else {
+                data_kosong2.classList.add('hidden');
+                table2.classList.add('hidden');
+            }
+        });
+
+    <?php } ?>
 
     const openTable2 = () => {
         open2.addEventListener("click", function() {

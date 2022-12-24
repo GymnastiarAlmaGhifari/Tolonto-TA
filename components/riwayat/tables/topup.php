@@ -4,7 +4,7 @@
         <div id="atas3" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
             <div class="flex flex-wrap flex-col ">
                 <div class=" flex flex-row justify-between items-center -mb-3">
-                    <div class="flex gap-4">
+                    <div class="flex gap-4 items-center">
                         <h1 class="capitalize font-semibold">Topup</h1>
                         <h2><?php echo $jumlah_topup ?></h2>
                     </div>
@@ -14,6 +14,7 @@
                     </span>
                 </div>
                 <span id="garis3" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
+                <h1 id="data-kosong3" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
                 <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table3">
                     <table class="w-full table-auto">
                         <thead class="bg-neutral_800 sticky top-0">
@@ -24,7 +25,7 @@
                                         <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                     </div>
                                 </th>
-                                <th scope="col" class="text-left  ">
+                                <th scope="col" class="text-left">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
                                         <h1 class=" uppercase">Email User</h1>
                                         <i class="fa-solid fa-angle-up"></i>
@@ -61,7 +62,19 @@
                             <?php
                             $rows = 0;
                             if (empty($topup)) {
-                                echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                echo
+                                '<script>
+                                document.getElementById("table3").style.display = "none"
+                                    
+                                document.getElementById("data-kosong3").classList.remove("hidden") 
+            
+                                document.getElementById("atas3").classList.add("h-[450px]") 
+
+                                if (document.getElementById("atas3").classList.contains("h-[77px]")) {
+                                    document.getElementById("data-kosong3").classList.add("hidden")
+                                }
+
+                                    </script> ';
                             } else {
                                 while ($rows < count($topup)) { ?>
                                     <tr class="">
@@ -82,27 +95,12 @@
                                         <td class=" text-center"><?php echo $topup[$rows]['waktu'] ?></td>
                                         <td class="text-center"><?php echo $topup[$rows]['admin'] ?></td>
                                         <td class=" text-center">
-                                            <div class="dropdown dropdown-hover dropdown-right dropdown-end">
-                                                <label tabindex="0" class="btn m-1 hover:bg-neutral_600 bg-transparent">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </label>
-                                                <ul tabindex="0" class="dropdown-content -mb-1  shadow-elevation-light-4 bg-neutral_050 rounded-lg w-12 text-neutral_050">
-                                                    <li class="cursor-pointer active:bg-primary_500 active:text-neutral_900 hover:bg-neutral_500 rounded-sm h-8 font-noto-sans text-base">
-                                                        <button>
-                                                            <svg class="mx-auto my-1.5" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="#303030" />
-                                                            </svg>
-                                                        </button>
-                                                    </li>
-                                                    <li class="cursor-pointer active:bg-primary_500 active:text-neutral_900  hover:bg-neutral_500 rounded-sm h-8 font-noto-sans text-base">
-                                                        <button>
-                                                            <svg class="mx-auto my-1.5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
-                                                            </svg>
-                                                        </button>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <button id="topupUser" value="<?php echo $topup[$row]['id_topup'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
+                                                <h1 class="text-error_600 font-semibold">hapus</h1>
+                                                <svg width="16" class="mx-auto" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
+                                                </svg>
+                                            </button>
                                         </td>
                                     </tr>
                             <?php $rows++;
@@ -124,6 +122,29 @@
     const garis3 = document.getElementById('garis3');
     const plus3 = document.getElementById('plus3');
     const search3 = document.getElementById('search3');
+    const data_kosong3 = document.getElementById('data-kosong3');
+
+    window.addEventListener("load", () => {
+        if (localStorage.getItem("open-table-riwayat-aktif") == "false") {
+            data_kosong3.classList.add('hidden');
+        }
+    });
+
+    <?php if (empty($topup)) { ?>
+        data_kosong3.classList.remove('hidden');
+        table3.classList.add('hidden');
+        open3.addEventListener("click", () => {
+            if (localStorage.getItem("open-table-riwayat-aktif") == "false") {
+                data_kosong3.classList.remove('hidden');
+                table3.classList.add('hidden');
+            } else {
+                data_kosong3.classList.add('hidden');
+                table3.classList.add('hidden');
+            }
+        });
+
+    <?php } ?>
+
 
     const openTable3 = () => {
         open3.addEventListener("click", function() {
@@ -159,7 +180,9 @@
         }
         if (atas3.classList.contains("h-[450px]")) {
             open3.checked = true;
+
         }
+
     }
     openTable3();
 

@@ -4,16 +4,18 @@
          <div id="atas" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
              <div class="flex flex-wrap flex-col ">
                  <div class=" flex flex-row justify-between items-center -mb-3">
-                     <div class="flex gap-4">
-                         <h1 class="capitalize font-semibold">Riwayat Rental</h1>
+                     <div class="flex gap-4 items-center">
+                         <h1 class="capitalize font-semibold">Rental</h1>
                          <h2><?php echo $jumlah_rent ?></h2>
                      </div>
                      <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                          <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                          <span id="plus" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                      </span>
+
                  </div>
                  <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
+                 <h1 id="data-kosong" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
                  <div class="w-full mx-auto relative h-[360px] block overflow-y-auto mt-2" id="table">
                      <table class="w-full">
                          <thead class="bg-neutral_800 sticky top-0">
@@ -67,7 +69,19 @@
                              <?php
                                 $row = 0;
                                 if (empty($rent)) {
-                                    echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                    echo
+                                    '<script>
+                                    document.getElementById("table").style.display = "none"
+                                        
+                                    document.getElementById("data-kosong").classList.remove("hidden") 
+                
+                                    document.getElementById("atas").classList.add("h-[450px]") 
+    
+                                    if (document.getElementById("atas").classList.contains("h-[77px]")) {
+                                        document.getElementById("data-kosong").classList.add("hidden")
+                                    }
+    
+                                        </script> ';
                                 } else {
                                     while ($row < count($rent)) { ?>
                                      <tr class="">
@@ -134,6 +148,28 @@
      const garis = document.getElementById('garis');
      const plus = document.getElementById('plus');
      const search = document.getElementById('search');
+     const data_kosong = document.getElementById('data-kosong');
+
+     window.addEventListener("load", () => {
+         if (localStorage.getItem("open-table-riwayat-rental") == "false") {
+             data_kosong.classList.add('hidden');
+         }
+     });
+
+     <?php if (empty($rent)) { ?>
+         data_kosong.classList.remove('hidden');
+         table.classList.add('hidden');
+         open.addEventListener("click", () => {
+             if (localStorage.getItem("open-table-riwayat-rental") == "false") {
+                 data_kosong.classList.remove('hidden');
+                 table.classList.add('hidden');
+             } else {
+                 data_kosong.classList.add('hidden');
+                 table.classList.add('hidden');
+             }
+         });
+
+     <?php } ?>
 
      const openTable = () => {
          open.addEventListener("click", function() {

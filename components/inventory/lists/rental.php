@@ -1,8 +1,8 @@
-<section id="main-ditempat" class="mt-24  text-neutral_050 ml-24 flex flex-row gap-8">
+<section id="main-ditempat" class="xs:mt-[84px] sm:mt-24 text-neutral_050 xs:ml-[84px] sm:ml-24 flex flex-row gap-8">
     <h1 class="capitalize font-semibold">total PS Rental</h1>
     <h2 class="text-neutral_300"><?php echo $ju_ps ?></h2>
 </section>
-<section id="list-ps" class="mt-8  text-neutral_050 ml-24 mb-12">
+<section id="list-ps" class="mt-8  text-neutral_050 xs:ml-[84px] sm:ml-24 mb-12">
     <div class="container">
         <div class="flex flex-wrap gap-7 flex-row">
             <!-- start -->
@@ -20,7 +20,7 @@
                         $ikon = 'bg-[#fc1100]';
                     }
             ?>
-                    <div class="w-[350px] h-[230px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
+                    <div class=" xs:w-[260px] sm:w-[350px] h-[230px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
                         <div class="flex justify-between mt-2 mx-5">
                             <h1><?php echo $ps[$row]['nama_ps'] ?></h1>
                             <div class="flex flex-row gap-2">
@@ -37,7 +37,7 @@
                                 </button>
                             </div>
                         </div>
-                        <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
+                        <span class="bg-neutral_600 xs:w-[240px] sm:w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
                         <div class="flex justify-center items-center relative">
                             <img class="h-[110px] m-2" src="<?php echo $ps[$row]['img'] ?>" alt="">
                         </div>
@@ -61,7 +61,7 @@
                 }
             } ?>
             <!-- end -->
-            <div class="w-[350px] h-[230px] bg-transparent rounded-xl  flex items-center justify-center">
+            <div class="xs:w-[260px] sm:w-[350px] h-[230px] bg-transparent rounded-xl  flex items-center justify-center">
                 <button id="tambahRental" name="tambahRental" class="flex justify-center items-center h-[150px] w-[150px] shadow-elevation-dark-4 bg-neutral_800 rounded-full relative">
                     <span class="bg-neutral_050 w-20 h-[4px] rounded-full"></span>
                     <span id="plus3" class="bg-neutral_050 w-[4px] h-20 absolute rounded-full"></span>

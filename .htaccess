@@ -1,1 +1,2 @@
 ErrorDocument 404 /404.html
+Php_value memory_limit 256M;

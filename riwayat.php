@@ -45,6 +45,11 @@ if (Session::exists('riwayat')) {
 </head>
 
 <body>
+    <!--loader start  -->
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+        <span class="loader-103"> </span>
+    </div>
+    <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
             <form action="riwayat.php" method="post">
@@ -112,7 +117,7 @@ if (Session::exists('riwayat')) {
         //     });
         // });
     </script>
-        <?php require_once 'components/main/modalLogout.php'; ?>
+    <?php require_once 'components/main/modalLogout.php'; ?>
 </body>
 
 

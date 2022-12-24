@@ -1,9 +1,9 @@
 <!-- modal Rental tambah start -->
 <section>
-    <div id="modal_overlay_edit" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">
+    <div id="modal_overlay_edit" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-center pt-10 md:pt-0 z-50">
 
         <!-- modal -->
-        <div id="modal_edit" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[575px] w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
+        <div id="modal_edit" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[575px]  xs:w-[345px] sm:w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
             <div class="flex flex-row justify-between items-center -mt-6">
                 <div class="flex flex-row justify-start ml-[23px] mt-4 gap-3 mb-3">
                     <svg class="mx-auto my-auto" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

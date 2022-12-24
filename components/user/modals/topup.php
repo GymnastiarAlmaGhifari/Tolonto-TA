@@ -22,9 +22,9 @@ if (isset($_POST['Konfirmasi-topup'])) {
 
 <!-- modal Sewa tambah start -->
 <section>
-    <div id="modal_overlay_topup" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">
+    <div id="modal_overlay_topup" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-center pt-10 md:pt-0 z-50">
         <!-- modal -->
-        <div id="modal_topup" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[450px] w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
+        <div id="modal_topup" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[450px] xs:w-[345px] sm:w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
             <div class="flex flex-row justify-start ml-[23px]  gap-3 mb-3">
                 <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 16H2.66667C2.66667 17.44 4.49333 18.6667 6.66667 18.6667C8.84 18.6667 10.6667 17.44 10.6667 16C10.6667 14.5333 9.28 14 6.34667 13.2933C3.52 12.5867 0 11.7067 0 8C0 5.61333 1.96 3.58667 4.66667 2.90667V0H8.66667V2.90667C11.3733 3.58667 13.3333 5.61333 13.3333 8H10.6667C10.6667 6.56 8.84 5.33333 6.66667 5.33333C4.49333 5.33333 2.66667 6.56 2.66667 8C2.66667 9.46667 4.05333 10 6.98667 10.7067C9.81333 11.4133 13.3333 12.2933 13.3333 16C13.3333 18.3867 11.3733 20.4133 8.66667 21.0933V24H4.66667V21.0933C1.96 20.4133 0 18.3867 0 16Z" fill="#fff" />
@@ -57,7 +57,7 @@ if (isset($_POST['Konfirmasi-topup'])) {
                     </svg>
                 </div>
 
-                <div class="flex flex-row gap-[42px] mt-2 items-center justify-center w-full">
+                <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
                     <button type="button" onclick="openModalTopup(false)" name="Batal-topup" id="Batal-topup" value="Batal-topup" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl">
                         Batal
                     </button>

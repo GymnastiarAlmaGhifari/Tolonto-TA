@@ -114,7 +114,7 @@ if (Location::in(1, 'user')) {
 <div class="container">
     <div class="flex flex-wrap ">
         <div id="backdrop" class="hidden z-20 w-screen h-screen bg-black/50 fixed transition duration-300 ease-in-out"></div>
-        <div id="sidebar" class="w-[60px] bg-primary_500 z-30 h-screen fixed text-neutral_900 font-noto-sans duration-300">
+        <div id="sidebar" class="w-[60px] bg-primary_500 z-30 h-screen fixed text-neutral_900 font-noto-sans">
             <div id="flexing" class="ml-1">
                 <button type="button" id="sidebarToggle" class="flex items-center justify-center mx-auto">
                     <div id="putar" class="flex flex-col items-center w-full h-full rounded-full justify-center space-y-1.5 mt-5 mb-8">

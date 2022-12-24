@@ -54,14 +54,14 @@ if (isset($_POST['Konfirmasi-rental'])) {
 ?>
 <!-- modal Rental tambah start -->
 <section>
-    <div id="modal_overlay_rental" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0 z-50">
+    <div id="modal_overlay_rental" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-center pt-10 md:pt-0 z-50">
         <!-- modal -->
-        <div id="modal_rental" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[520px] w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
+        <div id="modal_rental" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[520px] xs:w-[345px] sm:w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
             <div class="flex flex-row justify-start ml-[25px]  gap-3 mb-3">
                 <svg width="21" height="24" viewBox="0 0 21 24" class="my-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2.28571 0C1.01714 0 0 1.01714 0 2.28571V20.5714C0 21.1776 0.240816 21.759 0.66947 22.1877C1.09812 22.6163 1.67951 22.8571 2.28571 22.8571H6.85714V20.6743L9.24572 18.2857H2.28571V16H11.5314L13.8171 13.7143H2.28571V11.4286H16.1029L18.2857 9.24572V6.85714L11.4286 0H2.28571ZM10.2857 1.71429L16.5714 8H10.2857V1.71429ZM18.4571 12.5714C18.2857 12.5714 18.1257 12.6286 18 12.7543L16.8343 13.92L19.2229 16.2971L20.3886 15.1429C20.6286 14.8914 20.6286 14.48 20.3886 14.24L18.9029 12.7543C18.7771 12.6286 18.6171 12.5714 18.4571 12.5714ZM16.16 14.5943L9.14286 21.6229V24H11.52L18.5486 16.9714L16.16 14.5943Z" fill="#FAFAFA" />
                 </svg>
-                <h1 id="mdoalText" class="text-neutral_050 font-base font-noto-sans text-xl">Tambah PlayStation Rental Baru</h1>
+                <h1 id="mdoalText" class="text-neutral_050 font-base font-noto-sans xs:text-base sm:text-xl">Tambah PlayStation Rental Baru</h1>
             </div>
             <span class="w-11/12 h-0.5 mx-auto -mt-4 bg-neutral_600"></span>
             <form action="inventory.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
@@ -110,7 +110,7 @@ if (isset($_POST['Konfirmasi-rental'])) {
 
                 </div>
 
-                <div class="flex flex-row gap-11 mt-2 items-center justify-center w-full">
+                <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
                     <button type="button" onclick="openModalRental(false)" name="Batal-rental" id="Batal-rental" value="Batal-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4">
                         Batal
                     </button>
@@ -174,12 +174,21 @@ if (isset($_POST['Konfirmasi-rental'])) {
     });
 
 
-    imginp_rental.onchange = evt => {
+    imginp_rental.onchange = () => {
         const [file_rental] = imginp_rental.files
         if (file_rental) {
             //if size is more than 2mb alert
             if (file_rental.size > 2000000) {
-                alert('ukuran file maksimal 2mb');
+                Swal.fire({
+                    background: '#fff',
+                    icon: 'error',
+                    // text color white
+                    html: '<h2 class="text-neutral_900 font-medium">ukuran file maksimal 2mb</h2>',
+                    showConfirmButton: false,
+                    // opacity
+                    backdrop: `rgba(0,0,0,0.5)`,
+                    timer: 1700
+                })
                 imginp_rental.value = '';
                 return false;
             } else if (file_rental.type != 'image/jpeg' && file_rental.type != 'image/png' && file_rental.type != 'image/jpg') {
@@ -188,8 +197,6 @@ if (isset($_POST['Konfirmasi-rental'])) {
                 return false;
             } else {
                 prev_rental.src = URL.createObjectURL(file_rental)
-                //rename file to datetimenow and save to folder
-
                 console.log(file_rental);
             }
 

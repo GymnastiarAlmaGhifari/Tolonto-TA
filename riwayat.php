@@ -4,11 +4,13 @@ require_once 'core/init.php';
 
 $riwayat = new ControllerRiwayat();
 
-
+$user_data = $user->get_data(Session::get('username'));
 $rent = $riwayat->h_rental($_SESSION['loksend']);
 $jumlah_rent = $riwayat->jumlah_rent($_SESSION['loksend']);
 $sewa = $riwayat->h_sewa($_SESSION['loksend']);
 $jumlah_sewa = $riwayat->jumlah_sewa($_SESSION['loksend']);
+$servis = $riwayat->h_servis($_SESSION['loksend']);
+$jumlah_servis = $riwayat->jumlah_servis($_SESSION['loksend']);
 $topup = $riwayat->h_topup();
 $jumlah_topup = $riwayat->jumlah_topup();
 
@@ -61,9 +63,13 @@ if (Session::exists('riwayat')) {
             </form>
             <?php
             require_once 'components/riwayat/tables/rental.php';
-            require_once 'components/riwayat/tables/sewa.php';
+            if ($user_data['username'] == Session::get('username') && $user_data['lok'] == 'Bojonegoro') {
+                require_once 'components/riwayat/tables/sewa.php';
+                require_once 'components/riwayat/tables/servis.php';
+            }
             require_once 'components/riwayat/tables/topup.php';
             ?>
+
         </div>
     </main>
 

@@ -40,17 +40,17 @@ class ControllerRiwayat extends Database
 
     public function h_servis($lok)
     {
-        $sql = "SELECT user.username, user.img, servis.id_servis, servis.nama_barang, servis.status, servis.kerusakan, servis.detail,
-        servis.est_selesai, servis_adm.bayar, servis_adm.perbaikan, servis_adm.update_time FROM `servis` JOIN user ON servis.id_user = user.user_id
-        JOIN servis_adm ON servis.id_servis = servis_adm.id_servis WHERE servis.lok = '$lok' ;";
+        $sql = "SELECT user.username, user.img, servis.id_servis, servis.nama_barang, servis.kerusakan, servis.waktu_submit, servis.status, servis.est_selesai 
+        FROM `servis` JOIN user ON servis.id_user = user.user_id WHERE servis.lok = '$lok' AND servis.status = 'selesai' OR servis.status = 'batal' ;";
         $data = $this->uniquery($sql);
         return $data;
     }
 
     public function jumlah_servis($lok)
     {
-        $data = $this->count('id_servis', 'servis', 'lok', $lok);
-        $jumlah = $data['COUNT(id_servis)'];
+        $sql = "SELECT COUNT(id_servis) FROM servis WHERE servis.lok = '$lok' AND servis.status = 'selesai' OR servis.status = 'batal' ;  ";
+        $data = $this->uniquery($sql);
+        $jumlah = $data[0]['COUNT(id_servis)'];
         if ($jumlah != 0) return $jumlah;
         else return "0";
     }

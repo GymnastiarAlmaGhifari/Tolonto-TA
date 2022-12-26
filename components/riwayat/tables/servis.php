@@ -33,27 +33,33 @@
                                         <input type="text" id="search4" name="search4" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                     </div>
                                 </th>
-                                <th scope="col" class="text-left">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class=" uppercase">Email User</h1>
+                                <th scope="col" class="text-left  ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                        <h1 class=" uppercase">nama barang</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">Nominal</h1>
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                        <h1 class="uppercase">kerusakan</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">waktu</h1>
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                        <h1 class="uppercase">waktu service</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
                                 <th scope="col" class="text-left ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">Admin</h1>
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                        <h1 class="uppercase">status</h1>
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </button>
+                                </th>
+                                <th scope="col" class="text-left ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                        <h1 class="uppercase">Est. Jadi</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
@@ -69,7 +75,7 @@
                             <!-- list 1 start -->
                             <?php
                             $rows = 0;
-                            if (empty($servis)) {
+                            if (empty($service)) {
                                 echo
                                 '<script>
                                 document.getElementById("table4").style.display = "none"
@@ -84,26 +90,31 @@
 
                                     </script> ';
                             } else {
-                                while ($rows < count($servis)) { ?>
+                                while ($rows < count($service)) { ?>
                                     <tr class="">
                                         <td class="flex flex-row gap-x-3 pb-5">
                                             <div class="form-control ">
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                <img src="<?php echo $servis[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
+                                                <img src="<?php echo $service[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
                                             </div>
                                             <div class="flex flex-col gap-y-1 ml-2">
-                                                <h1 class="font-semibold"><?php echo $servis[$rows]['username'] ?></h1>
-                                                <h2 class="text-neutral_400 text-xs"><?php echo $servis[$rows]['id_servis'] ?></h2>
+                                                <h1 class="font-semibold"><?php echo $service[$rows]['username'] ?></h1>
+                                                <h2 class="text-neutral_400 text-xs"><?php echo $service[$rows]['id_servis'] ?></h2>
                                             </div>
                                         </td>
-                                        <td class="text-center"><?php echo $servis[$rows]['email'] ?></td>
-                                        <td class="text-center">Rp. <?php echo $servis[$rows]['kerusakan'] ?></td>
-                                        <td class=" text-center"><?php echo $servis[$rows]['waktu_submit'] ?></td>
-                                        <td class="text-center"><?php echo $servis[$rows]['est_selesai'] ?></td>
+                                        <td class="text-center"><?php echo $service[$rows]['nama_barang'] ?></td>
+                                        <td class="text-center"><?php echo $service[$rows]['kerusakan'] ?></td>
+                                        <td id="waktu_submit" class=" text-center"><?php $date = $service[$rows]['waktu_submit'];
+                                                                                    $valid_date = date('H:i:s m/d/y', strtotime($date));
+                                                                                    echo $valid_date;
+
+                                                                                    ?></td>
+                                        <td class="text-center"><?php echo $service[$rows]['status'] ?></td>
+                                        <td id="est_jadi" class="text-center"><?php echo date('H:i:s m/d/y', strtotime($service[$rows]['est_selesai'])) ?></td>
                                         <td class=" text-center">
-                                            <button id="hapus-servis" value="<?php echo $servis[$row]['id_servis'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
+                                            <button id="hapus-servis" value="<?php echo $service[$row]['id_servis'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
                                                 <h1 class="text-error_600 font-semibold">hapus</h1>
                                                 <svg width="16" class="mx-auto" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
@@ -147,7 +158,7 @@
     });
 
 
-    <?php if (empty($servis)) { ?>
+    <?php if (empty($service)) { ?>
         data_kosong4.classList.remove('hidden');
         table4.classList.add('hidden');
         open4.addEventListener("click", () => {

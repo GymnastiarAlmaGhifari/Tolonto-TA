@@ -26,7 +26,7 @@
                 </div>
                 <div class="relative z-0 w-11/12 ">
                     <h1 class="text-neutral_050 font-medium mb-2 ml-3">Detail Kerusakan</h1>
-                    <textarea name="detail-kerusakan" id="detail-kerusakan" disabled class="resize-none rounded-2xl h-[222px] w-full bg-neutral_050 pl-3"></textarea>
+                    <textarea name="detail-kerusakan" id="detail-kerusakan" readonly class="resize-none rounded-2xl h-[222px] w-full bg-neutral_050 pl-3 cursor-default text-neutral_900"></textarea>
                 </div>
 
                 <div class="flex flex-row gap-[42px] items-center justify-center w-full">
@@ -83,6 +83,28 @@
 
             const id = item.value
             id_servis.innerHTML = id
+
+            const nama_barang = document.getElementById('nama_barang');
+            const detail_kerusakan = document.getElementById('detail-kerusakan');
+            //  gunakan varibale id untuk mengirim season ke php
+            //  gunakan variable id untuk mengambil data dari database        
+
+            var xhr = new XMLHttpRequest();
+            // path getuser.php in main dir
+            var url = "..\\..\\..\\getservis.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    nama_barang.value = json.nama_barang;
+                    detail_kerusakan.value = json.detail;
+                }
+            };
+            var data = JSON.stringify({
+                "id": id
+            });
+            xhr.send(data);
 
         })
     })

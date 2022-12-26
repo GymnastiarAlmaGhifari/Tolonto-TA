@@ -19,4 +19,18 @@ class ControllerServis extends Database
         if ($jumlah != 0) return $jumlah;
         else return "0";
     }
+
+    public function fetch_servis($id)
+    {
+
+        $data = $this->fetch('servis', 'id_servis', $id);
+        return $data;
+    }
+
+    public function fetch_servis_adm($id)
+    {
+
+        $data = $this->fetch('servis_adm', 'id_servis', $id);
+        return $data;
+    }
 }

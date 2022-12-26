@@ -1,4 +1,32 @@
 <!-- table start -->
+<?php
+if (isset($_POST['edit_konfirmasi'])) {
+    $id = $_POST['id-servis-edit'];
+    $status = $_POST['status'];
+    $bayar = Rupiah::clear($_POST['bayar']);
+    $perbaikan = $_POST['detail_perbaikan'];
+    $est_selesai = Tanggal::ChangeFormatToDb($_POST['datepickerValue']);
+    
+    print_r( 'wkwkwk' . $id . $status . $bayar . $perbaikan . $est_selesai);
+    die();
+        // if ($SadminUser->add_admin(
+        //     [
+        //         'id_admin' => $idadmin,
+        //         'username' => $_POST['username'],
+        //         'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+        //         'create_at' => date('Y-m-d H:i:s'),
+        //         'update_at' => date('Y-m-d H:i:s'),
+        //         'level' => $_POST['level-Admin'],
+        //         'lok' => $_POST['lokasi-Admin'],
+        //         'img' => $dirUpload . $filename
+        //     ]
+        // )) // jika berhasil refresh page tanpa submit ulang
+        // {
+        //     Redirect::to('user');
+        // } else {
+        // }
+    }
+?>
 <section class="mt-24 text-neutral_050  ml-16">
     <div class="container px-6 max-w-full ">
         <div id="atas" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">

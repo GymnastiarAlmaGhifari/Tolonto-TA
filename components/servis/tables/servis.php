@@ -5,27 +5,51 @@ if (isset($_POST['edit_konfirmasi'])) {
     $status = $_POST['status'];
     $bayar = Rupiah::clear($_POST['bayar']);
     $perbaikan = $_POST['detail_perbaikan'];
-    $est_selesai = Tanggal::ChangeFormatToDb($_POST['datepickerValue']);
-    
-    print_r( 'wkwkwk' . $id . $status . $bayar . $perbaikan . $est_selesai);
-    die();
-        // if ($SadminUser->add_admin(
-        //     [
-        //         'id_admin' => $idadmin,
-        //         'username' => $_POST['username'],
-        //         'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-        //         'create_at' => date('Y-m-d H:i:s'),
-        //         'update_at' => date('Y-m-d H:i:s'),
-        //         'level' => $_POST['level-Admin'],
-        //         'lok' => $_POST['lokasi-Admin'],
-        //         'img' => $dirUpload . $filename
-        //     ]
-        // )) // jika berhasil refresh page tanpa submit ulang
-        // {
-        //     Redirect::to('user');
-        // } else {
-        // }
+    $est_selesai = $_POST['tgl-servis-edit'];
+
+    if ($servis->update_admservis(
+        [
+            'bayar' => $bayar,
+            'perbaikan' => $perbaikan,
+            'update_time' => date('Y-m-d H:i:s')
+        ], $id )
+    ) {
+        if ($servis->update_servis(
+            [
+                'status' => $status,
+                'est_selesai' => $est_selesai
+            ], $id
+        )) {
+            Redirect::to('servis');
+            // alert disini
+        } else {
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: 'Data gagal diubah',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                location.href = 'servis';
+            });
+            </script>";
+        }
+    } else {
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Data gagal diubah',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            location.href = 'servis';
+        });
+        </script>";
+
     }
+}
 ?>
 <section class="mt-24 text-neutral_050  ml-16">
     <div class="container px-6 max-w-full ">

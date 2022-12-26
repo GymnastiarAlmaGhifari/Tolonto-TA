@@ -9,12 +9,8 @@ class Tanggal
     // });
     public static function ChangeFormatToDb($date)
     {
-        // rubah format tanggal dari 'Selasa, 27 Desember 2022' menjadi 2020-01-01 (untuk database)
-        $date = explode(' ', $date);
-        $date = explode(',', $date[1]);
-        $date = explode(' ', $date[0]);
-        $date = $date[2] . '-' . $date[1] . '-' . $date[0];
-        return $date;
+        // rubah format tanggal dari 'Selasa, 27 Desember 2022' menjadi 2022-12-27 (untuk database)
+
     }
 
     public static function tgl_indo($date){

@@ -99,12 +99,13 @@
                                         <td class="text-center"><?php echo $service[$rows]['nama_barang'] ?></td>
                                         <td class="text-center"><?php echo $service[$rows]['kerusakan'] ?></td>
                                         <td id="waktu_submit" class=" text-center"><?php $date = $service[$rows]['waktu_submit'];
-                                                                                    $valid_date = date('H:i:s m/d/y', strtotime($date));
+                                                                                    $valid_date = date('H:i:s d/m/y', strtotime($date));
                                                                                     echo $valid_date;
-
                                                                                     ?></td>
                                         <td class="text-center"><?php echo $service[$rows]['status'] ?></td>
-                                        <td id="est_jadi" class="text-center"><?php echo date('H:i:s m/d/y', strtotime($service[$rows]['est_selesai'])) ?></td>
+                                        <td id="est_jadi" class="text-center"><?php echo Tanggal::tgl_indo($service[$rows]['est_selesai']); ?>
+                                        
+                                        </td>
                                         <td class=" text-center">
                                             <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
                                                 <button id="infoServis" name="infoServis" type="submit" value="<?php echo $service[$rows]['id_servis'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
@@ -173,9 +174,7 @@
     waktu_submit.forEach((waktu) => {
         waktu.innerHTML = waktu.innerHTML.replace(' ', ' - ');
     });
-    est_jadi.forEach((est) => {
-        est.innerHTML = est.innerHTML.replace(' ', ' - ');
-    });
+
 
 
     const openTable = () => {
@@ -240,50 +239,6 @@
     }
     search.addEventListener('keyup', searchServis);
 
-
-    // sorting table by column
-    // const table = document.querySelector('.table');
-    // const tbody = table.querySelector('tbody');
-    // const thead = table.querySelector('thead');
-    // const ths = thead.querySelectorAll('th');
-    // const tds = tbody.querySelectorAll('td');
-    // const trs = tbody.querySelectorAll('tr');
-    // const tfoot = table.querySelector('tfoot');
-
-    // ths.forEach((th, index) => {
-    //     th.addEventListener('click', () => {
-    //         const sortedRows = Array.from(trs).sort((a, b) => {
-    //             const aColText = a.querySelector(`td:nth-child(${index + 1})`).textContent.trim();
-    //             const bColText = b.querySelector(`td:nth-child(${index + 1})`).textContent.trim();
-    //             return aColText > bColText ? 1 : -1;
-    //         });
-    //         tbody.append(...sortedRows);
-    //     });
-    // });
-
-    // // search table
-    // const search = document.querySelector('.search');
-    // search.addEventListener('input', (e) => {
-    //     const searchText = e.target.value;
-    //     const rows = tbody.querySelectorAll('tr');
-    //     rows.forEach((row) => {
-    //         const rowText = row.textContent;
-    //         if (rowText.toLowerCase().includes(searchText.toLowerCase())) {
-    //             row.style.display = 'table-row';
-    //         } else {
-    //             row.style.display = 'none';
-    //         }
-    //     });
-    // });
-
-    // // select all checkbox
-    // const selectAll = document.querySelector('.select-all');
-    // selectAll.addEventListener('click', (e) => {
-    //     const checkboxes = tbody.querySelectorAll('input[type="checkbox"]');
-    //     checkboxes.forEach((checkbox) => {
-    //         checkbox.checked = e.target.checked;
-    //     });
-    // });
 </script>
 <?php require_once 'components/servis/modals/info.php'; ?>
 <?php require_once 'components/servis/modals/edit.php'; ?>

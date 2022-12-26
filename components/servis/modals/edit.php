@@ -32,11 +32,10 @@
                         </svg>
                         <select name="status" id="status" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-14  pr-3 ">
                             <option value="" class="text-neutral_500 text-base" hidden>Status Saat Ini</option>
-                            <option id="option" value="PS1" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 1</option>
-                            <option id="option" value="PS2" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 2</option>
-                            <option id="option" value="PS3" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 3</option>
-                            <option id="option" value="PS4" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 4</option>
-                            <option id="option" value="PS5" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 5</option>
+                            <option id="option" value="Pending" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Pending</option>
+                            <option id="option" value="Progress" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Progress</option>
+                            <option id="option" value="Selesai" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Selesai</option>
+                            <option id="option" value="Batal" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Batal</option>
                         </select>
                         <i id="arrow_rental" class="fa-solid fa-caret-down  absolute right-4 mt-5"></i>
 
@@ -44,7 +43,7 @@
                     <div class="relative z-0 w-5/12">
                         <h1 class="text-neutral_050 font-medium mb-2 ml-3">Status</h1>
                         <input type="text" id="bayar" name="bayar" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-14 peer" placeholder=" " />
-                        <label for="bayar" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-12 z-10 origin-[0] left-14 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Harga PS</label>
+                        <label for="bayar" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-12 z-10 origin-[0] left-14 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Biaya Perbaikan</label>
                         <svg width="14" height="24" class="absolute top-12 left-5" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 16H2.66667C2.66667 17.44 4.49333 18.6667 6.66667 18.6667C8.84 18.6667 10.6667 17.44 10.6667 16C10.6667 14.5333 9.28 14 6.34667 13.2933C3.52 12.5867 0 11.7067 0 8C0 5.61333 1.96 3.58667 4.66667 2.90667V0H8.66667V2.90667C11.3733 3.58667 13.3333 5.61333 13.3333 8H10.6667C10.6667 6.56 8.84 5.33333 6.66667 5.33333C4.49333 5.33333 2.66667 6.56 2.66667 8C2.66667 9.46667 4.05333 10 6.98667 10.7067C9.81333 11.4133 13.3333 12.2933 13.3333 16C13.3333 18.3867 11.3733 20.4133 8.66667 21.0933V24H4.66667V21.0933C1.96 20.4133 0 18.3867 0 16Z" fill="#303030" />
                         </svg>
@@ -155,6 +154,33 @@
             const id = item.value
             id_servis_edit.innerHTML = id
             console.log(id_servis_edit)
+
+            const nama_barang_edit = document.getElementById('nama_barang_edit');
+            const status_edit = document.getElementById('status');
+            const bayar_edit = document.getElementById('bayar');
+            const detail_perbaikan_edit = document.getElementById('detail_perbaikan');
+            //  gunakan varibale id untuk mengirim season ke php
+            //  gunakan variable id untuk mengambil data dari database        
+
+            var xhr = new XMLHttpRequest();
+            // path getuser.php in main dir
+            var url = "..\\..\\..\\getservis.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    nama_barang_edit.value = json.nama_barang;
+                    status_edit.value = json.status_servis;
+                    bayar_edit.value = json.biaya;
+                    datepickerValue.value = json.selesai;
+                    detail_perbaikan_edit.value = json.perbaikan;
+                }
+            };
+            var data = JSON.stringify({
+                "id": id
+            });
+            xhr.send(data);
             // format ke dalam bentuk database
             console.log(datepickerValue.value)
         })

@@ -181,10 +181,6 @@
             });
             xhr.send(data);
             //wait 1s befor reload page
-
-
-
-
             // post id ke php
             //<?php
                 // $id = '<script>document.write(id)</script>';

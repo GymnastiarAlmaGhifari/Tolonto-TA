@@ -104,7 +104,7 @@
 
                                                                                     ?></td>
                                         <td class="text-center"><?php echo $service[$rows]['status'] ?></td>
-                                        <td class="text-center"><?php echo $service[$rows]['est_selesai'] ?></td>
+                                        <td id="est_jadi" class="text-center"><?php echo date('H:i:s m/d/y', strtotime($service[$rows]['est_selesai'])) ?></td>
                                         <td class=" text-center">
                                             <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
                                                 <button id="infoServis" name="infoServis" type="submit" value="<?php echo $service[$rows]['id_servis'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
@@ -128,6 +128,7 @@
                             <!-- list 1 end -->
                         </tbody>
                     </table>
+                    <h1 id="tidak_ditemukan" class="hidden mt-7 ml-2 text-lg">Data Tidak Ditemukan</h1>
                 </div>
             </div>
         </div>
@@ -142,8 +143,10 @@
     const garis = document.getElementById('garis');
     const plus = document.getElementById('plus');
     const waktu_submit = document.querySelectorAll('#waktu_submit');
+    const est_jadi = document.querySelectorAll('#est_jadi');
     const search = document.getElementById('search');
     const data_kosong = document.getElementById('data-kosong');
+    const tidak_ditemukan = document.getElementById('tidak_ditemukan');
 
     window.addEventListener("load", () => {
         if (localStorage.getItem("open-table-sewa") == "false") {
@@ -169,6 +172,9 @@
 
     waktu_submit.forEach((waktu) => {
         waktu.innerHTML = waktu.innerHTML.replace(' ', ' - ');
+    });
+    est_jadi.forEach((est) => {
+        est.innerHTML = est.innerHTML.replace(' ', ' - ');
     });
 
 
@@ -225,6 +231,11 @@
                     tr[i].style.display = "none";
                 }
             }
+        }
+        if (tr[1].style.display == "none") {
+            tidak_ditemukan.classList.remove('hidden');
+        } else {
+            tidak_ditemukan.classList.add('hidden');
         }
     }
     search.addEventListener('keyup', searchServis);

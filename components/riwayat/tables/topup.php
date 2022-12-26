@@ -99,8 +99,8 @@
                                             </div>
                                         </td>
                                         <td class="text-center"><?php echo $topup[$rows]['email'] ?></td>
-                                        <td class="text-center">Rp. <?php echo $topup[$rows]['jml_topup'] ?></td>
-                                        <td class=" text-center"><?php echo $topup[$rows]['waktu'] ?></td>
+                                        <td class="text-center"><?php echo  Rupiah::to($topup[$rows]['jml_topup']) ?></td>
+                                        <td id="waktu_topup" class=" text-center"><?php echo date('H:i:s m/d/y', strtotime($topup[$rows]['waktu'])) ?></td>
                                         <td class="text-center"><?php echo $topup[$rows]['admin'] ?></td>
                                         <td class=" text-center">
                                             <button id="hapus-topup" value="<?php echo $topup[$row]['id_topup'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
@@ -117,6 +117,7 @@
                             <!-- list 1 end -->
                         </tbody>
                     </table>
+                    <h1 id="tidak_ditemukan3" class="hidden mt-7 ml-2 text-lg">Data Tidak Ditemukan</h1>
                 </div>
             </div>
         </div>
@@ -131,6 +132,8 @@
     const plus3 = document.getElementById('plus3');
     const search3 = document.getElementById('search3');
     const data_kosong3 = document.getElementById('data-kosong3');
+    const waktu_topup = document.querySelectorAll('#waktu_topup');
+    const tidak_ditemukan3 = document.getElementById('tidak_ditemukan3');
 
     window.addEventListener("load", () => {
         if (localStorage.getItem("open-table-riwayat-aktif") == "false") {
@@ -152,6 +155,10 @@
         });
 
     <?php } ?>
+
+    waktu_topup.forEach((waktu) => {
+        waktu.innerHTML = waktu.innerHTML.replace(' ', ' - ');
+    });
 
 
     const openTable3 = () => {
@@ -209,6 +216,11 @@
                     tr[i].style.display = "none";
                 }
             }
+        }
+        if (tr[1].style.display == "none") {
+            tidak_ditemukan3.classList.remove('hidden');
+        } else {
+            tidak_ditemukan3.classList.add('hidden');
         }
     }
     search3.addEventListener('keyup', searchRiwayatTopup);

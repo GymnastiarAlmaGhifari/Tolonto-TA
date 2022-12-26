@@ -74,22 +74,17 @@ input:valid ~ .sticker2 {
 .bungkus-active {
   @apply duration-300 ease-in ml-3 justify-start pl-3 w-[180px];
 }
-
-/* animation modal top to bbottom */
-
-/* animation gambar-active  */
-
-/* input[type="checkbox"]:checked ~ .check {
-  @apply bg-neutral_050 shadow-elevation-dark-4;
+.span1-active {
+  @apply transform transition duration-700 rotate-45 translate-x-0.5;
 }
-input[type="checkbox"]:checked ~ .check::before {
-  @apply transform translate-x-[50px];
+.span2-active {
+  @apply transform transition duration-700;
 }
-input[type="checkbox"]:checked ~ .check::after {
-  @apply transform translate-x-[0px];
-} */
+.span3-active {
+  @apply transform transition duration-700 -rotate-45 translate-x-0.5;
+}
+.putar-active {
+  @apply mt-7 transform transition-all duration-500 origin-center overflow-hidden -rotate-180;
+}
 
-/* input[type="text"]: ~ .valid {
-  @apply opacity-100;
-} */
-/* input notfocus */ ;
+/* animation wave  0% left 100% rigy*/

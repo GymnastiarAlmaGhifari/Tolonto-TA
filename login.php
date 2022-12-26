@@ -1,16 +1,18 @@
 <?php
 require_once "core/init.php";
+$user = new Controllerauth();
 
 if ($user->is_login()) {
-    Redirect::to('dashboard');
+    if ($user->is_superAdmin(Session::get('username'))) {
+        Redirect::to('dashboard');
+    } else {
+        Redirect::to('dashboard');
+    }
 }
 
 if (Session::exists('login')) {
     echo Session::flash('login');
 }
-
-
-
 
 $errors = array();
 
@@ -37,20 +39,18 @@ if (isset($_POST['submit'])) {
             if ($user->cek_nama(Input::get('username'))) {
                 if ($user->login(Input::get('username'), Input::get('password'))) {
                     Session::set('username', Input::get('username'));
-                    // set seasson loksend
-                    $_SESSION['loksend'] = 'Bojonegoro';
-                    if ($user->is_superAdmin(Session::get('username'))) {
-                        Redirect::to('dashboardSuperAdmin');
-                    } else {
-                        Redirect::to('dashboard');
-                    }
+                    // set seasson loksend untuk menentukan lokasi
+                    $user_data = $user->get_data(Session::get('username'));
+                    $_SESSION['loksend'] = $user_data['lok'];
+
+                    Redirect::to('dashboard');
                 } else {
                     // animate error
-                    $errors[] = "Username Atau Password Salah";
+                    $errors[] = "Password Yang Anda Masukkan Salah";
                 }
             } else {
                 // animate error
-                $errors[] = "Username Belum Terdaftar Silahkan Register Dahulu";
+                $errors[] = "Username Tidak Terdaftar";
             }
         } else {
             // untuk mengisi errornya ke array
@@ -84,8 +84,8 @@ if (isset($_POST['submit'])) {
 <!-- loader end -->
 
 <body class="overflow-hidden">
-    <div class="min-h-screen flex flex-col items-center justify-center bg-neutral_900 ">
-        <div class="flex flex-coll bg-neutral_800 sm:px-6 lg:px-6 py-8 rounded-xl xs:w-5/6 h-[382px] w-5/6  max-w-md overflow-hidden relative shadow-elevation-dark-4">
+    <div class="h-screen flex bg-neutral_900 ">
+        <div class="flex flex-col mx-auto my-auto bg-neutral_800 sm:px-6 lg:px-6 py-8 rounded-xl xs:w-5/6 h-[382px] w-5/6  max-w-md overflow-hidden relative shadow-elevation-dark-4">
             <div class="absolute w-[476px] h-[382px] bg-gradient-to-r from-primary_500 via-primary_500 to-transparent -top-[50%] -left-[50%] animate-spin-slow origin-bottom-right"></div>
             <div class="absolute w-[476px] h-[382px] bg-gradient-to-r from-primary_500 via-primary_500 to-transparent -top-[50%] -left-[50%] animate-spin-delay origin-bottom-right"></div>
 
@@ -138,17 +138,33 @@ if (isset($_POST['submit'])) {
             <!-- alert login -->
             <script>
                 Swal.fire({
-                    background: '#000',
+                    background: '#fff',
                     icon: 'error',
-                    text: '<?php echo $error; ?>',
+                    // text color white
+                    html: '<h2 class="text-neutral_900 font-medium"><?php echo $error; ?></h2>',
+                    showConfirmButton: false,
                     // opacity
                     backdrop: `rgba(0,0,0,0.5)`,
+                    timer: 1700
                 })
             </script>
         <?php  } ?>
     <?php } ?>
-    <script src="assets/js/main.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
     <script>
+        const show = () => {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("showimg").classList.add("hidden");
+                document.getElementById("hideimg").classList.remove("hidden");
+            } else {
+                x.type = "password";
+                document.getElementById("showimg").classList.remove("hidden");
+                document.getElementById("hideimg").classList.add("hidden");
+                labelInput.classList.remove("text-transparent");
+            }
+        };
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");

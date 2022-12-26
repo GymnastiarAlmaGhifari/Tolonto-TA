@@ -72,7 +72,6 @@ class ControllerSuperadminInventory extends Database
             $id = $lok . "-" . sprintf("%03s", $id);
             return $id;
         }
-        
     }
 
     public function idps_sewa($lok)
@@ -92,7 +91,6 @@ class ControllerSuperadminInventory extends Database
             $id = "sewa-" . $lok . "-" . sprintf("%03s", $id);
             return $id;
         }
-        
     }
 
     public function fetch_ps($table, $id_ps, $id)
@@ -119,7 +117,9 @@ class ControllerSuperadminInventory extends Database
 
     public function update_psrental($fields = [], $val)
     {
+        // rubah data harga sebelum data dengan Rupiah::clear
         $data = $this->update('ps', 'id_ps', $val, $fields);
+
         if ($data) {
             return true;
         } else {

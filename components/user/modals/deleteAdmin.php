@@ -97,7 +97,6 @@
          xhr.onreadystatechange = function() {
              if (xhr.readyState === 4 && xhr.status === 200) {
                  var json = JSON.parse(xhr.responseText);
-
                  if (json.status == "success") {
                      alert("berhasil");
                  } else {
@@ -109,5 +108,7 @@
              "id": id
          });
          xhr.send(data);
+
+         openModalDeleteadmin(false)
      })
  </script>

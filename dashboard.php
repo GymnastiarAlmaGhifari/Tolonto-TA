@@ -38,7 +38,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
     <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <title>Dashboard Super Admin</title>
+    <title>Dashboard</title>
 </head>
 
 <body>

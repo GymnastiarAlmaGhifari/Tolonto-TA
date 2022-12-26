@@ -6,8 +6,6 @@ $user_data = $user->get_data(Session::get('username'));
 
 if (Location::in(1, "dashboard") && $user->is_superAdmin(Session::get('username'))) {
     $text = "Dashboard Super Admin";
-} elseif (Location::in(1, "dashboard") && !$user->is_superAdmin(Session::get('username'))) {
-    $text = "Dashboard Admin";
 } elseif (Location::in(1, 'inventory')) {
     $text = "Inventory Super Admin";
 } elseif (Location::in(1, 'booking')) {
@@ -19,7 +17,7 @@ if (Location::in(1, "dashboard") && $user->is_superAdmin(Session::get('username'
 } elseif (Location::in(1, 'user')) {
     $text = "User Super Admin";
 } elseif (Location::in(1, 'profile')) {
-    $text = "Profile";
+    $text = "Profile Super Admin";
 }
 
 
@@ -219,7 +217,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
         lokasiUser.classList.add('text-neutral_900');
         lokasiUser.classList.add('font-noto-sans');
     <?php } ?>
-    <?php if (Location::in(1, 'booking')) { ?>
+    <?php if (Location::in(1, 'booking') && !$user->is_superAdmin(Session::get('username'))) { ?>
         // set tempat with text dashboard
         tempat.innerHTML = 'Booking';
         lokasi_drop.classList.add('hidden');

@@ -110,6 +110,7 @@
                               <!-- list 1 end -->
                           </tbody>
                       </table>
+                      <h1 id="tidak_ditemukan" class="hidden mt-7 ml-2 text-lg">Data Tidak Ditemukan</h1>
                   </div>
               </div>
           </div>
@@ -125,6 +126,7 @@
       const plus = document.getElementById('plus');
       const search = document.getElementById('search');
       const data_kosong = document.getElementById('data-kosong');
+      const tidak_ditemukan = document.getElementById('tidak_ditemukan');
 
       window.addEventListener("load", () => {
           if (localStorage.getItem("open-table-user") == "false") {
@@ -202,6 +204,11 @@
                       tr[i].style.display = "none";
                   }
               }
+          }
+          if (tr[1].style.display == "none") {
+              tidak_ditemukan.classList.remove('hidden');
+          } else {
+              tidak_ditemukan.classList.add('hidden');
           }
       }
       search.addEventListener('keyup', searchUser);

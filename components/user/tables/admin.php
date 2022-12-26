@@ -243,6 +243,7 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                             } ?>
                         </tbody>
                     </table>
+                    <h1 id="tidak_ditemukan3" class="hidden mt-7 ml-2 text-lg">Data Tidak Ditemukan</h1>
                 </div>
             </div>
         </div>
@@ -257,6 +258,7 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
     const plus3 = document.getElementById('plus3');
     const search3 = document.getElementById('search3');
     const data_kosong3 = document.getElementById('data-kosong3');
+    const tidak_ditemukan3 = document.getElementById('tidak_ditemukan3');
 
     window.addEventListener("load", () => {
         if (localStorage.getItem("open-table-admin") == "false") {
@@ -332,6 +334,12 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                     tr[i].style.display = "none";
                 }
             }
+        }
+        // jika data tidak ditemukan remove hidden
+        if (tr[1].style.display == "none") {
+            tidak_ditemukan3.classList.remove('hidden');
+        } else {
+            tidak_ditemukan3.classList.add('hidden');
         }
     }
     search3.addEventListener('keyup', searchAdmin);

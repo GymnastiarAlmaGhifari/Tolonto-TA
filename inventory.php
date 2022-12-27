@@ -50,9 +50,9 @@ $errors = array();
 <body>
 
     <!--loader start  -->
-    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+    <!-- <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
         <span class="loader-103"> </span>
-    </div>
+    </div> -->
     <!-- loader end -->
 
     <main class=" bg-neutral_900 w-full ">
@@ -68,6 +68,7 @@ $errors = array();
                 <?php require_once 'components/main/sidebar.php'; ?>
 
             </form>
+            <?php require_once 'components/main/modalLogout.php'; ?>
             <!-- list ps -->
             <?php require_once 'components/inventory/lists/rental.php' ?>
 
@@ -95,7 +96,7 @@ $errors = array();
             alertHapus.classList.toggle('activeAlert');
         })
     </script>
-    <?php require_once 'components/main/modalLogout.php'; ?>
+
 </body>
 
 </html>

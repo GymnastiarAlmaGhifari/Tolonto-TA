@@ -36,7 +36,7 @@
                         </svg>
                         <h1>Lokasi Customer</h1>
                     </a> -->
-                    <a href="https://wa.me/62895387390033/?text-Hello" type="button" target="_blank" name="whatsapp" id="whatsapp" class="bg-[#4FCF2F] text-neutral_050 shadow-elevation-light-2 w-11/12 h-12 rounded-2xl flex flex-row gap-3 justify-center items-center">
+                    <a href="https://wa.me/620895387390033/?text-Hello" type="button" target="_blank" name="whatsapp" id="whatsapp" class="bg-[#4FCF2F] text-neutral_050 shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80 w-11/12 h-12 rounded-2xl flex flex-row gap-3 justify-center items-center">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.988 0C5.436 0 0.0960002 5.34 0.0960002 11.892C0.0960002 13.992 0.648 16.032 1.68 17.832L0 24L6.3 22.344C8.04 23.292 9.996 23.796 11.988 23.796C18.54 23.796 23.88 18.456 23.88 11.904C23.88 8.724 22.644 5.736 20.4 3.492C18.156 1.236 15.168 0 11.988 0ZM12 2.004C14.64 2.004 17.112 3.036 18.984 4.908C20.844 6.78 21.876 9.264 21.876 11.904C21.876 17.352 17.436 21.78 11.988 21.78C10.212 21.78 8.472 21.312 6.96 20.4L6.6 20.196L2.856 21.18L3.852 17.532L3.612 17.148C2.628 15.6 2.1 13.764 2.1 11.892C2.112 6.444 6.54 2.004 12 2.004ZM7.776 6.396C7.584 6.396 7.26 6.468 6.984 6.768C6.72 7.068 5.94 7.8 5.94 9.252C5.94 10.716 7.008 12.12 7.14 12.324C7.308 12.528 9.252 15.528 12.24 16.8C12.948 17.124 13.5 17.304 13.932 17.436C14.64 17.664 15.288 17.628 15.804 17.556C16.38 17.472 17.556 16.836 17.808 16.14C18.06 15.444 18.06 14.856 17.988 14.724C17.904 14.604 17.712 14.532 17.412 14.4C17.112 14.232 15.648 13.512 15.384 13.416C15.108 13.32 14.94 13.272 14.712 13.56C14.52 13.86 13.944 14.532 13.776 14.724C13.596 14.928 13.428 14.952 13.14 14.808C12.828 14.652 11.868 14.34 10.74 13.332C9.852 12.54 9.264 11.568 9.084 11.268C8.94 10.98 9.072 10.8 9.216 10.668C9.348 10.536 9.54 10.32 9.66 10.14C9.816 9.972 9.864 9.84 9.96 9.648C10.056 9.444 10.008 9.276 9.936 9.132C9.864 9 9.264 7.512 9.012 6.924C8.772 6.348 8.532 6.42 8.34 6.408C8.172 6.408 7.98 6.396 7.776 6.396Z" fill="#FAFAFA" />
                         </svg>
@@ -86,6 +86,7 @@
 
             const nama_barang = document.getElementById('nama_barang');
             const detail_kerusakan = document.getElementById('detail-kerusakan');
+            const hp = document.getElementById('whatsapp');
             //  gunakan varibale id untuk mengirim season ke php
             //  gunakan variable id untuk mengambil data dari database        
 
@@ -99,6 +100,7 @@
                     var json = JSON.parse(xhr.responseText);
                     nama_barang.value = json.nama_barang;
                     detail_kerusakan.value = json.detail;
+                    hp.href = "https://wa.me/62"+json.hp+"/?text-Hello";
                 }
             };
             var data = JSON.stringify({

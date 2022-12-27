@@ -49,6 +49,14 @@ if (isset($_POST['Konfirmasi-rental'])) {
         } else {
         }
     } else {
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            text: 'gambar masih kosong',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        </script>";
     }
 }
 ?>
@@ -81,15 +89,15 @@ if (isset($_POST['Konfirmasi-rental'])) {
                 <!-- gambar end -->
 
                 <div class="relative z-0 w-11/12 mt-5">
-                    <input type="text" id="nama-ps-rental" name="nama-ps-rental" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 valid:text-neutral_500 peer" placeholder=" " />
-                    <label for="nama-ps-rental" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Nama PS</label>
+                    <input type="text" id="nama-ps-rental" name="nama-ps-rental" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 valid:text-neutral_900 peer" placeholder=" " />
+                    <label for="nama-ps-rental" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_900 peer-valid:text-neutral_900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Nama PS</label>
                     <svg width="30" height="24" class="absolute top-4 left-5" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M27 0C27.7956 0 28.5587 0.31607 29.1213 0.87868C29.6839 1.44129 30 2.20435 30 3V21C30 21.7956 29.6839 22.5587 29.1213 23.1213C28.5587 23.6839 27.7956 24 27 24H3C2.20435 24 1.44129 23.6839 0.87868 23.1213C0.31607 22.5587 0 21.7956 0 21V3C0 2.20435 0.31607 1.44129 0.87868 0.87868C1.44129 0.31607 2.20435 0 3 0H27ZM13.5 13.5H10.5V16.5H13.5V13.5ZM25.5 13.5H16.5V16.5H25.5V13.5ZM7.5 7.5H4.5V10.5H7.5V7.5ZM25.5 7.5H10.5V10.5H25.5V7.5Z" fill="#303030" />
                     </svg>
                 </div>
                 <div class="relative z-0 w-11/12">
                     <input type="text" id="harga-ps-rental" name="harga-ps-rental" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 peer" placeholder=" " />
-                    <label for="harga-ps-rental" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Harga PS</label>
+                    <label for="harga-ps-rental" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_900 peer-valid:text-neutral_900 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Harga PS</label>
                     <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 16H2.66667C2.66667 17.44 4.49333 18.6667 6.66667 18.6667C8.84 18.6667 10.6667 17.44 10.6667 16C10.6667 14.5333 9.28 14 6.34667 13.2933C3.52 12.5867 0 11.7067 0 8C0 5.61333 1.96 3.58667 4.66667 2.90667V0H8.66667V2.90667C11.3733 3.58667 13.3333 5.61333 13.3333 8H10.6667C10.6667 6.56 8.84 5.33333 6.66667 5.33333C4.49333 5.33333 2.66667 6.56 2.66667 8C2.66667 9.46667 4.05333 10 6.98667 10.7067C9.81333 11.4133 13.3333 12.2933 13.3333 16C13.3333 18.3867 11.3733 20.4133 8.66667 21.0933V24H4.66667V21.0933C1.96 20.4133 0 18.3867 0 16Z" fill="#303030" />
                     </svg>
@@ -106,15 +114,14 @@ if (isset($_POST['Konfirmasi-rental'])) {
                         <option id="option" value="PS4" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 4</option>
                         <option id="option" value="PS5" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 5</option>
                     </select>
-                    <i id="arrow_rental" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3"></i>
-
+                    <i id="arrow_rental" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3 text-neutral_900"></i>
                 </div>
 
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalRental(false)" name="Batal-rental" id="Batal-rental" value="Batal-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4">
+                    <button type="button" onclick="openModalRental(false)" name="Batal-rental" id="Batal-rental" value="Batal-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-rental" id="Konfirmasi-rental" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl px-4">Konfirmasi</button>
+                    <button type="submit" name="Konfirmasi-rental" id="Konfirmasi-rental" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">Konfirmasi</button>
                 </div>
             </form>
         </div>
@@ -157,20 +164,6 @@ if (isset($_POST['Konfirmasi-rental'])) {
 
     tambahRental.addEventListener('click', () => {
         openModalRental(true)
-    });
-
-
-    // if kategori_ps_rental is clicked and dropdown is rotated 180deg if target not equal to kategori_ps_rental 
-    kategori_ps_rental.addEventListener('click', (e) => {
-        if (e.target === kategori_ps_rental && !arrow_rental.classList.contains('rotate-180')) {
-            arrow_rental.classList.toggle('rotate-180');
-            arrow_rental.classList.toggle('transition');
-            arrow_rental.classList.toggle('ease-in-out');
-        } else if (e.target === kategori_ps_rental && arrow_rental.classList.contains('rotate-180')) {
-            arrow_rental.classList.toggle('rotate-180');
-            arrow_rental.classList.toggle('transition');
-            arrow_rental.classList.toggle('ease-in-out');
-        }
     });
 
 

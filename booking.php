@@ -43,9 +43,9 @@ if (Session::exists('booking')) {
 
 <body>
     <!--loader start  -->
-    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+    <!-- <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
         <span class="loader-103"> </span>
-    </div>
+    </div> -->
     <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
@@ -55,10 +55,12 @@ if (Session::exists('booking')) {
                 <!-- sidebar -->
                 <?php require_once 'components/main/sidebar.php'; ?>
             </form>
-
+            <?php require_once 'components/main/modalLogout.php'; ?>
             <?php
             require_once 'components/booking/tables/rental.php';
-            require_once 'components/booking/tables/sewa.php';
+            if ($user_data['username'] == Session::get('username') && $user_data['lok'] == 'Bojonegoro') {
+                require_once 'components/booking/tables/sewa.php';
+            }
             ?>
 
         </div>
@@ -115,7 +117,6 @@ if (Session::exists('booking')) {
         //     });
         // });
     </script>
-    <?php require_once 'components/main/modalLogout.php'; ?>
 </body>
 
 </html>

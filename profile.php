@@ -2,6 +2,8 @@
 require_once 'core/init.php';
 
 $Sadmin = new ControllerSuperAdmin();
+$SadminUser = new ControllerSuperadminUser();
+    
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +51,7 @@ $Sadmin = new ControllerSuperAdmin();
                                 <h2> terakhir diupdate pada : <?php echo $user_data['update_at']?></h2>
                             </div>
                         </div>
-                        <button id="ubah_profile" class=" w-full p-4 bg-[#32FC00] rounded-lg text-justify drop-shadow-2xl mt-4 font-bold"> Ubah Username dan Password</button>
+                        <button id="ubah_profile" class=" w-full p-4 bg-[#32FC00] rounded-lg text-justify drop-shadow-2xl mt-4 font-bold" name="submin"> Ubah Username dan Password</button>
                     </div>
                 </div>
             </section>

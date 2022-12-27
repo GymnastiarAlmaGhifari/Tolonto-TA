@@ -1,5 +1,11 @@
 <?php
-
+if (isset($_POST['Konfirmasi-delete-rental'])) {
+    if ($riwayat->del_rental($_POST['id_rental'])) // jika berhasil refresh page tanpa submit ulang
+    {
+        Redirect::to('riwayat');
+    } else {
+    }
+}
 ?>
 
 <!-- modal Delete  start -->
@@ -14,13 +20,13 @@
             <h2 class="mx-auto xs:px-5 sm:px-0 text-neutral_900">Apakah anda benar ingin menghapus riwayat rental </h2>
             <h2 class="mx-auto text-base font-medium -mt-4 text-neutral_900"><span class="font-semibold text-neutral_900" id="getRental" name="getRental"></span> ?</h2>
             <h2 class="mx-auto text-base font-medium text-error_600 -mt-4"> proses ini tidak bisa dikembalikan</h2>
-            <form action="user.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
+            <form action="riwayat.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                 <input type="hidden" name="id_rental" id="id_rental" value="">
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalDeleteRental(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
+                    <button type="button" onclick="openModalDeleteRental(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-delete-rental" id="Konfirmasi-delete-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">Konfirmasi</button>
+                    <button type="submit" name="Konfirmasi-delete-rental" id="Konfirmasi-delete-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
                 </div>
             </form>
         </div>

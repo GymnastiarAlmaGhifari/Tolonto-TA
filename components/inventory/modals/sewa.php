@@ -105,7 +105,7 @@
                          <option id="option" value="PS4" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 4</option>
                          <option id="option" value="PS5" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 5</option>
                      </select>
-                     <i id="arrow" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3"></i>
+                     <i id="arrow" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3 text-neutral_900"></i>
                  </div>
                  <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
                      <button type="button" onclick="openModalSewa(false)" name="Batal-sewa" id="Batal-sewa" value="Batal-sewa" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">

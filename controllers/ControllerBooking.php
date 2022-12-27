@@ -24,9 +24,9 @@ class ControllerBooking extends Database
 
     public function b_sewa($lok) 
     {
-        $sql = "SELECT user.username, user.img, sewa.id_sewa, ps.nama_ps, sewa.status, sewa.waktu_order, sewa.playtime, sewa.mulai_sewa,
+        $sql = "SELECT user.username, user.img, sewa.id_sewa, ps_sewa.nama_ps, sewa.status, sewa.waktu_order, sewa.playtime, sewa.mulai_sewa,
         sewa.akhir_sewa, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id
-        JOIN ps ON sewa.id_ps = ps.id_ps WHERE sewa.lok = '$lok' AND sewa.akhir_sewa >= NOW() ;";
+        JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.lok = '$lok' AND sewa.akhir_sewa >= NOW() ;";
         $data = $this->uniquery($sql);
         return $data;
     }

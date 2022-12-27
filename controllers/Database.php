@@ -348,6 +348,21 @@ class Database
         return $result;
     }
 
+    public function delete_and($table, $column, $value, $column2, $value2)
+    {
+        $sql = "DELETE FROM $table WHERE $column = '$value' AND $column2 >= '$value2'";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
+    public function delete_all($table)
+    {
+        $sql = "DELETE FROM $table";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+    
+
     public function RandomString($length) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

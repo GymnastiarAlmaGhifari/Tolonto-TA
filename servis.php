@@ -53,6 +53,8 @@ if (Session::exists('servis')) {
                 <!-- sidebar -->
                 <?php require_once 'components/main/sidebar.php'; ?>
             </form>
+            <?php require_once 'components/main/modalLogout.php'; ?>
+
             <?php require_once 'components/servis/tables/servis.php'; ?>
 
     </main>
@@ -64,7 +66,6 @@ if (Session::exists('servis')) {
             loader.classList.add("hidden");
         });
     </script>
-    <?php require_once 'components/main/modalLogout.php'; ?>
 </body>
 
 </html>

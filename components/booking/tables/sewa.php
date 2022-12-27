@@ -1,5 +1,5 @@
             <!-- table start -->
-            <section class="mt-12 text-neutral_050  ml-16">
+            <section id="booking_sewa" class="mt-12 text-neutral_050  ml-16">
                 <div class="container px-6 max-w-full ">
                     <div id="atas2" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
                         <div class="flex flex-wrap flex-col ">
@@ -34,6 +34,12 @@
                                             <th scope="col" class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                                     <h1 class="uppercase">Waktu order</h1>
+                                                    <i class="fa-solid fa-angle-up"></i>
+                                                </button>
+                                            </td>
+                                            <th scope="col" class=" ">
+                                                <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
+                                                    <h1 class="uppercase">Status</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
@@ -98,11 +104,12 @@
                                                     </td>
                                                     <td class="text-center"><?php echo $sewa[$rows]['nama_ps'] ?></td>
                                                     <td class="text-center"><?php echo $sewa[$rows]['waktu_order'] ?></td>
+                                                    <td class="pl-4 text-center"><?php echo $sewa[$rows]['status'] ?></td>
                                                     <td class="text-center"><?php echo $sewa[$rows]['playtime'] ?> Hari</td>
                                                     <td class=" text-center"><?php list($date, $time) = explode(" ", $sewa[$rows]['mulai_sewa']);
-                                                                                echo $time; ?>
+                                                                                echo $date; ?>
                                                         - <?php list($date, $time) = explode(" ", $sewa[$rows]['akhir_sewa']);
-                                                            echo $time; ?></td>
+                                                            echo $date; ?></td>
                                                     <td class="text-center">Rp. <?php echo $sewa[$rows]['bayar'] ?></td>
                                                     <td class=" text-center">
                                                         <div class="dropdown dropdown-hover dropdown-right dropdown-end">
@@ -151,15 +158,16 @@
                 const search2 = document.getElementById('search2');
                 const data_kosong2 = document.getElementById('data-kosong2');
                 const tidak_ditemukan2 = document.getElementById('tidak_ditemukan2');
+                const booking_sewa = document.getElementById('booking_sewa');                        
 
                 window.addEventListener("load", () => {
                     if (localStorage.getItem("open-table2") == "false") {
                         data_kosong2.classList.add('hidden');
                     }
                     if (localStorage.getItem('lokasi') !== 'Bojonegoro') {
-                        riwayat_sewa.classList.add('hidden');
+                        booking_sewa.classList.add('hidden');
                     } else {
-                        riwayat_sewa.classList.remove('hidden');
+                        booking_sewa.classList.remove('hidden');
                     }
                 });
 
@@ -196,15 +204,16 @@
                             atas2.classList.remove('h-[450px]');
                             atas2.classList.add('h-[77px]');
                         } else {
-                            setTimeout(() => {
-                                table2.classList.remove('hidden');
+                                setTimeout(() => {
+                                    table2.classList.remove('hidden');
+                                }, 150);
                                 garis2.classList.remove('hidden');
                                 plus2.classList.remove('hidden');
                                 garis2.classList.add('ease-in-out');
                                 table2.classList.add('ease-in-out');
                                 atas2.classList.add('h-[450px]');
                                 atas2.classList.remove('h-[77px]');
-                            }, 100);
+                            
                         }
                     }
                     if (localStorage.getItem("open-table2") !== null) {

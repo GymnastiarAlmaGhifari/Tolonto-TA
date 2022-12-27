@@ -103,9 +103,9 @@
                                         <td id="waktu_topup" class=" text-center"><?php echo date('H:i:s m/d/y', strtotime($topup[$rows]['waktu'])) ?></td>
                                         <td class="pl-4  text-center"><?php echo $topup[$rows]['admin'] ?></td>
                                         <td class="pl-4   text-center">
-                                            <button id="hapus-topup" value="<?php echo $topup[$row]['id_topup'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
-                                                <h1 class="text-error_600 font-semibold">hapus</h1>
-                                                <svg widsth="16" class="mx-auto" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <button id="hapus-topup" value="<?php echo $topup[$rows]['id_topup'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
+                                                <h1 class="text-neutral_900 font-semibold">hapus</h1>
+                                                <svg widsth="16" class="mx-auto " height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
                                                 </svg>
                                             </button>

@@ -1,4 +1,5 @@
   <?php
+  
     ?>
 
   <!-- table start -->
@@ -12,7 +13,7 @@
                           <h2><?php echo $ju ?></h2>
 
                       </div>
-                      <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                      <span id="open" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                           <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                           <span id="plus" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                       </span>

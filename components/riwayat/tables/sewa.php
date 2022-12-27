@@ -47,6 +47,12 @@
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
+                                        <h1 class="uppercase">Status</h1>
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </button>
+                                </th>
+                                <th scope="col" class="text-left pl-4 ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                         <h1 class="uppercase">lama sewa</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
@@ -106,15 +112,16 @@
                                         </td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['nama_ps'] ?></td>
                                         <td class="pl-4 text-center"><?php echo date('H:i:s m/d/y', strtotime($sewa[$rows]['waktu_order'])) ?></td>
+                                        <td class="pl-4 text-center"><?php echo $sewa[$rows]['status'] ?></td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['playtime'] ?> Hari</td>
                                         <td class="pl-4  text-center"><?php list($date, $time) = explode(" ", $sewa[$rows]['mulai_sewa']);
-                                                                    echo $time; ?>
+                                                                    echo $date; ?>
                                             - <?php list($date, $time) = explode(" ", $sewa[$rows]['akhir_sewa']);
-                                                echo $time; ?></td>
+                                                echo $date; ?></td>
                                         <td class="pl-10 text-left">Rp. <?php echo $sewa[$rows]['bayar'] ?></td>
                                         <td class="pl-4  text-center">
-                                            <button id="hapus-sewa" value="<?php echo $topup[$row]['id_topup'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
-                                                <h1 class="text-error_600 font-semibold">hapus</h1>
+                                            <button id="hapus-sewa" value="<?php echo $sewa[$rows]['id_sewa'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
+                                                <h1 class="text-neutral_900 font-semibold">hapus</h1>
                                                 <svg width="16" class="mx-auto" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
                                                 </svg>

@@ -15,7 +15,7 @@ if ($SadminPs->fetch_ps($table, 'id_ps', $id)) {
     $dataps = $SadminPs->fetch_ps($table, 'id_ps', $id);
     echo json_encode([
         'status' => 'success', 'id_ps' => $dataps['id_ps'], 'nama_ps' => $dataps['nama_ps'],
-        'harga_ps' => Rupiah::to($dataps['harga']), 'kategori' => $dataps['jenis'], 'img' => $dataps['img']
+        'harga_ps' => Rupiah::to($dataps['harga']), 'kategori' => $dataps['jenis'], 'status_ps' => $dataps['status'], 'img' => $dataps['img']
     ]);
 } else {
     echo json_encode("No data found");

@@ -15,7 +15,7 @@
                     <button type="button" onclick="openModalDeletePsSewa(false)" name="Batal-Rental-Ps" id="Batal-Rental-Ps" value="Batal-Rental-Ps" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-delete-ps-sewa" id="Konfirmasi-delete-ps-sewa" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_600 focus:bg-error_800">Konfirmasi</button>
+                    <button type="submit" name="Konfirmasi-delete-ps-sewa" id="Konfirmasi-delete-ps-sewa" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
                 </div>
             </form>
         </div>

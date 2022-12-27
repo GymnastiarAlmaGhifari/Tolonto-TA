@@ -26,6 +26,7 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
                 'nama_ps' => $_POST['nama-ps-rental-edit'],
                 'harga' => Rupiah::clear($_POST['harga-ps-rental-edit']),
                 'jenis' => $_POST['kategori-ps-rental-edit'],
+                'status' => $_POST['status-ps-rental-edit'],
                 'img' => $dirUpload . $filename
             ],
             $_POST['id-rental-edit']
@@ -43,7 +44,7 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
                 'nama_ps' => $_POST['nama-ps-rental-edit'],
                 'harga' => Rupiah::clear($_POST['harga-ps-rental-edit']),
                 'jenis' => $_POST['kategori-ps-rental-edit'],
-
+                'status' => $_POST['status-ps-rental-edit'],
             ],
             $_POST['id-rental-edit']
         )) // jika berhasil refresh page tanpa submit ulang
@@ -98,20 +99,33 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
                         <path d="M0 16H2.66667C2.66667 17.44 4.49333 18.6667 6.66667 18.6667C8.84 18.6667 10.6667 17.44 10.6667 16C10.6667 14.5333 9.28 14 6.34667 13.2933C3.52 12.5867 0 11.7067 0 8C0 5.61333 1.96 3.58667 4.66667 2.90667V0H8.66667V2.90667C11.3733 3.58667 13.3333 5.61333 13.3333 8H10.6667C10.6667 6.56 8.84 5.33333 6.66667 5.33333C4.49333 5.33333 2.66667 6.56 2.66667 8C2.66667 9.46667 4.05333 10 6.98667 10.7067C9.81333 11.4133 13.3333 12.2933 13.3333 16C13.3333 18.3867 11.3733 20.4133 8.66667 21.0933V24H4.66667V21.0933C1.96 20.4133 0 18.3867 0 16Z" fill="#303030" />
                     </svg>
                 </div>
-                <div class="relative z-0 w-11/12 ">
-                    <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.12 20.2267L1.89333 16L0.0133336 17.88L6.12 24L12.24 17.88L10.3467 16M6.12 3.77333L10.3467 8L12.2267 6.12L6.12 0L0 6.12L1.89333 8L6.12 3.77333Z" fill="black" />
-                    </svg>
-                    <select name="kategori-ps-rental-edit" id="kategori-ps-rental-edit" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-16  pr-3 ">
-                        <option value="" class="text-neutral_500 text-base" hidden>Pilih Kategori PS</option>
-                        <option id="option" value="PS1" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 1</option>
-                        <option id="option" value="PS2" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 2</option>
-                        <option id="option" value="PS3" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 3</option>
-                        <option id="option" value="PS4" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 4</option>
-                        <option id="option" value="PS5" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 5</option>
-                    </select>
-                    <i id="arrow_rental_edit" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3"></i>
-
+                <div class="flex flex-row xs:gap-6 md:gap-[42px]  justify-center items-center w-full">
+                    <div class="relative z-0 w-5/12 ">
+                        <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.12 20.2267L1.89333 16L0.0133336 17.88L6.12 24L12.24 17.88L10.3467 16M6.12 3.77333L10.3467 8L12.2267 6.12L6.12 0L0 6.12L1.89333 8L6.12 3.77333Z" fill="black" />
+                        </svg>
+                        <select name="kategori-ps-rental-edit" id="kategori-ps-rental-edit" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl xs:pl-12 md:pl-16  pr-3 ">
+                            <option value="" class="text-neutral_500 text-base" hidden>Pilih Kategori PS</option>
+                            <option id="option" value="PS1" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 1</option>
+                            <option id="option" value="PS2" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 2</option>
+                            <option id="option" value="PS3" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 3</option>
+                            <option id="option" value="PS4" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 4</option>
+                            <option id="option" value="PS5" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 5</option>
+                        </select>
+                        <i id="arrow_rental_edit" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3 text-neutral_900"></i>
+                    </div>
+                    <div class="relative z-0 w-5/12 ">
+                        <svg width="14" height="24" class="absolute top-4 left-7" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.12 20.2267L1.89333 16L0.0133336 17.88L6.12 24L12.24 17.88L10.3467 16M6.12 3.77333L10.3467 8L12.2267 6.12L6.12 0L0 6.12L1.89333 8L6.12 3.77333Z" fill="black" />
+                        </svg>
+                        <select name="status-ps-rental-edit" id="status-ps-rental-edit" required class="select select-bordered font-normal py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl xs:pl-12 md:pl-16  pr-3 ">
+                            <option value="" class="text-neutral_500 text-base" hidden>Status</option>
+                            <option id="option" value="aktif" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">aktif</option>
+                            <option id="option" value="perbaikan" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">perbaikan</option>
+                            <option id="option" value="tidak aktif" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">tidak aktif</option>
+                        </select>
+                        <i id="arrow_sewa_edit_status" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3 text-neutral_900"></i>
+                    </div>
                 </div>
 
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
@@ -131,6 +145,7 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
     const modal_rental_edit = document.querySelector('#modal_rental_edit');
     const editRental = document.querySelectorAll('#editRental');
     const kategori_ps_rental_edit = document.querySelector('#kategori-ps-rental-edit');
+    const status_ps_rental_edit = document.querySelector('#status-ps-rental-edit');
     const arrow_rental_edit = document.querySelector('#arrow_rental_edit');
     const imginp_rental_edit = document.getElementById('image-rental-edit');
     const prev_rental_edit = document.getElementById('preview-rental-edit');
@@ -175,10 +190,11 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
-                    console.log(json.status + ", " + json.id_ps + ", " + json.nama_ps + ", " + json.harga_ps + ", " + json.kategori + ", " + json.img);
+                    console.log(json.status_ps);
                     nama_rental_edit.value = json.nama_ps;
                     harga_rental_edit.value = json.harga_ps;
                     kategori_ps_rental_edit.value = json.kategori;
+                    status_ps_rental_edit.value = json.status_ps;
                     prev_rental_edit.src = json.img;
                     id_rental_edit.value = json.id_ps;
                     harga_rental_edit.value = formatRupiah(this.value, 'Rp. ');
@@ -195,18 +211,6 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
 
 
     // if kategori_ps_rental_edit is clicked and dropdown is rotated 180deg if target not equal to kategori_ps_rental_edit 
-    kategori_ps_rental_edit.addEventListener('click', (e) => {
-        if (e.target === kategori_ps_rental_edit && !arrow_rental_edit.classList.contains('rotate-180')) {
-            arrow_rental_edit.classList.toggle('rotate-180');
-            arrow_rental_edit.classList.toggle('transition');
-            arrow_rental_edit.classList.toggle('ease-in-out');
-        } else if (e.target === kategori_ps_rental_edit && arrow_rental_edit.classList.contains('rotate-180')) {
-            arrow_rental_edit.classList.toggle('rotate-180');
-            arrow_rental_edit.classList.toggle('transition');
-            arrow_rental_edit.classList.toggle('ease-in-out');
-        }
-    });
-
     imginp_rental_edit.onchange = evt => {
         const [file_rental] = imginp_rental_edit.files
         if (file_rental) {

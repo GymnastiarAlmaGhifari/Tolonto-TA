@@ -70,4 +70,85 @@ class ControllerRiwayat extends Database
         if ($jumlah != 0) return $jumlah;
         else return "0";
     }
+
+    public function del_allrental($lok)
+    {
+        $data = $this->delete_and('rental', 'lok', $lok, 'selesai_rental', 'NOW()');
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_allsewa($lok)
+    {
+        $data = $this->delete_and('sewa', 'lok', $lok, 'akhir_sewa', 'NOW()');
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_allservis($lok)
+    {
+        $data = $this->delete_and('servis', 'lok', $lok, 'est_selesai', 'NOW()');
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_alltopup()
+    {
+        $data = $this->delete_all('topup');
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_rental($id)
+    {
+        $data = $this->delete('rental', 'id_rental', $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_sewa($id)
+    {
+        $data = $this->delete('sewa', 'id_sewa', $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_servis($id)
+    {
+        $data = $this->delete('servis', 'id_servis', $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_topup($id)
+    {
+        $data = $this->delete('topup', 'id_topup', $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -17,13 +17,15 @@
                     $status = $ps_sewa[$row]['status'];
                     if ($status == 'aktif') {
                         $ikon = 'bg-[#32FC00]';
-                    } else {
+                    } else if ($status == 'tidak aktif') {
                         $ikon = 'bg-[#fc1100]';
+                    } else {
+                        $ikon = 'bg-[#eb920e]';
                     }
             ?>
                     <div class="xs:w-[260px] sm:w-[350px] h-[230px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
-                        <div class="flex justify-between mt-2 mx-5">
-                            <h1><?php echo $ps_sewa[$row]['nama_ps'] ?></h1>
+                        <div class="flex justify-between items-center mt-2 mx-5">
+                            <h1><?php echo $ps_sewa[$row]['id_ps'] ?></h1>
                             <div class="flex flex-row gap-2">
                                 <button title="edit ps sewa" id="editSewa" name="editSewa" value="<?php echo $ps_sewa[$row]['id_ps'] ?>" class="w-[30px] h-[30px] bg-neutral_050  rounded-full relative hover:bg-neutral_050/90 focus:bg-neutral_050/75">
                                     <svg class="mx-auto my-1.5" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +43,10 @@
                         <div class="flex justify-center items-center relative">
                             <img class="h-[110px] m-2" src="<?php echo $ps_sewa[$row]['img'] ?>" alt="">
                         </div>
-                        <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps_sewa[$row]['jenis']; ?></h1>
+                        <div class="flex flex-row justify-between px-5">
+                            <h1 class="uppercase font-noto-sans font-semibold"><?php echo $ps_sewa[$row]['jenis']; ?></h1>
+                            <h1><?php echo $ps_sewa[$row]['nama_ps']; ?></h1>
+                        </div>
                         <div class="flex flex-row justify-between px-5">
                             <div class="flex flex-row items-center gap-x-2">
                                 <span class="w-3 h-3 rounded-full <?php echo $ikon ?>"></span>

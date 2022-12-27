@@ -114,8 +114,7 @@ if (isset($_POST['Konfirmasi-rental'])) {
                         <option id="option" value="PS4" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 4</option>
                         <option id="option" value="PS5" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">PS 5</option>
                     </select>
-                    <i id="arrow_rental" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3"></i>
-
+                    <i id="arrow_rental" class="fa-solid fa-caret-down fa-2x absolute right-4 mt-3 text-neutral_900"></i>
                 </div>
 
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
@@ -165,20 +164,6 @@ if (isset($_POST['Konfirmasi-rental'])) {
 
     tambahRental.addEventListener('click', () => {
         openModalRental(true)
-    });
-
-
-    // if kategori_ps_rental is clicked and dropdown is rotated 180deg if target not equal to kategori_ps_rental 
-    kategori_ps_rental.addEventListener('click', (e) => {
-        if (e.target === kategori_ps_rental && !arrow_rental.classList.contains('rotate-180')) {
-            arrow_rental.classList.toggle('rotate-180');
-            arrow_rental.classList.toggle('transition');
-            arrow_rental.classList.toggle('ease-in-out');
-        } else if (e.target === kategori_ps_rental && arrow_rental.classList.contains('rotate-180')) {
-            arrow_rental.classList.toggle('rotate-180');
-            arrow_rental.classList.toggle('transition');
-            arrow_rental.classList.toggle('ease-in-out');
-        }
     });
 
 

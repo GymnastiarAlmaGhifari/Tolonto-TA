@@ -86,12 +86,12 @@
                             } else {
                                 while ($rows < count($topup)) { ?>
                                     <tr class="">
-                                        <td class="pl-4  flex flex-row gap-x-3 pb-5">
-                                            <div class="form-control ">
+                                        <td class="pl-4 flex flex-row pb-5">
+                                            <div class="text-left w-2">
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
-                                            <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                <img src="<?php echo $topup[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
+                                            <div class="rounded-full w-[42px] h-[42px] ml-10 bg-error_050 flex flex-row items-center justify-center">
+                                                <img src="<?php echo $topup[$rows]['img'] ?>" altsss="" class="rounded-full w-full h-full object-cover">
                                             </div>
                                             <div class="flex flex-col gap-y-1 ml-2">
                                                 <h1 class="font-semibold"><?php echo $topup[$rows]['username'] ?></h1>
@@ -102,7 +102,7 @@
                                         <td class="text-left pl-24 "><?php echo  Rupiah::to($topup[$rows]['jml_topup']) ?></td>
                                         <td id="waktu_topup" class=" text-center"><?php echo date('H:i:s m/d/y', strtotime($topup[$rows]['waktu'])) ?></td>
                                         <td class="pl-4  text-center"><?php echo $topup[$rows]['admin'] ?></td>
-                                        <td class="pl-4   text-center">
+                                        <td class="pl-4  text-center">
                                             <button id="hapus-topup" value="<?php echo $topup[$rows]['id_topup'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
                                                 <h1 class="text-neutral_900 font-semibold">hapus</h1>
                                                 <svg widsth="16" class="mx-auto " height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">

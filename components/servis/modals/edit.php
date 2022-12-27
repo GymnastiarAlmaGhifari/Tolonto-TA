@@ -45,7 +45,7 @@
                     <div class="relative z-0 w-5/12">
                         <h1 class="text-neutral_050 font-medium mb-2 ml-3">Status</h1>
                         <input type="text" id="bayar" name="bayar" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-14 peer" placeholder=" " />
-                        <label for="bayar" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-12 z-10 origin-[0] left-14 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Biaya Perbaikan</label>
+                        <label for="bayar" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-12 z-10 origin-[0] left-14 peer-focus:left-14 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Biaya Perbaikan</label>
                         <svg width="14" height="24" class="absolute top-12 left-5" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 16H2.66667C2.66667 17.44 4.49333 18.6667 6.66667 18.6667C8.84 18.6667 10.6667 17.44 10.6667 16C10.6667 14.5333 9.28 14 6.34667 13.2933C3.52 12.5867 0 11.7067 0 8C0 5.61333 1.96 3.58667 4.66667 2.90667V0H8.66667V2.90667C11.3733 3.58667 13.3333 5.61333 13.3333 8H10.6667C10.6667 6.56 8.84 5.33333 6.66667 5.33333C4.49333 5.33333 2.66667 6.56 2.66667 8C2.66667 9.46667 4.05333 10 6.98667 10.7067C9.81333 11.4133 13.3333 12.2933 13.3333 16C13.3333 18.3867 11.3733 20.4133 8.66667 21.0933V24H4.66667V21.0933C1.96 20.4133 0 18.3867 0 16Z" fill="#303030" />
                         </svg>
@@ -109,7 +109,7 @@
                     <h1 class="text-neutral_050 font-medium mb-2 ml-3">Detail Perbaikan</h1>
                     <input type="text" id="detail_perbaikan" name="detail_perbaikan" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-3" />
                 </div>
-                <button type="submit" name="edit_konfirmasi" id="edit_konfirmasi" class="bg-[#4FCF2F] text-neutral_050 shadow-elevation-light-2 w-11/12 h-[58px] rounded-2xl flex flex-row gap-3 justify-center items-center mt-2">
+                <button type="submit" name="edit_konfirmasi" id="edit_konfirmasi" class="bg-[#4FCF2F] text-neutral_050 shadow-elevation-light-2 w-11/12 h-[58px] rounded-2xl flex flex-row gap-3 justify-center items-center mt-2   hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">
                     <h1>Update Status Servis</h1>
                 </button>
         </div>

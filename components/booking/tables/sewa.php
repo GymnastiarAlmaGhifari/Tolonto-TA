@@ -8,54 +8,54 @@
                                     <h1 class="capitalize font-semibold">Sewa Aktif dan Pending</h1>
                                     <h2><?php echo $jumlah_sewa ?></h2>
                                 </div>
-                                <span id="open2" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                                <span id="open2" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                                     <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                                     <span id="plus2" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                                 </span>
                             </div>
                             <span id="garis2" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
                             <h1 id="data-kosong2" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
-                            <div class="w-full mx-auto  relative h-[360px] overflow-y-auto mt-2" id="table2">
+                            <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table2">
                                 <table class="w-full table-auto">
-                                    <thead>
+                                    <thead class="bg-neutral_800 sticky -top-[1.4px]">
                                         <tr class="font-semibold ">
-                                            <td class="relative">
+                                            <th scope="col" class="relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
                                                     <input type="text" id="search2" name="search2" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                                 </div>
                                             </td>
-                                            <td class=" ">
+                                            <th scope="col" class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
                                                     <h1 class=" uppercase">nama ps</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
-                                            <td class=" ">
+                                            <th scope="col" class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                                     <h1 class="uppercase">Waktu order</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
-                                            <td class=" ">
+                                            <th scope="col" class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                                     <h1 class="uppercase">lama sewa</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
-                                            <td class=" ">
+                                            <th scope="col" class=" ">
                                                 <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                                     <h1 class="uppercase">waktu</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
-                                            <td class="">
+                                            <th scope="col" class="">
                                                 <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                                     <h1 class="uppercase">total</h1>
                                                     <i class="fa-solid fa-angle-up"></i>
                                                 </button>
                                             </td>
-                                            <td class=" ">
+                                            <th scope="col" class=" ">
                                                 <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                                     <h1 class="capitalize font-normal">option</h1>
                                                     <i class="fa-solid fa-caret-down"></i>

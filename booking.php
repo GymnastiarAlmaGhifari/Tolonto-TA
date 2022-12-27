@@ -55,7 +55,7 @@ if (Session::exists('booking')) {
                 <!-- sidebar -->
                 <?php require_once 'components/main/sidebar.php'; ?>
             </form>
-
+            <?php require_once 'components/main/modalLogout.php'; ?>
             <?php
             require_once 'components/booking/tables/rental.php';
             require_once 'components/booking/tables/sewa.php';
@@ -115,7 +115,6 @@ if (Session::exists('booking')) {
         //     });
         // });
     </script>
-    <?php require_once 'components/main/modalLogout.php'; ?>
 </body>
 
 </html>

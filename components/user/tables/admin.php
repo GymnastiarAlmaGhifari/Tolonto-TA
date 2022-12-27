@@ -140,14 +140,14 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                         <h2><?php echo $ja ?></h2>
                     </div>
                     <div class="flex flex-row gap-2 sm:gap-5">
-                        <button id="tambahAdmin" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-3">
+                        <button id="tambahAdmin" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-3">
                             <h1 class="text-neutral_900 font-semibold hidden sm:block">Tambah Admin</h1>
                             <svg class="xs:w-[22px] sm:w-[26px]" width="28" height="18" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.746 11.25C14.494 11.25 8.00219 12.7462 8.00219 15.75V18H27.4898V15.75C27.4898 12.7462 20.998 11.25 17.746 11.25ZM6.78421 6.75V3.375H4.34826V6.75H0.694336V9H4.34826V12.375H6.78421V9H10.4381V6.75M17.746 9C19.0381 9 20.2773 8.52589 21.1909 7.68198C22.1046 6.83807 22.6179 5.69347 22.6179 4.5C22.6179 3.30653 22.1046 2.16193 21.1909 1.31802C20.2773 0.474106 19.0381 0 17.746 0C16.4539 0 15.2147 0.474106 14.301 1.31802C13.3874 2.16193 12.8741 3.30653 12.8741 4.5C12.8741 5.69347 13.3874 6.83807 14.301 7.68198C15.2147 8.52589 16.4539 9 17.746 9Z" fill="#303030" />
                             </svg>
                             </svg>
                         </button>
-                        <span id="open3" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                        <span id="open3" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                             <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                             <span id="plus3" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                         </span>
@@ -157,27 +157,27 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                 <h1 id="data-kosong3" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
                 <div class="w-full mx-auto relative block h-[360px] overflow-y-auto mt-2" id="table3">
                     <table id="table3" class="w-full">
-                        <thead class="bg-neutral_800 sticky top-0">
+                        <thead class="bg-neutral_800 sticky -top-[1.4px]">
                             <tr class="font-semibold ">
-                                <th scope="col" class="text-left relative">
+                                <th scope="col" class="text-left pl-4 relative">
                                     <div class="flex flex-row gap-x-3 items-center">
                                         <i class="fa-solid fa-magnifying-glass "></i>
                                         <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                     </div>
                                 </th>
-                                <th scope="col" class="text-left  ">
+                                <th scope="col" class="text-left pl-4  ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                         <h1 class="uppercase">level</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
-                                <th scope="col" class="text-left ">
+                                <th scope="col" class="text-left pl-4 ">
                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                         <h1 class="uppercase">lokasi</h1>
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
-                                <th scope="col" class="text-left  ">
+                                <th scope="col" class="text-left pl-4  ">
                                     <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                         <h1 class="capitalize font-normal">option</h1>
                                         <i class="fa-solid fa-caret-down"></i>
@@ -206,7 +206,7 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                             } else {
                                 while ($row < count($tb_admin)) { ?>
                                     <tr class="">
-                                        <td class="flex flex-row gap-x-4 pb-5">
+                                        <td class="pl-4 flex flex-row gap-x-4 pb-5">
                                             <div class="form-control ml-[5px]">
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $row + 1 ?></h1>
                                             </div>
@@ -218,9 +218,9 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                                                 <h2 id="id_admin" name="id_admin" class="text-neutral_400 text-xs"><?php echo $tb_admin[$row]['id_admin'] ?></h2>
                                             </div>
                                         </td>
-                                        <td class="text-center"><?php echo $tb_admin[$row]['role']; ?></td>
-                                        <td class="text-center"><?php echo $tb_admin[$row]['lok']; ?></td>
-                                        <td class=" text-center">
+                                        <td class="pl-4 text-center"><?php echo $tb_admin[$row]['role']; ?></td>
+                                        <td class="pl-4 text-center"><?php echo $tb_admin[$row]['lok']; ?></td>
+                                        <td class="pl-4  text-center">
                                             <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
                                                 <button id="editAdmin" name="editAdmin" type="submit" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
                                                     <svg width="19" class="mx-auto" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -8,7 +8,7 @@
                                     <h2><?php echo $jumlah_rent ?></h2>
                                     <h1 id="text-data" class="text-2xl pl-4 ml-4 gap-4 hidden">Tidak Ada Data</h1>
                                 </div>
-                                <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                                <span id="open" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                                     <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                                     <span id="plus" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                                 </span>
@@ -17,7 +17,7 @@
                             <h1 id="data-kosong" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
                             <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table">
                                 <table id="table" class="w-full table-auto">
-                                    <thead class="bg-neutral_800 sticky top-0">
+                                    <thead class="bg-neutral_800 sticky -top-[1.4px]">
                                         <tr class="font-semibold ">
                                             <th scope="col" class="relative">
                                                 <div class="flex flex-row gap-x-3 items-center">

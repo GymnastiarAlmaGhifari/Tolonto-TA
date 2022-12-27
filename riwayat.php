@@ -61,6 +61,7 @@ if (Session::exists('riwayat')) {
                 require_once 'components/main/sidebar.php';
                 ?>
             </form>
+            <?php require_once 'components/main/modalLogout.php'; ?>
             <?php
             require_once 'components/riwayat/tables/rental.php';
             if ($user_data['username'] == Session::get('username') && $user_data['lok'] == 'Bojonegoro') {
@@ -123,7 +124,7 @@ if (Session::exists('riwayat')) {
         //     });
         // });
     </script>
-    <?php require_once 'components/main/modalLogout.php'; ?>
+
 </body>
 
 

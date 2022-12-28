@@ -155,7 +155,10 @@ if (isset($_POST['edit_konfirmasi'])) {
                                                                                     echo $valid_date;
                                                                                     ?></td>
                                         <td class="pl-4 text-center"><?php echo $service[$rows]['status'] ?></td>
-                                        <td id="est_jadi" class="text-center"><?php echo Tanggal::tgl_indo($service[$rows]['est_selesai']); ?>
+                                        <td id="est_jadi" class="text-center"><?php if (empty($service[$rows]['est_selesai'])) {
+                                            echo '-' ;
+                                        } else {
+                                        echo Tanggal::tgl_indo($service[$rows]['est_selesai']); } ?>
                                         
                                         </td>
                                         <td class="pl-4  text-center">

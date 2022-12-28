@@ -206,8 +206,8 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                             } else {
                                 while ($row < count($tb_admin)) { ?>
                                     <tr class="">
-                                        <td class="pl-4 flex flex-row gap-x-4 pb-5">
-                                            <div class="form-control ml-[5px]">
+                                        <td class="flex flex-row gap-x-4 pb-5">
+                                            <div class="flex flex-row justify-center items-center w-10">
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $row + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">

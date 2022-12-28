@@ -47,6 +47,12 @@
                                  </th>
                                  <th scope="col" class="text-left pl-4  ">
                                      <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
+                                         <h1 class="uppercase">status</h1>
+                                         <i class="fa-solid fa-angle-up"></i>
+                                     </button>
+                                 </th>
+                                 <th scope="col" class="text-left pl-4  ">
+                                     <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                          <h1 class="uppercase">play time</h1>
                                          <i class="fa-solid fa-angle-up"></i>
                                      </button>
@@ -106,6 +112,7 @@
                                          </td>
                                          <td class="pl-4 text-center"><?php echo $rent[$row]['nama_ps'] ?></td>
                                          <td class="pl-4 text-center"><?php echo date('H:i:s m/d/y', strtotime($rent[$row]['waktu_order'])) ?></td>
+                                         <td class="pl-4 text-center"><?php echo $rent[$row]['status'] ?></td>
                                          <td class="pl-4 text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
                                          <td class="pl-4  text-center"><?php list($date, $time) = explode(" ", $rent[$row]['mulai_rental']);
                                                                     echo $time; ?>

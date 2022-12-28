@@ -6,7 +6,7 @@ class ControllerRiwayat extends Database
 {
     public function h_rental($lok)
     {
-        $sql = "SELECT user.username, user.img, rental.id_rental, ps.nama_ps, rental.waktu_order, rental.playtime, rental.mulai_rental,
+        $sql = "SELECT user.username, user.img, rental.id_rental, ps.nama_ps, rental.status, rental.waktu_order, rental.playtime, rental.mulai_rental,
         rental.selesai_rental, rental.bayar FROM `rental` JOIN user ON rental.id_user = user.user_id
         JOIN ps ON rental.id_ps = ps.id_ps WHERE rental.lok = '$lok';";
         $data = $this->uniquery($sql);

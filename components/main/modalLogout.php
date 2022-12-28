@@ -11,8 +11,8 @@
                 <path d="M39 45V36H18V24H39V15L54 30L39 45ZM33 0C34.5913 0 36.1174 0.632141 37.2426 1.75736C38.3679 2.88258 39 4.4087 39 6V12H33V6H6V54H33V48H39V54C39 55.5913 38.3679 57.1174 37.2426 58.2426C36.1174 59.3679 34.5913 60 33 60H6C4.4087 60 2.88258 59.3679 1.75736 58.2426C0.632141 57.1174 0 55.5913 0 54V6C0 4.4087 0.632141 2.88258 1.75736 1.75736C2.88258 0.632141 4.4087 0 6 0H33Z" fill="#E53935" />
             </svg>
 
-            <h1 class="font-semibold mx-auto text-xl">Apakah Anda Yakin ?</h1>
-            <h2 class="mx-auto">Apakah anda benar ingin <span class="font-semibold text-error_600" id="getName" name="getName">Logout</span>?</h2>
+            <h1 class="font-semibold mx-auto text-xl text-neutral_900">Apakah Anda Yakin ?</h1>
+            <h2 class="mx-auto text-neutral_900">Apakah anda benar ingin <span class="font-semibold text-error_600" id="getName" name="getName">Logout</span>?</h2>
             <h2 class="mx-auto text-base font-medium text-error_600 -mt-4"> proses ini tidak bisa dikembalikan</h2>
             <form action="logout.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">

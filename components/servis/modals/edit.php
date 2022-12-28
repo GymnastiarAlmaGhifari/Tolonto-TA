@@ -43,7 +43,7 @@
 
                     </div>
                     <div class="relative z-0 w-5/12">
-                        <h1 class="text-neutral_050 font-medium mb-2 ml-3">Status</h1>
+                        <h1 class="text-neutral_050 font-medium mb-2 ml-3">Bayar</h1>
                         <input type="text" id="bayar" name="bayar" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 xs:pl-12 md:pl-16 peer" placeholder=" " />
                         <label for="bayar" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-12 z-10 origin-[0] left-14 peer-focus:left-14 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm">Biaya Perbaikan</label>
                         <svg width="14" height="24" class="absolute top-12 xs:left-5 md:left-7" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">

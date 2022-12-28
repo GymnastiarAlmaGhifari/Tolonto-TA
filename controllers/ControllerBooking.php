@@ -6,16 +6,16 @@ class ControllerBooking extends Database
 {
     public function b_rental($lok) 
     {
-        $sql = "SELECT user.username, user.img, rental.id_rental, ps.nama_ps, rental.waktu_order, rental.playtime, rental.mulai_rental,
+        $sql = "SELECT user.username, user.img, rental.id_rental, ps.nama_ps, rental.status, rental.waktu_order, rental.playtime, rental.mulai_rental,
         rental.selesai_rental, rental.bayar FROM `rental` JOIN user ON rental.id_user = user.user_id
-        JOIN ps ON rental.id_ps = ps.id_ps WHERE rental.lok = '$lok' AND rental.selesai_rental >= NOW() ;";
+        JOIN ps ON rental.id_ps = ps.id_ps WHERE rental.lok = '$lok' AND rental.status = 'incoming' OR rental.status = 'ongoing' ;";
         $data = $this->uniquery($sql);
         return $data;
     }
 
     public function jumlah_rent($lok)
     {
-        $sql = "SELECT COUNT(id_rental) as jrent FROM `rental` WHERE lok = '$lok' AND selesai_rental >= NOW() ;";
+        $sql = "SELECT COUNT(id_rental) as jrent FROM `rental` WHERE lok = '$lok' AND rental.status = 'incoming' OR rental.status = 'ongoing' ;";
         $data = $this->uniquerycount($sql);
         $jumlah=$data['jrent'];
         if ($jumlah != 0) return $jumlah;
@@ -26,18 +26,27 @@ class ControllerBooking extends Database
     {
         $sql = "SELECT user.username, user.img, sewa.id_sewa, ps_sewa.nama_ps, sewa.status, sewa.waktu_order, sewa.playtime, sewa.mulai_sewa,
         sewa.akhir_sewa, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id
-        JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.lok = '$lok' AND sewa.akhir_sewa >= NOW() ;";
+        JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.lok = '$lok' AND sewa.status = 'pending' OR sewa.status = 'aktif' ;";
         $data = $this->uniquery($sql);
         return $data;
     }
 
     public function jumlah_sewa($lok)
     {
-        $sql = "SELECT COUNT(id_sewa) as jsewa FROM `sewa` WHERE lok = '$lok' AND akhir_sewa >= NOW() ;";
+        $sql = "SELECT COUNT(id_sewa) as jsewa FROM `sewa` WHERE lok = '$lok' AND sewa.status = 'pending' OR sewa.status = 'aktif' ;";
         $data = $this->uniquerycount($sql);
         $jumlah=$data['jsewa'];
         if ($jumlah != 0) return $jumlah;
             else return "0";
+    }
+
+    public function getsewa($id)
+    {
+        $sql = "SELECT user.username, user.hp, sewa.id_sewa, ps_sewa.id_ps, sewa.pil_kirim, sewa.latitude, sewa.longitude, sewa.address
+         FROM `sewa` JOIN user ON sewa.id_user = user.user_id
+        JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.id_sewa = '$id' ;";
+        $data = $this->uniquery($sql);
+        return $data;
     }
 
 }

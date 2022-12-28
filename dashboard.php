@@ -55,6 +55,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
                 <!-- sidebar -->
                 <?php require_once 'components/main/sidebar.php'; ?>
             </form>
+            <?php require_once 'components/main/modalLogout.php'; ?>
             <!-- list control -->
             <section id="control" class="xs:mt-[84px] sm:mt-24 text-neutral_050  xs:ml-[84px] sm:ml-24 ">
                 <div class="container">
@@ -157,7 +158,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
 
         // ambil dari alertLogout.php
     </script>
-    <?php require_once 'components/main/modalLogout.php'; ?>
+
 </body>
 
 </html>

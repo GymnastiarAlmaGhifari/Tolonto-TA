@@ -6,7 +6,7 @@ class ControllerRiwayat extends Database
 {
     public function h_rental($lok)
     {
-        $sql = "SELECT user.username, user.img, rental.id_rental, ps.nama_ps, rental.waktu_order, rental.playtime, rental.mulai_rental,
+        $sql = "SELECT user.username, user.img, rental.id_rental, ps.nama_ps, rental.status, rental.waktu_order, rental.playtime, rental.mulai_rental,
         rental.selesai_rental, rental.bayar FROM `rental` JOIN user ON rental.id_user = user.user_id
         JOIN ps ON rental.id_ps = ps.id_ps WHERE rental.lok = '$lok';";
         $data = $this->uniquery($sql);
@@ -23,9 +23,9 @@ class ControllerRiwayat extends Database
 
     public function h_sewa($lok)
     {
-        $sql = "SELECT user.username, user.img, sewa.id_sewa, ps.nama_ps, sewa.status, sewa.waktu_order, sewa.playtime, sewa.mulai_sewa,
-        sewa.akhir_sewa, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id
-        JOIN ps ON sewa.id_ps = ps.id_ps WHERE sewa.lok = '$lok' ;";
+        $sql = "SELECT user.username, user.img, sewa.id_sewa, ps_sewa.nama_ps, sewa.status, sewa.waktu_order, 
+        sewa.playtime, sewa.mulai_sewa, sewa.akhir_sewa, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id 
+        JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.lok = '$lok' ;";
         $data = $this->uniquery($sql);
         return $data;
     }
@@ -70,4 +70,85 @@ class ControllerRiwayat extends Database
         if ($jumlah != 0) return $jumlah;
         else return "0";
     }
+
+    public function del_allrental($lok)
+    {
+        $data = $this->delete_and('rental', 'lok', $lok, 'selesai_rental', 'NOW()');
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_allsewa($lok)
+    {
+        $data = $this->delete_and('sewa', 'lok', $lok, 'akhir_sewa', 'NOW()');
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_allservis($lok)
+    {
+        $data = $this->delete_and('servis', 'lok', $lok, 'est_selesai', 'NOW()');
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_alltopup()
+    {
+        $data = $this->delete_all('topup');
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_rental($id)
+    {
+        $data = $this->delete('rental', 'id_rental', $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_sewa($id)
+    {
+        $data = $this->delete('sewa', 'id_sewa', $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_servis($id)
+    {
+        $data = $this->delete('servis', 'id_servis', $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function del_topup($id)
+    {
+        $data = $this->delete('topup', 'id_topup', $id);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

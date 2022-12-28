@@ -54,6 +54,7 @@ if (Session::exists('user')) {
                 <!-- sidebar -->
                 <?php require_once 'components/main/sidebar.php'; ?>
             </form>
+            <?php require_once 'components/main/modalLogout.php'; ?>
             <?php
             require_once 'components/user/tables/user.php'; ?>
             <?php if ($user_data['username'] == Session::get('username')) { ?>
@@ -71,7 +72,7 @@ if (Session::exists('user')) {
             loader.classList.add("hidden");
         });
     </script>
-    <?php require_once 'components/main/modalLogout.php'; ?>
+
 
 </body>
 

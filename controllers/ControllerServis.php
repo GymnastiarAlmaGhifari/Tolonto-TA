@@ -33,4 +33,31 @@ class ControllerServis extends Database
         $data = $this->fetch('servis_adm', 'id_servis', $id);
         return $data;
     }
+
+    public function fetch_user($id)
+    {
+
+        $data = $this->fetch('user', 'user_id', $id);
+        return $data;
+    }
+
+    public function update_admservis($fields = [], $val)
+    {
+        $data = $this->update('servis_adm', 'id_servis', $val, $fields);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function update_servis($fields = [], $val)
+    {
+        $data = $this->update('servis', 'id_servis', $val, $fields);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

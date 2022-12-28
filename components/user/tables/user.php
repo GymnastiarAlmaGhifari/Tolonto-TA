@@ -1,4 +1,5 @@
   <?php
+  
     ?>
 
   <!-- table start -->
@@ -12,7 +13,7 @@
                           <h2><?php echo $ju ?></h2>
 
                       </div>
-                      <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                      <span id="open" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                           <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                           <span id="plus" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                       </span>
@@ -21,34 +22,34 @@
                   <h1 id="data-kosong" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
                   <div class="w-full mx-auto relative block h-[360px] overflow-y-auto mt-2" id="table">
                       <table id="table" class="w-full">
-                          <thead class="bg-neutral_800 sticky top-0">
+                          <thead class="bg-neutral_800 sticky -top-[1.4px]">
                               <tr class="font-semibold ">
-                                  <th scope="col" class="text-left relative">
+                                  <th scope="col" class="text-left pl-4 relative">
                                       <div class="flex flex-row gap-x-3 items-center">
                                           <i class="fa-solid fa-magnifying-glass "></i>
                                           <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
                                       </div>
                                   </th>
-                                  <th scope="col" class="text-left  ">
-                                      <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
+                                  <th scope="col" class="text-left pl-4  ">
+                                      <button class="flex flex-row items-center gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
                                           <h1 class=" uppercase">No. Hp</h1>
                                           <i class="fa-solid fa-angle-up"></i>
                                       </button>
                                   </th>
-                                  <th scope="col" class="text-left  ">
-                                      <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
+                                  <th scope="col" class="text-left pl-4  ">
+                                      <button class="flex flex-row items-center gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                           <h1 class="uppercase">Saldo</h1>
                                           <i class="fa-solid fa-angle-up"></i>
                                       </button>
                                   </th>
-                                  <th scope="col" class="text-left  ">
-                                      <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
+                                  <th scope="col" class="text-left pl-4  ">
+                                      <button class="flex flex-row items-center gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
                                           <h1 class="uppercase">Play Time</h1>
                                           <i class="fa-solid fa-angle-up"></i>
                                       </button>
                                   </th>
-                                  <th scope="col" class="text-left  ">
-                                      <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
+                                  <th scope="col" class="text-left pl-4  ">
+                                      <button onclick="showItems()" id="btn-option" class="flex flex-row items-center gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                           <h1 class="capitalize font-normal">option</h1>
                                           <i class="fa-solid fa-caret-down"></i>
                                       </button>
@@ -89,14 +90,14 @@
                                                   <h2 class="text-neutral_400 text-xs"><?php echo $tb_user[$row]['email'] ?></h2>
                                               </div>
                                           </td>
-                                          <td class="text-center"><?php echo $tb_user[$row]['hp'] ?></td>
-                                          <td class="text-center"><?php
+                                          <td class="pl-6 whitespace-nowrap"><?php echo $tb_user[$row]['hp'] ?></td>
+                                          <td class="pl-6 whitespace-nowrap"><?php
                                                                     $saldo = Rupiah::to($tb_user[$row]['saldo']);
                                                                     echo $saldo
                                                                     ?></td>
-                                          <td class=" text-center"><?php echo $tb_user[$row]['playtime'] ?> Jam</td>
-                                          <td class=" text-center">
-                                              <button id="topupUser" value="<?php echo $tb_user[$row]['email'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
+                                          <td class=" pl-12 whitespace-nowrap"><?php echo $tb_user[$row]['playtime'] ?> Jam</td>
+                                          <td class="pl-4 whitespace-nowrap">
+                                              <button id="topupUser" value="<?php echo $tb_user[$row]['email'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
                                                   <h1 class="text-neutral_900 font-semibold">Topup</h1>
                                                   <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                       <path d="M0 16H2.66667C2.66667 17.44 4.49333 18.6667 6.66667 18.6667C8.84 18.6667 10.6667 17.44 10.6667 16C10.6667 14.5333 9.28 14 6.34667 13.2933C3.52 12.5867 0 11.7067 0 8C0 5.61333 1.96 3.58667 4.66667 2.90667V0H8.66667V2.90667C11.3733 3.58667 13.3333 5.61333 13.3333 8H10.6667C10.6667 6.56 8.84 5.33333 6.66667 5.33333C4.49333 5.33333 2.66667 6.56 2.66667 8C2.66667 9.46667 4.05333 10 6.98667 10.7067C9.81333 11.4133 13.3333 12.2933 13.3333 16C13.3333 18.3867 11.3733 20.4133 8.66667 21.0933V24H4.66667V21.0933C1.96 20.4133 0 18.3867 0 16Z" fill="#303030" />

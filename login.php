@@ -95,9 +95,9 @@ if (isset($_POST['submit'])) {
                     <div class="font-noto-sans-sans font-medium self-center text-3xl text-primary_500 flex justify-center">
                         Login
                     </div>
-                    <div class="mt-2 self-center text-sm font-noto-sans text-neutral_050 flex justify-center">
+                    <h1 class="mt-2 self-center text-md font-noto-sans text-neutral_050 flex justify-center">
                         Silakan login
-                    </div>
+</h1>
                     <div class="mt-7">
 
                         <div class="flex flex-col mb-5">
@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
                             </div>
                             <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
                             <div class="flex w-full">
-                                <button @click.prevent="open = true" aria-controls="basic-modal" id="login" type="submit" name="submit" class="flex justify-center items-center bg-primary_500 font-noto-sans font-semibold rounded-xl mt-5 h-[48px] w-full transition duration-150 ease-in">Login</button>
+                                <button @click.prevent="open = true" aria-controls="basic-modal" id="login" type="submit" name="submit" class="flex justify-center items-center bg-primary_500 font-noto-sans font-semibold rounded-xl mt-5 h-[48px] w-full transition duration-150 ease-in text-neutral_900">Login</button>
                             </div>
 
                         </div>

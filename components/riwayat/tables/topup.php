@@ -87,13 +87,13 @@
                                 while ($rows < count($topup)) { ?>
                                     <tr class="">
                                         <td class="pl-4 flex flex-row pb-5">
-                                            <div class="text-left w-2">
-                                                <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
+                                            <div class="text-right my-auto w-2 relative">
+                                                <h1 class="font-semibold mx-auto font-noto-sans text-right text-xl my-auto"><?php echo $rows + 1000 ?></h1>
                                             </div>
-                                            <div class="rounded-full w-[42px] h-[42px] ml-10 bg-error_050 flex flex-row items-center justify-center">
+                                            <div class="rounded-full relative w-[42px] h-[42px] ml-8 bg-error_050 flex flex-row items-center justify-center">
                                                 <img src="<?php echo $topup[$rows]['img'] ?>" altsss="" class="rounded-full w-full h-full object-cover">
                                             </div>
-                                            <div class="flex flex-col gap-y-1 ml-2">
+                                            <div class="flex flex-col gap-y-1 ml-4">
                                                 <h1 class="font-semibold"><?php echo $topup[$rows]['username'] ?></h1>
                                                 <h2 class="text-neutral_400 text-xs"><?php echo $topup[$rows]['id_topup'] ?></h2>
                                             </div>

@@ -96,7 +96,7 @@
                                                                     echo $saldo
                                                                     ?></td>
                                           <td class=" pl-12 whitespace-nowrap"><?php echo $tb_user[$row]['playtime'] ?> Jam</td>
-                                          <td class=" pl-4 whitespace-nowrap">
+                                          <td class="pl-4 whitespace-nowrap">
                                               <button id="topupUser" value="<?php echo $tb_user[$row]['email'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
                                                   <h1 class="text-neutral_900 font-semibold">Topup</h1>
                                                   <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">

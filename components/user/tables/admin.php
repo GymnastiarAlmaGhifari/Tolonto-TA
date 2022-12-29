@@ -19,8 +19,6 @@ if (isset($_POST['Konfirmasi-Admin'])) {
     $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
 
     if ($terupload) {
-        echo "Upload berhasil!<br/>";
-        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
         if ($SadminUser->add_admin(
             [
                 'id_admin' => $idadmin,
@@ -34,17 +32,23 @@ if (isset($_POST['Konfirmasi-Admin'])) {
             ]
         )) // jika berhasil refresh page tanpa submit ulang
         {
-            Redirect::to('user');
+            echo "<script>
+            Swal.fire({
+                icon: 'success',
+                text: 'Berhasil Menambah Admin',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            </script>";
+            header("Refresh: 1; url=user.php");
         } else {
             // gagal tambah admin
             echo "<script>
             Swal.fire({
                 icon: 'error',
-                text: 'Gagal Tambah Admin',
+                text: 'Gagal Menambah Admin',
                 showConfirmButton: false,
                 timer: 1500
-            }).then(() => {
-                location.href = 'servis';
             });
             </script>";
         }
@@ -52,133 +56,160 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         echo "<script>
         Swal.fire({
             icon: 'error',
-            text: 'Gambar Belum Di Upload',
+            text: 'Gagal Gambar Belum Di Upload',
             showConfirmButton: false,
             timer: 1500
-        }).then(() => {
-            location.href = 'servis';
         });
         </script>";
     }
-}
-
-if (isset($_POST['Konfirmasi-Admin-Edit'])) {
-    // $idmin = $_POST['id-admin-edit'];
-    // echo $idmin;
-
-    $namaFile = $_FILES['image-Admin-edit']['name'];
-    $fileNameParts = explode('.', $namaFile);
-    $ext = end($fileNameParts);
-    $namaSementara = $_FILES['image-Admin-edit']['tmp_name'];
-    // create folder if not exist
-    if (!file_exists('img/admin')) {
-        mkdir('img/admin', 0777, true);
-    }
-    $dirUpload = "img/admin/";
-    // genearete datetimestamp
-    $filename = $_POST['id-admin-edit'] . '.' . $ext;
-
-    // pindahkan file 
-    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
-
-    if ($terupload) {
-        echo "Upload berhasil!<br/>";
-        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
-        if ($_POST['password-edit'] == '') {
-            if ($SadminUser->update_admin(
-                [
-                    'username' => $_POST['username-edit'],
-                    'update_at' => date('Y-m-d H:i:s'),
-                    'level' => $_POST['level-edit'],
-                    'lok' => $_POST['lokasi-edit'],
-                    'img' => $dirUpload . $filename
-                ],
-                $_POST['id-admin-edit']
-            )) {
-                Redirect::to('user');
+}    if (isset($_POST['Konfirmasi-Admin-Edit'])) {
+        // $idmin = $_POST['id-admin-edit'];
+        // echo $idmin;
+    
+        $namaFile = $_FILES['image-Admin-edit']['name'];
+        $fileNameParts = explode('.', $namaFile);
+        $ext = end($fileNameParts);
+        $namaSementara = $_FILES['image-Admin-edit']['tmp_name'];
+        // create folder if not exist
+        if (!file_exists('img/admin')) {
+            mkdir('img/admin', 0777, true);
+        }
+        $dirUpload = "img/admin/";
+        // genearete datetimestamp
+        $filename = $_POST['id-admin-edit'] . '.' . $ext;
+    
+        // pindahkan file 
+        $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+    
+        if ($terupload) {
+            echo "Upload berhasil!<br/>";
+            echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
+            if ($_POST['password-edit'] == '') {
+                if ($SadminUser->update_admin(
+                    [
+                        'username' => $_POST['username-edit'],
+                        'update_at' => date('Y-m-d H:i:s'),
+                        'level' => $_POST['level-edit'],
+                        'lok' => $_POST['lokasi-edit'],
+                        'img' => $dirUpload . $filename
+                    ],
+                    $_POST['id-admin-edit']
+                )) {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Berhasil Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500s
+                    });
+                    </script>";
+                    header("Refresh: 1; url=user.php");
+                } else {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Gagal Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+                }
             } else {
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Gagal Ubah Admin',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-                    location.href = 'servis';
-                });
-                </script>";
+                if ($SadminUser->update_admin(
+                    [
+                        'username' => $_POST['username-edit'],
+                        'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
+                        'update_at' => date('Y-m-d H:i:s'),
+                        'level' => $_POST['level-edit'],
+                        'lok' => $_POST['lokasi-edit'],
+                        'img' => $dirUpload . $filename
+                    ],
+                    $_POST['id-admin-edit']
+                )) // jika berhasil refresh page tanpa submit ulang
+                {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Berhasil Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+                    header("Refresh: 1; url=user.php");
+                } else {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Gagal Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+                }
             }
         } else {
-            if ($SadminUser->update_admin(
-                [
-                    'username' => $_POST['username-edit'],
-                    'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
-                    'update_at' => date('Y-m-d H:i:s'),
-                    'level' => $_POST['level-edit'],
-                    'lok' => $_POST['lokasi-edit'],
-                    'img' => $dirUpload . $filename
-                ],
-                $_POST['id-admin-edit']
-            )) 
-            {
-                Redirect::to('user');
+            if ($_POST['password-edit'] == '') {
+                if ($SadminUser->update_admin(
+                    [
+                        'username' => $_POST['username-edit'],
+                        'update_at' => date('Y-m-d H:i:s'),
+                        'level' => $_POST['level-edit'],
+                        'lok' => $_POST['lokasi-edit'],
+                    ],
+                    $_POST['id-admin-edit']
+                )) {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Berhasil Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+                    header("Refresh: 1; url=user.php");
+                } else {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Gagal Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+                }
             } else {
-                // gagal ubah admin
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Gagal Ubah Admin',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-                    location.href = 'servis';
-                });
-                </script>";
+                if ($SadminUser->update_admin(
+                    [
+                        'username' => $_POST['username-edit'],
+                        'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
+                        'update_at' => date('Y-m-d H:i:s'),
+                        'level' => $_POST['level-edit'],
+                        'lok' => $_POST['lokasi-edit'],
+                    ],
+                    $_POST['id-admin-edit']
+                ))
+                {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Berhasil Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+                    header("Refresh: 1; url=user.php");
+                } else {
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Gagal Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+                                }
             }
         }
-    } else {
-        if ($_POST['password-edit'] == '') {
-            if ($SadminUser->update_admin(
-                [
-                    'username' => $_POST['username-edit'],
-                    'update_at' => date('Y-m-d H:i:s'),
-                    'level' => $_POST['level-edit'],
-                    'lok' => $_POST['lokasi-edit'],
-                ],
-                $_POST['id-admin-edit']
-            )) {
-                Redirect::to('user');
-            } else {
-                // gagal ubah admin
-            }
-        } else {
-            if ($SadminUser->update_admin(
-                [
-                    'username' => $_POST['username-edit'],
-                    'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
-                    'update_at' => date('Y-m-d H:i:s'),
-                    'level' => $_POST['level-edit'],
-                    'lok' => $_POST['lokasi-edit'],
-                ],
-                $_POST['id-admin-edit']
-            )) // jika berhasil refresh page tanpa submit ulang
-            {
-                Redirect::to('user');
-            } else {
-                // gagal ubah admin
-                echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Gagal Ubah Admin',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-                    location.href = 'servis';
-                });
-                </script>";
-            }
-        }
-    }
 }
 ?>
 <!-- table start -->

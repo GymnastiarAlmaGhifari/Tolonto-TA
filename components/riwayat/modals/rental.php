@@ -4,6 +4,16 @@ if (isset($_POST['Konfirmasi-delete-rental'])) {
     {
         Redirect::to('riwayat');
     } else {
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            text: 'Gagal menghapus data rental',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            location.href = 'servis';
+        });
+        </script>";
     }
 }
 ?>

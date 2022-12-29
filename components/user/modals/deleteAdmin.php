@@ -10,8 +10,8 @@
              <svg width="53" class="mx-auto" height="60" viewBox="0 0 53 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                  <path d="M16.5625 0V3.33333H0V10H3.3125V53.3333C3.3125 55.1014 4.01049 56.7971 5.25292 58.0474C6.49535 59.2976 8.18044 60 9.9375 60H43.0625C44.8196 60 46.5047 59.2976 47.7471 58.0474C48.9895 56.7971 49.6875 55.1014 49.6875 53.3333V10H53V3.33333H36.4375V0H16.5625ZM9.9375 10H43.0625V53.3333H9.9375V10ZM16.5625 16.6667V46.6667H23.1875V16.6667H16.5625ZM29.8125 16.6667V46.6667H36.4375V16.6667H29.8125Z" fill="#E53935" />
              </svg>
-             <h1 class="font-semibold mx-auto text-xl">Apakah Anda Yakin ?</h1>
-             <h2 class="mx-auto xs:px-5 sm:px-0 ">Apakah anda benar ingin menghapus akun <span class="font-semibold text-error_600" id="getName" name="getName"></span> ?</h2>
+             <h1 class="font-semibold mx-auto text-xl text-neutral_900">Apakah Anda Yakin ?</h1>
+             <h2 class="mx-auto xs:px-5 sm:px-0 text-neutral_900">Apakah anda benar ingin menghapus akun <span class="font-semibold text-error_600" id="getHapus" name="getHapus"></span> ?</h2>
              <h2 class="mx-auto text-base font-medium text-error_600 -mt-4"> proses ini tidak bisa dikembalikan</h2>
              <form action="user.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                  <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
@@ -30,7 +30,8 @@
      const modal_deleteadmin = document.querySelector('#modal_deleteadmin');
      const deleteAdmin = document.querySelectorAll('#deleteAdmin');
      const konfirmasiDelete = document.querySelector('#Konfirmasi-delete');
-
+     const getHapus = document.querySelector('#getHapus');
+    var username_hapus = "";
 
      const openModalDeleteadmin = (value) => {
          const modalClDeleteadmin = modal_deleteadmin.classList
@@ -67,8 +68,10 @@
              xhr.onreadystatechange = function() {
                  if (xhr.readyState === 4 && xhr.status === 200) {
                      var json = JSON.parse(xhr.responseText);
-                     //  console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
-                     document.getElementById("getName").innerHTML = json.username;
+                    //   console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
+                     getHapus.innerHTML = json.username;
+                     username_hapus = json.username;
+                     console.log(getHapus.innerHTML)
                      konfirmasiDelete.value = json.id_admin;
                  }
              };
@@ -77,8 +80,8 @@
              });
              xhr.send(data);
              // isi value dari button delete admin
-             //  document.getElementById("getName").value = button.value;
-             //  //  set inner html getName dengan button value
+             //  document.getElementById("getHapus").value = button.value;
+             //  //  set inner html getHapus dengan button value
 
 
          })
@@ -98,7 +101,31 @@
              if (xhr.readyState === 4 && xhr.status === 200) {
                  var json = JSON.parse(xhr.responseText);
                  if (json.status == "success") {
-                     alert("berhasil");
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text:  'Berhasil hapus ' + username_hapus + '',
+                            timer: 1500,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                timerInterval = setInterval(() => {
+                                    const content = Swal.getHtmlContainer()
+                                    if (content) {
+                                        const b = content.querySelector('b')
+                                        if (b) {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }
+                                    }
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                openModalDeleteadmin(false)
+                                location.reload();
+                            }
+                        })
                  } else {
                      alert("gagal");
                  }
@@ -108,7 +135,5 @@
              "id": id
          });
          xhr.send(data);
-
-         openModalDeleteadmin(false)
      })
  </script>

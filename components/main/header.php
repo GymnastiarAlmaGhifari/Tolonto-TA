@@ -100,8 +100,8 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                             <a>Profile </a>
                         </li>
 
-                        <li class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
-                            <button type="button" onclick="openModalLogout(true)" id="logout" name="logout">
+                        <li onclick="openModalLogout(true)" class=" active:bg-error_500  pl-2 hover:bg-error_300 rounded-sm h-12 pt-3 font-noto-sans text-base ">
+                            <button type="button"  id="logout" name="logout">
                                 <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>
                                 <a>
                                     Logout

@@ -22,7 +22,7 @@ if ($SadminUser->add_topup(
         'id_admin' => $user_data['id_admin']
     ]
 )) {
-    echo json_encode(['status' => 'success', 'message' => 'aowkdoakwodkawokd' ] );
+    echo json_encode(['status' => 'success' ] );
 } else {
     echo json_encode(['status' => 'failed']);
 }

@@ -13,12 +13,12 @@
             <h1 class="font-semibold text-neutral_900 mx-auto text-xl">Apakah Anda Yakin ?</h1>
             <h2 class="mx-auto text-neutral_900">Apakah anda benar ingin mengaktifkan rental dengan ID</h2>
             <h2 class="text-neutral_900 -mt-4 mx-auto"><span class="font-bold text-neutral_900 text-lg" id="getAktifRental" name="getAktifRental"></span> ?</h2>
-            <form action="logout.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
+            <form id="aktifRental" action="akitfRental.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalAktifRental(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
+                    <button type="button" onclick="openModalAktifRental(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-aktif-rental" id="Konfirmasi-aktif-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">Konfirmasi</button>
+                    <button type="submit" name="Konfirmasi-aktif-rental" id="Konfirmasi-aktif-rental" class="bg-[#4FCF2F] hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">Konfirmasi</button>
                 </div>
             </form>
         </div>
@@ -30,7 +30,78 @@
     const modal_aktif_rental = document.querySelector('#modal_aktif_rental');
     const aktif_rental = document.querySelectorAll('#aktif_rental');
     const konfirmasiAktifRental = document.querySelector('#Konfirmasi-aktif-rental');
+    const aktifRental = document.querySelector('#aktifRental');
 
+    aktifRental.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = document.querySelector('#getAktifRental').innerHTML;
+        var xhr = new XMLHttpRequest();
+            var url = "..\\..\\..\\aktifrental.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    if (json.status == 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text:  'Berhasil Mengaktifkan rental dengan ID ' + id,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                timerInterval = setInterval(() => {
+                                    const content = Swal.getHtmlContainer()
+                                    if (content) {
+                                        const b = content.querySelector('b')
+                                        if (b) {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }
+                                    }
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                openModalAktifRental(false);
+                                location.reload();
+                            }
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text:  'Gagal Mengaktifkan rental dengan ID ' + id,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                timerInterval = setInterval(() => {
+                                    const content = Swal.getHtmlContainer()
+                                    if (content) {
+                                        const b = content.querySelector('b')
+                                        if (b) {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }
+                                    }
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                openModalAktifRental(false);
+                                location.reload();
+                            }
+                        })
+                    }
+                }
+            };
+            var dataaktifrental = JSON.stringify({
+                "id": id
+            });
+            xhr.send(dataaktifrental);
+    })
 
     const openModalAktifRental = (value) => {
         const modalClAktifRental = modal_aktif_rental.classList

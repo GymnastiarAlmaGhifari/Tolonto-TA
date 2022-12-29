@@ -36,9 +36,29 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         {
             Redirect::to('user');
         } else {
+            // gagal tambah admin
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                text: 'Gagal Tambah Admin',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                location.href = 'servis';
+            });
+            </script>";
         }
     } else {
-        echo "Upload Gagal!";
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            text: 'Gambar Belum Di Upload',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            location.href = 'servis';
+        });
+        </script>";
     }
 }
 
@@ -77,6 +97,16 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
             )) {
                 Redirect::to('user');
             } else {
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Gagal Ubah Admin',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    location.href = 'servis';
+                });
+                </script>";
             }
         } else {
             if ($SadminUser->update_admin(
@@ -89,14 +119,24 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                     'img' => $dirUpload . $filename
                 ],
                 $_POST['id-admin-edit']
-            )) // jika berhasil refresh page tanpa submit ulang
+            )) 
             {
                 Redirect::to('user');
             } else {
+                // gagal ubah admin
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Gagal Ubah Admin',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    location.href = 'servis';
+                });
+                </script>";
             }
         }
     } else {
-        echo "Upload Gagal!";
         if ($_POST['password-edit'] == '') {
             if ($SadminUser->update_admin(
                 [
@@ -109,6 +149,7 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
             )) {
                 Redirect::to('user');
             } else {
+                // gagal ubah admin
             }
         } else {
             if ($SadminUser->update_admin(
@@ -124,6 +165,17 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
             {
                 Redirect::to('user');
             } else {
+                // gagal ubah admin
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Gagal Ubah Admin',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    location.href = 'servis';
+                });
+                </script>";
             }
         }
     }
@@ -162,7 +214,7 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                                 <th scope="col" class="text-left pl-4 relative">
                                     <div class="flex flex-row gap-x-3 items-center">
                                         <i class="fa-solid fa-magnifying-glass "></i>
-                                        <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
+                                        <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Cari Username">
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
@@ -201,7 +253,6 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                                 if (document.getElementById("atas3").classList.contains("h-[77px]")) {
                                     document.getElementById("data-kosong3").classList.add("hidden")
                                 }
-
                                     </script> ';
                             } else {
                                 while ($row < count($tb_admin)) { ?>
@@ -213,7 +264,7 @@ if (isset($_POST['Konfirmasi-Admin-Edit'])) {
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
                                                 <img src="<?php echo $tb_admin[$row]['img'] ?>" alt="" class=" rounded-full w-full h-full object-cover">
                                             </div>
-                                            <div class="flex flex-col gap-y-1">
+                                            <div class="flex flex-col gap-y-1 ml-2">
                                                 <h1 class="font-semibold"><?php echo $tb_admin[$row]['username'] ?></h1>
                                                 <h2 id="id_admin" name="id_admin" class="text-neutral_400 text-xs"><?php echo $tb_admin[$row]['id_admin'] ?></h2>
                                             </div>

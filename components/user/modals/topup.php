@@ -1,22 +1,37 @@
 <?php
-if (isset($_POST['Konfirmasi-topup'])) {
+// if (isset($_POST['Konfirmasi-topup'])) {
 
-    $idtopup = $SadminUser->idtopup();
-    $iduser = $SadminUser->fetch_user($_POST['email-user']);
-    if ($SadminUser->add_topup(
-        [
-            'id_topup' => $idtopup,
-            'id_user' => $iduser['user_id'],
-            'jml_topup' => Rupiah::clear($_POST['topup']),
-            'waktu' => date('Y-m-d H:i:s'),
-            'id_admin' => $user_data['id_admin']
-        ]
-    )) // jika berhasil refresh page tanpa submit ulang
-    {
-        Redirect::to('user');
-    } else {
-    }
-}
+//     $idtopup = $SadminUser->idtopup();
+//     $iduser = $SadminUser->fetch_user($_POST['email-user']);
+//     if ($SadminUser->add_topup(
+//         [
+//             'id_topup' => $idtopup,
+//             'id_user' => $iduser['user_id'],
+//             'jml_topup' => Rupiah::clear($_POST['topup']),
+//             'waktu' => date('Y-m-d H:i:s'),
+//             'id_admin' => $user_data['id_admin']
+//         ]
+//     )) // jika berhasil refresh page tanpa submit ulang
+//     {
+//         Redirect::to('user');
+// //         echo "<script>
+// // alert('There are no fields to generate a report');
+// // window.location.href='admin/ahm/panel';
+// // </script>";
+//     } else {
+//         // gagal topup
+//         echo "<script>
+//         Swal.fire({
+//             icon: 'error',
+//             text: 'Gagal Topup',
+//             showConfirmButton: false,
+//             timer: 1500
+//         }).then(() => {
+//             location.href = 'user.php';
+//         });
+//         </script>";
+//     }
+// }
 
 ?>
 
@@ -32,7 +47,7 @@ if (isset($_POST['Konfirmasi-topup'])) {
                 <h1 id="mdoalText" class="text-neutral_050 font-base font-noto-sans text-xl">Topup
             </div>
             <span class="w-11/12 h-0.5 mx-auto -mt-5 bg-neutral_600"></span>
-            <form action="user.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
+            <form id="form_topup" action="isitopup.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
                 <input type="hidden" name="id-user" id="id-user">
                 <!-- gambar start -->
                 <div class="flex flex-col justify-center items-center relative">
@@ -76,7 +91,86 @@ if (isset($_POST['Konfirmasi-topup'])) {
     const id_user = document.getElementById('id-user');
     const email_user = document.getElementById('email-user');
     const topup = document.getElementById('topup');
+    const form_topup = document.getElementById('form_topup');
 
+    form_topup.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = email_user.value;
+        const jumlah_topup = topup.value;
+        const data = {
+            email,
+            jumlah_topup
+        }
+        console.log(data);
+
+        var xhr = new XMLHttpRequest();
+            var url = "..\\..\\..\\isitopup.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    if (json.status == 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text:  'Berhasil Topup ke ' + email + ' sejumlah ' + jumlah_topup + '',
+                            timer: 1500,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                timerInterval = setInterval(() => {
+                                    const content = Swal.getHtmlContainer()
+                                    if (content) {
+                                        const b = content.querySelector('b')
+                                        if (b) {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }
+                                    }
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                openModalTopup(false);
+                                location.reload();
+                            }
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text:  'Gagal Topup ke ' + email + ' sejumlah ' + jumlah_topup + '',
+                            timer: 1500,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                timerInterval = setInterval(() => {
+                                    const content = Swal.getHtmlContainer()
+                                    if (content) {
+                                        const b = content.querySelector('b')
+                                        if (b) {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }
+                                    }
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                openModalTopup(false);
+                                location.reload();
+                            }
+                        })
+                    }
+                }
+            };
+            var datatopup = JSON.stringify({
+                "email": email,
+                "jumlah_topup": jumlah_topup
+            });
+            xhr.send(datatopup);
+    })
 
     const openModalTopup = (value) => {
         const ModalClTopup = modal_topup.classList
@@ -128,6 +222,7 @@ if (isset($_POST['Konfirmasi-topup'])) {
         // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
         topup.value = formatRupiah(this.value, "Rp. ");
     });
+
 
     /* Fungsi formatRupiah */
     function formatRupiah(angka, prefix) {

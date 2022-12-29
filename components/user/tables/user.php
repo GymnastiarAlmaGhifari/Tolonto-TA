@@ -27,7 +27,7 @@
                                   <th scope="col" class="text-left pl-4 relative">
                                       <div class="flex flex-row gap-x-3 items-center">
                                           <i class="fa-solid fa-magnifying-glass "></i>
-                                          <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
+                                          <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Cari Username">
                                       </div>
                                   </th>
                                   <th scope="col" class="text-left pl-4  ">
@@ -79,7 +79,7 @@
                                       <input id="userid" type="hidden" value="<?php echo $tb_user[$row]['user_id'] ?>">
                                       <tr class="">
                                           <td class="flex flex-row gap-x-3 pb-5">
-                                              <div class="form-control ml-[5px]">
+                                              <div class="flex flex-row justify-center items-center w-10">
                                                   <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $row + 1 ?></h1>
                                               </div>
                                               <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">

@@ -22,7 +22,7 @@
                                             <th scope="col" class="relative">
                                                 <div class="flex flex-row gap-x-3 items-center">
                                                     <i class="fa-solid fa-magnifying-glass "></i>
-                                                    <input type="text" id="search2" name="search2" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
+                                                    <input type="text" id="search2" name="search2" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Cari ID Sewa">
                                                 </div>
                                             </td>
                                             <th scope="col" class=" ">
@@ -91,7 +91,7 @@
                                             while ($rows < count($sewa)) { ?>
                                                 <tr class="">
                                                     <td class="flex flex-row gap-x-3 pb-5">
-                                                        <div class="form-control ">
+                                                        <div class="flex flex-row justify-center items-center w-10 ">
                                                             <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                                         </div>
                                                         <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
@@ -106,10 +106,10 @@
                                                     <td class="text-center"><?php echo $sewa[$rows]['waktu_order'] ?></td>
                                                     <td class="pl-4 text-center"><?php echo $sewa[$rows]['status'] ?></td>
                                                     <td class="text-center"><?php echo $sewa[$rows]['playtime'] ?> Hari</td>
-                                                    <td class=" text-center"><?php list($date, $time) = explode(" ", $sewa[$rows]['mulai_sewa']);
-                                                                                echo $date; ?>
-                                                        - <?php list($date, $time) = explode(" ", $sewa[$rows]['akhir_sewa']);
-                                                            echo $date; ?></td>
+                                                    <td class=" text-center"><?php //list($date, $time) = explode(" ", $sewa[$rows]['mulai_sewa']);
+                                                                                echo $sewa[$rows]['mulai_sewa'] ; ?>
+                                                        - <?php //list($date, $time) = explode(" ", $sewa[$rows]['akhir_sewa']);
+                                                            echo $sewa[$rows]['akhir_sewa']; ?></td>
                                                     <td class="text-center">Rp. <?php echo $sewa[$rows]['bayar'] ?></td>
                                                     <td class="pl-4  text-center">
                                                         <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
@@ -123,8 +123,8 @@
                                                                  <span class="w-0.5 h-6 bg-neutral_900"></span>
                                                              <button id="aktif_sewa" value="<?php echo $sewa[$rows]['id_sewa'] ?>" class="hover:bg-neutral_900/20 w-[35px] h-[28px] rounded-3xl">
                                                              <svg width="19" class="mx-auto" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.03529 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.03529 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#4FCF2F"/>
-</svg>
+                                                                <path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.03529 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.03529 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#4FCF2F"/>
+                                                            </svg>
 
                                                             </button>
                                                             <?php } else if ($sewa[$rows]['status']=='aktif') { ?>
@@ -132,9 +132,8 @@
                                                                  <span class="w-0.5 h-6 bg-neutral_900"></span>
                                                              <button id="mati_sewa" class="hover:bg-neutral_900/20 w-[35px] h-[28px] rounded-3xl" value="<?php echo $sewa[$rows]['id_sewa'] ?>" >
                                                              <svg width="19" class="mx-auto" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.0353 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.0353 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#E53935"/>
-</svg>
-
+                                                                <path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.0353 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.0353 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#E53935"/>
+                                                                </svg>
                                                             </button>
                                                             <?php } ?>
                                                         </div>

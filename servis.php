@@ -61,6 +61,11 @@ if (Session::exists('servis')) {
 
 
     <script>
+        
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");

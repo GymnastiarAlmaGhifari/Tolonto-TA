@@ -4,6 +4,7 @@ if (isset($_POST['Konfirmasi-delete-semua-sewa'])) {
     {
         Redirect::to('riwayat');
     } else {
+        // gagal hapus
     }
 }
 ?>

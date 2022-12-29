@@ -96,7 +96,6 @@ class Database
         if ($stmt = $this->conn->prepare($sql)) {
             foreach ($fields as $key => $value) {
                 $stmt->bindValue(':' . $key, $value);
-                print_r($stmt);
             }
             $stmt->execute();
             return true;

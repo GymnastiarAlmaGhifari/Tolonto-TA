@@ -30,7 +30,7 @@
                                 <th scope="col" class="text-left pl-4 relative">
                                     <div class="flex flex-row gap-x-3 items-center">
                                         <i class="fa-solid fa-magnifying-glass "></i>
-                                        <input type="text" id="search4" name="search4" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
+                                        <input type="text" id="search4" name="search4" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Cari ID Servis">
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
@@ -92,8 +92,8 @@
                             } else {
                                 while ($rows < count($service)) { ?>
                                     <tr class="">
-                                        <td class="pl-4 flex flex-row gap-x-3 pb-5">
-                                            <div class="form-control ">
+                                        <td class=" flex flex-row gap-x-3 pb-5">
+                                            <div class="flex flex-row justify-center items-center w-10 ">
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">

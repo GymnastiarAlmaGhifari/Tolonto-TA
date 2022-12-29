@@ -30,7 +30,7 @@
                                  <th scope="col" class="text-left pl-4 relative">
                                      <div class="flex flex-row gap-x-3 items-center">
                                          <i class="fa-solid fa-magnifying-glass "></i>
-                                         <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
+                                         <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Cari ID Rental">
                                      </div>
                                  </th>
                                  <th scope="col" class="text-left pl-4  ">
@@ -98,8 +98,8 @@
                                 } else {
                                     while ($row < count($rent)) { ?>
                                      <tr class="">
-                                         <td class="pl-4 flex flex-row gap-x-3 pb-5">
-                                             <div class="form-control ">
+                                         <td class="flex flex-row gap-x-3 pb-5">
+                                             <div class="flex flex-row justify-center items-center w-10 ">
                                                  <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $row + 1 ?></h1>
                                              </div>
                                              <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
@@ -118,7 +118,7 @@
                                                                     echo $time; ?>
                                              - <?php list($date, $time) = explode(" ", $rent[$row]['selesai_rental']);
                                                 echo $time; ?></td>
-                                         <td class="pl-10 text-left">Rp. <?php echo $rent[$row]['bayar'] ?></td>
+                                         <td class="pl-10 text-left"><?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
                                          <td class="pl-4  text-center">
                                              <button id="hapus-rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
                                                  <h1 class="text-neutral_900 font-semibold">hapus</h1>

@@ -23,10 +23,10 @@ if (isset($_POST['edit_konfirmasi'])) {
             Redirect::to('servis');
             // alert disini
         } else {
+            // ganti alert gagal update servis
             echo "<script>
             Swal.fire({
                 icon: 'error',
-                title: 'Gagal',
                 text: 'Data gagal diubah',
                 showConfirmButton: false,
                 timer: 1500
@@ -36,10 +36,10 @@ if (isset($_POST['edit_konfirmasi'])) {
             </script>";
         }
     } else {
+        //ini juga
         echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Gagal',
             text: 'Data gagal diubah',
             showConfirmButton: false,
             timer: 1500
@@ -68,13 +68,13 @@ if (isset($_POST['edit_konfirmasi'])) {
                 <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
                 <h1 id="data-kosong" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
                 <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table">
-                    <table id="table" class="w-full table-auto">
+                    <table id="table" class="w-full  table-auto">
                         <thead class="bg-neutral_800 sticky -top-[1.4px]">
                             <tr class="font-semibold ">
                                 <th scope="col" class="text-left pl-4 relative">
                                     <div class="flex flex-row gap-x-3 items-center">
                                         <i class="fa-solid fa-magnifying-glass "></i>
-                                        <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
+                                        <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Cari Nama Barang">
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
@@ -136,8 +136,8 @@ if (isset($_POST['edit_konfirmasi'])) {
                             } else {
                                 while ($rows < count($service)) { ?>
                                     <tr class="">
-                                        <td class="pl-4 flex flex-row gap-x-3 pb-5">
-                                            <div class="form-control ">
+                                        <td class=" flex flex-row gap-x-3 pb-5">
+                                            <div class="flex flex-row justify-center items-center w-10 ">
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
@@ -276,7 +276,7 @@ if (isset($_POST['edit_konfirmasi'])) {
         const table = document.getElementById('table');
         const tr = table.getElementsByTagName('tr');
         for (let i = 0; i < tr.length; i++) {
-            const td = tr[i].getElementsByTagName('td')[0];
+            const td = tr[i].getElementsByTagName('td')[1];
             if (td) {
                 const txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {

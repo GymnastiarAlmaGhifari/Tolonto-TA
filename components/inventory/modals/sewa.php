@@ -46,8 +46,30 @@
             {
                 echo "<script>location.href='inventory.php'</script>";
             } else {
+                // gagal menambahkan ps
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Gagal menambahkan PlayStation',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    location.href = 'servis';
+                });
+                </script>";
             }
         } else {
+            // gagal upload gambar
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                text: 'Gambar Belum Diupload',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                location.href = 'servis';
+            });
+            </script>";
         }
     }
     ?>

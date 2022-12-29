@@ -2,8 +2,27 @@
 if (isset($_POST['Konfirmasi-delete-topup'])) {
     if ($riwayat->del_topup($_POST['id_topup'])) // jika berhasil refresh page tanpa submit ulang
     {
-        Redirect::to('riwayat');
+        echo "<script>
+        Swal.fire({
+            icon: 'success',
+            text: 'Berhasil Menghapus Riwayat Topup',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            location.href = 'riwayat.php';
+        });
+        </script>";
     } else {
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            text: 'Gagal Menghapus Riwayat Topup',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            location.href = 'riwayat.php';
+        });
+        </script>";
     }
 }
 ?>
@@ -73,6 +92,5 @@ if (isset($_POST['Konfirmasi-delete-topup'])) {
             getTopup.innerHTML = id;
         })
     })
-
     
 </script>

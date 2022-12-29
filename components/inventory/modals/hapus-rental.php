@@ -87,7 +87,11 @@
              if (xhr.readyState === 4 && xhr.status === 200) {
                  var json = JSON.parse(xhr.responseText);
                  console.log(json.status + ", " + json.nama_ps);
-                 if (json.status == "success") {}
+                 if (json.status == "success") {
+                    //  alert("berhasil menghapus ps rental " + json.nama_ps);
+                 } else {
+                    //  alert("gagal menghapus);
+                 }
              }
          };
          var data = JSON.stringify({

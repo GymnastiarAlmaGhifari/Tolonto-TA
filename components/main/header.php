@@ -74,6 +74,48 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                 <span>:</span>
                 <span id="seconds">00</span>
             </div>
+            <div id="notif-drop" class="dropdown dropdown-bottom">
+                <label tabindex="0" id="lok" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-3  md:-ml-3 -ml-4 text-neutral_900">
+                <div class="w-[24px] h-[24px] rounded-full bg-error_500 absolute left-[12px] bottom-3 flex items-center justify-center">
+                        <span id="notif_number" class="text-neutral_050"></span>
+                    </div>
+                    <svg width="23" height="27" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.5 21.25V22.5H0V21.25L2.5 18.75V11.25C2.5 7.375 5.0375 3.9625 8.75 2.8625C8.75 2.7375 8.75 2.625 8.75 2.5C8.75 1.83696 9.01339 1.20107 9.48223 0.732233C9.95107 0.263392 10.587 0 11.25 0C11.913 0 12.5489 0.263392 13.0178 0.732233C13.4866 1.20107 13.75 1.83696 13.75 2.5C13.75 2.625 13.75 2.7375 13.75 2.8625C17.4625 3.9625 20 7.375 20 11.25V18.75L22.5 21.25ZM13.75 23.75C13.75 24.413 13.4866 25.0489 13.0178 25.5178C12.5489 25.9866 11.913 26.25 11.25 26.25C10.587 26.25 9.95107 25.9866 9.48223 25.5178C9.01339 25.0489 8.75 24.413 8.75 23.75" fill="#303030" />
+                    </svg>
+                </label>
+                <ul tabindex="0" class="dropdown-content p-2 h-96 overflow-y-auto cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-96 text-neutral_050 -ml-32 -right-11">
+                        <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-20 pt-3 font-noto-sans text-base">
+                            <div class="flex flex-col gap-2 justify-center">
+                                <h1>awdawda</h1>
+                                <h1>awuhdhaudhuayhduawyhd</h1>
+                            </div>
+                        </li>
+                        <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-16 pt-3 font-noto-sans text-base">
+                            <input class="hidden" name="lok">wqoidjwiq</input>
+                        </li>
+                        <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-16 pt-3 font-noto-sans text-base">
+                            <input class="hidden" name="lok">wqoidjwiq</input>
+                        </li>
+                        <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-16 pt-3 font-noto-sans text-base">
+                            <input class="hidden" name="lok">wqoidjwiq</input>
+                        </li>
+                        <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-16 pt-3 font-noto-sans text-base">
+                            <input class="hidden" name="lok">wqoidjwiq</input>
+                        </li>
+                        <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-16 pt-3 font-noto-sans text-base">
+                            <input class="hidden" name="lok">wqoidjwiq</input>
+                        </li>
+                        <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-16 pt-3 font-noto-sans text-base">
+                            <input class="hidden" name="lok">wqoidjwiq</input>
+                        </li>
+                        <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-16 pt-3 font-noto-sans text-base">
+                            <input class="hidden" name="lok">wqoidjwiq</input>
+                        </li>
+                        <li id="list-lok" name="list_lok" class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-16 pt-3 font-noto-sans text-base">
+                            <input class="hidden" name="lok">wqoidjwiq</input>
+                        </li>
+                </ul>
+            </div>
             <button type="button" class="btn btn-ghost -mr-3  md:-ml-3 -ml-4">
                 <div class="relative w-full">
                     <div class="w-[24px] h-[24px] rounded-full bg-error_500 absolute left-[12px] bottom-3 flex items-center justify-center">

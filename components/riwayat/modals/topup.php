@@ -12,7 +12,7 @@
             <h2 class="mx-auto xs:px-5 sm:px-0 text-neutral_900">Apakah anda benar ingin menghapus riwayat topup </h2>
             <h2 class="mx-auto text-base font-medium -mt-4 text-neutral_900"><span class="font-semibold text-neutral_900" id="getTopup" name="getTopup"></span> ?</h2>
             <h2 class="mx-auto text-base font-medium text-error_600 -mt-4"> proses ini tidak bisa dikembalikan</h2>
-            <form action="riwayattopup.php" id="riwayattopup" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
+            <form action="riwayat.php"  method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                 <input type="hidden" id="id_topup" name="id_topup">
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
                     <button type="button" onclick="openModalDeleteTopup(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
@@ -32,86 +32,6 @@
     const konfirmasiDeleteTopup = document.querySelector('#Konfirmasi-delete-topup');
     const id_topup = document.querySelector('#id_topup');
     const getTopup = document.querySelector('#getTopup');
-    const riwayattopup = document.getElementById('riwayattopup');
-
-    riwayattopup.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = email_user.value;
-        const jumlah_topup = topup.value;
-        const data = {
-            email,
-            jumlah_topup
-        }
-        console.log(data);
-
-        var xhr = new XMLHttpRequest();
-            var url = "..\\..\\..\\isitopup.php";
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var json = JSON.parse(xhr.responseText);
-                    if (json.status == 'success') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text:  'Berhasil Topup ke ' + email + ' sejumlah ' + jumlah_topup + '',
-                            timer: 1500,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                            didOpen: () => {
-                                Swal.showLoading()
-                                timerInterval = setInterval(() => {
-                                    const content = Swal.getHtmlContainer()
-                                    if (content) {
-                                        const b = content.querySelector('b')
-                                        if (b) {
-                                            b.textContent = Swal.getTimerLeft()
-                                        }
-                                    }
-                                }, 100)
-                            },
-                            willClose: () => {
-                                clearInterval(timerInterval)
-                                openModalTopup(false);
-                                location.reload();
-                            }
-                        })
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal',
-                            text:  'Gagal Topup ke ' + email + ' sejumlah ' + jumlah_topup + '',
-                            timer: 1500,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                            didOpen: () => {
-                                Swal.showLoading()
-                                timerInterval = setInterval(() => {
-                                    const content = Swal.getHtmlContainer()
-                                    if (content) {
-                                        const b = content.querySelector('b')
-                                        if (b) {
-                                            b.textContent = Swal.getTimerLeft()
-                                        }
-                                    }
-                                }, 100)
-                            },
-                            willClose: () => {
-                                clearInterval(timerInterval)
-                                openModalTopup(false);
-                                location.reload();
-                            }
-                        })
-                    }
-                }
-            };
-            var datatopup = JSON.stringify({
-                "email": email,
-                "jumlah_topup": jumlah_topup
-            });
-            xhr.send(datatopup);
-    })
 
 
     const openModalDeleteTopup = (value) => {
@@ -158,10 +78,10 @@ if (isset($_POST['Konfirmasi-delete-topup'])) {
             // ambil get element by id getTopup innerhtml
             text: 'Berhasil Hapus Riwayat Topup' + ' ' + document.getElementById('getTopup').innerHTML,
             showConfirmButton: false,
-            // timer: 1500
+            timer: 1500
         });
         <?php
-        // header("Refresh: 1; url=riwayat.php");
+        header("Refresh: 1; url=riwayat.php");
     } else {
         ?>
         Swal.fire({

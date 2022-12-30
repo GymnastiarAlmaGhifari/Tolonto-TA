@@ -112,7 +112,10 @@
 
                                                                                     ?></td>
                                         <td class="pl-4 text-center"><?php echo $service[$rows]['status'] ?></td>
-                                        <td id="est_jadi" class="pl-4 text-center"><?php echo date('H:i:s m/d/y', strtotime($service[$rows]['est_selesai'])) ?></td>
+                                        <td id="est_jadi" class="pl-4 text-center"><?php if (empty($service[$rows]['est_selesai'])) {
+                                            echo '-' ;
+                                        } else {
+                                        echo Tanggal::tgl_indo($service[$rows]['est_selesai']); } ?></td>
                                         <td class="pl-4  text-center">
                                             <button id="hapus-servis" value="<?php echo $service[$rows]['id_servis'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
                                                 <h1 class="text-neutral_900 font-semibold">hapus</h1>

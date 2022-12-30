@@ -106,10 +106,8 @@
                                         <td class="text-center"><?php echo $rent[$row]['waktu_order'] ?></td>
                                         <td class="text-center"><?php echo $rent[$row]['status'] ?></td>
                                         <td class="text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
-                                        <td class=" text-center"><?php list($date, $time) = explode(" ", $rent[$row]['mulai_rental']);
-                                                                    echo $time; ?>
-                                            - <?php list($date, $time) = explode(" ", $rent[$row]['selesai_rental']);
-                                                echo $time; ?></td>
+                                        <td class=" text-center"><?php echo date('H:i:s d/m/y', strtotime($rent[$row]['mulai_rental'])) ?>
+                                             - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
                                         <td class="text-center"><?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
                                         <td class="text-center flex flex-row justify-center whitespace-nowrap">
                                             <?php if ($rent[$row]['status']=='incoming') { ?>

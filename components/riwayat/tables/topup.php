@@ -100,7 +100,7 @@
                                         </td>
                                         <td class="pl-4  text-center"><?php echo $topup[$rows]['email'] ?></td>
                                         <td class="text-left pl-24 "><?php echo  Rupiah::to($topup[$rows]['jml_topup']) ?></td>
-                                        <td id="waktu_topup" class=" text-center"><?php echo date('H:i:s m/d/y', strtotime($topup[$rows]['waktu'])) ?></td>
+                                        <td id="waktu_topup" class=" text-center"><?php echo date('H:i:s d/m/y', strtotime($topup[$rows]['waktu'])) ?></td>
                                         <td class="pl-4  text-center"><?php echo $topup[$rows]['admin'] ?></td>
                                         <td class="pl-4  text-center">
                                             <button id="hapus-topup" value="<?php echo $topup[$rows]['id_topup'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
@@ -156,9 +156,6 @@
 
     <?php } ?>
 
-    waktu_topup.forEach((waktu) => {
-        waktu.innerHTML = waktu.innerHTML.replace(' ', ' - ');
-    });
 
 
     const openTable3 = () => {

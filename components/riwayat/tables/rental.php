@@ -111,13 +111,11 @@
                                              </div>
                                          </td>
                                          <td class="pl-4 text-center"><?php echo $rent[$row]['nama_ps'] ?></td>
-                                         <td class="pl-4 text-center"><?php echo date('H:i:s m/d/y', strtotime($rent[$row]['waktu_order'])) ?></td>
+                                         <td class="pl-4 text-center"><?php echo date('H:i:s d/m/y', strtotime($rent[$row]['waktu_order'])) ?></td>
                                          <td class="pl-4 text-center"><?php echo $rent[$row]['status'] ?></td>
                                          <td class="pl-4 text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
-                                         <td class="pl-4  text-center"><?php list($date, $time) = explode(" ", $rent[$row]['mulai_rental']);
-                                                                    echo $time; ?>
-                                             - <?php list($date, $time) = explode(" ", $rent[$row]['selesai_rental']);
-                                                echo $time; ?></td>
+                                         <td class="pl-4  text-center"><?php echo date('H:i:s d/m/y', strtotime($rent[$row]['mulai_rental'])) ?>
+                                             - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
                                          <td class="pl-10 text-left"><?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
                                          <td class="pl-4  text-center">
                                              <button id="hapus-rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">

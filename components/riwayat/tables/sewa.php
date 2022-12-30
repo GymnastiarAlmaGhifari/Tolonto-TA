@@ -111,7 +111,7 @@
                                             </div>
                                         </td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['nama_ps'] ?></td>
-                                        <td class="pl-4 text-center"><?php echo date('H:i:s m/d/y', strtotime($sewa[$rows]['waktu_order'])) ?></td>
+                                        <td class="pl-4 text-center"><?php echo date('H:i:s d/m/y', strtotime($sewa[$rows]['waktu_order'])) ?></td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['status'] ?></td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['playtime'] ?> Hari</td>
                                         <td class="pl-4  text-center"><?php //list($date, $time) = explode(" ", $sewa[$rows]['mulai_sewa']);

@@ -8,7 +8,7 @@ class ControllerRiwayat extends Database
     {
         $sql = "SELECT user.username, user.img, rental.id_rental, ps.nama_ps, rental.status, rental.waktu_order, rental.playtime, rental.mulai_rental,
         rental.selesai_rental, rental.bayar FROM `rental` JOIN user ON rental.id_user = user.user_id
-        JOIN ps ON rental.id_ps = ps.id_ps WHERE rental.lok = '$lok';";
+        JOIN ps ON rental.id_ps = ps.id_ps WHERE rental.lok = '$lok' ORDER BY rental.waktu_order DESC ;"; 
         $data = $this->uniquery($sql);
         return $data;
     }
@@ -25,7 +25,7 @@ class ControllerRiwayat extends Database
     {
         $sql = "SELECT user.username, user.img, sewa.id_sewa, ps_sewa.nama_ps, sewa.status, sewa.waktu_order, 
         sewa.playtime, sewa.mulai_sewa, sewa.akhir_sewa, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id 
-        JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.lok = '$lok' ;";
+        JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.lok = '$lok' ORDER BY sewa.waktu_order DESC ;";
         $data = $this->uniquery($sql);
         return $data;
     }
@@ -41,14 +41,14 @@ class ControllerRiwayat extends Database
     public function h_servis($lok)
     {
         $sql = "SELECT user.username, user.img, servis.id_servis, servis.nama_barang, servis.kerusakan, servis.waktu_submit, servis.status, servis.est_selesai 
-        FROM `servis` JOIN user ON servis.id_user = user.user_id WHERE servis.lok = '$lok' AND servis.status = 'selesai' OR servis.status = 'batal' ;";
+        FROM `servis` JOIN user ON servis.id_user = user.user_id WHERE servis.lok = '$lok' ORDER BY servis.waktu_submit DESC ;";
         $data = $this->uniquery($sql);
         return $data;
     }
 
     public function jumlah_servis($lok)
     {
-        $sql = "SELECT COUNT(id_servis) FROM servis WHERE servis.lok = '$lok' AND servis.status = 'selesai' OR servis.status = 'batal' ;  ";
+        $sql = "SELECT COUNT(id_servis) FROM servis WHERE servis.lok = '$lok' ;  ";
         $data = $this->uniquery($sql);
         $jumlah = $data[0]['COUNT(id_servis)'];
         if ($jumlah != 0) return $jumlah;
@@ -58,7 +58,7 @@ class ControllerRiwayat extends Database
     public function h_topup()
     {
         $sql = "SELECT user.username, user.img, user.email, topup.id_topup, topup.waktu, topup.jml_topup, manage.username AS admin 
-        FROM `topup` JOIN user ON topup.id_user = user.user_id JOIN manage ON topup.id_admin = manage.id_admin ;";
+        FROM `topup` JOIN user ON topup.id_user = user.user_id JOIN manage ON topup.id_admin = manage.id_admin ORDER BY topup.waktu DESC ;";
         $data = $this->uniquery($sql);
         return $data;
     }

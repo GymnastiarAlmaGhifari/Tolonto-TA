@@ -69,7 +69,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
                             <h1 class="text-5xl ml-[105px]"><?php echo $maintain ?></h1>
                         </div>
                         <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
-                            <h1 class="ml-3 mt-3">Booking Hari ini</h1>
+                            <h1 class="ml-3 mt-3">Rental Hari ini</h1>
                             <h1 class="text-5xl ml-[105px]"><?php echo $psbook ?></h1>
                         </div>
                         <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">

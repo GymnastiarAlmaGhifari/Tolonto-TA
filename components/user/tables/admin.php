@@ -260,6 +260,20 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                                         <i class="fa-solid fa-angle-up"></i>
                                     </button>
                                 </th>
+                                </th>
+                                <th scope="col" class="text-left pl-4 ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
+                                        <h1 class="uppercase">Terakhir Diubah</h1>
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </button>
+                                </th>
+                                </th>
+                                <th scope="col" class="text-left pl-4 ">
+                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
+                                        <h1 class="uppercase">Dibuat pada</h1>
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </button>
+                                </th>
                                 <th scope="col" class="text-left pl-4  ">
                                     <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
                                         <h1 class="capitalize font-normal">option</h1>
@@ -302,6 +316,8 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                                         </td>
                                         <td class="pl-4 text-center"><?php echo $tb_admin[$row]['role']; ?></td>
                                         <td class="pl-4 text-center"><?php echo $tb_admin[$row]['lok']; ?></td>
+                                        <td class="pl-4 text-center"><?php echo date('H:i:s d/m/y', strtotime($tb_admin[$row]['update_at'])); ?></td>
+                                        <td class="pl-4 text-center"><?php echo date('H:i:s d/m/y', strtotime($tb_admin[$row]['create_at'])); ?></td>
                                         <td class="pl-4  text-center">
                                             <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
                                                 <button id="editAdmin" name="editAdmin" type="submit" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">

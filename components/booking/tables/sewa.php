@@ -110,7 +110,7 @@
                                                                                 echo $sewa[$rows]['mulai_sewa'] ; ?>
                                                         - <?php //list($date, $time) = explode(" ", $sewa[$rows]['akhir_sewa']);
                                                             echo $sewa[$rows]['akhir_sewa']; ?></td>
-                                                    <td class="text-center">Rp. <?php echo $sewa[$rows]['bayar'] ?></td>
+                                                    <td class="text-center"><?php echo $sewa[$rows]['payment_method'] ?> - <?php echo Rupiah::to($sewa[$rows]['bayar']) ?></td>
                                                     <td class="pl-4  text-center">
                                                         <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
                                                              <button id="info_sewa" name="info_sewa" type="submit" value="<?php echo $sewa[$rows]['id_sewa'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">

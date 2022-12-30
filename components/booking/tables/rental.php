@@ -108,7 +108,7 @@
                                         <td class="text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
                                         <td class=" text-center"><?php echo date('H:i:s d/m/y', strtotime($rent[$row]['mulai_rental'])) ?>
                                              - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
-                                        <td class="text-center"><?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
+                                        <td class="text-center"><?php echo $rent[$row]['payment_method'] ?> - <?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
                                         <td class="text-center flex flex-row justify-center whitespace-nowrap">
                                             <?php if ($rent[$row]['status']=='incoming') { ?>
                                                 <button id="aktif_rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">

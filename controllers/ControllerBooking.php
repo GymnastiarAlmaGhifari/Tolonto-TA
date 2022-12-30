@@ -7,7 +7,7 @@ class ControllerBooking extends Database
     public function b_rental($lok) 
     {
         $sql = "SELECT user.username, user.img, rental.id_rental, ps.nama_ps, rental.status, rental.waktu_order, rental.playtime, rental.mulai_rental,
-        rental.selesai_rental, rental.bayar FROM `rental` JOIN user ON rental.id_user = user.user_id
+        rental.selesai_rental, rental.payment_method, rental.bayar FROM `rental` JOIN user ON rental.id_user = user.user_id
         JOIN ps ON rental.id_ps = ps.id_ps WHERE rental.lok = '$lok' AND (rental.status = 'incoming' OR rental.status = 'ongoing') ORDER BY rental.waktu_order DESC ;";
         $data = $this->uniquery($sql);
         return $data;
@@ -25,7 +25,7 @@ class ControllerBooking extends Database
     public function b_sewa($lok) 
     {
         $sql = "SELECT user.username, user.img, sewa.id_sewa, ps_sewa.nama_ps, sewa.status, sewa.waktu_order, sewa.playtime, sewa.mulai_sewa,
-        sewa.akhir_sewa, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id
+        sewa.akhir_sewa, sewa.payment_method, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id
         JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.lok = '$lok' AND (sewa.status = 'pending' OR sewa.status = 'aktif') ORDER BY sewa.waktu_order DESC ;";
         $data = $this->uniquery($sql);
         return $data;

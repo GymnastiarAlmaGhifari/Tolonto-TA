@@ -74,7 +74,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
                         </div>
                         <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
                             <h1 class="ml-3 mt-3">Laba Hari ini</h1>
-                            <h1 class="text-5xl mx-5">Rp. <?php echo $laba ?></h1>
+                            <h1 class="text-5xl mx-5"><?php echo Rupiah::to($laba) ?></h1>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
                                                 <h1><?php echo $ps[$row]['status'] ?></h1>
                                             </div>
                                             <div class="flex flex-row items-center gap-x-2">
-                                                <h1><?php echo $aktif[0]['playtime'] ?></h1>
+                                                <h1><?php echo $aktif[0]['playtime'] ?> jam</h1>
                                                 <i class="fa-regular fa-clock"></i>
                                             </div>
                                         </div>

@@ -61,4 +61,41 @@ class ControllerSuperAdmin extends Database
         $data = $this->is_aktif($idps);
         return $data;
     }
+
+    public function count_rent($lok)
+    {
+        $sql = "SELECT COUNT(id_rental) as jrent FROM `rental` WHERE lok = '$lok' AND rental.status = 'incoming' ;";
+        $data = $this->uniquerycount($sql);
+        $jumlah=$data['jrent'];
+        if ($jumlah != 0) return $jumlah;
+            else return "0";
+    }
+
+    public function count_sewa($lok)
+    {
+        $sql = "SELECT COUNT(id_sewa) as jsewa FROM `sewa` WHERE lok = '$lok' AND sewa.status = 'pending' ;";
+        $data = $this->uniquerycount($sql);
+        $jumlah=$data['jsewa'];
+        if ($jumlah != 0) return $jumlah;
+            else return "0";
+    }
+
+    public function listnotif_rental($lok)
+    {
+        $sql = "SELECT user.username, rental.id_rental AS id, ps.nama_ps, rental.status, rental.waktu_order, rental.playtime 
+        FROM `rental` JOIN user ON rental.id_user = user.user_id JOIN ps ON rental.id_ps = ps.id_ps 
+        WHERE rental.lok = '$lok' AND rental.status = 'incoming' ORDER BY rental.waktu_order DESC ;";
+        $data = $this->uniquery($sql);
+        return $data;
+    }
+
+    public function listnotif_sewa($lok)
+    {
+        $sql = "SELECT user.username, sewa.id_sewa AS id, ps_sewa.nama_ps, sewa.status, sewa.waktu_order, sewa.playtime
+        FROM `sewa` JOIN user ON sewa.id_user = user.user_id JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps 
+        WHERE sewa.lok = '$lok' AND sewa.status = 'pending' ORDER BY sewa.waktu_order DESC ;";
+        $data = $this->uniquery($sql);
+        return $data;
+    }
+
 }

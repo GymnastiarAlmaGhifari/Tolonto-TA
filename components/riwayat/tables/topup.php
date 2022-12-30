@@ -30,7 +30,7 @@
                                 <th scope="col" class="text-left pl-4 relative">
                                     <div class="flex flex-row gap-x-3 items-center">
                                         <i class="fa-solid fa-magnifying-glass "></i>
-                                        <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
+                                        <input type="text" id="search3" name="search3" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Cari ID Topup">
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4">
@@ -86,21 +86,21 @@
                             } else {
                                 while ($rows < count($topup)) { ?>
                                     <tr class="">
-                                        <td class="pl-4 flex flex-row pb-5">
-                                            <div class="text-right my-auto w-2 relative">
-                                                <h1 class="font-semibold mx-auto font-noto-sans text-right text-xl my-auto"><?php echo $rows + 1000 ?></h1>
+                                        <td class="flex flex-row gap-x-3 pb-5">
+                                            <div class="flex flex-row justify-center items-center w-10">
+                                                <h1 class="font-semibold mx-auto font-noto-sans text-right text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
-                                            <div class="rounded-full relative w-[42px] h-[42px] ml-8 bg-error_050 flex flex-row items-center justify-center">
+                                            <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
                                                 <img src="<?php echo $topup[$rows]['img'] ?>" altsss="" class="rounded-full w-full h-full object-cover">
                                             </div>
-                                            <div class="flex flex-col gap-y-1 ml-4">
+                                            <div class="flex flex-col gap-y-1 ml-2">
                                                 <h1 class="font-semibold"><?php echo $topup[$rows]['username'] ?></h1>
                                                 <h2 class="text-neutral_400 text-xs"><?php echo $topup[$rows]['id_topup'] ?></h2>
                                             </div>
                                         </td>
                                         <td class="pl-4  text-center"><?php echo $topup[$rows]['email'] ?></td>
                                         <td class="text-left pl-24 "><?php echo  Rupiah::to($topup[$rows]['jml_topup']) ?></td>
-                                        <td id="waktu_topup" class=" text-center"><?php echo date('H:i:s m/d/y', strtotime($topup[$rows]['waktu'])) ?></td>
+                                        <td id="waktu_topup" class=" text-center"><?php echo date('H:i:s d/m/y', strtotime($topup[$rows]['waktu'])) ?></td>
                                         <td class="pl-4  text-center"><?php echo $topup[$rows]['admin'] ?></td>
                                         <td class="pl-4  text-center">
                                             <button id="hapus-topup" value="<?php echo $topup[$rows]['id_topup'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
@@ -156,9 +156,6 @@
 
     <?php } ?>
 
-    waktu_topup.forEach((waktu) => {
-        waktu.innerHTML = waktu.innerHTML.replace(' ', ' - ');
-    });
 
 
     const openTable3 = () => {

@@ -69,12 +69,12 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
                             <h1 class="text-5xl ml-[105px]"><?php echo $maintain ?></h1>
                         </div>
                         <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
-                            <h1 class="ml-3 mt-3">Booking Hari ini</h1>
+                            <h1 class="ml-3 mt-3">Rental Hari ini</h1>
                             <h1 class="text-5xl ml-[105px]"><?php echo $psbook ?></h1>
                         </div>
                         <div class="w-[250px] h-[100px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 ">
                             <h1 class="ml-3 mt-3">Laba Hari ini</h1>
-                            <h1 class="text-5xl mx-5">Rp. <?php echo $laba ?></h1>
+                            <h1 class="text-5xl mx-5"><?php echo Rupiah::to($laba) ?></h1>
                         </div>
                     </div>
                 </div>
@@ -97,18 +97,50 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
                                 if ($status == 'aktif') {
                                     $id_ps = $ps[$row]['id_ps'];
                                     $aktif = $Sadmin->is_active($id_ps);
-                        ?>] <?php
+                        ?> 
+                            <div class="w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
+                                        <div class="flex justify-between items-center mt-2 mx-5">
+                                        <h1><?php echo $ps[$row]['id_ps'] ?></h1>
+                                        <h1><?php echo $ps[$row]['nama_jenis'] ?></h1>
+                                        </div>
+                                        <span class="bg-neutral_600 w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
+                                        <div class="flex justify-center items-center relative">
+                                            <img class="h-[110px] m-2" src="<?php echo $ps[$row]['img'] ?>" alt="">
+                                        </div>
+                                        <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['nama_ps'] ?></h1>
+                                        <div class="flex flex-row justify-between px-5">
+                                            <div class="flex flex-row items-center gap-x-2">
+                                                <span class="w-3 h-3 rounded-full bg-[#32FC00]"></span>
+                                                <h1><?php echo $ps[$row]['status'] ?></h1>
+                                            </div>
+                                            <div class="flex flex-row items-center gap-x-2">
+                                                <h1><?php echo $aktif[0]['playtime'] ?> jam</h1>
+                                                <i class="fa-regular fa-clock"></i>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row justify-between px-5">
+                                            <div class="flex flex-row items-center gap-x-2">
+                                                <h1><?php echo Rupiah::to($aktif[0]['bayar']) ?></h1>
+                                            </div>
+                                            <div class="flex flex-row items-center gap-x-2">
+                                                <h1><?php echo $aktif[0]['username'] ?></h1>
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                        
                                 } else { ?>
                         <div class=" xs:w-[260px] sm:w-[350px] h-[250px] bg-neutral_800 rounded-xl shadow-elevation-dark-4 flex flex-col">
                             <div class="flex justify-between mt-2 mx-5">
-                                <h1><?php echo $ps[$row]['nama_ps'] ?></h1>
-                                <input type="checkbox" class="toggle toggle-md   checked:bg-[#32FC00]" checked />
+                            <h1><?php echo $ps[$row]['id_ps'] ?></h1>
+                                        <h1><?php echo $ps[$row]['nama_jenis'] ?></h1>
                             </div>
                             <span class="bg-neutral_600 xs:w-[240px] sm:w-[326.67px] h-0.5 mb-0 mt-2 mx-2"></span>
                             <div class="flex justify-center items-center relative">
                                 <img class="h-[110px] m-2" src="<?php echo $ps[$row]['img'] ?>" alt="">
                             </div>
-                            <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['nama_jenis'] ?></h1>
+                                        <h1 class="uppercase font-noto-sans font-semibold px-5"><?php echo $ps[$row]['nama_ps'] ?></h1>
                             <div class="flex flex-row justify-between px-5">
                                 <div class="flex flex-row items-center gap-x-2">
                                     <span class="w-3 h-3 rounded-full bg-[#fc1100]"></span>
@@ -149,6 +181,11 @@ $ps = $Sadmin->ps_card($_SESSION['loksend']);
     <script src="assets/js/main.js"></script>
     <script>
         // for loop 1x isi location.reload()
+        
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+
 
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {

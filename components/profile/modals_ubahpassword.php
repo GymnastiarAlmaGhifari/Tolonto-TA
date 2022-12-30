@@ -17,11 +17,29 @@
             )) {
                 Redirect::to('user');
             } else {
-                //gagal
-                echo '<script>alert("Gagal")</script>';
+                echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Gagal Ubah Password',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    location.href = 'servis';
+                });
+                </script>";
             }
         } else {
-            echo '<script>alert("Password tidak sama")</script>';
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                text: 'Password tidak sama',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                location.href = 'servis';
+            });
+            </script>";
+
         }
     }
 ?>
@@ -112,28 +130,4 @@
         openModalProfile(true)
     });
 
-
-
-    // if (isset($_POST['konfirmasi'])){
-    //         $password = $_POST['password'];
-    //         $password_baru = $_POST['password_baru'];
-    //         $konfirmasi_password = $_POST['konfirmasi_password'];
-
-    //         $result = mysqli_query($koneksi, "SELECT * FROM manage WHERE username = <?php echo $user_data['username']; ?> ");
-    //         if(mysqli_num_rows($result)==0){
-    //             alert("Username tidak ditemukan");
-    //         } $cek = mysql_fetch_array($result);
-    //         if ($password ==''|| $password_baru ==''|| $konfirmasi_password ==''){
-    //             alert("Data tidak boleh kosong");
-    //         } else if ($password != $cek['password']){
-    //             alert("Password lama salah");
-    //         } else if ($password_baru != $konfirmasi_password){
-    //             alert("Password baru tidak sama");
-    //         } else {
-    //             $query = "UPDATE manage SET password = '$password baru' WHERE username = <?php echo $user_data['username']; ?> ";
-
-    //         }
-    //     }
-
-    // if kategori_ps_Profile is clicked and dropdown is rotated 180deg if target not equal to kategori_ps_Profile 
 </script>

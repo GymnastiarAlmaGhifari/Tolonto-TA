@@ -13,9 +13,9 @@
             <h1 class="font-semibold text-neutral_900 mx-auto text-xl">Apakah Anda Yakin ?</h1>
             <h2 class="mx-auto text-neutral_900">Apakah anda benar ingin mengaktifkan rental dengan ID</h2>
             <h2 class="text-neutral_900 -mt-4 mx-auto"><span class="font-bold text-neutral_900 text-lg" id="getMatiRental" name="getMatiRental"></span> ?</h2>
-            <form action="logout.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
+            <form id="matiRental" action="matiRental.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalMatiRental(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
+                    <button type="button" onclick="openModalMatiRental(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                         Batal
                     </button>
                     <button type="submit" name="Konfirmasi-mati-rental" id="Konfirmasi-mati-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">Konfirmasi</button>
@@ -30,6 +30,79 @@
     const modal_mati_rental = document.querySelector('#modal_mati_rental');
     const mati_rental = document.querySelectorAll('#mati_rental');
     const konfirmasiMatiRental = document.querySelector('#Konfirmasi-mati-rental');
+    const matiRental = document.querySelector('#matiRental');
+
+    matiRental.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = document.querySelector('#getMatiRental').innerHTML;
+
+        var xhr = new XMLHttpRequest();
+            var url = "..\\..\\..\\matirental.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    if (json.status == 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text:  'Berhasil Menonaktifkan Rental dengan ID ' + id,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                timerInterval = setInterval(() => {
+                                    const content = Swal.getHtmlContainer()
+                                    if (content) {
+                                        const b = content.querySelector('b')
+                                        if (b) {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }
+                                    }
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                openModalMatiRental(false);
+                                location.reload();
+                            }
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text:  'Gagal Menonaktifkan Rental dengan ID ' + id,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                timerInterval = setInterval(() => {
+                                    const content = Swal.getHtmlContainer()
+                                    if (content) {
+                                        const b = content.querySelector('b')
+                                        if (b) {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }
+                                    }
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                                openModalMatiRental(false);
+                                location.reload();
+                            }
+                        })
+                    }
+                }
+            };
+            var datamatirental = JSON.stringify({
+                "id": id
+            });
+            xhr.send(datamatirental);
+    })
 
 
     const openModalMatiRental = (value) => {

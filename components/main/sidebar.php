@@ -109,6 +109,26 @@ if (Location::in(1, 'user')) {
         Redirect::to('riwayat');
     }
 }
+if (Location::in(1, 'profile')) {
+    if (isset($_POST['dashboard'])) {
+        Redirect::to('dashboard');
+    }
+    if (isset($_POST['inventory'])) {
+        Redirect::to('inventory');
+    }
+    if (isset($_POST['booking'])) {
+        Redirect::to('booking');
+    }
+    if (isset($_POST['servis'])) {
+        Redirect::to('servis');
+    }
+    if (isset($_POST['history'])) {
+        Redirect::to('riwayat');
+    }
+    if (isset($_POST['user'])) {
+        Redirect::to('user');
+    }
+}
 ?>
 
 <div class="container">
@@ -247,29 +267,29 @@ if (Location::in(1, 'user')) {
 
 
 
-    <?php if (Location::in(1, 'dashboard') && !$user->is_superAdmin(Session::get('username'))) { ?>
-        if (res !== "Bojonegoro") {
+    <?php if (Location::in(1, 'dashboard')) { ?>
+        if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'inventory') && !$user->is_superAdmin(Session::get('username'))) { ?>
-        if (res !== "Bojonegoro") {
+    <?php if (Location::in(1, 'inventory')) { ?>
+        if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'booking') && !$user->is_superAdmin(Session::get('username'))) { ?>
-        if (res !== "Bojonegoro") {
+    <?php if (Location::in(1, 'booking')) { ?>
+        if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'riwayat') && !$user->is_superAdmin(Session::get('username'))) { ?>
-        if (res !== "Bojonegoro") {
+    <?php if (Location::in(1, 'riwayat')) { ?>
+        if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'user') && !$user->is_superAdmin(Session::get('username'))) { ?>
-        if (res !== "Bojonegoro") {
+    <?php if (Location::in(1, 'user') ) { ?>
+        if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
-        }
+        } 
     <?php } ?>
 </script>

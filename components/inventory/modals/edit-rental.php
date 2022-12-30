@@ -34,7 +34,16 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
         {
             echo "<script>location.href='inventory.php'</script>";
         } else {
-            //error
+                    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            text: 'Gagal Mengubah PlayStation Rental',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            location.href = 'servis';
+        });
+        </script>";
         }
     } else {
 
@@ -51,7 +60,16 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
         {
             echo "<script>location.href='inventory.php'</script>";
         } else {
-            //error
+                    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            text: 'Gagal Mengubah PlayStation Rental',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            location.href = 'servis';
+        });
+        </script>";
         }
     }
 }

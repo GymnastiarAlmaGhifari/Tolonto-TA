@@ -32,7 +32,16 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
         {
             echo "<script>location.href='inventory.php'</script>";
         } else {
-            //error
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                text: 'Gagal Mengubah PlayStation Sewa',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                location.href = 'servis';
+            });
+            </script>";
         }
     } else {
         echo "gagal";
@@ -44,11 +53,20 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
                 'status' => $_POST['status-ps-sewa-edit'],
             ],
             $_POST['id-sewa-edit']
-        )) // jika berhasil refresh page tanpa submit ulang
+        )) 
         {
             echo "<script>location.href='inventory.php'</script>";
         } else {
-            //error
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                text: 'Gagal Mengubah PlayStation Sewa',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                location.href = 'servis';
+            });
+            </script>";
         }
     }
 }

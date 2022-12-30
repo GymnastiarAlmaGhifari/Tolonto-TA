@@ -1,12 +1,4 @@
-<?php
-if (isset($_POST['Konfirmasi-delete-topup'])) {
-    if ($riwayat->del_topup($_POST['id_topup'])) // jika berhasil refresh page tanpa submit ulang
-    {
-        Redirect::to('riwayat');
-    } else {
-    }
-}
-?>
+
 
 <!-- modal Delete  start -->
 <section>
@@ -20,7 +12,7 @@ if (isset($_POST['Konfirmasi-delete-topup'])) {
             <h2 class="mx-auto xs:px-5 sm:px-0 text-neutral_900">Apakah anda benar ingin menghapus riwayat topup </h2>
             <h2 class="mx-auto text-base font-medium -mt-4 text-neutral_900"><span class="font-semibold text-neutral_900" id="getTopup" name="getTopup"></span> ?</h2>
             <h2 class="mx-auto text-base font-medium text-error_600 -mt-4"> proses ini tidak bisa dikembalikan</h2>
-            <form action="riwayat.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
+            <form action="riwayat.php"  method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                 <input type="hidden" id="id_topup" name="id_topup">
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
                     <button type="button" onclick="openModalDeleteTopup(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
@@ -71,8 +63,35 @@ if (isset($_POST['Konfirmasi-delete-topup'])) {
             const id = button.value;
             id_topup.value = id;
             getTopup.innerHTML = id;
+            konfirmasiDeleteTopup.value = id;
         })
     })
-
     
+    <?php
+if (isset($_POST['Konfirmasi-delete-topup'])) {
+    if ($riwayat->del_topup($_POST['id_topup'])) // jika berhasil refresh page tanpa submit ulang
+    {
+        ?> 
+        // simpan id admin dari innerhtml getTopup ke variable nama
+        Swal.fire({
+            icon: 'success',
+            // ambil get element by id getTopup innerhtml
+            text: 'Berhasil Hapus Riwayat Topup' + ' ' + document.getElementById('getTopup').innerHTML,
+            showConfirmButton: false,
+            timer: 1500
+        });
+        <?php
+        header("Refresh: 1; url=riwayat.php");
+    } else {
+        ?>
+        Swal.fire({
+            icon: 'error',
+            text: 'Gagal Ubah Admin',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        <?php
+    }
+}
+?>
 </script>

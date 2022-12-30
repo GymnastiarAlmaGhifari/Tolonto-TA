@@ -109,7 +109,7 @@
                     <h1 class="text-neutral_050 font-medium mb-2 ml-3">Detail Perbaikan</h1>
                     <input type="text" id="detail_perbaikan" name="detail_perbaikan" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-3" />
                 </div>
-                <button type="submit" name="edit_konfirmasi" id="edit_konfirmasi" class="bg-[#4FCF2F] text-neutral_050 shadow-elevation-light-2 w-11/12 h-[58px] rounded-2xl flex flex-row gap-3 justify-center items-center mt-2   hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">
+                <button type="submit" name="edit_konfirmasi" id="edit_konfirmasi" class=" text-neutral_050 shadow-elevation-light-2 w-11/12 h-[58px] rounded-2xl flex flex-row gap-3 justify-center items-center mt-2  bg-[#4FCF2F] hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">
                     <h1>Update Status Servis</h1>
                 </button>
         </div>

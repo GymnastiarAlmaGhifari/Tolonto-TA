@@ -4,6 +4,16 @@ if (isset($_POST['Konfirmasi-delete-servis'])) {
     {
         Redirect::to('riwayat');
     } else {
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            text: 'Gagal Menghapus Riwayat Servis',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            location.href = 'servis';
+        });
+        </script>";
     }
 }
 ?>

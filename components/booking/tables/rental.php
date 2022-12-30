@@ -22,7 +22,7 @@
                                 <th scope="col" class="relative">
                                     <div class="flex flex-row gap-x-3 items-center">
                                         <i class="fa-solid fa-magnifying-glass "></i>
-                                        <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
+                                        <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Cari ID Rental">
                                     </div>
                                 </th>
                                 <th scope="col" class=" ">
@@ -91,7 +91,7 @@
                                 while ($row < count($rent)) { ?>
                                     <tr class="">
                                         <td class="flex flex-row gap-x-3 pb-5">
-                                            <div class="form-control ">
+                                            <div class="flex flex-row justify-center items-center w-10 ">
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $row + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
@@ -106,11 +106,9 @@
                                         <td class="text-center"><?php echo $rent[$row]['waktu_order'] ?></td>
                                         <td class="text-center"><?php echo $rent[$row]['status'] ?></td>
                                         <td class="text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
-                                        <td class=" text-center"><?php list($date, $time) = explode(" ", $rent[$row]['mulai_rental']);
-                                                                    echo $time; ?>
-                                            - <?php list($date, $time) = explode(" ", $rent[$row]['selesai_rental']);
-                                                echo $time; ?></td>
-                                        <td class="text-center"><?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
+                                        <td class=" text-center"><?php echo date('H:i:s d/m/y', strtotime($rent[$row]['mulai_rental'])) ?>
+                                             - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
+                                        <td class="text-center"><?php echo $rent[$row]['payment_method'] ?> - <?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
                                         <td class="text-center flex flex-row justify-center whitespace-nowrap">
                                             <?php if ($rent[$row]['status']=='incoming') { ?>
                                                 <button id="aktif_rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
@@ -122,7 +120,7 @@
                                                 
                                                 <?php } else if ($rent[$row]['status'] =='ongoing') { ?>
                                                     <button id="mati_rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
-                                                        <h1 class="text-neutral_900 font-semibold">Aktifkan</h1>
+                                                        <h1 class="text-neutral_900 font-semibold">Matikan</h1>
                                                         <svg width="19" class="mx-auto" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.0353 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.0353 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#E53935"/>
                                                                 </svg>

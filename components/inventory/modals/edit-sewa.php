@@ -52,7 +52,6 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
             </script>";
         }
     } else {
-        echo "gagal";
         if ($SadminPs->update_pssewa(
             [
                 'nama_ps' => $_POST['nama-ps-sewa-edit'],

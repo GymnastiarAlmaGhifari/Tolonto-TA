@@ -20,8 +20,8 @@
             </div>
             <span class="w-11/12 h-0.5 mx-auto -mt-6 bg-neutral_600"></span>
             <form action="servis.php" method="post" class="flex flex-col items-center justify-center gap-4 -mt-2" enctype="multipart/form-data">
-            <input type="hidden" name="id-servis-edit" id="id-servis-edit">
-            <input type="hidden" name="tgl-servis-edit" id="tgl-servis-edit">
+                <input type="hidden" name="id-servis-edit" id="id-servis-edit">
+                <input type="hidden" name="tgl-servis-edit" id="tgl-servis-edit">
                 <div class="relative z-0 w-11/12 ">
                     <h1 class="text-neutral_050 font-medium mb-2 ml-3">Nama Barang</h1>
                     <input disabled type="text" id="nama_barang_edit" name="nama_barang_edit" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-3" />
@@ -107,7 +107,7 @@
                 </div>
                 <div class="relative z-0 w-11/12 ">
                     <h1 class="text-neutral_050 font-medium mb-2 ml-3">Detail Perbaikan</h1>
-                    <input type="text" id="detail_perbaikan" name="detail_perbaikan" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-3 hover:bg-neutral_200 focus:bg-neutral_400" />
+                    <input type="text" id="detail_perbaikan" name="detail_perbaikan" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-3" />
                 </div>
                 <button type="submit" name="edit_konfirmasi" id="edit_konfirmasi" class=" text-neutral_050 shadow-elevation-light-2 w-11/12 h-[58px] rounded-2xl flex flex-row gap-3 justify-center items-center mt-2  bg-[#4FCF2F] hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">
                     <h1>Update Status Servis</h1>
@@ -178,7 +178,7 @@
                     status_edit.value = json.status_servis;
                     bayar_edit.value = json.biaya;
                     tgl_servis.value = json.tgl;
-                    datepickerValue.value =  json.selesai;
+                    datepickerValue.value = json.selesai;
                     detail_perbaikan_edit.value = json.perbaikan;
                 }
             };
@@ -188,13 +188,11 @@
             xhr.send(data);
         })
     })
-
-
 </script>
 <script>
     const MONTH_NAMES = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
     const DAYS = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
-    
+
 
     function app() {
         return {
@@ -213,7 +211,7 @@
                 this.year = today.getFullYear();
             },
             isToday(date) {
-                const today = new Date();   
+                const today = new Date();
                 const d = new Date(this.year, this.month, date);
 
                 return today.toDateString() === d.toDateString() ? true : false;
@@ -221,9 +219,11 @@
 
             getDateValue(date) {
                 let selectedDate = new Date(this.year, this.month, date);
-                // format selecteddate to '2022-12-27'
-                let datedb = selectedDate.getFullYear() + "-" + ('0' + selectedDate.getMonth()).slice(-2) + "-" + ('0' + selectedDate.getDate()).slice(-2);
-                tgl_servis.value = datedb+' 00:00:00';
+                const datedb = new Date(selectedDate);
+                const formattedDatedb = datedb.toLocaleDateString();
+                // format 1/9/2023 to '2023-01-27'
+                tgl_servis.value = formattedDatedb;
+                // tgl_servis.value = datedb+' 00:00:00';
 
                 this.datepickerValue = selectedDate.toLocaleDateString('id-ID', {
                     weekday: 'long',
@@ -289,6 +289,4 @@
         rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
         return prefix == undefined ? rupiah : rupiah ? "Rp " + rupiah : "";
     }
-
-
 </script>

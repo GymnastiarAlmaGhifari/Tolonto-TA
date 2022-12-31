@@ -155,11 +155,8 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var json = JSON.parse(xhr.responseText);
                 if (json == 0) {
-                    list_notif.innerHTML = ` <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-20 pt-3 font-noto-sans text-base pb-1">
-                        <div class="flex flex-col gap-2 justify-center border-b-2">
-                        
-                        <h1 id="nama_notif" >Tidak ada Notifikasi</h1>
-                            </div>
+                    list_notif.innerHTML = `<li class="bg-neutral_050 active:bg-primary_500 active:text-neutral_900  hover:bg-neutral_200 rounded-sm h-12 font-noto-sans text-base  mt-3 cursor-default flex justify-center items-center">
+                                <h1 class="text-neutral_900 font-semibold my-auto">Tidak Ada Notifikasi</h1>    
                         </li>`;
                 } else {
                     var row = 0;
@@ -171,7 +168,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
 
                             const options = {
                                 hour: '2-digit',
-                                minute: '2-digit',
+                                minute: '2-digit',  
                                 second: '2-digit',
                                 hourCycle: 'h24',
                             };

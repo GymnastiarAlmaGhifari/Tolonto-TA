@@ -18,7 +18,7 @@ class ControllerSuperAdmin extends Database
 
     public function ps_maintain()
     {
-        $data = $this->count('id_ps', 'ps', 'status', 'maintenance');
+        $data = $this->count('id_ps', 'ps', 'status', 'perbaikan');
         $jumlah = $data['COUNT(id_ps)'];
         if ($jumlah != 0) return $jumlah;
         else return "0";

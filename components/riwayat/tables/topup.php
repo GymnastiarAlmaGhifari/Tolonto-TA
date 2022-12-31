@@ -86,7 +86,7 @@
                                                 <h1 class="font-semibold mx-auto font-noto-sans text-right text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                <img src="img/user/<?php echo FormatID::convert($topup[$row]['user_id']) ?>/<?php echo $topup[$row]['img'] ?>" alt="gambar user" class="rounded-full w-full h-full object-cover">
+                                                <img src="img/user/<?php echo FormatID::convert($topup[$rows]['user_id']) ?>/<?php echo $topup[$rows]['img'] ?>" alt="gambar user" class="rounded-full w-full h-full object-cover">
                                             </div>
                                             <div class="flex flex-col gap-y-1 ml-2">
                                                 <h1 class="font-semibold"><?php echo $topup[$rows]['username'] ?></h1>
@@ -95,7 +95,7 @@
                                         </td>
                                         <td class="pl-4 text-center"><?php echo $topup[$rows]['email'] ?></td>
                                         <td class="text-left pl-24 "><?php echo  Rupiah::to($topup[$rows]['jml_topup']) ?></td>
-                                        <td id="waktu_topup" class="pl-4 text-center mx-auto flex justify-center"><?php echo date('H:i:s d/m/y', strtotime($topup[$rows]['waktu'])) ?></td>
+                                        <td id="waktu_topup" class="pl-4 text-center"><?php echo date('H:i:s d/m/y', strtotime($topup[$rows]['waktu'])) ?></td>
                                         <td class="pl-4  text-center"><?php echo $topup[$rows]['admin'] ?></td>
                                         <td class="pl-4  text-center">
                                             <button id="hapus-topup" value="<?php echo $topup[$rows]['id_topup'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">

@@ -1,37 +1,37 @@
 <?php
-if (isset($_POST['Konfirmasi-topup'])) {
+// if (isset($_POST['Konfirmasi-topup'])) {
 
-    $idtopup = $SadminUser->idtopup();
-    $iduser = $SadminUser->fetch_user($_POST['email-user']);
-    if ($SadminUser->add_topup(
-        [
-            'id_topup' => $idtopup,
-            'id_user' => $iduser['user_id'],
-            'jml_topup' => Rupiah::clear($_POST['topup']),
-            'waktu' => date('Y-m-d H:i:s'),
-            'id_admin' => $user_data['id_admin']
-        ]
-    )) // jika berhasil refresh page tanpa submit ulang
-    {
-        Redirect::to('user');
+//     $idtopup = $SadminUser->idtopup();
+//     $iduser = $SadminUser->fetch_user($_POST['email-user']);
+//     if ($SadminUser->add_topup(
+//         [
+//             'id_topup' => $idtopup,
+//             'id_user' => $iduser['user_id'],
+//             'jml_topup' => Rupiah::clear($_POST['topup']),
+//             'waktu' => date('Y-m-d H:i:s'),
+//             'id_admin' => $user_data['id_admin']
+//         ]
+//     )) // jika berhasil refresh page tanpa submit ulang
+//     {
+//         Redirect::to('user');
+// //         echo "<script>
+// // alert('There are no fields to generate a report');
+// // window.location.href='admin/ahm/panel';
+// // </script>";
+//     } else {
+//         // gagal topup
 //         echo "<script>
-// alert('There are no fields to generate a report');
-// window.location.href='admin/ahm/panel';
-// </script>";
-    } else {
-        // gagal topup
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            text: 'Gagal Topup',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(() => {
-            location.href = 'user.php';
-        });
-        </script>";
-    }
-}
+//         Swal.fire({
+//             icon: 'error',
+//             text: 'Gagal Topup',
+//             showConfirmButton: false,
+//             timer: 1500
+//         }).then(() => {
+//             location.href = 'user.php';
+//         });
+//         </script>";
+//     }
+// }
 
 ?>
 
@@ -52,7 +52,7 @@ if (isset($_POST['Konfirmasi-topup'])) {
                 <!-- gambar start -->
                 <div class="flex flex-col justify-center items-center relative">
                     <!-- show previe image from Upload::uploadimage() -->
-                    <img src="components/kamera.png" alt="" name="preview-user" id="preview-user" class="w-[100px] h-[100px] object-cover rounded-full shadow-elevation-dark-4 bg-transparent">
+                    <img src="" alt="gambar user" name="preview-user" id="preview-user" class="w-[100px] h-[100px] object-cover rounded-full shadow-elevation-dark-4 bg-transparent">
                 </div>
                 <!-- gambar end -->
 
@@ -73,10 +73,10 @@ if (isset($_POST['Konfirmasi-topup'])) {
                 </div>
 
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalTopup(false)" name="Batal-topup" id="Batal-topup" value="Batal-topup" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl">
+                    <button type="button" onclick="openModalTopup(false)" name="Batal-topup" id="Batal-topup" value="Batal-topup" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800"">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-topup" id="Konfirmasi-topup" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl">Konfirmasi</button>
+                    <button type="submit" name="Konfirmasi-topup" id="Konfirmasi-topup" class="bg-[#4FCF2F] shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80 text-neutral_050 w-5/12 h-12 rounded-2xl">Konfirmasi</button>
                 </div>
             </form>
         </div>
@@ -104,72 +104,58 @@ if (isset($_POST['Konfirmasi-topup'])) {
         console.log(data);
 
         var xhr = new XMLHttpRequest();
-            var url = "..\\..\\..\\isitopup.php";
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var json = JSON.parse(xhr.responseText);
-                    if (json.status == 'success') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text:  'Berhasil Topup ke ' + email + ' sejumlah ' + jumlah_topup + '',
-                            timer: 1500,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                            didOpen: () => {
-                                Swal.showLoading()
-                                timerInterval = setInterval(() => {
-                                    const content = Swal.getHtmlContainer()
-                                    if (content) {
-                                        const b = content.querySelector('b')
-                                        if (b) {
-                                            b.textContent = Swal.getTimerLeft()
-                                        }
-                                    }
-                                }, 100)
-                            },
-                            willClose: () => {
-                                clearInterval(timerInterval)
+        var url = "..\\..\\..\\isitopup.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+                if (json.status == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Berhasil Topup ke ' + email + ' sejumlah ' + jumlah_topup + '',
+                        timer: 1500,
+                        showConfirmButton: false,
+                        timer: 1000,
+                        //open modals false dan reload
+                        didOpen: () => {
+                            setTimeout(() => {
                                 openModalTopup(false);
+                            }, 1500);
+                            setTimeout(() => {
                                 location.reload();
-                            }
-                        })
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal',
-                            text:  'Gagal Topup ke ' + email + ' sejumlah ' + jumlah_topup + '',
-                            timer: 1500,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
+                            }, 1600);
+                        },
+
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Gagal Topup ke ' + email + ' sejumlah ' + jumlah_topup + '',
+                        timer: 1500,
+                        showConfirmButton: false,
+                         timer: 1000,
+                         //open modals false dan reload
                             didOpen: () => {
-                                Swal.showLoading()
-                                timerInterval = setInterval(() => {
-                                    const content = Swal.getHtmlContainer()
-                                    if (content) {
-                                        const b = content.querySelector('b')
-                                        if (b) {
-                                            b.textContent = Swal.getTimerLeft()
-                                        }
-                                    }
-                                }, 100)
+                                setTimeout(() => {
+                                    openModalTopup(false);
+                                }, 1500);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1600);
                             },
-                            willClose: () => {
-                                clearInterval(timerInterval)
-                                openModalTopup(false);
-                                location.reload();
-                            }
-                        })
-                    }
+
+                    })
                 }
-            };
-            var datatopup = JSON.stringify({
-                "email": email,
-                "jumlah_topup": jumlah_topup
-            });
-            xhr.send(datatopup);
+            }
+        };
+        var datatopup = JSON.stringify({
+            "email": email,
+            "jumlah_topup": jumlah_topup
+        });
+        xhr.send(datatopup);
     })
 
     const openModalTopup = (value) => {
@@ -207,7 +193,7 @@ if (isset($_POST['Konfirmasi-topup'])) {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
                     console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_user);
-                    prevuser.src = json.img;
+                    prevuser.src = 'img/user/images/'+json.id+'/'+json.img;
                 }
             };
             var data = JSON.stringify({

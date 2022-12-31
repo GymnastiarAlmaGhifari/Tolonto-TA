@@ -27,6 +27,7 @@
     const modal_delete_ps_sewa = document.querySelector('#modal_delete_ps_sewa');
     const hapusSewa = document.querySelectorAll('#hapusSewa');
     const konfirmasiDeletePsSewa = document.querySelector('#Konfirmasi-delete-ps-sewa');
+    var delsewa = '';
 
     const openModalDeletePsSewa = (value) => {
         const modalClDeletePsSewa = modal_delete_ps_sewa.classList
@@ -54,7 +55,7 @@
         button.addEventListener('click', () => {
             openModalDeletePsSewa(true)
             const id = button.value
-
+            delsewa = id;
             var xhr = new XMLHttpRequest();
             // path getuser.php in main dir
             var url = "..\\..\\..\\getps.php";
@@ -84,13 +85,42 @@
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                var json = JSON.parse(xhr.responseText);
-                console.log(json.status);
-                if (json.status == "success") {
-                    openModalDeletePsSewa(false)
-                    location.reload()
-                }
-            }
+                 var json = JSON.parse(xhr.responseText);
+                 if (json.status == "success") {
+                     Swal.fire({
+                         icon: 'success',
+                         title: 'Berhasil',
+                         text: 'Berhasil hapus ' + delsewa + '',
+                         showConfirmButton: false,
+                         timer: 1000,
+                         //open modals false dan reload
+                            didOpen: () => {
+                                setTimeout(() => {
+                                    openModalDeletePsSewa(false)
+                                }, 1500);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1600);
+                            },
+
+                     });
+                 } else {
+                     //  tidak dapat menghapus diri sendiri
+                     Swal.fire({
+                         icon: 'error',
+                         text: 'Gagal menghapus ' + delsewa + '',
+                         showConfirmButton: false,
+                            timer: 1000,
+                            // open modal delet admin set to false
+                            didOpen: () => {
+                                setTimeout(() => {
+                                        openModalDeletePsSewa(false)
+                                }, 1500);
+                            },
+                            
+                     });
+                 }
+             }
         };
         var data = JSON.stringify({
             "id": id,

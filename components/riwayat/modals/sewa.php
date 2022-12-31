@@ -1,21 +1,21 @@
 <?php
-if (isset($_POST['Konfirmasi-delete-sewa'])) {
-    if ($riwayat->del_sewa($_POST['id_sewa'])) // jika berhasil refresh page tanpa submit ulang
-    {
-        Redirect::to('riwayat');
-    } else {
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            text: 'Gagal Menghapus Riwayat Sewa',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(() => {
-            location.href = 'riwayat.php';
-        });
-        </script>";
-    }
-}
+// if (isset($_POST['Konfirmasi-delete-sewa'])) {
+//     if ($riwayat->del_sewa($_POST['id_sewa'])) // jika berhasil refresh page tanpa submit ulang
+//     {
+//         Redirect::to('riwayat');
+//     } else {
+//         echo "<script>
+//         Swal.fire({
+//             icon: 'error',
+//             text: 'Gagal Menghapus Riwayat Sewa',
+//             showConfirmButton: false,
+//             timer: 1500
+//         }).then(() => {
+//             location.href = 'riwayat.php';
+//         });
+//         </script>";
+//     }
+// }
 ?>
 
 <!-- modal Delete  start -->
@@ -36,7 +36,7 @@ if (isset($_POST['Konfirmasi-delete-sewa'])) {
                     <button type="button" onclick="openModalDeleteSewa(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-delete-Sewa" id="Konfirmasi-delete-Sewa" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
+                    <button type="button" name="Konfirmasi-delete-Sewa" id="Konfirmasi-delete-Sewa" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
                 </div>
             </form>
         </div>
@@ -50,6 +50,7 @@ if (isset($_POST['Konfirmasi-delete-sewa'])) {
     const konfirmasiDeleteSewa = document.querySelector('#Konfirmasi-delete-Sewa');
     const getSewa = document.querySelector('#getSewa');
     const id_sewa = document.querySelector('#id_sewa');
+    var sewa_hapus = "";
 
 
     const openModalDeleteSewa = (value) => {
@@ -73,16 +74,74 @@ if (isset($_POST['Konfirmasi-delete-sewa'])) {
         }
     }
     openModalDeleteSewa(false)
+
     // foreach modals with jquery openmodal delete true 
     hapus_sewa.forEach((button) => {
         button.addEventListener('click', () => {
 
             openModalDeleteSewa(true)
             const id = button.value;
+            sewa_hapus = id;
             getSewa.innerHTML = id;
             id_sewa.value = id;
         
         })
+    })
+
+    konfirmasiDeleteSewa.addEventListener('click', () => {
+        const id = document.getElementById("Konfirmasi-delete-sewa").value;
+
+         konfirmasiDeleteSewa.value = id;
+
+         var xhr = new XMLHttpRequest();
+         // path getuser.php in main dir
+         var url = "..\\..\\..\\delsewa.php";
+         xhr.open("POST", url, true);
+         xhr.setRequestHeader("Content-Type", "application/json");
+         xhr.onreadystatechange = function() {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 var json = JSON.parse(xhr.responseText);
+                 if (json.status == "success") {
+                     Swal.fire({
+                         icon: 'success',
+                         title: 'Berhasil',
+                         text: 'Berhasil hapus ' + sewa_hapus + '',
+                         showConfirmButton: false,
+                         timer: 1000,
+                         //open modals false dan reload
+                            didOpen: () => {
+                                setTimeout(() => {
+                                    openModalDeleteSewa(false);
+                                }, 1500);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1600);
+                            },
+
+                     });
+                 } else {
+                     //  tidak dapat menghapus diri sendiri
+                     Swal.fire({
+                         icon: 'error',
+                         text: 'Gagal menghapus ' + sewa_hapus + '',
+                         showConfirmButton: false,
+                            timer: 1000,
+                            // open modal delet admin set to false
+                            didOpen: () => {
+                                setTimeout(() => {
+                                        openModalDeleteSewa(false);
+                                }, 1500);
+                            },
+                            
+                     });
+                 }
+             }
+         };
+         var data = JSON.stringify({
+
+             "id": id
+         });
+         xhr.send(data);
     })
 
 </script>

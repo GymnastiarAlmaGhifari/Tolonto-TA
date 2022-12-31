@@ -46,7 +46,7 @@ if (isset($_POST['Konfirmasi-delete-semua-sewa'])) {
     const modal_delete_semua_sewa = document.querySelector('#modal_delete_semua_sewa');
     const hapus_semua_sewa = document.querySelectorAll('#hapus-semua-sewa');
     const konfirmasiDeleteSemuaSewa = document.querySelector('#Konfirmasi-delete-semua-sewa');
-
+    var del_semua_sewa = '';
 
     const openModalDeleteSemuaSewa = (value) => {
         const modalClDeleteSemuaSewa = modal_delete_semua_sewa.classList
@@ -75,6 +75,7 @@ if (isset($_POST['Konfirmasi-delete-semua-sewa'])) {
 
             openModalDeleteSemuaSewa(true)
             const id = button.value;
+            del_semua_sewa = id;
             var xhr = new XMLHttpRequest();
             // path getuser.php in main dir
             var url = "..\\..\\..\\getuser.php";
@@ -84,8 +85,8 @@ if (isset($_POST['Konfirmasi-delete-semua-sewa'])) {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
                     //  console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
-                    document.getElementById("getTopup").innerHTML = json.username;
                     konfirmasiDeleteSemuaSewa.value = json.id_admin;
+                    
                 }
             };
             var data = JSON.stringify({
@@ -107,19 +108,47 @@ if (isset($_POST['Konfirmasi-delete-semua-sewa'])) {
 
         var xhr = new XMLHttpRequest();
         // path getuser.php in main dir
-        var url = "..\\..\\..\\deluser.php";
+        var url = "..\\..\\..\\delsemua.php";
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                var json = JSON.parse(xhr.responseText);
+                 var json = JSON.parse(xhr.responseText);
+                 if (json.status == "success") {
+                     Swal.fire({
+                         icon: 'success',
+                         title: 'Berhasil',
+                         text: 'Berhasil hapus ' + del_semua_sewa + '',
+                         showConfirmButton: false,
+                         timer: 1000,
+                         //open modals false dan reload
+                            didOpen: () => {
+                                setTimeout(() => {
+                                    openModalDeleteSemuaSewa(false)
+                                }, 1500);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1600);
+                            },
 
-                if (json.status == "success") {
-                    alert("berhasil");
-                } else {
-                    alert("gagal");
-                }
-            }
+                     });
+                 } else {
+                     //  tidak dapat menghapus diri sendiri
+                     Swal.fire({
+                         icon: 'error',
+                         text: 'Gagal menghapus ' + del_semua_sewa + '',
+                         showConfirmButton: false,
+                            timer: 1000,
+                            // open modal delet admin set to false
+                            didOpen: () => {
+                                setTimeout(() => {
+                                        openModalDeleteSemuaSewa(false)
+                                }, 1500);
+                            },
+                            
+                     });
+                 }
+             }
         };
         var data = JSON.stringify({
             "id": id

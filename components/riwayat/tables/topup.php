@@ -34,34 +34,29 @@
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class=" uppercase">Email User</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        EMAIL USER
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                    <button class="flex flex-row items-center ml-14 gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">Nominal</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        NOMINAL
+                                    </h1>
                                 </th>
-                                <th scope="col" class="text-left pl-4  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">waktu</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <th scope="col" class="text-center pl-4  ">
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        WAKTU
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">Admin</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        ADMIN
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                    <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
-                                        <h1 class="capitalize font-normal">option</h1>
-                                        <i class="fa-solid fa-caret-down"></i>
-                                    </button>
+                                <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        OPTIONS
+                                    </h1>
                                 </th>
                             </tr>
                         </thead>
@@ -91,16 +86,16 @@
                                                 <h1 class="font-semibold mx-auto font-noto-sans text-right text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                <img src="<?php echo $topup[$rows]['img'] ?>" altsss="" class="rounded-full w-full h-full object-cover">
+                                                <img src="img/user/images/<?php echo FormatID::convert($topup[$row]['user_id']) ?>/<?php echo $topup[$row]['img'] ?>" alt="gambar user" class="rounded-full w-full h-full object-cover">
                                             </div>
                                             <div class="flex flex-col gap-y-1 ml-2">
                                                 <h1 class="font-semibold"><?php echo $topup[$rows]['username'] ?></h1>
                                                 <h2 class="text-neutral_400 text-xs"><?php echo $topup[$rows]['id_topup'] ?></h2>
                                             </div>
                                         </td>
-                                        <td class="pl-4  text-center"><?php echo $topup[$rows]['email'] ?></td>
+                                        <td class="pl-4 text-center"><?php echo $topup[$rows]['email'] ?></td>
                                         <td class="text-left pl-24 "><?php echo  Rupiah::to($topup[$rows]['jml_topup']) ?></td>
-                                        <td id="waktu_topup" class=" text-center"><?php echo date('H:i:s d/m/y', strtotime($topup[$rows]['waktu'])) ?></td>
+                                        <td id="waktu_topup" class="pl-4 text-center mx-auto flex justify-center"><?php echo date('H:i:s d/m/y', strtotime($topup[$rows]['waktu'])) ?></td>
                                         <td class="pl-4  text-center"><?php echo $topup[$rows]['admin'] ?></td>
                                         <td class="pl-4  text-center">
                                             <button id="hapus-topup" value="<?php echo $topup[$rows]['id_topup'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">

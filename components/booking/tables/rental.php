@@ -26,46 +26,42 @@
                                     </div>
                                 </th>
                                 <th scope="col" class=" ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class=" uppercase">nama ps</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        NAMA PS
+                                    </h1>
                                 </th>
                                 <th scope="col" class=" ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">waktu order</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        WAKTU ORDER
+                                    </h1>
+                                </th>
                                 </th>
                                 <th scope="col" class=" ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">Status</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        STATUS
+                                    </h1>
                                 </th>
                                 <th scope="col" class=" ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">play time</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        PLAY TIME
+                                    </h1>
+                                </th>
                                     </td>
                                 <th scope="col" class=" ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">waktu</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        WAKTU RENTAL
+                                    </h1>
+                                </th>
                                 </th>
                                 <th scope="col" class="">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">total</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        TOTAL
+                                    </h1>
                                 </th>
                                 <th scope="col" class=" ">
-                                    <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
-                                        <h1 class="capitalize font-normal">option</h1>
-                                        <i class="fa-solid fa-caret-down"></i>
-                                    </button>
+                                <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        OPTIONS
+                                    </h1>
                                 </th>
                             </tr>
                         </thead>

@@ -48,10 +48,13 @@ input:valid ~ .sticker2 {
 }
 
 .active {
-  @apply w-[200px] shadow-elevation-light-4 duration-300 ease-in;
+  @apply w-[200px] shadow-elevation-light-4 duration-300 ease-in-out;
 }
 .text-active {
   @apply block text-left;
+}
+.mati {
+  @apply w-[60px] duration-300 ease-in-out;
 }
 /* .svg-active {
   @apply block ml-8;

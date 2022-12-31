@@ -1,21 +1,21 @@
 <?php
-if (isset($_POST['Konfirmasi-delete-semua-rental'])) {
-    if ($riwayat->del_allrental($_SESSION['loksend'])) // jika berhasil refresh page tanpa submit ulang
-    {
-        Redirect::to('riwayat');
-    } else {
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            text: 'Gagal Menghapus Semua Riwayat Rental',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(() => {
-            location.href = 'servis';
-        });
-        </script>";
-    }
-}
+// if (isset($_POST['Konfirmasi-delete-semua-rental'])) {
+//     if ($riwayat->del_allrental($_SESSION['loksend'])) // jika berhasil refresh page tanpa submit ulang
+//     {
+//         Redirect::to('riwayat');
+//     } else {
+//         echo "<script>
+//         Swal.fire({
+//             icon: 'error',
+//             text: 'Gagal Menghapus Semua Riwayat Rental',
+//             showConfirmButton: false,
+//             timer: 1500
+//         }).then(() => {
+//             location.href = 'servis';
+//         });
+//         </script>";
+//     }
+// }
 ?>
 
 <!-- modal Delete  start -->
@@ -34,7 +34,7 @@ if (isset($_POST['Konfirmasi-delete-semua-rental'])) {
                     <button type="button" onclick="openModalDeleteSemuaRental(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-delete-semua-rental" id="Konfirmasi-delete-semua-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl  shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
+                    <button type="button" name="Konfirmasi-delete-semua-rental" id="Konfirmasi-delete-semua-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl  shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
                 </div>
             </form>
         </div>
@@ -46,7 +46,7 @@ if (isset($_POST['Konfirmasi-delete-semua-rental'])) {
     const modal_delete_semua_rental = document.querySelector('#modal_delete_semua_rental');
     const hapus_semua_rental = document.querySelectorAll('#hapus-semua-rental');
     const konfirmasiDeleteSemuaRental = document.querySelector('#Konfirmasi-delete-semua-rental');
-
+    var del_semua_rental = '';
 
     const openModalDeleteSemuaRental = (value) => {
         const modalClDeleteSemuaRental = modal_delete_semua_rental.classList
@@ -75,6 +75,7 @@ if (isset($_POST['Konfirmasi-delete-semua-rental'])) {
 
             openModalDeleteSemuaRental(true)
             const id = button.value;
+            del_semua_rental = id
             var xhr = new XMLHttpRequest();
             // path getuser.php in main dir
             var url = "..\\..\\..\\getuser.php";
@@ -84,8 +85,8 @@ if (isset($_POST['Konfirmasi-delete-semua-rental'])) {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
                     //  console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
-                    document.getElementById("getTopup").innerHTML = json.username;
                     konfirmasiDeleteSemuaRental.value = json.id_admin;
+                    
                 }
             };
             var data = JSON.stringify({
@@ -107,19 +108,47 @@ if (isset($_POST['Konfirmasi-delete-semua-rental'])) {
 
         var xhr = new XMLHttpRequest();
         // path getuser.php in main dir
-        var url = "..\\..\\..\\deluser.php";
+        var url = "..\\..\\..\\delsemua.php";
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                var json = JSON.parse(xhr.responseText);
+                 var json = JSON.parse(xhr.responseText);
+                 if (json.status == "success") {
+                     Swal.fire({
+                         icon: 'success',
+                         title: 'Berhasil',
+                         text: 'Berhasil hapus ' + del_semua_rental + '',
+                         showConfirmButton: false,
+                         timer: 1000,
+                         //open modals false dan reload
+                            didOpen: () => {
+                                setTimeout(() => {
+                                    openModalDeleteSemuaRental(false)
+                                }, 1500);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1600);
+                            },
 
-                if (json.status == "success") {
-                    alert("berhasil");
-                } else {
-                    alert("gagal");
-                }
-            }
+                     });
+                 } else {
+                     //  tidak dapat menghapus diri sendiri
+                     Swal.fire({
+                         icon: 'error',
+                         text: 'Gagal menghapus ' + del_semua_rental + '',
+                         showConfirmButton: false,
+                            timer: 1000,
+                            // open modal delet admin set to false
+                            didOpen: () => {
+                                setTimeout(() => {
+                                        openModalDeleteSemuaRental(false)
+                                }, 1500);
+                            },
+                            
+                     });
+                 }
+             }
         };
         var data = JSON.stringify({
             "id": id

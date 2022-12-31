@@ -1,21 +1,21 @@
 <?php
-if (isset($_POST['Konfirmasi-delete-rental'])) {
-    if ($riwayat->del_rental($_POST['id_rental'])) // jika berhasil refresh page tanpa submit ulang
-    {
-        Redirect::to('riwayat');
-    } else {
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            text: 'Gagal menghapus data rental',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(() => {
-            location.href = 'servis';
-        });
-        </script>";
-    }
-}
+// if (isset($_POST['Konfirmasi-delete-rental'])) {
+//     if ($riwayat->del_rental($_POST['id_rental'])) // jika berhasil refresh page tanpa submit ulang
+//     {
+//         Redirect::to('riwayat');
+//     } else {
+//         echo "<script>
+//         Swal.fire({
+//             icon: 'error',
+//             text: 'Gagal menghapus data rental',
+//             showConfirmButton: false,
+//             timer: 1500
+//         }).then(() => {
+//             location.href = 'servis';
+//         });
+//         </script>";
+//     }
+// }
 ?>
 
 <!-- modal Delete  start -->
@@ -36,7 +36,7 @@ if (isset($_POST['Konfirmasi-delete-rental'])) {
                     <button type="button" onclick="openModalDeleteRental(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-delete-rental" id="Konfirmasi-delete-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
+                    <button type="button" name="Konfirmasi-delete-rental" id="Konfirmasi-delete-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
                 </div>
             </form>
         </div>
@@ -50,7 +50,7 @@ if (isset($_POST['Konfirmasi-delete-rental'])) {
     const konfirmasiDeleteRental = document.querySelector('#Konfirmasi-delete-rental');
     const getRental = document.querySelector('#getRental');
     const id_rental = document.querySelector('#id_rental');
-
+    var rental_hapus = '';
 
     const openModalDeleteRental = (value) => {
         const modalClDeleteRental = modal_delete_rental.classList
@@ -80,9 +80,66 @@ if (isset($_POST['Konfirmasi-delete-rental'])) {
             openModalDeleteRental(true)
             const id = button.value;
             getRental.innerHTML = id;
+            rental_hapus = id;
             id_rental.value = id;
             
         })
     })
+    konfirmasiDeleteRental.addEventListener('click', () => {
+        const id = document.getElementById("Konfirmasi-delete-rental").value;
+
+         konfirmasiDeleteRental.value = id;
+
+         var xhr = new XMLHttpRequest();
+         // path getuser.php in main dir
+         var url = "..\\..\\..\\delrental.php";
+         xhr.open("POST", url, true);
+         xhr.setRequestHeader("Content-Type", "application/json");
+         xhr.onreadystatechange = function() {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 var json = JSON.parse(xhr.responseText);
+                 if (json.status == "success") {
+                     Swal.fire({
+                         icon: 'success',
+                         title: 'Berhasil',
+                         text: 'Berhasil hapus ' + rental_hapus + '',
+                         showConfirmButton: false,
+                         timer: 1000,
+                         //open modals false dan reload
+                            didOpen: () => {
+                                setTimeout(() => {
+                                    openModalDeleteSewa(false);
+                                }, 1500);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1600);
+                            },
+
+                     });
+                 } else {
+                     //  tidak dapat menghapus diri sendiri
+                     Swal.fire({
+                         icon: 'error',
+                         text: 'Gagal menghapus ' + rental_hapus + '',
+                         showConfirmButton: false,
+                            timer: 1000,
+                            // open modal delet admin set to false
+                            didOpen: () => {
+                                setTimeout(() => {
+                                        openModalDeleteSewa(false);
+                                }, 1500);
+                            },
+                            
+                     });
+                 }
+             }
+         };
+         var data = JSON.stringify({
+
+             "id": id
+         });
+         xhr.send(data);
+    })
+
 
 </script>

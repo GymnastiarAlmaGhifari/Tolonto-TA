@@ -34,40 +34,35 @@
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class=" uppercase">nama barang</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        NAMA BARANG
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">kerusakan</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        KERUSAKAN
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">waktu service</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        WAKTU SERVICE
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">status</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        STATUS
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">Est. Jadi</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        TANGGAL JADI
+                                    </h1>
+                                </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                    <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
-                                        <h1 class="capitalize font-normal">option</h1>
-                                        <i class="fa-solid fa-caret-down"></i>
-                                    </button>
+                                <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        OPTIONS
+                                    </h1>
                                 </th>
                             </tr>
                         </thead>
@@ -97,7 +92,7 @@
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                <img src="<?php echo $service[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
+                                                <img src="img/user/images/<?php echo FormatID::convert($service[$row]['user_id']) ?>/<?php echo $service[$row]['img'] ?>" alt="gambar user" class="rounded-full w-full h-full object-cover">
                                             </div>
                                             <div class="flex flex-col gap-y-1 ml-2">
                                                 <h1 class="font-semibold"><?php echo $service[$rows]['username'] ?></h1>

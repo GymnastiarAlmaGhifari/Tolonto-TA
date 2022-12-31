@@ -96,7 +96,6 @@ class Database
         if ($stmt = $this->conn->prepare($sql)) {
             foreach ($fields as $key => $value) {
                 $stmt->bindValue(':' . $key, $value);
-                print_r($stmt);
             }
             $stmt->execute();
             return true;
@@ -347,6 +346,28 @@ class Database
         $result = $this->conn->query($sql);
         return $result;
     }
+
+    public function delete_and($table, $column, $value, $column2, $value2)
+    {
+        $sql = "DELETE FROM $table WHERE $column = '$value' AND $column2 >= '$value2'";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
+    public function delete_2($table, $column, $value, $column2, $value2, $value3)
+    {
+        $sql = "DELETE FROM $table WHERE $column = '$value' AND ($column2 = '$value2' OR $column2 = '$value3')";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
+    public function delete_all($table)
+    {
+        $sql = "DELETE FROM $table";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+    
 
     public function RandomString($length) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

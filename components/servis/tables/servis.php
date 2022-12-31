@@ -1,4 +1,56 @@
 <!-- table start -->
+<?php
+if (isset($_POST['edit_konfirmasi'])) {
+    $id = $_POST['id-servis-edit'];
+    $status = $_POST['status'];
+    $bayar = Rupiah::clear($_POST['bayar']);
+    $perbaikan = $_POST['detail_perbaikan'];
+    $est_selesai = $_POST['tgl-servis-edit'];
+
+    if ($servis->update_admservis(
+        [
+            'bayar' => $bayar,
+            'perbaikan' => $perbaikan,
+            'update_time' => date('Y-m-d H:i:s')
+        ], $id )
+    ) {
+        if ($servis->update_servis(
+            [
+                'status' => $status,
+                'est_selesai' => $est_selesai
+            ], $id
+        )) {
+            Redirect::to('servis');
+            // alert disini
+        } else {
+            // ganti alert gagal update servis
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                text: 'Data gagal diubah',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                location.href = 'servis';
+            });
+            </script>";
+        }
+    } else {
+        //ini juga
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            text: 'Data gagal diubah',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            location.href = 'servis';
+        });
+        </script>";
+
+    }
+}
+?>
 <section class="mt-24 text-neutral_050  ml-16">
     <div class="container px-6 max-w-full ">
         <div id="atas" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
@@ -8,57 +60,55 @@
                         <h1 class="capitalize font-semibold">Service</h1>
                         <h2><?php echo $jumlah_servis ?></h2>
                     </div>
-                    <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                    <span id="open" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                         <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                         <span id="plus" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                     </span>
                 </div>
                 <span id="garis" class="w-full mx-auto mt-5 -top-4 h-[2px] bg-neutral_600 rounded-full"></span>
+                <h1 id="data-kosong" class="hidden my-auto mt-3 text-xl">Tidak Ada Data</h1>
                 <div class="w-full mx-auto  relative h-[360px] block overflow-y-auto mt-2" id="table">
-                    <table id="table" class="w-full table-auto">
-                        <thead class="bg-neutral_800 sticky top-0">
+                    <table id="table" class="w-full  table-auto">
+                        <thead class="bg-neutral_800 sticky -top-[1.4px]">
                             <tr class="font-semibold ">
-                                <th scope="col" class="text-left relative">
+                                <th scope="col" class="text-left pl-4 relative">
                                     <div class="flex flex-row gap-x-3 items-center">
                                         <i class="fa-solid fa-magnifying-glass "></i>
-                                        <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Search">
+                                        <input type="text" id="search" name="search" class="border-none font-normal text-base bg-transparent  outline-none placeholder:text-neutral_400 placeholder:pl-0.5  placeholder:font-noto-sans placeholder:text-base" placeholder="Cari Nama Barang">
                                     </div>
                                 </th>
-                                <th scope="col" class="text-left  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class=" uppercase">nama barang</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <th scope="col" class="text-left pl-4  ">
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        NAMA BARANG
+                                    </h1>
                                 </th>
-                                <th scope="col" class="text-left  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">kerusakan</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
                                 </th>
-                                <th scope="col" class="text-left  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">waktu service</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <th scope="col" class="text-left pl-4  ">
+                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        KERUSAKAN
+                                    </h1>
                                 </th>
-                                <th scope="col" class="text-left ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">status</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <th scope="col" class="text-left pl-4  ">
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        WAKTU SERVICE
+                                    </h1>
                                 </th>
-                                <th scope="col" class="text-left ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-4 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900">
-                                        <h1 class="uppercase">Est. Jadi</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
                                 </th>
-                                <th scope="col" class="text-left  ">
-                                    <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
-                                        <h1 class="capitalize font-normal">option</h1>
-                                        <i class="fa-solid fa-caret-down"></i>
-                                    </button>
+                                <th scope="col" class="text-left pl-4 ">
+                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        STATUS
+                                    </h1>
+                                </th>
+                                <th scope="col" class="text-left pl-4 ">
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        ESTIMASI JADI
+                                    </h1>
+                                </th>
+                                </th>
+                                <th scope="col" class="text-left pl-4  ">
+                                <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        OPTIONS
+                                    </h1>
                                 </th>
                             </tr>
                         </thead>
@@ -67,39 +117,48 @@
                             <?php
                             $rows = 0;
                             if (empty($service)) {
-                                echo '<h1 class="text-2xl">Tidak Ada Data</h1>';
+                                echo
+                                '<script>
+                                document.getElementById("table").style.display = "none"
+                                    
+                                document.getElementById("data-kosong").classList.remove("hidden") 
+            
+                                document.getElementById("atas").classList.add("h-[450px]") 
+
+                                if (document.getElementById("atas").classList.contains("h-[77px]")) {
+                                    document.getElementById("data-kosong").classList.add("hidden")
+                                }
+
+                                    </script> ';
                             } else {
                                 while ($rows < count($service)) { ?>
-                                    <?php
-                                    // set $service[$rows]['waktu_service'] format date to $valid_date = date( 'm/d/y g:i A', strtotime($date));
-
-                                    // set $service[$rows]['est_jadi'] format date to $valid_date = date( 'm/d/y g:i A', strtotime($date));
-
-
-                                    ?>
                                     <tr class="">
-                                        <td class="flex flex-row gap-x-3 pb-5">
-                                            <div class="form-control ">
+                                        <td class=" flex flex-row gap-x-3 pb-5">
+                                            <div class="flex flex-row justify-center items-center w-10 ">
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                <img src="<?php echo $service[$rows]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
+                                                <img src="img/user/<?php echo FormatID::convert($service[$row]['user_id']) ?>/<?php echo $service[$row]['img'] ?>" alt="gambar user" class="rounded-full w-full h-full object-cover">
                                             </div>
                                             <div class="flex flex-col gap-y-1 ml-2">
                                                 <h1 class="font-semibold"><?php echo $service[$rows]['username'] ?></h1>
                                                 <h2 class="text-neutral_400 text-xs"><?php echo $service[$rows]['id_servis'] ?></h2>
                                             </div>
                                         </td>
-                                        <td class="text-center"><?php echo $service[$rows]['nama_barang'] ?></td>
-                                        <td class="text-center"><?php echo $service[$rows]['kerusakan'] ?></td>
+                                        <td class="pl-4 text-center"><?php echo $service[$rows]['nama_barang'] ?></td>
+                                        <td class="pl-4 text-center"><?php echo $service[$rows]['kerusakan'] ?></td>
                                         <td id="waktu_submit" class=" text-center"><?php $date = $service[$rows]['waktu_submit'];
-                                                                                    $valid_date = date('H:i:s m/d/y', strtotime($date));
+                                                                                    $valid_date = date('H:i:s d/m/y', strtotime($date));
                                                                                     echo $valid_date;
-
                                                                                     ?></td>
-                                        <td class="text-center"><?php echo $service[$rows]['status'] ?></td>
-                                        <td class="text-center"><?php echo $service[$rows]['est_selesai'] ?></td>
-                                        <td class=" text-center">
+                                        <td class="pl-4 text-center"><?php echo $service[$rows]['status'] ?></td>
+                                        <td id="est_jadi" class="text-center"><?php if (empty($service[$rows]['est_selesai'])) {
+                                            echo '-' ;
+                                        } else {
+                                        echo Tanggal::tgl_indo($service[$rows]['est_selesai']); } ?>
+                                        
+                                        </td>
+                                        <td class="pl-4  text-center">
                                             <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
                                                 <button id="infoServis" name="infoServis" type="submit" value="<?php echo $service[$rows]['id_servis'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
                                                     <svg class="mx-auto" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -122,6 +181,7 @@
                             <!-- list 1 end -->
                         </tbody>
                     </table>
+                    <h1 id="tidak_ditemukan" class="hidden mt-7 ml-2 text-lg">Data Tidak Ditemukan</h1>
                 </div>
             </div>
         </div>
@@ -136,11 +196,37 @@
     const garis = document.getElementById('garis');
     const plus = document.getElementById('plus');
     const waktu_submit = document.querySelectorAll('#waktu_submit');
+    const est_jadi = document.querySelectorAll('#est_jadi');
     const search = document.getElementById('search');
+    const data_kosong = document.getElementById('data-kosong');
+    const tidak_ditemukan = document.getElementById('tidak_ditemukan');
+
+    window.addEventListener("load", () => {
+        if (localStorage.getItem("open-table-sewa") == "false") {
+            data_kosong.classList.add('hidden');
+        }
+    });
+
+    <?php if (empty($service)) { ?>
+        data_kosong.classList.remove('hidden');
+        table.classList.add('hidden');
+        open.addEventListener("click", () => {
+            if (localStorage.getItem("open-table-sewa") == "false") {
+                data_kosong.classList.remove('hidden');
+                table.classList.add('hidden');
+            } else {
+                data_kosong.classList.add('hidden');
+                table.classList.add('hidden');
+            }
+        });
+
+    <?php } ?>
+
 
     waktu_submit.forEach((waktu) => {
         waktu.innerHTML = waktu.innerHTML.replace(' ', ' - ');
     });
+
 
 
     const openTable = () => {
@@ -187,7 +273,7 @@
         const table = document.getElementById('table');
         const tr = table.getElementsByTagName('tr');
         for (let i = 0; i < tr.length; i++) {
-            const td = tr[i].getElementsByTagName('td')[0];
+            const td = tr[i].getElementsByTagName('td')[1];
             if (td) {
                 const txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -197,53 +283,14 @@
                 }
             }
         }
+        if (tr[1].style.display == "none") {
+            tidak_ditemukan.classList.remove('hidden');
+        } else {
+            tidak_ditemukan.classList.add('hidden');
+        }
     }
     search.addEventListener('keyup', searchServis);
 
-
-    // sorting table by column
-    // const table = document.querySelector('.table');
-    // const tbody = table.querySelector('tbody');
-    // const thead = table.querySelector('thead');
-    // const ths = thead.querySelectorAll('th');
-    // const tds = tbody.querySelectorAll('td');
-    // const trs = tbody.querySelectorAll('tr');
-    // const tfoot = table.querySelector('tfoot');
-
-    // ths.forEach((th, index) => {
-    //     th.addEventListener('click', () => {
-    //         const sortedRows = Array.from(trs).sort((a, b) => {
-    //             const aColText = a.querySelector(`td:nth-child(${index + 1})`).textContent.trim();
-    //             const bColText = b.querySelector(`td:nth-child(${index + 1})`).textContent.trim();
-    //             return aColText > bColText ? 1 : -1;
-    //         });
-    //         tbody.append(...sortedRows);
-    //     });
-    // });
-
-    // // search table
-    // const search = document.querySelector('.search');
-    // search.addEventListener('input', (e) => {
-    //     const searchText = e.target.value;
-    //     const rows = tbody.querySelectorAll('tr');
-    //     rows.forEach((row) => {
-    //         const rowText = row.textContent;
-    //         if (rowText.toLowerCase().includes(searchText.toLowerCase())) {
-    //             row.style.display = 'table-row';
-    //         } else {
-    //             row.style.display = 'none';
-    //         }
-    //     });
-    // });
-
-    // // select all checkbox
-    // const selectAll = document.querySelector('.select-all');
-    // selectAll.addEventListener('click', (e) => {
-    //     const checkboxes = tbody.querySelectorAll('input[type="checkbox"]');
-    //     checkboxes.forEach((checkbox) => {
-    //         checkbox.checked = e.target.checked;
-    //     });
-    // });
 </script>
 <?php require_once 'components/servis/modals/info.php'; ?>
 <?php require_once 'components/servis/modals/edit.php'; ?>

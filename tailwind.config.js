@@ -113,11 +113,11 @@ module.exports = {
       "7xl": "2.5rem",
     },
     screens: {
-      xs: "316px",
-      sm: "580px",
-      md: "678px",
-      lg: "878px",
-      xl: "1219px",
+      xs: "320px", //  smartphones, iPhone, portrait 480x320 phones
+      sm: "576px", //Hp Landscape
+      md: "768px", // Tablets
+      lg: "992px", //desktop
+      xl: "1200px", // xl desktop
       "2xl": "1736px",
     },
     duration: {

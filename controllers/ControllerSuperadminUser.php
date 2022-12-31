@@ -32,7 +32,7 @@ class ControllerSuperadminUser extends Database
 
     public function table_admin()
     {
-        $sql = 'SELECT manage.id_admin, manage.username, level.role, manage.lok, manage.img 
+        $sql = 'SELECT manage.id_admin, manage.username, level.role, manage.lok, manage.img, manage.create_at, manage.update_at 
         FROM manage JOIN level ON manage.level = level.id_level ;';
         return $this->uniquery($sql);
     }
@@ -134,4 +134,5 @@ class ControllerSuperadminUser extends Database
             return false;
         }
     }
+
 }

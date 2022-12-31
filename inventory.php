@@ -22,15 +22,6 @@ $ps = $SadminPs->ps_card($_SESSION['loksend']);
 $ps_sewa = $SadminPs->ps_cardsewa($_SESSION['loksend']);
 
 $errors = array();
-
-
-
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +38,12 @@ $errors = array();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" 
+    content="
+      worker-src blob:; 
+      child-src blob: gap:;
+      img-src 'self' blob: data:;
+      default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
     <link rel="stylesheet" href="dist/output.css">
     <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
@@ -77,6 +74,7 @@ $errors = array();
                 <?php require_once 'components/main/sidebar.php'; ?>
 
             </form>
+            <?php require_once 'components/main/modalLogout.php'; ?>
             <!-- list ps -->
             <?php require_once 'components/inventory/lists/rental.php' ?>
 
@@ -91,6 +89,12 @@ $errors = array();
 
     <script src="assets/js/main.js"></script>
     <script>
+
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+
+
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");
@@ -104,7 +108,7 @@ $errors = array();
             alertHapus.classList.toggle('activeAlert');
         })
     </script>
-    <?php require_once 'components/main/modalLogout.php'; ?>
+
 </body>
 
 </html>

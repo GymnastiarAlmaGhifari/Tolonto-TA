@@ -20,7 +20,6 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
 
     if ($terupload) {
 
-        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
         if ($SadminPs->update_psrental(
             [
                 'nama_ps' => $_POST['nama-ps-rental-edit'],

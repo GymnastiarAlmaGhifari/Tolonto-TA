@@ -1,23 +1,23 @@
 <!-- modal Ubah Profile start -->
 <?php
-    $id = $_POST['id_admin'];
-    $nama = $_POST['username'];
-    $pwbaru = $_POST['password_baru'];
-    $kpwbaru = $_POST['konfirmasi_password_baru'];
+$id = $_POST['id_admin'];
+$nama = $_POST['username'];
+$pwbaru = $_POST['password_baru'];
+$kpwbaru = $_POST['konfirmasi_password_baru'];
 
-    if (isset($_POST['konfirmasi-password'])) {
-        if ($pwbaru == $kpwbaru) {
-            if ($SadminUser->update_admin(
-                [
-                    'username' => $nama,
-                    'password' => password_hash($pwbaru, PASSWORD_DEFAULT),
-                    'update_at' => date('Y-m-d H:i:s'),
-                ],
-                $id
-            )) {
-                Redirect::to('user');
-            } else {
-                echo "<script>
+if (isset($_POST['konfirmasi-password'])) {
+    if ($pwbaru == $kpwbaru) {
+        if ($SadminUser->update_admin(
+            [
+                'username' => $nama,
+                'password' => password_hash($pwbaru, PASSWORD_DEFAULT),
+                'update_at' => date('Y-m-d H:i:s'),
+            ],
+            $id
+        )) {
+            Redirect::to('user');
+        } else {
+            echo "<script>
                 Swal.fire({
                     icon: 'error',
                     text: 'Gagal Ubah Password',
@@ -27,9 +27,9 @@
                     location.href = 'servis';
                 });
                 </script>";
-            }
-        } else {
-            echo "<script>
+        }
+    } else {
+        echo "<script>
             Swal.fire({
                 icon: 'error',
                 text: 'Password tidak sama',
@@ -39,9 +39,8 @@
                 location.href = 'servis';
             });
             </script>";
-
-        }
     }
+}
 ?>
 
 <section>
@@ -52,10 +51,22 @@
                 <svg width="21" height="24" viewBox="0 0 21 24" class="my-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2.28571 0C1.01714 0 0 1.01714 0 2.28571V20.5714C0 21.1776 0.240816 21.759 0.66947 22.1877C1.09812 22.6163 1.67951 22.8571 2.28571 22.8571H6.85714V20.6743L9.24572 18.2857H2.28571V16H11.5314L13.8171 13.7143H2.28571V11.4286H16.1029L18.2857 9.24572V6.85714L11.4286 0H2.28571ZM10.2857 1.71429L16.5714 8H10.2857V1.71429ZM18.4571 12.5714C18.2857 12.5714 18.1257 12.6286 18 12.7543L16.8343 13.92L19.2229 16.2971L20.3886 15.1429C20.6286 14.8914 20.6286 14.48 20.3886 14.24L18.9029 12.7543C18.7771 12.6286 18.6171 12.5714 18.4571 12.5714ZM16.16 14.5943L9.14286 21.6229V24H11.52L18.5486 16.9714L16.16 14.5943Z" fill="#FAFAFA" />
                 </svg>
-                <h1 id="mdoalText" class="text-neutral_050 font-base font-noto-sans text-xl">Ubah Password</h1>
+                <h1 id="mdoalText" class="text-neutral_050 font-base font-noto-sans text-xl">Edit Profile</h1>
             </div>
             <span class="w-11/12 h-0.5 mx-auto -mt-4 bg-neutral_600"></span>
             <form action="profile.php" method="post" class="flex flex-col items-center justify-center gap-4 mt-2" enctype="multipart/form-data">
+                <div class="flex flex-col justify-center items-center relative">
+                    <!-- show previe image from Upload::uploadimage() -->
+                    <img src="<?php echo $user_data['img']; ?>" alt="" id="preview-Admin" class="w-[100px] h-[100px] object-cover rounded-full shadow-elevation-dark-4 bg-transparent">
+                    <label>
+                        <input class="text-sm cursor-pointer w-36 hidden" accept="image/*" type="file" name="image-Admin" id="image-Admin" />
+                        <div class="cursor-pointer rounded-full bg-primary_400 w-[35px] h-[35px] flex flex-row justify-center items-center absolute  bottom-1 -right-1.5">
+                            <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 3V0H5V3H8V5H5V8H3V5H0V3M6 9V6H9V3H16L17.8 5H21C22.1 5 23 5.9 23 7V19C23 20.1 22.1 21 21 21H5C3.9 21 3 20.1 3 19V9M13 18C17.45 18 19.69 12.62 16.54 9.46C13.39 6.31 8 8.55 8 13C8 15.76 10.24 18 13 18ZM9.8 13C9.8 15.85 13.25 17.28 15.26 15.26C17.28 13.25 15.85 9.8 13 9.8C11.24 9.8 9.8 11.24 9.8 13Z" fill="black" />
+                            </svg>
+                        </div>
+                    </label>
+                </div>
                 <div class="relative z-0 w-11/12">
                     <input type="hidden" id="id" name="id_admin" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl focus:pt-5 valid:pt-5 pl-16 peer" placeholder=" " value="<?php echo $user_data['id_admin']; ?>" />
                     <label for="id" class="absolute text-base text-neutral_900  duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-16 peer-focus:left-16 peer-focus:text-neutral_500 peer-valid:text-neutral_500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-sm peer-valid:text-sm"></label>
@@ -129,5 +140,4 @@
     ubah_profile.addEventListener('click', () => {
         openModalProfile(true)
     });
-
 </script>

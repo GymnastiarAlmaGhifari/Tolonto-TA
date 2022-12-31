@@ -30,7 +30,15 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
             $_POST['id-sewa-edit']
         )) // jika berhasil refresh page tanpa submit ulang
         {
-            echo "<script>location.href='inventory.php'</script>";
+            echo "<script>
+            Swal.fire({
+                icon: 'success',
+                text: 'Berhasil Mengubah PlayStation Sewa',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            </script>";
+             header("Refresh: 1; url=inventory.php");
         } else {
             echo "<script>
             Swal.fire({
@@ -39,7 +47,7 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
                 showConfirmButton: false,
                 timer: 1500
             }).then(() => {
-                location.href = 'servis';
+                location.href = 'inventory.php';
             });
             </script>";
         }
@@ -55,7 +63,15 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
             $_POST['id-sewa-edit']
         )) 
         {
-            echo "<script>location.href='inventory.php'</script>";
+            echo "<script>
+            Swal.fire({
+                icon: 'success',
+                text: 'Berhasil Mengubah PlayStation Sewa',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            </script>";
+             header("Refresh: 1; url=inventory.php");
         } else {
             echo "<script>
             Swal.fire({
@@ -64,7 +80,7 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
                 showConfirmButton: false,
                 timer: 1500
             }).then(() => {
-                location.href = 'servis';
+                location.href = 'inventory.php';
             });
             </script>";
         }
@@ -204,7 +220,6 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
-                    console.log(json.status + ", " + json.id_ps + ", " + json.nama_ps + ", " + json.harga_ps + ", " + json.kategori + ", " + json.img);
                     nama_sewa_edit.value = json.nama_ps;
                     harga_sewa_edit.value = json.harga_ps;
                     kategori_ps_sewa_edit.value = json.kategori;
@@ -246,7 +261,6 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
             } else {
                 prev_sewa_edit.src = URL.createObjectURL(file_sewa)
                 //rename file to datetimenow and save to folder
-                console.log(file_sewa);
             }
         }
     }

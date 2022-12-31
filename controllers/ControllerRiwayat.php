@@ -73,7 +73,7 @@ class ControllerRiwayat extends Database
 
     public function del_allrental($lok)
     {
-        $data = $this->delete_and('rental', 'lok', $lok, 'status', 'done');
+        $data = $this->delete_2('rental', 'lok', $lok, 'status', 'done', 'batal');
         if ($data) {
             return true;
         } else {
@@ -83,7 +83,7 @@ class ControllerRiwayat extends Database
 
     public function del_allsewa($lok)
     {
-        $data = $this->delete_and('sewa', 'lok', $lok, 'status', 'selesai');
+        $data = $this->delete_2('sewa', 'lok', $lok, 'status', 'selesai', 'batal');
         if ($data) {
             return true;
         } else {
@@ -93,7 +93,7 @@ class ControllerRiwayat extends Database
 
     public function del_allservis($lok)
     {
-        $data = $this->delete_and('servis', 'lok', $lok, 'status', 'selesai');
+        $data = $this->delete_2('servis', 'lok', $lok, 'status', 'selesai', 'batal');
         if ($data) {
             return true;
         } else {

@@ -86,7 +86,7 @@
                                                 <h1 class="font-semibold mx-auto font-noto-sans text-right text-xl my-auto"><?php echo $rows + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                <img src="img/user/images/<?php echo FormatID::convert($topup[$row]['user_id']) ?>/<?php echo $topup[$row]['img'] ?>" alt="gambar user" class="rounded-full w-full h-full object-cover">
+                                                <img src="img/user/<?php echo FormatID::convert($topup[$row]['user_id']) ?>/<?php echo $topup[$row]['img'] ?>" alt="gambar user" class="rounded-full w-full h-full object-cover">
                                             </div>
                                             <div class="flex flex-col gap-y-1 ml-2">
                                                 <h1 class="font-semibold"><?php echo $topup[$rows]['username'] ?></h1>

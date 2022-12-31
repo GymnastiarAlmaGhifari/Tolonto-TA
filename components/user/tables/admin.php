@@ -86,8 +86,6 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
     
         if ($terupload) {
-            echo "Upload berhasil!<br/>";
-            echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
             if ($_POST['password-edit'] == '') {
                 if ($SadminUser->update_admin(
                     [
@@ -107,7 +105,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500s
                     });
                     </script>";
-                    // header("Refresh: 1; url=user.php");
+                     header("Refresh: 1; url=user.php");
                 } else {
                     echo "<script>
                     Swal.fire({
@@ -139,7 +137,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500
                     });
                     </script>";
-                    // header("Refresh: 1; url=user.php");
+                     header("Refresh: 1; url=user.php");
                 } else {
                     echo "<script>
                     Swal.fire({
@@ -170,7 +168,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500
                     });
                     </script>";
-                    // header("Refresh: 1; url=user.php");
+                     header("Refresh: 1; url=user.php");
                 } else {
                     echo "<script>
                     Swal.fire({

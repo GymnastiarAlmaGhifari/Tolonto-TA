@@ -91,7 +91,7 @@
                                                 <h1 class="font-semibold font-noto-sans text-xl my-auto"><?php echo $row + 1 ?></h1>
                                             </div>
                                             <div class="rounded-full w-[42px] h-[42px] bg-error_050 flex flex-row items-center justify-center">
-                                                <img src="<?php echo $rent[$row]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
+                                                <img src="img/user/<?php echo FormatID::convert($rent[$row]['user_id']) ?>/<?php echo $rent[$row]['img'] ?>" alt="" class="rounded-full w-full h-full object-cover">
                                             </div>
                                             <div class="flex flex-col gap-y-1 ml-2">
                                                 <h1 class="font-semibold"><?php echo $rent[$row]['username'] ?></h1>

@@ -154,9 +154,6 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var json = JSON.parse(xhr.responseText);
-                //   console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
-                console.log('clicked');
-                console.log(json[0]);
                 if (json == 0) {
                     list_notif.innerHTML = ` <li class=" active:bg-primary_500 active:text-neutral_900 pl-2 hover:bg-neutral_500 rounded-sm h-20 pt-3 font-noto-sans text-base pb-1">
                         <div class="flex flex-col gap-2 justify-center border-b-2">
@@ -362,7 +359,6 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
-                    console.log(json.email + ", " + json.password);
                 }
             };
             var data = JSON.stringify({

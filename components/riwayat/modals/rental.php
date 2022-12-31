@@ -86,9 +86,8 @@
         })
     })
     konfirmasiDeleteRental.addEventListener('click', () => {
-        const id = document.getElementById("Konfirmasi-delete-rental").value;
 
-         konfirmasiDeleteRental.value = id;
+        id = rental_hapus;
 
          var xhr = new XMLHttpRequest();
          // path getuser.php in main dir

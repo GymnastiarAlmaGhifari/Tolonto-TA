@@ -6,7 +6,7 @@ require_once 'core/init.php';
 $json = file_get_contents('php://input');
 $data = json_decode($json);
 
-$lok = $_SESSION['loksend'];
+$lok = $data->lok;
 
 $riwayat = new ControllerRiwayat();
 

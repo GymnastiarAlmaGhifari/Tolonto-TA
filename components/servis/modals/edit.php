@@ -156,7 +156,6 @@
             openModalEdit(true)
             const id = item.value
             id_servis_edit.innerHTML = id
-            console.log(id_servis_edit)
 
             const id_servis = document.getElementById('id-servis-edit');
             const nama_barang_edit = document.getElementById('nama_barang_edit');
@@ -187,8 +186,6 @@
                 "id": id
             });
             xhr.send(data);
-            // format ke dalam bentuk database
-            console.log(datepickerValue.value)
         })
     })
 
@@ -214,15 +211,6 @@
                 let today = new Date();
                 this.month = today.getMonth();
                 this.year = today.getFullYear();
-                // this.datepickerValue = new Date(this.year, this.month, today.getDate() + 1).toDateString();
-                // date picker value ke bahasa indonesia
-
-                // datepickerValue.value = same as json.selesai
-
-                // format to beforr adding to database
-                //                 $myDate = new DateTime('2000-01-01');
-                // echo $myDate->format('Y-m-d H:i:s');
-
             },
             isToday(date) {
                 const today = new Date();   
@@ -245,8 +233,6 @@
                 });
 
                 this.$refs.date.value = selectedDate.getFullYear() + "-" + ('0' + selectedDate.getMonth()).slice(-2) + "-" + ('0' + selectedDate.getDate()).slice(-2);
-
-                console.log(this.$refs.date.value);
 
                 this.showDatepicker = false;
             },

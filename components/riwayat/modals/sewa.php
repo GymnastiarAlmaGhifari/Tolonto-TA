@@ -89,9 +89,7 @@
     })
 
     konfirmasiDeleteSewa.addEventListener('click', () => {
-        const id = document.getElementById("Konfirmasi-delete-sewa").value;
-
-         konfirmasiDeleteSewa.value = id;
+        const id = id_sewa.value;
 
          var xhr = new XMLHttpRequest();
          // path getuser.php in main dir
@@ -138,7 +136,6 @@
              }
          };
          var data = JSON.stringify({
-
              "id": id
          });
          xhr.send(data);

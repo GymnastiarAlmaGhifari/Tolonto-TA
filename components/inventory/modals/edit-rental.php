@@ -32,7 +32,15 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
             $_POST['id-rental-edit']
         )) // jika berhasil refresh page tanpa submit ulang
         {
-            echo "<script>location.href='inventory.php'</script>";
+            echo "<script>
+            Swal.fire({
+                icon: 'success',
+                text: 'Berhasil Mengubah PlayStation Rental',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            </script>";
+             header("Refresh: 1; url=inventory.php");
         } else {
                     echo "<script>
         Swal.fire({
@@ -41,7 +49,7 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
             showConfirmButton: false,
             timer: 1500
         }).then(() => {
-            location.href = 'servis';
+            location.href = 'inventory.php';
         });
         </script>";
         }
@@ -67,7 +75,7 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
             showConfirmButton: false,
             timer: 1500
         }).then(() => {
-            location.href = 'servis';
+            location.href = 'inventory.php';
         });
         </script>";
         }
@@ -208,7 +216,6 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
-                    console.log(json.status_ps);
                     nama_rental_edit.value = json.nama_ps;
                     harga_rental_edit.value = json.harga_ps;
                     kategori_ps_rental_edit.value = json.kategori;
@@ -223,7 +230,6 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
                 "table": "ps"
             });
             xhr.send(data);
-            console.log(id)
         })
     })
 
@@ -253,7 +259,6 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
             } else {
                 prev_rental_edit.src = URL.createObjectURL(file_rental)
                 //rename file to datetimenow and save to folder
-                console.log(file_rental);
             }
         }
     }

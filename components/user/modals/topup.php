@@ -1,39 +1,3 @@
-<?php
-// if (isset($_POST['Konfirmasi-topup'])) {
-
-//     $idtopup = $SadminUser->idtopup();
-//     $iduser = $SadminUser->fetch_user($_POST['email-user']);
-//     if ($SadminUser->add_topup(
-//         [
-//             'id_topup' => $idtopup,
-//             'id_user' => $iduser['user_id'],
-//             'jml_topup' => Rupiah::clear($_POST['topup']),
-//             'waktu' => date('Y-m-d H:i:s'),
-//             'id_admin' => $user_data['id_admin']
-//         ]
-//     )) // jika berhasil refresh page tanpa submit ulang
-//     {
-//         Redirect::to('user');
-// //         echo "<script>
-// // alert('There are no fields to generate a report');
-// // window.location.href='admin/ahm/panel';
-// // </script>";
-//     } else {
-//         // gagal topup
-//         echo "<script>
-//         Swal.fire({
-//             icon: 'error',
-//             text: 'Gagal Topup',
-//             showConfirmButton: false,
-//             timer: 1500
-//         }).then(() => {
-//             location.href = 'user.php';
-//         });
-//         </script>";
-//     }
-// }
-
-?>
 
 <!-- modal Sewa tambah start -->
 <section>
@@ -101,7 +65,6 @@
             email,
             jumlah_topup
         }
-        console.log(data);
 
         var xhr = new XMLHttpRequest();
         var url = "..\\..\\..\\isitopup.php";
@@ -192,8 +155,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
-                    console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_user);
-                    prevuser.src = 'img/user/images/'+json.id+'/'+json.img;
+                    prevuser.src = 'img/user/'+json.id+'/'+json.img;
                 }
             };
             var data = JSON.stringify({
@@ -204,8 +166,6 @@
         })
     })
     topup.addEventListener("keyup", function(e) {
-        // tambahkan 'Rp.' pada saat form di ketik
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
         topup.value = formatRupiah(this.value, "Rp. ");
     });
 

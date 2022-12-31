@@ -67,10 +67,8 @@
              xhr.onreadystatechange = function() {
                  if (xhr.readyState === 4 && xhr.status === 200) {
                      var json = JSON.parse(xhr.responseText);
-                     //   console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
                      getHapus.innerHTML = json.username;
                      username_hapus = json.username;
-                     console.log(getHapus.innerHTML)
                      konfirmasiDelete.value = json.id_admin;
                  }
              };
@@ -78,10 +76,6 @@
                  "id": id
              });
              xhr.send(data);
-             // isi value dari button delete admin
-             //  document.getElementById("getHapus").value = button.value;
-             //  //  set inner html getHapus dengan button value
-
          })
      })
 

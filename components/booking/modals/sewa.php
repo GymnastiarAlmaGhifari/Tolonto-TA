@@ -99,7 +99,6 @@
             openModalSewa(true)
             const id = item.value
             id_sewa.innerHTML = id
-            console.log(id_sewa)
 
             const id_ps_sewa = document.getElementById('id_ps_sewa');
             const nama_user_sewa = document.getElementById('nama_user_sewa');
@@ -132,7 +131,6 @@
             });
             xhr.send(data);
             // format ke dalam bentuk database
-            console.log(datepickerValue.value)
         })
     })
 

@@ -1,23 +1,3 @@
-<?php
-// if (isset($_POST['Konfirmasi-delete-servis'])) {
-//     if ($riwayat->del_servis($_POST['id_servis'])) // jika berhasil refresh page tanpa submit ulang
-//     {
-//         Redirect::to('riwayat');
-//     } else {
-//         echo "<script>
-//         Swal.fire({
-//             icon: 'error',
-//             text: 'Gagal Menghapus Riwayat Servis',
-//             showConfirmButton: false,
-//             timer: 1500
-//         }).then(() => {
-//             location.href = 'servis';
-//         });
-//         </script>";
-//     }
-// }
-?>
-
 <!-- modal Delete  start -->
 <section>
     <div id="modal_overlay_delete_servis" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-center pt-10 md:pt-0 z-50">
@@ -103,7 +83,7 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Berhasil',
-                        text: 'Berhasil hapus ' + servis_hapus + '',
+                        text: 'Berhasil Menghapus ' + servis_hapus + '',
                         showConfirmButton: false,
                         timer: 1000,
                         //open modals false dan reload
@@ -121,7 +101,7 @@
                     //  tidak dapat menghapus diri sendiri
                     Swal.fire({
                         icon: 'error',
-                        text: 'Gagal menghapus ' + servis_hapus + '',
+                        text: 'Gagal Menghapus ' + servis_hapus + '',
                         showConfirmButton: false,
                         timer: 1000,
                         // open modal delet admin set to false

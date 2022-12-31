@@ -206,7 +206,6 @@ if (isset($_POST['Konfirmasi-rental'])) {
                 return false;
             } else {
                 prev_rental.src = URL.createObjectURL(file_rental)
-                console.log(file_rental);
             }
 
         }

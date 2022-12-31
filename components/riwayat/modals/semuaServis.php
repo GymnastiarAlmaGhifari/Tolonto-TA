@@ -72,7 +72,6 @@
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
                  var json = JSON.parse(xhr.responseText);
-                 console.log(xhr.responseText);
                  if (json.status == "success") {
                      Swal.fire({
                          icon: 'success',

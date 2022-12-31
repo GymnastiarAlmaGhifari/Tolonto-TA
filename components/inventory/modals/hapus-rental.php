@@ -15,7 +15,7 @@
                      <button type="button" onclick="openModalDeletePsRental(false)" name="Batal-Rental-Ps" id="Batal-Rental-Ps" value="Batal-Rental-Ps" class=" bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                          Batal
                      </button>
-                     <button type="submit" name="Konfirmasi-delete-ps-rental" id="Konfirmasi-delete-ps-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
+                     <button type="button" name="Konfirmasi-delete-ps-rental" id="Konfirmasi-delete-ps-rental" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
                  </div>
              </form>
          </div>
@@ -27,7 +27,7 @@
      const modal_delete_ps_rental = document.querySelector('#modal_delete_ps_rental');
      const hapusRental = document.querySelectorAll('#hapusRental');
      const konfirmasiDeleteRental = document.querySelector('#Konfirmasi-delete-ps-rental');
-
+    var delrental = '';
 
      const openModalDeletePsRental = (value) => {
          const modalClDeletePsRental = modal_delete_ps_rental.classList
@@ -55,7 +55,7 @@
          button.addEventListener('click', () => {
              openModalDeletePsRental(true)
              const id = button.value
-
+                delrental = id;
              var xhr = new XMLHttpRequest();
              // path getuser.php in main dir
              var url = "..\\..\\..\\getps.php";
@@ -84,13 +84,41 @@
          xhr.open("POST", url, true);
          xhr.setRequestHeader("Content-Type", "application/json");
          xhr.onreadystatechange = function() {
-             if (xhr.readyState === 4 && xhr.status === 200) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
                  var json = JSON.parse(xhr.responseText);
-                 console.log(json.status + ", " + json.nama_ps);
                  if (json.status == "success") {
-                    //  alert("berhasil menghapus ps rental " + json.nama_ps);
+                     Swal.fire({
+                         icon: 'success',
+                         title: 'Berhasil',
+                         text: 'Berhasil hapus ' + delrental + '',
+                         showConfirmButton: false,
+                         timer: 1000,
+                         //open modals false dan reload
+                            didOpen: () => {
+                                setTimeout(() => {
+                                    openModalDeletePsRental(false)
+                                }, 1500);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1600);
+                            },
+
+                     });
                  } else {
-                    //  alert("gagal menghapus);
+                     //  tidak dapat menghapus diri sendiri
+                     Swal.fire({
+                         icon: 'error',
+                         text: 'Gagal menghapus ' + delrental + '',
+                         showConfirmButton: false,
+                            timer: 1000,
+                            // open modal delet admin set to false
+                            didOpen: () => {
+                                setTimeout(() => {
+                                        openModalDeletePsRental(false)
+                                }, 1500);
+                            },
+                            
+                     });
                  }
              }
          };

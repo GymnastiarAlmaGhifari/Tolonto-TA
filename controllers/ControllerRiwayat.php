@@ -6,7 +6,7 @@ class ControllerRiwayat extends Database
 {
     public function h_rental($lok)
     {
-        $sql = "SELECT user.username, user.img, rental.id_rental, ps.nama_ps, rental.status, rental.waktu_order, rental.playtime, rental.mulai_rental,
+        $sql = "SELECT user.username, user.user_id, user.img, rental.id_rental, ps.nama_ps, rental.status, rental.waktu_order, rental.playtime, rental.mulai_rental,
         rental.selesai_rental, rental.bayar FROM `rental` JOIN user ON rental.id_user = user.user_id
         JOIN ps ON rental.id_ps = ps.id_ps WHERE rental.lok = '$lok' ORDER BY rental.waktu_order DESC ;"; 
         $data = $this->uniquery($sql);
@@ -23,7 +23,7 @@ class ControllerRiwayat extends Database
 
     public function h_sewa($lok)
     {
-        $sql = "SELECT user.username, user.img, sewa.id_sewa, ps_sewa.nama_ps, sewa.status, sewa.waktu_order, 
+        $sql = "SELECT user.username, user.user_id, user.img, sewa.id_sewa, ps_sewa.nama_ps, sewa.status, sewa.waktu_order, 
         sewa.playtime, sewa.mulai_sewa, sewa.akhir_sewa, sewa.bayar FROM `sewa` JOIN user ON sewa.id_user = user.user_id 
         JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.lok = '$lok' ORDER BY sewa.waktu_order DESC ;";
         $data = $this->uniquery($sql);
@@ -40,7 +40,7 @@ class ControllerRiwayat extends Database
 
     public function h_servis($lok)
     {
-        $sql = "SELECT user.username, user.img, servis.id_servis, servis.nama_barang, servis.kerusakan, servis.waktu_submit, servis.status, servis.est_selesai 
+        $sql = "SELECT user.username, user.user_id, user.img, servis.id_servis, servis.nama_barang, servis.kerusakan, servis.waktu_submit, servis.status, servis.est_selesai 
         FROM `servis` JOIN user ON servis.id_user = user.user_id WHERE servis.lok = '$lok' ORDER BY servis.waktu_submit DESC ;";
         $data = $this->uniquery($sql);
         return $data;
@@ -57,7 +57,7 @@ class ControllerRiwayat extends Database
 
     public function h_topup()
     {
-        $sql = "SELECT user.username, user.img, user.email, topup.id_topup, topup.waktu, topup.jml_topup, manage.username AS admin 
+        $sql = "SELECT user.username, user.user_id, user.img, user.email, topup.id_topup, topup.waktu, topup.jml_topup, manage.username AS admin 
         FROM `topup` JOIN user ON topup.id_user = user.user_id JOIN manage ON topup.id_admin = manage.id_admin ORDER BY topup.waktu DESC ;";
         $data = $this->uniquery($sql);
         return $data;
@@ -73,7 +73,7 @@ class ControllerRiwayat extends Database
 
     public function del_allrental($lok)
     {
-        $data = $this->delete_and('rental', 'lok', $lok, 'selesai_rental', 'NOW()');
+        $data = $this->delete_and('rental', 'lok', $lok, 'status', 'done');
         if ($data) {
             return true;
         } else {
@@ -83,7 +83,7 @@ class ControllerRiwayat extends Database
 
     public function del_allsewa($lok)
     {
-        $data = $this->delete_and('sewa', 'lok', $lok, 'akhir_sewa', 'NOW()');
+        $data = $this->delete_and('sewa', 'lok', $lok, 'status', 'selesai');
         if ($data) {
             return true;
         } else {
@@ -93,7 +93,7 @@ class ControllerRiwayat extends Database
 
     public function del_allservis($lok)
     {
-        $data = $this->delete_and('servis', 'lok', $lok, 'est_selesai', 'NOW()');
+        $data = $this->delete_and('servis', 'lok', $lok, 'status', 'selesai');
         if ($data) {
             return true;
         } else {

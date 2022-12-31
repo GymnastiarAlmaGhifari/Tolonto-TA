@@ -104,11 +104,10 @@ if (isset($_POST['Konfirmasi-delete-semua-sewa'])) {
     konfirmasiDeleteSemuaSewa.addEventListener('click', () => {
         const id = document.getElementById("Konfirmasi-delete-semua-sewa").value;
 
-        konfirmasiDeleteSemuaSewa.value = id;
 
         var xhr = new XMLHttpRequest();
         // path getuser.php in main dir
-        var url = "..\\..\\..\\delsemua.php";
+        var url = "..\\..\\..\\delallsewa.php";
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function() {
@@ -150,9 +149,6 @@ if (isset($_POST['Konfirmasi-delete-semua-sewa'])) {
                  }
              }
         };
-        var data = JSON.stringify({
-            "id": id
-        });
-        xhr.send(data);
+        xhr.send();
     })
 </script>

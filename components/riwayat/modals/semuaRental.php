@@ -104,11 +104,9 @@
     konfirmasiDeleteSemuaRental.addEventListener('click', () => {
         const id = document.getElementById("Konfirmasi-delete-semua-rental").value;
 
-        konfirmasiDeleteSemuaRental.value = id;
-
         var xhr = new XMLHttpRequest();
         // path getuser.php in main dir
-        var url = "..\\..\\..\\delsemua.php";
+        var url = "..\\..\\..\\delallrental.php";
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function() {
@@ -150,9 +148,6 @@
                  }
              }
         };
-        var data = JSON.stringify({
-            "id": id
-        });
-        xhr.send(data);
+        xhr.send();
     })
 </script>

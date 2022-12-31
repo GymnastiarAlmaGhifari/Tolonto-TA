@@ -124,32 +124,4 @@
          xhr.send(data);
     })
 
-
-//     <?php
-// if (isset($_POST['Konfirmasi-delete-topup'])) {
-//     if ($riwayat->del_topup($_POST['id_topup'])) // jika berhasil refresh page tanpa submit ulang
-//     {
-//         ?> 
-//         // simpan id admin dari innerhtml getTopup ke variable nama
-//         Swal.fire({
-//             icon: 'success',
-//             // ambil get element by id getTopup innerhtml
-//             text: 'Berhasil Hapus Riwayat Topup' + ' ' + document.getElementById('getTopup').innerHTML,
-//             showConfirmButton: false,
-//             timer: 1500
-//         });
-//         <?php
-//         header("Refresh: 1; url=riwayat.php");
-//     } else {
-//         ?>
-//         Swal.fire({
-//             icon: 'error',
-//             text: 'Gagal Ubah Admin',
-//             showConfirmButton: false,
-//             timer: 1500
-//         });
-//         <?php
-//     }
-// }
-// ?>
 </script>

@@ -24,10 +24,10 @@ if ($SadminUser->add_topup(
     ]
 )) {
     // Firebase Cloud Messaging Authorization Key
-    define('FCM_AUTH_KEY', 'AAAAEwaAliE:APA91bE_XBK7mxFqonChJvtlduIlU8A1g7QOD_L5oNIV0j8zi7xkP5iLY40K03ZeFMJ7x23miB_KEwxYNHDMmLhYQbYOvOzX-MVE0y56PEjt0K2kyuuYSowHjiasrvKGL2MPEQ1_BTQW');
     $title = 'Topup Berhasil';
     $body = 'Berhasil Topup dengan Jumlah ' . $j_topup;
     $keyclient = $iduser['fcm'];
+    define('FCM_AUTH_KEY', 'AAAAEwaAliE:APA91bE_XBK7mxFqonChJvtlduIlU8A1g7QOD_L5oNIV0j8zi7xkP5iLY40K03ZeFMJ7x23miB_KEwxYNHDMmLhYQbYOvOzX-MVE0y56PEjt0K2kyuuYSowHjiasrvKGL2MPEQ1_BTQW');
 
     function sendPush($to, $title, $body, $icon, $url)
     {

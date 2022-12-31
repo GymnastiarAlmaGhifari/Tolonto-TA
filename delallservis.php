@@ -6,11 +6,11 @@ require_once 'core/init.php';
 $json = file_get_contents('php://input');
 $data = json_decode($json);
 
-$id = $data->id;
+$lok = $_SESSION['loksend'];
 
 $riwayat = new ControllerRiwayat();
 
-if ($riwayat->del_servis($id)) {
+if ($riwayat->del_allsewa($lok)) {
     // $dataps = $SadminPs->delete_ps($table, 'id_ps', $id);
     echo json_encode(['status' => 'success']);
 } else {

@@ -44,18 +44,23 @@
                 ]
             )) // jika berhasil refresh page tanpa submit ulang
             {
-                echo "<script>location.href='inventory.php'</script>";
+                echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Berhasil Menambah PlayStation Rental',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                </script>";
+                 header("Refresh: 1; url=inventory.php");
             } else {
-                // gagal menambahkan ps
                 echo "<script>
                 Swal.fire({
                     icon: 'error',
-                    text: 'Gagal menambahkan PlayStation',
+                    text: 'Gagal Menambahkan Playstation Sewa',
                     showConfirmButton: false,
                     timer: 1500
-                }).then(() => {
-                    location.href = 'servis';
-                });
+                })
                 </script>";
             }
         } else {
@@ -66,9 +71,7 @@
                 text: 'Gambar Belum Diupload',
                 showConfirmButton: false,
                 timer: 1500
-            }).then(() => {
-                location.href = 'servis';
-            });
+            })
             </script>";
         }
     }
@@ -201,8 +204,6 @@
              } else {
                  prev.src = URL.createObjectURL(file)
                  //rename file to datetimenow and save to folder
-
-                 console.log(file);
              }
 
          }

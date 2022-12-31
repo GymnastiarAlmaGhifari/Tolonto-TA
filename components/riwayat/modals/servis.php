@@ -1,23 +1,3 @@
-<?php
-if (isset($_POST['Konfirmasi-delete-servis'])) {
-    if ($riwayat->del_servis($_POST['id_servis'])) // jika berhasil refresh page tanpa submit ulang
-    {
-        Redirect::to('riwayat');
-    } else {
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            text: 'Gagal Menghapus Riwayat Servis',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(() => {
-            location.href = 'servis';
-        });
-        </script>";
-    }
-}
-?>
-
 <!-- modal Delete  start -->
 <section>
     <div id="modal_overlay_delete_servis" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-center pt-10 md:pt-0 z-50">
@@ -33,10 +13,10 @@ if (isset($_POST['Konfirmasi-delete-servis'])) {
             <form action="riwayat.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                 <input type="hidden" name="id_servis" id="id_servis" value="">
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalDeleteServis(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
+                    <button type="button" onclick="openModalDeleteServis(false)"  class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-delete-servis" id="Konfirmasi-delete-servis" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
+                    <button type="button" name="Konfirmasi-delete-servis" id="Konfirmasi-delete-servis" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
                 </div>
             </form>
         </div>
@@ -50,7 +30,7 @@ if (isset($_POST['Konfirmasi-delete-servis'])) {
     const konfirmasiDeleteServis = document.querySelector('#Konfirmasi-delete-servis');
     const getServis = document.querySelector('#getServis');
     const id_servis = document.querySelector('#id_servis');
-
+    var servis_hapus = '';
 
     const openModalDeleteServis = (value) => {
         const modalClDeleteServis = modal_delete_servis.classList
@@ -73,17 +53,72 @@ if (isset($_POST['Konfirmasi-delete-servis'])) {
         }
     }
     openModalDeleteServis(false)
-    // foreach modals with jquery openmodal delete true 
+
+
     hapus_servis.forEach((button) => {
         button.addEventListener('click', () => {
 
             openModalDeleteServis(true)
             const id = button.value;
             id_servis.value = id;
+            servis_hapus = id;
             getServis.innerHTML = id;
-        
+
         })
     })
+    // foreach modals with jquery openmodal delete true 
+    konfirmasiDeleteServis.addEventListener('click', () => {
 
+        id = servis_hapus;
 
+        var xhr = new XMLHttpRequest();
+        // path getuser.php in main dir
+        var url = "..\\..\\..\\delservis.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+                if (json.status == "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Berhasil Menghapus ' + servis_hapus + '',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        //open modals false dan reload
+                        didOpen: () => {
+                            setTimeout(() => {
+                                openModalDeleteServis(false)
+                            }, 1500);
+                            setTimeout(() => {
+                                location.reload();
+                            }, 1600);
+                        },
+
+                    });
+                } else {
+                    //  tidak dapat menghapus diri sendiri
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Gagal Menghapus ' + servis_hapus + '',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        // open modal delet admin set to false
+                        didOpen: () => {
+                            setTimeout(() => {
+                                openModalDeleteServis(false)
+                            }, 1500);
+                        },
+
+                    });
+                }
+            }
+        };
+        var data = JSON.stringify({
+
+            "id": id
+        });
+        xhr.send(data);
+    })
 </script>

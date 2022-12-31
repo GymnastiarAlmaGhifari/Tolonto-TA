@@ -45,9 +45,24 @@ if (isset($_POST['Konfirmasi-rental'])) {
             ]
         )) // jika berhasil refresh page tanpa submit ulang
         {
-            echo "<script>location.href='inventory.php'</script>";
+            echo "<script>
+            Swal.fire({
+                icon: 'success',
+                text: 'Berhasil Menambah PlayStation Rental',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            </script>";
+             header("Refresh: 1; url=inventory.php");
         } else {
-            //gagal menambahkan ps
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                text: 'Gagal Menambah PlayStation Rental',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            </script>";
         }
     } else {
         echo "<script>
@@ -191,7 +206,6 @@ if (isset($_POST['Konfirmasi-rental'])) {
                 return false;
             } else {
                 prev_rental.src = URL.createObjectURL(file_rental)
-                console.log(file_rental);
             }
 
         }

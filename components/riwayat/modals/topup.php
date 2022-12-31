@@ -1,5 +1,3 @@
-
-
 <!-- modal Delete  start -->
 <section>
     <div id="modal_overlay_delete_topup" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-center pt-10 md:pt-0 z-50">
@@ -15,10 +13,10 @@
             <form action="riwayat.php"  method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                 <input type="hidden" id="id_topup" name="id_topup">
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalDeleteTopup(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
+                        <button type="button" onclick="openModalDeleteTopup(false)"  class="bg-neutral_050 hover:bg-neutral_200 focus:bg-neutral_400 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
                         Batal
-                    </button>
-                    <button type="submit" name="Konfirmasi-delete-topup" id="Konfirmasi-delete-topup" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
+                        </button>
+                    <button type="button" name="Konfirmasi-delete-topup" id="Konfirmasi-delete-topup" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">Konfirmasi</button>
                 </div>
             </form>
         </div>
@@ -32,7 +30,7 @@
     const konfirmasiDeleteTopup = document.querySelector('#Konfirmasi-delete-topup');
     const id_topup = document.querySelector('#id_topup');
     const getTopup = document.querySelector('#getTopup');
-
+    var topup_hapus = "";
 
     const openModalDeleteTopup = (value) => {
         const modalClDeleteTopup = modal_delete_topup.classList
@@ -62,36 +60,66 @@
             openModalDeleteTopup(true)
             const id = button.value;
             id_topup.value = id;
+            topup_hapus = id;
             getTopup.innerHTML = id;
             konfirmasiDeleteTopup.value = id;
         })
+        
     })
     
-    <?php
-if (isset($_POST['Konfirmasi-delete-topup'])) {
-    if ($riwayat->del_topup($_POST['id_topup'])) // jika berhasil refresh page tanpa submit ulang
-    {
-        ?> 
-        // simpan id admin dari innerhtml getTopup ke variable nama
-        Swal.fire({
-            icon: 'success',
-            // ambil get element by id getTopup innerhtml
-            text: 'Berhasil Hapus Riwayat Topup' + ' ' + document.getElementById('getTopup').innerHTML,
-            showConfirmButton: false,
-            timer: 1500
-        });
-        <?php
-        header("Refresh: 1; url=riwayat.php");
-    } else {
-        ?>
-        Swal.fire({
-            icon: 'error',
-            text: 'Gagal Ubah Admin',
-            showConfirmButton: false,
-            timer: 1500
-        });
-        <?php
-    }
-}
-?>
+    konfirmasiDeleteTopup.addEventListener('click', () => {
+        const id = document.getElementById("Konfirmasi-delete-topup").value;
+
+         konfirmasiDeleteTopup.value = id;
+
+         var xhr = new XMLHttpRequest();
+         // path getuser.php in main dir
+         var url = "..\\..\\..\\deltopup.php";
+         xhr.open("POST", url, true);
+         xhr.setRequestHeader("Content-Type", "application/json");
+         xhr.onreadystatechange = function() {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 var json = JSON.parse(xhr.responseText);
+                 if (json.status == "success") {
+                     Swal.fire({
+                         icon: 'success',
+                         title: 'Berhasil',
+                         text: 'Berhasil Menghapus ' + topup_hapus + '',
+                         showConfirmButton: false,
+                         timer: 1000,
+                         //open modals false dan reload
+                            didOpen: () => {
+                                setTimeout(() => {
+                                    openModalDeleteTopup(false);
+                                }, 1500);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1600);
+                            },
+
+                     });
+                 } else {
+                     //  tidak dapat menghapus diri sendiri
+                     Swal.fire({
+                         icon: 'error',
+                         text: 'Gagal Menghapus ' + topup_hapus + '',
+                         showConfirmButton: false,
+                            timer: 1000,
+                            // open modal delet admin set to false
+                            didOpen: () => {
+                                setTimeout(() => {
+                                        openModalDeleteTopup(false);
+                                }, 1500);
+                            },
+                            
+                     });
+                 }
+             }
+         };
+         var data = JSON.stringify({
+             "id": id
+         });
+         xhr.send(data);
+    })
+
 </script>

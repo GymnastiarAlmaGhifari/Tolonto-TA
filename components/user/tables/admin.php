@@ -40,7 +40,11 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                 timer: 1500
             });
             </script>";
-            header("Refresh: 1; url=user.php");
+            // back to user.php saat berhasil tambah admin
+            // header("Location: {$_SERVER['PHP_SELF']}"); 
+
+
+             header("Refresh: 1; url=user.php");
         } else {
             // gagal tambah admin
             echo "<script>
@@ -82,8 +86,6 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
     
         if ($terupload) {
-            echo "Upload berhasil!<br/>";
-            echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
             if ($_POST['password-edit'] == '') {
                 if ($SadminUser->update_admin(
                     [
@@ -103,7 +105,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500s
                     });
                     </script>";
-                    header("Refresh: 1; url=user.php");
+                     header("Refresh: 1; url=user.php");
                 } else {
                     echo "<script>
                     Swal.fire({
@@ -135,7 +137,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500
                     });
                     </script>";
-                    header("Refresh: 1; url=user.php");
+                     header("Refresh: 1; url=user.php");
                 } else {
                     echo "<script>
                     Swal.fire({
@@ -166,7 +168,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500
                     });
                     </script>";
-                    header("Refresh: 1; url=user.php");
+                     header("Refresh: 1; url=user.php");
                 } else {
                     echo "<script>
                     Swal.fire({
@@ -249,36 +251,31 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">level</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        LEVEL
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">lokasi</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        LOKASI
+                                    </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">Terakhir Diubah</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-44 rounded-2xl">
+                                        TERAHIR DIUBAH
+                                    </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                    <button class="flex flex-row items-center mx-auto gap-x-7 bg-neutral_050 rounded-xl py-1 px-2 text-neutral_900 ">
-                                        <h1 class="uppercase">Dibuat pada</h1>
-                                        <i class="fa-solid fa-angle-up"></i>
-                                    </button>
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        DIBUAT PADA
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                    <button onclick="showItems()" id="btn-option" class="flex flex-row items-center mx-auto gap-x-3 bg-transparent hover:bg-neutral_600 rounded-xl py-1 px-2 text-neutral_100 drop">
-                                        <h1 class="capitalize font-normal">option</h1>
-                                        <i class="fa-solid fa-caret-down"></i>
-                                    </button>
+                                <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        OPTIONS
+                                    </h1>
                                 </th>
                             </tr>
                         </thead>

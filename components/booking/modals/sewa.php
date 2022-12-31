@@ -3,7 +3,7 @@
     <div id="modal_overlay_sewa" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-center pt-10 md:pt-0 z-50">
 
         <!-- modal -->
-        <div id="modal_sewa" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[520px]  xs:w-[345px] sm:w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
+        <div id="modal_sewa" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_800 h-[578px]  xs:w-[345px] sm:w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
             <div class="flex flex-row justify-between items-center -mt-6">
                 <div class="flex flex-row justify-start ml-[23px] mt-4 gap-3 mb-3">
                     <svg class="mx-auto my-auto" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +20,7 @@
             </div>
             <span class="w-11/12 h-0.5 mx-auto -mt-6 bg-neutral_600"></span>
             <form action="servis.php" method="post" class="flex flex-col items-center justify-center gap-4 -mt-2" enctype="multipart/form-data">
-            <div class="flex flex-row xs:gap-6 md:gap-[42px]  justify-center items-center w-full">
+            <div class="flex flex-row xs:gap-6 md:gap-7  justify-center items-center w-full">
                 <div class="relative z-0 w-5/12 ">
                     <h1 class="text-neutral_050 font-medium mb-2 ml-3">ID PS</h1>
                     <input disabled type="text" id="id_ps_sewa" name="id_ps_sewa" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-3" />
@@ -36,10 +36,16 @@
                 </div>
                 <div class="relative z-0 w-11/12 ">
                     <h1 class="text-neutral_050 font-medium mb-2 ml-3">Alamat User</h1>
-                    <textarea name="alamat_user" id="alamat_user" readonly class="resize-none rounded-2xl h-[133px] w-full bg-neutral_050 pl-3 cursor-default text-neutral_900"></textarea>
+                    <textarea name="alamat_user" id="alamat_user" readonly class="resize-none rounded-2xl h-[67px] w-full bg-neutral_050 pl-3 pt-2 cursor-default text-neutral_900"></textarea>
+                </div>
+                <div class="relative z-0 w-11/12 -mt-1">
+                    <h1 class="text-neutral_050 font-medium mb-2 ml-3">Deskripsi</h1>
+                    <textarea name="deskripsi" id="deskripsi" readonly class="resize-none rounded-2xl h-[67px] w-full bg-neutral_050 pl-3 pt-2 cursor-default text-neutral_900">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat obcaecati odio expedita quos. Corrupti pariatur iusto corporis reprehenderit aperiam. Eveniet molestias quibusdam nemo dignissimos esse, animi, quasi quis blanditiis quod, debitis unde id excepturi.
+                    </textarea>
                 </div>
                 <div class="flex flex-row gap-[42px] items-center justify-center w-full">
-                    <a href="https://maps.google.com/?q=-7.154825,111.875869" type="button" target="_blank" name="map" id="map" class="bg-error_600 text-neutral_050 shadow-elevation-light-2 w-5/12 h-12 rounded-2xl flex flex-row gap-3 justify-center items-center">
+                    <a href="https://maps.google.com/?q=-7.154825,111.875869" type="button" target="_blank" name="map" id="map" class="bg-error_600 text-neutral_050  w-5/12 h-12 rounded-2xl flex flex-row gap-3 justify-center items-center shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800"">
                         <svg width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.75 11.875C7.9212 11.875 7.12634 11.5458 6.54029 10.9597C5.95424 10.3737 5.625 9.5788 5.625 8.75C5.625 7.9212 5.95424 7.12634 6.54029 6.54029C7.12634 5.95424 7.9212 5.625 8.75 5.625C9.5788 5.625 10.3737 5.95424 10.9597 6.54029C11.5458 7.12634 11.875 7.9212 11.875 8.75C11.875 9.16038 11.7942 9.56674 11.6371 9.94589C11.4801 10.325 11.2499 10.6695 10.9597 10.9597C10.6695 11.2499 10.325 11.4801 9.94589 11.6371C9.56674 11.7942 9.16038 11.875 8.75 11.875ZM8.75 0C6.42936 0 4.20376 0.921872 2.56282 2.56282C0.921872 4.20376 0 6.42936 0 8.75C0 15.3125 8.75 25 8.75 25C8.75 25 17.5 15.3125 17.5 8.75C17.5 6.42936 16.5781 4.20376 14.9372 2.56282C13.2962 0.921872 11.0706 0 8.75 0Z" fill="#fff" />
                         </svg>
@@ -93,7 +99,6 @@
             openModalSewa(true)
             const id = item.value
             id_sewa.innerHTML = id
-            console.log(id_sewa)
 
             const id_ps_sewa = document.getElementById('id_ps_sewa');
             const nama_user_sewa = document.getElementById('nama_user_sewa');
@@ -126,7 +131,6 @@
             });
             xhr.send(data);
             // format ke dalam bentuk database
-            console.log(datepickerValue.value)
         })
     })
 

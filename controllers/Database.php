@@ -354,6 +354,13 @@ class Database
         return $result;
     }
 
+    public function delete_2($table, $column, $value, $column2, $value2, $value3)
+    {
+        $sql = "DELETE FROM $table WHERE $column = '$value' AND ($column2 = '$value2' OR $column2 = '$value3')";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
     public function delete_all($table)
     {
         $sql = "DELETE FROM $table";

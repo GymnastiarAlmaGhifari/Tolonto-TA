@@ -15,10 +15,10 @@
              <h2 class="mx-auto text-base font-medium text-error_600 -mt-4"> proses ini tidak bisa dikembalikan</h2>
              <form action="user.php" method="post" class="flex flex-col items-center justify-center gap-2 mt-2" enctype="multipart/form-data">
                  <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                     <button type="button" onclick="openModalDeleteadmin(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">
+                     <button type="button" onclick="openModalDeleteadmin(false)" name="Batal-Delete-Admin" id="Batal-Delete-Admin" value="Batal-Delete-Admin" class="bg-neutral_050 text-neutral_900 border border-neutral_600 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-neutral_200 focus:bg-neutral_400" >
                          Batal
                      </button>
-                     <button type="submit" name="Konfirmasi-delete" id="Konfirmasi-delete" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2">Konfirmasi</button>
+                     <button type="button" name="Konfirmasi-delete" id="Konfirmasi-delete" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800" ">Konfirmasi</button>
                  </div>
              </form>
          </div>
@@ -31,7 +31,7 @@
      const deleteAdmin = document.querySelectorAll('#deleteAdmin');
      const konfirmasiDelete = document.querySelector('#Konfirmasi-delete');
      const getHapus = document.querySelector('#getHapus');
-    var username_hapus = "";
+     var username_hapus = "";
 
      const openModalDeleteadmin = (value) => {
          const modalClDeleteadmin = modal_deleteadmin.classList
@@ -57,7 +57,6 @@
      // foreach modals with jquery openmodal delete true 
      deleteAdmin.forEach((button) => {
          button.addEventListener('click', () => {
-
              openModalDeleteadmin(true)
              const id = button.value;
              var xhr = new XMLHttpRequest();
@@ -68,10 +67,8 @@
              xhr.onreadystatechange = function() {
                  if (xhr.readyState === 4 && xhr.status === 200) {
                      var json = JSON.parse(xhr.responseText);
-                    //   console.log(json.status + ", " + json.username + ", " + json.level + ", " + json.lokasi + ", " + json.img + ", " + json.id_admin);
                      getHapus.innerHTML = json.username;
                      username_hapus = json.username;
-                     console.log(getHapus.innerHTML)
                      konfirmasiDelete.value = json.id_admin;
                  }
              };
@@ -79,11 +76,6 @@
                  "id": id
              });
              xhr.send(data);
-             // isi value dari button delete admin
-             //  document.getElementById("getHapus").value = button.value;
-             //  //  set inner html getHapus dengan button value
-
-
          })
      })
 
@@ -101,33 +93,38 @@
              if (xhr.readyState === 4 && xhr.status === 200) {
                  var json = JSON.parse(xhr.responseText);
                  if (json.status == "success") {
-                    Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text:  'Berhasil hapus ' + username_hapus + '',
-                            timer: 1500,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
+                     Swal.fire({
+                         icon: 'success',
+                         title: 'Berhasil',
+                         text: 'Berhasil hapus ' + username_hapus + '',
+                         showConfirmButton: false,
+                         timer: 1000,
+                         //open modals false dan reload
                             didOpen: () => {
-                                Swal.showLoading()
-                                timerInterval = setInterval(() => {
-                                    const content = Swal.getHtmlContainer()
-                                    if (content) {
-                                        const b = content.querySelector('b')
-                                        if (b) {
-                                            b.textContent = Swal.getTimerLeft()
-                                        }
-                                    }
-                                }, 100)
-                            },
-                            willClose: () => {
-                                clearInterval(timerInterval)
+                                setTimeout(() => {
                                 openModalDeleteadmin(false)
-                                location.reload();
-                            }
-                        })
+                                }, 1500);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 1600);
+                            },
+
+                     });
                  } else {
-                     alert("gagal");
+                     //  tidak dapat menghapus diri sendiri
+                     Swal.fire({
+                         icon: 'error',
+                         text: 'Gagal menghapus ' + username_hapus + ' karena sedang digunakan',
+                         showConfirmButton: false,
+                            timer: 1000,
+                            // open modal delet admin set to false
+                            didOpen: () => {
+                                setTimeout(() => {
+                                    openModalDeleteadmin(false)
+                                }, 1500);
+                            },
+                            
+                     });
                  }
              }
          };

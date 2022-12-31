@@ -15,6 +15,8 @@ if ($notifrent == false && $notifsewa == false) {
     echo json_encode(0);
 } else if ($notifsewa == false) {
     echo json_encode($notifrent);
+} else if ($notifrent == false) {
+    echo json_encode($notifsewa);
 } else {
     $notif = array_merge($notifrent, $notifsewa);
     echo json_encode($notif);

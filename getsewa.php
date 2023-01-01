@@ -20,6 +20,7 @@ if ($booking->getsewa($id)) {
         'pil_kirim' => $datasewa[0]['pil_kirim'],
         'latitude' => $datasewa[0]['latitude'],
         'longitude' => $datasewa[0]['longitude'],
+        'deskripsi' => $datasewa[0]['description'],
         'alamat' => $datasewa[0]['address']
     ]);
 } else {

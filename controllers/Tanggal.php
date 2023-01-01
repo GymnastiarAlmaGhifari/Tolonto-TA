@@ -9,8 +9,10 @@ class Tanggal
     // });
     public static function ChangeFormatToDb($date)
     {
-        // rubah format tanggal dari 'Selasa, 27 Desember 2022' menjadi 2022-12-27 (untuk database)
-
+        // rubah format tanggal dari '1/9/2023' menjadi 2023-09-01 (untuk database)
+        $date = explode('/', $date);
+        $result = $date[2] . '-' . $date[0] . '-' . $date[1];
+        return ($result);
     }
 
     public static function tgl_indo($date){

@@ -32,7 +32,6 @@ if (isset($_POST['Konfirmasi-rental'])) {
     $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
 
     if ($terupload) {
-        echo "Link: <a href='" . $dirUpload . $filename . "'>" . $filename . "</a>";
         if ($SadminPs->add_rental(
             [
                 'id_ps' => $id_ps,

@@ -6,7 +6,7 @@ class ControllerServis extends Database
 {
     public function h_servis($lok)
     {
-        $sql = "SELECT user.username, user.img, servis.id_servis, servis.nama_barang, servis.kerusakan, servis.waktu_submit, servis.status, servis.est_selesai 
+        $sql = "SELECT user.username, user.img, user.user_id, servis.id_servis, servis.nama_barang, servis.kerusakan, servis.waktu_submit, servis.status, servis.est_selesai 
         FROM `servis` JOIN user ON servis.id_user = user.user_id WHERE servis.lok = '$lok' AND (servis.status = 'pending' OR servis.status = 'progress') ORDER BY servis.waktu_submit DESC ;";
         $data = $this->uniquery($sql);
         return $data;

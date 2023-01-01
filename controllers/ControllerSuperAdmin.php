@@ -16,18 +16,19 @@ class ControllerSuperAdmin extends Database
         else return "0";
     }
 
-    public function ps_maintain()
+    public function ps_maintain($lok)
     {
-        $data = $this->count('id_ps', 'ps', 'status', 'perbaikan');
+        $data = $this->countlikelok('id_ps', 'ps', 'lok', $lok, 'status', 'perbaikan');
         $jumlah = $data['COUNT(id_ps)'];
         if ($jumlah != 0) return $jumlah;
         else return "0";
     }
 
-    public function ps_book()
+    public function ps_book($lok)
     {
-        $tgl = date("dmy");
-        $data = $this->counttgl('id_rental', 'rental', 'id_rental', $tgl);
+        //tgl 2023-01-26
+        $tgl = date("Y-m-d");
+        $data = $this->countlikelok('id_rental', 'rental', 'lok', $lok, 'mulai_rental', $tgl);
         $jumlah = $data['COUNT(id_rental)'];
         if ($jumlah != 0) return $jumlah;
         else return "0";
@@ -39,10 +40,10 @@ class ControllerSuperAdmin extends Database
         return $data;
     }
 
-    public function laba()
+    public function laba($lok)
     {
-        $tgl = date("dmy");
-        $data = $this->sum('bayar', 'rental', 'id_rental', $tgl);
+        $tgl = date("Y-m-d");
+        $data = $this->sumlikelok('bayar', 'rental', 'lok', $lok, 'mulai_rental', $tgl);
         $jumlah = $data['SUM(bayar)'];
         if ($jumlah != 0) return $jumlah;
         else return "0";

@@ -304,9 +304,46 @@ class Database
         // return $results;
     }
 
+    public function countlikelok($id, $table, $ro, $val, $row = '', $value)
+    {
+        $query = "SELECT COUNT($id) FROM $table WHERE $ro = '$val' AND $row LIKE '%$value%';";
+        $result = $this->conn->query($query);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
+
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
+    }
+
+
     public function select_countgroup($id, $table, $row, $value)
     {
         $query = "SELECT $id, COUNT($id) FROM $table RIGHT join jenis ON ps.jenis = jenis.id_jenis WHERE $row = $value GROUP BY $id;";
+        $result = $this->conn->query($query);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
+
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
+    }
+
+    public function sumlikelok($id, $table, $ro, $val, $row = '', $value)
+    {
+        $query = "SELECT SUM($id) FROM $table WHERE $ro = '$val' AND $row LIKE '%$value%';";
         $result = $this->conn->query($query);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {

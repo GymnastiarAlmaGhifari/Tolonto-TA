@@ -5,7 +5,7 @@
             <div class="flex flex-wrap flex-col ">
                 <div class=" flex flex-row justify-between items-center -mb-3">
                     <div class="flex gap-4 items-center">
-                        <h1 class="capitalize font-semibold">Servis</h1>
+                        <h1 class="capitalize font-semibold">Service</h1>
                         <h2><?php echo $jumlah_servis ?></h2>
                     </div>
                     <div class="flex flex-row gap-2 sm:gap-5">
@@ -58,6 +58,10 @@
                                         TANGGAL JADI
                                     </h1>
                                 </th>
+                                <th scope="col" class="text-left pl-4 ">
+                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        BIAYA
+                                    </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
                                 <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
@@ -111,6 +115,7 @@
                                             echo '-' ;
                                         } else {
                                         echo Tanggal::tgl_indo($service[$rows]['est_selesai']); } ?></td>
+                                        <td class="pl-10 text-left"><?php echo Rupiah::to($service[$rows]['bayar']) ?></td>
                                         <td class="pl-4  text-center">
                                             <button id="hapus-servis" value="<?php echo $service[$rows]['id_servis'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
                                                 <h1 class="text-neutral_900 font-semibold">hapus</h1>

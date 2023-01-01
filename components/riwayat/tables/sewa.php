@@ -34,39 +34,39 @@
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         NAMA PS
                                     </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         WAKTU ORDER
                                     </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
-                                        STATUS
-                                    </h1>
-                                </th>
-                                <th scope="col" class="text-left pl-4 ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         LAMA SEWA
                                     </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         WAKTU SEWA
                                     </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         TOTAL
                                     </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        STATUS
+                                    </h1>
+                                </th>
+                                <th scope="col" class="text-left pl-4 ">
+                                    <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         OPTIONS
                                     </h1>
                                 </th>
@@ -107,13 +107,13 @@
                                         </td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['nama_ps'] ?></td>
                                         <td class="pl-4 text-center"><?php echo date('H:i:s d/m/y', strtotime($sewa[$rows]['waktu_order'])); ?></td>
-                                        <td class="pl-4 text-center"><?php echo $sewa[$rows]['status'] ?></td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['playtime'] ?> Hari</td>
                                         <td class="pl-4  text-center"><?php //list($date, $time) = explode(" ", $sewa[$rows]['mulai_sewa']);
-                                                                               echo date('d/m/y', strtotime($sewa[$rows]['mulai_sewa'])) ; ?>
-                                                        - <?php //list($date, $time) = explode(" ", $sewa[$rows]['akhir_sewa']);
-                                                           echo date('d/m/y', strtotime($sewa[$rows]['akhir_sewa'])); ?></td>
+                                                                        echo date('d/m/y', strtotime($sewa[$rows]['mulai_sewa'])); ?>
+                                            - <?php //list($date, $time) = explode(" ", $sewa[$rows]['akhir_sewa']);
+                                                echo date('d/m/y', strtotime($sewa[$rows]['akhir_sewa'])); ?></td>
                                         <td class="pl-10 text-left"><?php echo Rupiah::to($sewa[$rows]['bayar']) ?></td>
+                                        <td class="pl-4 text-center"><?php echo $sewa[$rows]['status'] ?></td>
                                         <td class="pl-4  text-center">
                                             <button id="hapus-sewa" value="<?php echo $sewa[$rows]['id_sewa'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
                                                 <h1 class="text-neutral_900 font-semibold">hapus</h1>

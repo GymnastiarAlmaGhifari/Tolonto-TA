@@ -3,8 +3,8 @@
         <div id="atas" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
             <div class="flex flex-wrap flex-col ">
                 <div class=" flex flex-row justify-between items-center -mb-3">
-                    <div class="flex gap-4 items-center">
-                        <h1 class="capitalize font-semibold">Rental Aktif dan Pending</h1>
+                    <div class="flex gap-4 items-center justify-center">
+                        <h1 class="capitalize font-semibold xs:text-sm sm:text-base">Rental Aktif dan Pending</h1>
                         <h2><?php echo $jumlah_rent ?></h2>
                         <h1 id="text-data" class="text-2xl pl-4 ml-4 gap-4 hidden">Tidak Ada Data</h1>
                     </div>
@@ -26,40 +26,40 @@
                                     </div>
                                 </th>
                                 <th scope="col" class=" ">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         NAMA PS
                                     </h1>
                                 </th>
                                 <th scope="col" class=" ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         WAKTU ORDER
                                     </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class=" ">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
-                                        STATUS
-                                    </h1>
-                                </th>
-                                <th scope="col" class=" ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         PLAY TIME
                                     </h1>
                                 </th>
-                                    </td>
+                                </td>
                                 <th scope="col" class=" ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         WAKTU RENTAL
                                     </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         TOTAL
                                     </h1>
                                 </th>
                                 <th scope="col" class=" ">
-                                <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        STATUS
+                                    </h1>
+                                </th>
+                                <th scope="col" class=" ">
+                                    <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         OPTIONS
                                     </h1>
                                 </th>
@@ -100,30 +100,30 @@
                                         </td>
                                         <td class="text-center"><?php echo $rent[$row]['nama_ps'] ?></td>
                                         <td class="text-center"><?php echo $rent[$row]['waktu_order'] ?></td>
-                                        <td class="text-center"><?php echo $rent[$row]['status'] ?></td>
                                         <td class="text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
                                         <td class=" text-center"><?php echo date('H:i:s d/m/y', strtotime($rent[$row]['mulai_rental'])) ?>
-                                             - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
+                                        - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
                                         <td class="text-center"><?php echo $rent[$row]['payment_method'] ?> - <?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
+                                        <td class="text-center"><?php echo $rent[$row]['status'] ?></td>
                                         <td class="text-center flex flex-row justify-center whitespace-nowrap">
-                                            <?php if ($rent[$row]['status']=='incoming') { ?>
+                                            <?php if ($rent[$row]['status'] == 'incoming') { ?>
                                                 <button id="aktif_rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
                                                     <h1 class="text-neutral_900 font-semibold">Aktifkan</h1>
                                                     <svg width="19" class="mx-auto" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                          <path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.03529 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.03529 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#4FCF2F"/>
-                                                  </svg>
+                                                        <path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.03529 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.03529 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#4FCF2F" />
+                                                    </svg>
                                                 </button>
-                                                
-                                                <?php } else if ($rent[$row]['status'] =='ongoing') { ?>
-                                                    <button id="mati_rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
-                                                        <h1 class="text-neutral_900 font-semibold">Matikan</h1>
-                                                        <svg width="19" class="mx-auto" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.0353 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.0353 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#E53935"/>
-                                                                </svg>
-                                                    </button>
-                                                    
-                                                            <?php } ?>
-                                          </td>
+
+                                            <?php } else if ($rent[$row]['status'] == 'ongoing') { ?>
+                                                <button id="mati_rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
+                                                    <h1 class="text-neutral_900 font-semibold">Matikan</h1>
+                                                    <svg width="19" class="mx-auto" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.0353 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.0353 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#E53935" />
+                                                    </svg>
+                                                </button>
+
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                             <?php $row++;
                                 }

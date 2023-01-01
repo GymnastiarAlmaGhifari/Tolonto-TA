@@ -1,6 +1,4 @@
-<?php
 
-?>
 
 <!-- modal Delete  start -->
 <section>
@@ -8,7 +6,7 @@
         <!-- modal -->
         <div id="modal_aktif_sewa" class="opacity-0 transform -translate-y-full scale-150  relative bg-neutral_050 h-[300px] xs:w-[345px] sm:w-[500px] rounded-2xl flex flex-col justify-center gap-4 transition-opacity transition-transform duration-300">
             <svg width="57" class="mx-auto" height="60" viewBox="0 0 57 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M44.3294 8.61176L39.2118 13.7294C45.3176 17.4353 49.4118 24.1059 49.4118 31.7647C49.4118 37.3811 47.1807 42.7674 43.2093 46.7387C39.238 50.7101 33.8516 52.9412 28.2353 52.9412C22.6189 52.9412 17.2326 50.7101 13.2613 46.7387C9.28991 42.7674 7.05882 37.3811 7.05882 31.7647C7.05882 24.1059 11.1529 17.4353 17.2235 13.6941L12.1412 8.61176C4.8 13.6941 0 22.1647 0 31.7647C0 39.2532 2.97478 46.4349 8.26993 51.7301C13.5651 57.0252 20.7468 60 28.2353 60C35.7238 60 42.9055 57.0252 48.2007 51.7301C53.4958 46.4349 56.4706 39.2532 56.4706 31.7647C56.4706 22.1647 51.6706 13.6941 44.3294 8.61176ZM31.7647 0H24.7059V35.2941H31.7647" fill="#4FCF2F"/>
+                <path d="M44.3294 8.61176L39.2118 13.7294C45.3176 17.4353 49.4118 24.1059 49.4118 31.7647C49.4118 37.3811 47.1807 42.7674 43.2093 46.7387C39.238 50.7101 33.8516 52.9412 28.2353 52.9412C22.6189 52.9412 17.2326 50.7101 13.2613 46.7387C9.28991 42.7674 7.05882 37.3811 7.05882 31.7647C7.05882 24.1059 11.1529 17.4353 17.2235 13.6941L12.1412 8.61176C4.8 13.6941 0 22.1647 0 31.7647C0 39.2532 2.97478 46.4349 8.26993 51.7301C13.5651 57.0252 20.7468 60 28.2353 60C35.7238 60 42.9055 57.0252 48.2007 51.7301C53.4958 46.4349 56.4706 39.2532 56.4706 31.7647C56.4706 22.1647 51.6706 13.6941 44.3294 8.61176ZM31.7647 0H24.7059V35.2941H31.7647" fill="#4FCF2F" />
             </svg>
             <h1 class="font-semibold text-neutral_900 mx-auto text-xl">Apakah Anda Yakin ?</h1>
             <h2 class="mx-auto xs:px-5 sm:px-0 text-neutral_900">Apakah anda benar ingin mengaktifkan sewa dengan ID</h2>
@@ -35,75 +33,75 @@
     aktifSewa.addEventListener('submit', (e) => {
         e.preventDefault();
         const id = document.querySelector('#getAktifSewa').innerHTML;
-        const data = {
-            id
-        }
+        var idadmin = '<?php echo $_SESSION['id_admin'] ?>';
+
         var xhr = new XMLHttpRequest();
-            var url = "..\\..\\..\\aktifsewa.php";
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var json = JSON.parse(xhr.responseText);
-                    if (json.status == 'success') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text:  'Berhasil Mengaktifkan sewa dengan ID ' + id,
-                            timer: 1500,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                            didOpen: () => {
-                                Swal.showLoading()
-                                timerInterval = setInterval(() => {
-                                    const content = Swal.getHtmlContainer()
-                                    if (content) {
-                                        const b = content.querySelector('b')
-                                        if (b) {
-                                            b.textContent = Swal.getTimerLeft()
-                                        }
+        var url = "..\\..\\..\\aktifsewa.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+                if (json.status == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Berhasil Mengaktifkan sewa dengan ID ' + id,
+                        timer: 1500,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            timerInterval = setInterval(() => {
+                                const content = Swal.getHtmlContainer()
+                                if (content) {
+                                    const b = content.querySelector('b')
+                                    if (b) {
+                                        b.textContent = Swal.getTimerLeft()
                                     }
-                                }, 100)
-                            },
-                            willClose: () => {
-                                clearInterval(timerInterval)
-                                openModalAktifSewa(false);
-                                location.reload();
-                            }
-                        })
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal',
-                            text:  'Gagal Mengaktifkan sewa dengan ID ' + id,
-                            timer: 1500,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                            didOpen: () => {
-                                Swal.showLoading()
-                                timerInterval = setInterval(() => {
-                                    const content = Swal.getHtmlContainer()
-                                    if (content) {
-                                        const b = content.querySelector('b')
-                                        if (b) {
-                                            b.textContent = Swal.getTimerLeft()
-                                        }
+                                }
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            openModalAktifSewa(false);
+                            location.reload();
+                        }
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: 'Gagal Mengaktifkan sewa dengan ID ' + id,
+                        timer: 1500,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            timerInterval = setInterval(() => {
+                                const content = Swal.getHtmlContainer()
+                                if (content) {
+                                    const b = content.querySelector('b')
+                                    if (b) {
+                                        b.textContent = Swal.getTimerLeft()
                                     }
-                                }, 100)
-                            },
-                            willClose: () => {
-                                clearInterval(timerInterval)
-                                openModalAktifSewa(false);
-                                location.reload();
-                            }
-                        })
-                    }
+                                }
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                            openModalAktifSewa(false);
+                            location.reload();
+                        }
+                    })
                 }
-            };
-            var dataaktifsewa = JSON.stringify({
-                "id": id
-            });
-            xhr.send(dataaktifsewa);
+            }
+        };
+        var dataaktifsewa = JSON.stringify({
+            "id": id,
+            "idadmin": idadmin
+        });
+        xhr.send(dataaktifsewa);
     })
 
     const openModalAktifSewa = (value) => {
@@ -133,6 +131,7 @@
             openModalAktifSewa(true)
             const getAktifSewa = document.querySelector('#getAktifSewa');
             getAktifSewa.innerHTML = aktif_sewa.value;
+
         })
     })
 </script>

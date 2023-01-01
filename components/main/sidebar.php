@@ -222,7 +222,6 @@ if (Location::in(1, 'profile')) {
         link = document.getElementById('link'),
         inventory = document.getElementById('inventory'),
         servis_list = document.getElementById('servis-list'),
-        // svg = document.querySelectorAll('#svg'),
         bungkus = document.querySelectorAll('#bungkus'),
         sidebarToggle = document.getElementById('sidebarToggle');
     const backdrop = document.getElementById('backdrop');
@@ -231,46 +230,22 @@ if (Location::in(1, 'profile')) {
     const span3 = document.getElementById('span3');
     const putar = document.getElementById('putar');
 
-    // sidebarToggle.addEventListener('click', () => {
-    //     sidebar.classList.toggle('hidden');
-    //     flexing.classList.toggle('hidden');
-    //     gambar.classList.toggle('hidden');
-    //     link.classList.toggle('hidden');
-    //     servis_list.classList.toggle('hidden');
-    //     // svg.classList.toggle('hidden');
-    //     bungkus.classList.toggle('hidden');
-    //     sidebarToggle.classList.toggle('hidden');
-    //     backdrop.classList.toggle('hidden');
-    //     span1.classList.toggle('hidden');
-    //     span2.classList.toggle('hidden');
-    //     span3.classList.toggle('hidden');
-    //     putar.classList.toggle('hidden');
-    // });
-
-
     sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('active');
         text.forEach((item) => {
             item.classList.toggle('text-active');
         });
-        // svg.forEach((item) => {
-        //     item.classList.toggle('svg-active');
-        // });
 
         putar.classList.toggle('putar-active');
         span1.classList.toggle('span1-active');
         span2.classList.toggle('span2-active');
         span3.classList.toggle('span3-active');
 
-
         bungkus.forEach((item) => {
             item.classList.toggle('bungkus-active');
         });
 
-        // set timout sidebarToggle agar tidak terjadi bug
-        // setTimeout(() => {
         sidebarToggle.classList.toggle('toggle-active');
-        // }, 100);
         flexing.classList.toggle('flexing-active');
         gambar.classList.toggle('gambar-active');
 

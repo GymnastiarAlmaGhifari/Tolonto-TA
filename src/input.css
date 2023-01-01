@@ -60,7 +60,7 @@ input:valid ~ .sticker2 {
   @apply block ml-8;
 } */
 .toggle-active {
-  @apply -right-[48px] top-0 -mt-1 bg-primary_600/90 rounded-r-lg absolute w-12 h-16 justify-center my-2 duration-300 ease-in;
+  @apply -right-[48px] top-0 -mt-1 bg-primary_600/90 rounded-r-lg absolute w-12 h-16 justify-center my-2 pt-2.5 duration-300 ease-in;
 }
 .flexing-active {
   @apply flex flex-row bg-primary_600 ml-0 h-16 w-full duration-300 ease-in-out;

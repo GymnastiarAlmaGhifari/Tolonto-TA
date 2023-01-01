@@ -15,6 +15,14 @@ class Tanggal
         return ($result);
     }
 
+    public static function ChangeFormatToView($date)
+    {
+        // rubah format tanggal dari 2023-09-01 menjadi '1/9/2023' (untuk view)
+        $date = explode('-', $date);
+        $result = $date[1] . '/' . $date[2] . '/' . $date[0];
+        return ($result);
+    }
+
     public static function tgl_indo($date){
         $bulan = array (
             1 =>   'Januari',

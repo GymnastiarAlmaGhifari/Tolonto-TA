@@ -6,21 +6,75 @@ if (isset($_POST['edit_konfirmasi'])) {
     $bayar = Rupiah::clear($_POST['bayar']);
     $perbaikan = $_POST['detail_perbaikan'];
     $est_selesai = Tanggal::ChangeFormatToDb($_POST['tgl-servis-edit']);
+    $getservis = $servis->fetch_servis($id);
+    $getuser = $user->fetchuser($getservis['id_user']);
+
+    define('FCM_AUTH_KEY', 'AAAAEwaAliE:APA91bE_XBK7mxFqonChJvtlduIlU8A1g7QOD_L5oNIV0j8zi7xkP5iLY40K03ZeFMJ7x23miB_KEwxYNHDMmLhYQbYOvOzX-MVE0y56PEjt0K2kyuuYSowHjiasrvKGL2MPEQ1_BTQW');
+
+    function sendPush($to, $title, $body, $icon, $url)
+    {
+        $postdata = json_encode(
+            [
+                'notification' =>
+                [
+                    'title' => $title,
+                    'body' => $body,
+                    'icon' => $icon,
+                    'click_action' => $url
+                ],
+                'to' => $to
+            ]
+        );
+
+        $opts = array(
+            'http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-type: application/json' . "\r\n"
+                    . 'Authorization: key=' . FCM_AUTH_KEY . "\r\n",
+                'content' => $postdata
+            )
+        );
+
+        $context  = stream_context_create($opts);
+
+        $result = file_get_contents('https://fcm.googleapis.com/fcm/send', false, $context);
+        if ($result) {
+            return json_decode($result);
+        } else return false;
+    }
 
     if ($servis->update_admservis(
         [
             'bayar' => $bayar,
             'perbaikan' => $perbaikan,
             'update_time' => date('Y-m-d H:i:s')
-        ], $id )
-    ) {
+        ],
+        $id
+    )) {
         if ($servis->update_servis(
             [
                 'status' => $status,
                 'est_selesai' => $est_selesai
-            ], $id
+            ],
+            $id
         )) {
-            Redirect::to('servis');
+            if ($status == 'selesai') {
+            SendPush($getuser['fcm'], 'Servis kamu telah Selesai', 'Servis ' . $getservis['nama_barang'] . ' telah selesai, silakan datang ke toko kami untuk mengambil barang anda', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
+            } else if ($status == 'progress') {
+            SendPush($getuser['fcm'], 'Servis kamu sedang dalam proses', 'Servis ' . $getservis['nama_barang'] . ' sedang diproses oleh teknisi kami', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
+            } else {
+            SendPush($getuser['fcm'], 'Servis kamu telah dibatalkan', 'Servis ' . $getservis['nama_barang'] . ' telah dibatalkan, silakan datang ke toko kami untuk mengambil barang anda', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
+            }
+            echo "<script>
+            Swal.fire({
+                icon: 'success',
+                text: 'Berhasil Mengubah Data Servis',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            </script>";
+            header("Refresh: 1; url=servis.php");
             // alert disini
         } else {
             // ganti alert gagal update servis
@@ -47,7 +101,6 @@ if (isset($_POST['edit_konfirmasi'])) {
             location.href = 'servis';
         });
         </script>";
-
     }
 }
 ?>
@@ -78,35 +131,35 @@ if (isset($_POST['edit_konfirmasi'])) {
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         NAMA BARANG
                                     </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         KERUSAKAN
                                     </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         WAKTU SERVICE
                                     </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         STATUS
                                     </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         ESTIMASI JADI
                                     </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         OPTIONS
                                     </h1>
                                 </th>
@@ -153,10 +206,11 @@ if (isset($_POST['edit_konfirmasi'])) {
                                                                                     ?></td>
                                         <td class="pl-4 text-center"><?php echo $service[$rows]['status'] ?></td>
                                         <td id="est_jadi" class="text-center"><?php if (empty($service[$rows]['est_selesai'])) {
-                                            echo '-' ;
-                                        } else {
-                                        echo Tanggal::tgl_indo($service[$rows]['est_selesai']); } ?>
-                                        
+                                                                                    echo '-';
+                                                                                } else {
+                                                                                    echo Tanggal::tgl_indo($service[$rows]['est_selesai']);
+                                                                                } ?>
+
                                         </td>
                                         <td class="pl-4  text-center">
                                             <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
@@ -290,7 +344,6 @@ if (isset($_POST['edit_konfirmasi'])) {
         }
     }
     search.addEventListener('keyup', searchServis);
-
 </script>
 <?php require_once 'components/servis/modals/info.php'; ?>
 <?php require_once 'components/servis/modals/edit.php'; ?>

@@ -34,42 +34,42 @@
                                      </div>
                                  </th>
                                  <th scope="col" class="text-left pl-4  ">
-                                 <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
-                                        NAMA PS
-                                    </h1>
+                                     <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                         NAMA PS
+                                     </h1>
                                  </th>
                                  <th scope="col" class="text-left pl-4  ">
-                                 <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
-                                        WAKTU ORDER
-                                    </h1>
-                                </th>
+                                     <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                         WAKTU ORDER
+                                     </h1>
+                                 </th>
                                  </th>
                                  <th scope="col" class="text-left pl-4  ">
-                                 <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
-                                        STATUS
-                                    </h1>
+                                     <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                         PLAY TIME
+                                     </h1>
+                                 </th>
                                  </th>
                                  <th scope="col" class="text-left pl-4  ">
-                                 <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
-                                        PLAY TIME
-                                    </h1>
-                                </th>
+                                     <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                         RENTAL
+                                     </h1>
                                  </th>
-                                 <th scope="col" class="text-left pl-4  ">
-                                 <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
-                                        RENTAL
-                                    </h1>
-                                </th>
                                  </th>
                                  <th scope="col" class="text-left pl-4 ">
-                                 <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
-                                        TOTAL
-                                    </h1>
+                                     <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                         TOTAL
+                                     </h1>
                                  </th>
                                  <th scope="col" class="text-left pl-4  ">
-                                 <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
-                                        OPTIONS
-                                    </h1>
+                                     <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                         STATUS
+                                     </h1>
+                                 </th>
+                                 <th scope="col" class="text-left pl-4  ">
+                                     <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                         OPTIONS
+                                     </h1>
                                  </th>
                              </tr>
                          </thead>
@@ -108,11 +108,11 @@
                                          </td>
                                          <td class="pl-4 text-center"><?php echo $rent[$row]['nama_ps'] ?></td>
                                          <td class="pl-4 text-center"><?php echo date('H:i:s d/m/y', strtotime($rent[$row]['waktu_order'])) ?></td>
-                                         <td class="pl-4 text-center"><?php echo $rent[$row]['status'] ?></td>
                                          <td class="pl-4 text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
                                          <td class="pl-4  text-center"><?php echo date('H:i:s d/m/y', strtotime($rent[$row]['mulai_rental'])) ?>
-                                             - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
+                                         - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
                                          <td class="pl-10 text-left"><?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
+                                         <td class="pl-4 text-center"><?php echo $rent[$row]['status'] ?></td>
                                          <td class="pl-4  text-center">
                                              <button id="hapus-rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
                                                  <h1 class="text-neutral_900 font-semibold">hapus</h1>

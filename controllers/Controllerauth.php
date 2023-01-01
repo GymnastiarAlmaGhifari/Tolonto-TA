@@ -16,7 +16,6 @@ class Controllerauth extends Database
         }
     }
 
-
     public function cek_nama($username)
     {
         $data = $this->fetch('manage', 'username', $username);
@@ -32,19 +31,6 @@ class Controllerauth extends Database
             return false;
         }
     }
-
-    // Fetch all or a single user from database
-    // public function fetch($id = 0)
-    // {
-    //     $sql = 'SELECT * FROM manage';
-    //     if ($id != 0) {
-    //         $sql .= ' WHERE id = :id';
-    //     }
-    //     $stmt = $this->conn->prepare($sql);
-    //     $stmt->execute(['id' => $id]);
-    //     $rows = $stmt->fetchAll();
-    //     return $rows;
-    // }
 
     public function is_login()
     {
@@ -67,12 +53,6 @@ class Controllerauth extends Database
         return $this->fetch('manage');
     }
 
-    // api login
-
-
-    // insert cookie
-
-
 
     public function register($username, $password)
     {
@@ -84,28 +64,9 @@ class Controllerauth extends Database
         }
     }
 
-    // reg
-
-
-
-
-    // Insert an user in the database
-    // public function insert($name, $email, $phone)
-    // {
-    //     $sql = 'INSERT INTO users (name, email, phone) VALUES (:name, :email, :phone)';
-    //     $stmt = $this->conn->prepare($sql);
-    //     $stmt->execute(['name' => $name, 'email' => $email, 'phone' => $phone]);
-    //     return true;
-    // }
-
-
-    // Update an user in the database
-    // public function update($name, $email, $phone, $id)
-    // {
-    //     $sql = 'UPDATE users SET name = :name, email = :email, phone = :phone WHERE id = :id';
-    //     $stmt = $this->conn->prepare($sql);
-    //     $stmt->execute(['name' => $name, 'email' => $email, 'phone' => $phone, 'id' => $id]);
-    //     return true;
-    // }
+    public function fetchuser($id)
+    {
+        return $this->fetch('user', 'user_id', $id);
+    }
 
 }

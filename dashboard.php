@@ -16,9 +16,9 @@ if (Session::exists('dashboard')) {
 
 $users = $user->get_users();
 $tersedia = $Sadmin->ps_tersedia($_SESSION['loksend']);
-$maintain = $Sadmin->ps_maintain();
-$psbook = $Sadmin->ps_book();
-$laba = $Sadmin->laba();
+$maintain = $Sadmin->ps_maintain($_SESSION['loksend']);
+$psbook = $Sadmin->ps_book($_SESSION['loksend']);
+$laba = $Sadmin->laba($_SESSION['loksend']);
 $ps = $Sadmin->ps_card($_SESSION['loksend']);
 
 ?>

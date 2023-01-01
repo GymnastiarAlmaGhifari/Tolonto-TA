@@ -69,9 +69,9 @@ class ControllerBooking extends Database
         }
     }
 
-    public function aktifsewa( $val)
+    public function aktifsewa( $val, $idadmin)
     {
-        $data = $this->update('sewa', 'id_sewa', $val, ['status' => 'aktif']);
+        $data = $this->update('sewa', 'id_sewa', $val, ['status' => 'aktif', 'id_admin' => $idadmin]);
         if ($data) {
             return true;
         } else {
@@ -91,14 +91,14 @@ class ControllerBooking extends Database
 
     public function getps($id)
     {
-        $sql = "SELECT id_ps FROM rental WHERE id_rental = '$id'  ;";
+        $sql = "SELECT id_ps, id_user FROM rental WHERE id_rental = '$id'  ;";
         $data = $this->uniquery($sql);
         return $data;
     }
 
     public function getps_sewa($id)
     {
-        $sql = "SELECT id_ps FROM sewa WHERE id_sewa = '$id'  ;";
+        $sql = "SELECT id_ps, id_user FROM sewa WHERE id_sewa = '$id'  ;";
         $data = $this->uniquery($sql);
         return $data;
     }

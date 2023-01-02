@@ -102,7 +102,7 @@
                                         </td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['nama_ps'] ?></td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['playtime'] ?> Hari</td>
-                                        <td class="pl-10 text-left"><?php echo Rupiah::to($sewa[$rows]['bayar']) ?></td>
+                                        <td class="md:pl-10 xs:pl-8 xl:pl-14 2xl:pl-16 text-left"><?php echo Rupiah::to($sewa[$rows]['bayar']) ?></td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['status'] ?></td>
                                         <td class="pl-4 text-center"><?php if (empty($sewa[$rows]['id_admin'])) {
                                                                             echo "Belum ada admin";
@@ -220,18 +220,21 @@
         const filter = input.value.toUpperCase();
         const table = document.getElementById('table2');
         const tr = table.getElementsByTagName('tr');
+        const td = table.querySelectorAll('td');
+        let count = 0;
         for (let i = 0; i < tr.length; i++) {
             const td = tr[i].getElementsByTagName('td')[0];
             if (td) {
                 const txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
+                    count++;
                 } else {
                     tr[i].style.display = "none";
                 }
             }
         }
-        if (tr[1].style.display == "none") {
+        if (count == 0) {
             tidak_ditemukan2.classList.remove('hidden');
         } else {
             tidak_ditemukan2.classList.add('hidden');

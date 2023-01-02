@@ -204,26 +204,29 @@
      }
      openTable();
      const searchRiwayatRental = () => {
-         const input = document.getElementById('search');
-         const filter = input.value.toUpperCase();
-         const table = document.getElementById('table');
-         const tr = table.getElementsByTagName('tr');
-         for (let i = 0; i < tr.length; i++) {
-             const td = tr[i].getElementsByTagName('td')[0];
-             if (td) {
-                 const txtValue = td.textContent || td.innerText;
-                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                     tr[i].style.display = "";
-                 } else {
-                     tr[i].style.display = "none";
-                 }
-             }
-         }
-         if (tr[1].style.display == "none") {
-             tidak_ditemukan.classList.remove('hidden');
-         } else {
-             tidak_ditemukan.classList.add('hidden');
-         }
+        const input = document.getElementById('search');
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById('table');
+        const tr = table.getElementsByTagName('tr');
+        const td = table.querySelectorAll('td');
+        let count = 0;
+        for (let i = 0; i < tr.length; i++) {
+            const td = tr[i].getElementsByTagName('td')[0];
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    count++;
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        if (count == 0) {
+            tidak_ditemukan.classList.remove('hidden');
+        } else {
+            tidak_ditemukan.classList.add('hidden');
+        }
      }
      search.addEventListener('keyup', searchRiwayatRental);
  </script>

@@ -1,110 +1,4 @@
-<!-- table start -->
-<?php
-// if (isset($_POST['edit_konfirmasi'])) {
-//     $id = $_POST['id-servis-edit'];
-//     $status = $_POST['status'];
-//     $bayar = Rupiah::clear($_POST['bayar']);
-//     $perbaikan = $_POST['detail_perbaikan'];
-//     $est_selesai = Tanggal::ChangeFormatToDb($_POST['tgl-servis-edit']);
-//     $getservis = $servis->fetch_servis($id);
-//     $getuser = $user->fetchuser($getservis['id_user']);
 
-//     define('FCM_AUTH_KEY', 'AAAAEwaAliE:APA91bE_XBK7mxFqonChJvtlduIlU8A1g7QOD_L5oNIV0j8zi7xkP5iLY40K03ZeFMJ7x23miB_KEwxYNHDMmLhYQbYOvOzX-MVE0y56PEjt0K2kyuuYSowHjiasrvKGL2MPEQ1_BTQW');
-
-//     function sendPush($to, $title, $body, $icon, $url)
-//     {
-//         $postdata = json_encode(
-//             [
-//                 'notification' =>
-//                 [
-//                     'title' => $title,
-//                     'body' => $body,
-//                     'icon' => $icon,
-//                     'click_action' => $url
-//                 ],
-//                 'to' => $to
-//             ]
-//         );
-
-//         $opts = array(
-//             'http' =>
-//             array(
-//                 'method'  => 'POST',
-//                 'header'  => 'Content-type: application/json' . "\r\n"
-//                     . 'Authorization: key=' . FCM_AUTH_KEY . "\r\n",
-//                 'content' => $postdata
-//             )
-//         );
-
-//         $context  = stream_context_create($opts);
-
-//         $result = file_get_contents('https://fcm.googleapis.com/fcm/send', false, $context);
-//         if ($result) {
-//             return json_decode($result);
-//         } else return false;
-//     }
-
-//     if ($servis->update_admservis(
-//         [
-//             'bayar' => $bayar,
-//             'perbaikan' => $perbaikan,
-//             'update_time' => date('Y-m-d H:i:s'),
-//             'id_admin' => $_SESSION['id_admin']
-//         ],
-//         $id
-//     )) {
-//         if ($servis->update_servis(
-//             [
-//                 'status' => $status,
-//                 'est_selesai' => $est_selesai
-//             ],
-//             $id
-//         )) {
-//             if ($status == 'selesai') {
-//             SendPush($getuser['fcm'], 'Servis kamu telah Selesai', 'Servis ' . $getservis['nama_barang'] . ' telah selesai, silakan datang ke toko kami untuk mengambil barang anda', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
-//             } else if ($status == 'progress') {
-//             SendPush($getuser['fcm'], 'Servis kamu sedang dalam proses', 'Servis ' . $getservis['nama_barang'] . ' sedang diproses oleh teknisi kami', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
-//             } else {
-//             SendPush($getuser['fcm'], 'Servis kamu telah dibatalkan', 'Servis ' . $getservis['nama_barang'] . ' telah dibatalkan, silakan datang ke toko kami untuk mengambil barang anda', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
-//             }
-//             echo "<script>
-//             Swal.fire({
-//                 icon: 'success',
-//                 text: 'Berhasil Mengubah Data Servis',
-//                 showConfirmButton: false,
-//                 timer: 1500
-//             });
-//             </script>";
-//             // header("Refresh: 1; url=servis.php");
-//             // alert disini
-//         } else {
-//             // ganti alert gagal update servis
-//             echo "<script>
-//             Swal.fire({
-//                 icon: 'error',
-//                 text: 'Data gagal diubah',
-//                 showConfirmButton: false,
-//                 timer: 1500
-//             }).then(() => {
-//                 location.href = 'servis';
-//             });
-//             </script>";
-//         }
-//     } else {
-//         //ini juga
-//         echo "<script>
-//         Swal.fire({
-//             icon: 'error',
-//             text: 'Data gagal diubah',
-//             showConfirmButton: false,
-//             timer: 1500
-//         }).then(() => {
-//             location.href = 'servis';
-//         });
-//         </script>";
-//     }
-// }
-?>
 <section class="mt-24 text-neutral_050  ml-16">
     <div class="container px-6 max-w-full ">
         <div id="atas" class="bg-neutral_800 rounded-xl shadow-elevation-dark-4 px-8 duration-300 ease-in-out relative pt-5">
@@ -327,18 +221,21 @@
         const filter = input.value.toUpperCase();
         const table = document.getElementById('table');
         const tr = table.getElementsByTagName('tr');
+        const td = table.querySelectorAll('td');
+        let count = 0;
         for (let i = 0; i < tr.length; i++) {
             const td = tr[i].getElementsByTagName('td')[1];
             if (td) {
                 const txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
+                    count++;
                 } else {
                     tr[i].style.display = "none";
                 }
             }
         }
-        if (tr[1].style.display == "none") {
+        if (count == 0) {
             tidak_ditemukan.classList.remove('hidden');
         } else {
             tidak_ditemukan.classList.add('hidden');

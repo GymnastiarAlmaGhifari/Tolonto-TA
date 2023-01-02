@@ -418,30 +418,36 @@ if (isset($_POST['Konfirmasi-Admin'])) {
     }
     openTable3();
 
-    const searchAdmin = () => {
+
+
+    //  beri class hidden pada data kosong dengan rmv hidden pada data tidak ditemukan
+    const dataKosong3 = () => {
         const input = document.getElementById('search3');
         const filter = input.value.toUpperCase();
         const table = document.getElementById('table3');
         const tr = table.getElementsByTagName('tr');
+        const td = table.querySelectorAll('td');
+        let count = 0;
         for (let i = 0; i < tr.length; i++) {
             const td = tr[i].getElementsByTagName('td')[0];
             if (td) {
                 const txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
+                    count++;
                 } else {
                     tr[i].style.display = "none";
                 }
             }
         }
-        // jika data tidak ditemukan remove hidden
-        if (tr[1].style.display == "none") {
+        if (count == 0) {
             tidak_ditemukan3.classList.remove('hidden');
         } else {
             tidak_ditemukan3.classList.add('hidden');
         }
     }
-    search3.addEventListener('keyup', searchAdmin);
+    search3.addEventListener('keyup', dataKosong3);
+
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

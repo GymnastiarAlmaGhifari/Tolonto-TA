@@ -74,7 +74,7 @@
         </div>
     </div>
 </section>
-<SCript>
+<script>
     const list_ps_sewa = document.querySelector('#list-ps-sewa')
     const main_ditempat_sewa = document.querySelector('#main-ditempat-sewa')
     window.addEventListener('load', () => {
@@ -86,7 +86,7 @@
             main_ditempat_sewa.classList.remove('hidden');
         }
     })
-</SCript>
+</script>
 <?php require_once 'components/inventory/modals/sewa.php' ?>
 <?php require_once 'components/inventory/modals/edit-sewa.php' ?>
 <?php require_once 'components/inventory/modals/hapus-sewa.php' ?>

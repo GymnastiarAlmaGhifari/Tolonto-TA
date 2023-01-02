@@ -23,9 +23,9 @@ $SadminUser = new ControllerSuperadminUser();
 
 <body>
     <!--loader start  -->
-    <!-- <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
         <span class="loader-103"> </span>
-    </div> -->
+    </div>
     <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
@@ -65,6 +65,11 @@ $SadminUser = new ControllerSuperadminUser();
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
+
+    var loader = document.getElementById('loader');
+        window.addEventListener("load", () => {
+            loader.classList.add("hidden");
+        });
 
 </script>
 <?php require_once 'components/profile/modals_ubahpassword.php'; ?>

@@ -76,10 +76,10 @@
                 </div>
 
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalEditadmin(false)" name="Batal-Admin-Edit" id="Batal-Admin-Edit" value="Batal-Admin-Edit" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800"">
+                    <button type="button" title="batal" onclick="openModalEditadmin(false)" name="Batal-Admin-Edit" id="Batal-Admin-Edit" value="Batal-Admin-Edit" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800"">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-Admin-Edit" id="Konfirmasi-Admin-Edit" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">Konfirmasi</button>
+                    <button type="submit" title="konfirmasi edit admin" name="Konfirmasi-Admin-Edit" id="Konfirmasi-Admin-Edit" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">Konfirmasi</button>
                 </div>
             </form>
         </div>

@@ -65,10 +65,8 @@ if (Session::exists('riwayat')) {
             <?php require_once 'components/main/modalLogout.php'; ?>
             <?php
             require_once 'components/riwayat/tables/rental.php';
-            if ($user_data['username'] == Session::get('username') && $user_data['lok'] == 'Bojonegoro') {
-                require_once 'components/riwayat/tables/sewa.php';
-                require_once 'components/riwayat/tables/servis.php';
-            }
+            require_once 'components/riwayat/tables/sewa.php';
+            require_once 'components/riwayat/tables/servis.php';
             require_once 'components/riwayat/tables/topup.php';
             ?>
 
@@ -83,50 +81,6 @@ if (Session::exists('riwayat')) {
         window.addEventListener("load", () => {
             loader.classList.add("hidden");
         });
-
-        // sorting table by column
-        // const table = document.querySelector('.table');
-        // const tbody = table.querySelector('tbody');
-        // const thead = table.querySelector('thead');
-        // const ths = thead.querySelectorAll('th');
-        // const tds = tbody.querySelectorAll('td');
-        // const trs = tbody.querySelectorAll('tr');
-        // const tfoot = table.querySelector('tfoot');
-
-        // ths.forEach((th, index) => {
-        //     th.addEventListener('click', () => {
-        //         const sortedRows = Array.from(trs).sort((a, b) => {
-        //             const aColText = a.querySelector(`td:nth-child(${index + 1})`).textContent.trim();
-        //             const bColText = b.querySelector(`td:nth-child(${index + 1})`).textContent.trim();
-        //             return aColText > bColText ? 1 : -1;
-        //         });
-        //         tbody.append(...sortedRows);
-        //     });
-        // });
-
-        // // search table
-        // const search = document.querySelector('.search');
-        // search.addEventListener('input', (e) => {
-        //     const searchText = e.target.value;
-        //     const rows = tbody.querySelectorAll('tr');
-        //     rows.forEach((row) => {
-        //         const rowText = row.textContent;
-        //         if (rowText.toLowerCase().includes(searchText.toLowerCase())) {
-        //             row.style.display = 'table-row';
-        //         } else {
-        //             row.style.display = 'none';
-        //         }
-        //     });
-        // });
-
-        // // select all checkbox
-        // const selectAll = document.querySelector('.select-all');
-        // selectAll.addEventListener('click', (e) => {
-        //     const checkboxes = tbody.querySelectorAll('input[type="checkbox"]');
-        //     checkboxes.forEach((checkbox) => {
-        //         checkbox.checked = e.target.checked;
-        //     });
-        // });
     </script>
 
 </body>

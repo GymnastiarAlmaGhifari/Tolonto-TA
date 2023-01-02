@@ -35,6 +35,13 @@ class ControllerServis extends Database
         return $data;
     }
 
+    public function fetch_admin($id)
+    {
+
+        $data = $this->fetch('manage', 'id_admin', $id);
+        return $data;
+    }
+
     public function fetch_user($id)
     {
 

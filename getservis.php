@@ -14,6 +14,7 @@ if ($servis->fetch_servis($id)) {
     $data = $servis->fetch_servis($id);
     $user = $servis->fetch_user($data['id_user']);
     $data_servis = $servis->fetch_servis_adm($id);
+    $data_admin = $servis->fetch_admin($data_servis['id_admin']);
     if ($data['status'] == 'pending') {
         echo json_encode([
             'status' => 'success',
@@ -35,10 +36,11 @@ if ($servis->fetch_servis($id)) {
             'nama_barang' => $data['nama_barang'],
             'detail' => $data['detail'],
             'status_servis' => $data['status'],
-            'tgl' => Tanggal::ChangeFormatToView($data['est_selesai']),
+            'tgl' => Tanggal::ChangeFormatToView($data['est_selesai']),// <--- 'tgl_indo
             'selesai' => Tanggal::tgl_indo($data['est_selesai']),
             'biaya' => Rupiah::to($data_servis['bayar']),
-            'perbaikan' => $data_servis['perbaikan']
+            'perbaikan' => $data_servis['perbaikan'],
+            'nama_admin' => $data_admin['username'],
         ]);
     }
 } else {

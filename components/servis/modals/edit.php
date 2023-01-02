@@ -9,9 +9,9 @@
                     <svg class="mx-auto my-auto" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 7H11V5H9M10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM10 0C8.68678 0 7.38642 0.258658 6.17317 0.761205C4.95991 1.26375 3.85752 2.00035 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C3.85752 17.9997 4.95991 18.7362 6.17317 19.2388C7.38642 19.7413 8.68678 20 10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 8.68678 19.7413 7.38642 19.2388 6.17317C18.7362 4.95991 17.9997 3.85752 17.0711 2.92893C16.1425 2.00035 15.0401 1.26375 13.8268 0.761205C12.6136 0.258658 11.3132 0 10 0ZM9 15H11V9H9V15Z" fill="#fff" />
                     </svg>
-                    <h1 class="text-neutral_050 font-base font-noto-sans text-xl">Id <span id="id_servis_edit"></span></h1>
+                    <h1 class="text-neutral_050 font-base font-noto-sans text-xl">ID <span id="id_servis_edit"></span></h1>
                 </div>
-                <button onclick="openModalEdit(false)" class="bg-neutral_050 w-[30px] h-[30px] rounded-full mr-6 relative">
+                <button onclick="openModalEdit(false)" title="tutup modal" class="bg-neutral_050 w-[30px] h-[30px] hover:bg-neutral_200 focus:bg-neutral_400 rounded-full mr-6 relative">
                     <svg class="mx-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 6L6 18" stroke="#E53935" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M6 6L18 18" stroke="#E53935" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -40,7 +40,6 @@
                             <option id="option" value="batal" class="text-base mt-1 pt-1 bg-primary_050 cursor-pointer">Batal</option>
                         </select>
                         <i id="arrow_rental" class="fa-solid fa-caret-down  absolute right-4 mt-5"></i>
-
                     </div>
                     <div class="relative z-0 w-5/12">
                         <h1 class="text-neutral_050 font-medium mb-2 ml-3">Bayar</h1>
@@ -109,7 +108,7 @@
                     <h1 class="text-neutral_050 font-medium mb-2 ml-3">Detail Perbaikan</h1>
                     <input type="text" id="detail_perbaikan" name="detail_perbaikan" required class="block py-2.5 text-base text-neutral_900 bg-neutral_050 w-full h-14 rounded-2xl pl-3" />
                 </div>
-                <button type="submit" name="edit_konfirmasi" id="edit_konfirmasi" class=" text-neutral_050 shadow-elevation-light-2 w-11/12 h-[58px] rounded-2xl flex flex-row gap-3 justify-center items-center mt-2  bg-[#4FCF2F] hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">
+                <button title="update status servis" type="button" name="edit_konfirmasi" id="edit_konfirmasi" class=" text-neutral_050 shadow-elevation-light-2 w-11/12 h-[58px] rounded-2xl flex flex-row gap-3 justify-center items-center mt-2  bg-[#4FCF2F] hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">
                     <h1>Update Status Servis</h1>
                 </button>
         </div>
@@ -127,6 +126,7 @@
     const bayar = document.querySelector('#bayar');
     const datepickerValue = document.querySelector('#datepickerValue');
     const tgl_servis = document.querySelector('#tgl-servis-edit');
+    const edit_konfirmasi = document.querySelector('#edit_konfirmasi');
 
 
     const openModalEdit = (value) => {
@@ -188,6 +188,82 @@
             xhr.send(data);
         })
     })
+
+    edit_konfirmasi.addEventListener('click', () => {
+        const id_servis = document.getElementById('id-servis-edit');
+        const nama_barang_edit = document.getElementById('nama_barang_edit');
+        const status_edit = document.getElementById('status');
+        const bayar_edit = document.getElementById('bayar');
+        const detail_perbaikan_edit = document.getElementById('detail_perbaikan');
+        const tgl_servis = document.getElementById('tgl-servis-edit');
+        const datepickerValue = document.getElementById('datepickerValue');
+        var id_admin = '<?= $_SESSION['id_admin'] ?>'
+
+        // console log semua data
+        console.log(id_servis.value);
+        console.log(nama_barang_edit.value);
+        console.log(status_edit.value);
+        console.log(bayar_edit.value);
+        console.log(detail_perbaikan_edit.value);
+        console.log(tgl_servis.value);
+        console.log(datepickerValue.value);
+
+
+        var xhr = new XMLHttpRequest();
+        // path getuser.php in main dir
+        var url = "..\\..\\..\\updateservis.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+                if (json.status == "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Berhasil Mengupdate Servis dengan ID ' + id_servis.value + '',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        //open modals false dan reload
+                        didOpen: () => {
+                            setTimeout(() => {
+                                openModalEdit(false)
+                            }, 1500);
+                            setTimeout(() => {
+                                location.reload();
+                            }, 1600);
+                        },
+
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Gagal Mengupdate Servis dengan ID' + id_servis.value + '',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        // open modal delet admin set to false
+                        didOpen: () => {
+                            setTimeout(() => {
+                                openModalDeleteServis(false)
+                            }, 1500);
+                        },
+
+                    });
+                }
+            }
+        };
+        var data = JSON.stringify({
+            "id": id_servis.value,
+            "nama_barang": nama_barang_edit.value,
+            "status": status_edit.value,
+            "bayar": bayar_edit.value,
+            "tgl": tgl_servis.value,
+            "detail_perbaikan": detail_perbaikan_edit.value,
+            "id_admin": id_admin
+        });
+        xhr.send(data);
+    })
+
 </script>
 <script>
     const MONTH_NAMES = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];

@@ -36,8 +36,8 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
             <?php echo $text; ?>
         </h1>
         <div class="flex items-center xs:gap-x-5">
-            <div id="lokasi-drop" class="dropdown dropdown-bottom">
-                <label tabindex="0" id="lok" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
+            <div id="lokasi-drop"  class="dropdown dropdown-bottom">
+                <label tabindex="0" title="list lokasi" id="lok" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-4 text-neutral_900">
                     <svg class="hidden xs:block " width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.75 11.875C7.9212 11.875 7.12634 11.5458 6.54029 10.9597C5.95424 10.3737 5.625 9.5788 5.625 8.75C5.625 7.9212 5.95424 7.12634 6.54029 6.54029C7.12634 5.95424 7.9212 5.625 8.75 5.625C9.5788 5.625 10.3737 5.95424 10.9597 6.54029C11.5458 7.12634 11.875 7.9212 11.875 8.75C11.875 9.16038 11.7942 9.56674 11.6371 9.94589C11.4801 10.325 11.2499 10.6695 10.9597 10.9597C10.6695 11.2499 10.325 11.4801 9.94589 11.6371C9.56674 11.7942 9.16038 11.875 8.75 11.875ZM8.75 0C6.42936 0 4.20376 0.921872 2.56282 2.56282C0.921872 4.20376 0 6.42936 0 8.75C0 15.3125 8.75 25 8.75 25C8.75 25 17.5 15.3125 17.5 8.75C17.5 6.42936 16.5781 4.20376 14.9372 2.56282C13.2962 0.921872 11.0706 0 8.75 0Z" fill="#303030" />
                     </svg>
@@ -74,7 +74,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                 <span id="seconds">00</span>
             </div>
             <div id="notif-drop" class="dropdown dropdown-bottom">
-                <label tabindex="0" id="lok" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-3  md:-ml-3 -ml-4 text-neutral_900">
+                <label tabindex="0" id="lok" title="notifikasi" class="btn btn-ghost capitalize font-semibold font-noto-sans gap-2 -mr-3  md:-ml-3 -ml-4 text-neutral_900">
                     <div class="relative w-full">
                         <!-- abang abang tukang bakso -->
                         <div id="abang_abang" class="hidden w-[24px] h-[24px] rounded-full bg-error_500 absolute left-[12px] bottom-3 flex items-center justify-center">
@@ -86,8 +86,8 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                         </svg>
                     </div>
                 </label>
-                <ul tabindex="0" class="dropdown-content p-2 max-h-96 overflow-y-auto cursor-pointer space-y-2 shadow-elevation-light-4 bg-neutral_600 rounded-lg w-80 sm:w-96 z-50 text-neutral_050 -right-1 -mr-16 sm:-mr-20 overflow-x-hidden cursor-default">
-                    <div class="relative w-full pb-2 cursor-default">
+                <ul tabindex="0" class="dropdown-content p-2 max-h-96 overflow-y-auto space-y-2 shadow-elevation-light-4 bg-neutral_700 rounded-lg w-80 sm:w-96 z-50 text-neutral_050 -right-1 -mr-16 sm:-mr-20 overflow-x-hidden cursor-default">
+                    <div class="relative w-full pb-2 cursor-default ">
                         <div class="flex flex-row gap-3 items-center relative w-full ml-4 mt-2">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.1429 16.1905V17.1429H0V16.1905L1.90476 14.2857V8.57143C1.90476 5.61905 3.83809 3.01905 6.66667 2.18095C6.66667 2.08571 6.66667 2 6.66667 1.90476C6.66667 1.39959 6.86735 0.915104 7.22456 0.557892C7.58177 0.20068 8.06625 0 8.57143 0C9.0766 0 9.56109 0.20068 9.9183 0.557892C10.2755 0.915104 10.4762 1.39959 10.4762 1.90476C10.4762 2 10.4762 2.08571 10.4762 2.18095C13.3048 3.01905 15.2381 5.61905 15.2381 8.57143V14.2857L17.1429 16.1905ZM10.4762 18.0952C10.4762 18.6004 10.2755 19.0849 9.9183 19.4421C9.56109 19.7993 9.0766 20 8.57143 20C8.06625 20 7.58177 19.7993 7.22456 19.4421C6.86735 19.0849 6.66667 18.6004 6.66667 18.0952" fill="#FAFAFA" />
@@ -305,7 +305,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
             xhttp.open("GET", "notifikasi.php", true);
             xhttp.send();
 
-        }, 2000);
+        }, 1500);
 
 
     }

@@ -13,7 +13,7 @@
                           <h2><?php echo $ju ?></h2>
 
                       </div>
-                      <span id="open" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                      <span id="open" title="buka/tutup table user" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                           <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                           <span id="plus" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                       </span>
@@ -91,9 +91,9 @@
                                                                     $saldo = Rupiah::to($tb_user[$row]['saldo']);
                                                                     echo $saldo
                                                                     ?></td>
-                                          <td class=" pl-4 whitespace-nowrap mx-auto flex justify-center items-center"><?php echo $tb_user[$row]['playtime'] ?> Jam</td>
+                                          <td class=" pl-4 whitespace-nowrap text-center"><?php echo $tb_user[$row]['playtime'] ?> Jam</td>
                                           <td class="pl-4 whitespace-nowrap">
-                                              <button id="topupUser" value="<?php echo $tb_user[$row]['email'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center mx-auto justify-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
+                                              <button id="topupUser" title="topup" value="<?php echo $tb_user[$row]['email'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center mx-auto justify-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
                                                   <h1 class="text-neutral_900 font-semibold">Topup</h1>
                                                   <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                       <path d="M0 16H2.66667C2.66667 17.44 4.49333 18.6667 6.66667 18.6667C8.84 18.6667 10.6667 17.44 10.6667 16C10.6667 14.5333 9.28 14 6.34667 13.2933C3.52 12.5867 0 11.7067 0 8C0 5.61333 1.96 3.58667 4.66667 2.90667V0H8.66667V2.90667C11.3733 3.58667 13.3333 5.61333 13.3333 8H10.6667C10.6667 6.56 8.84 5.33333 6.66667 5.33333C4.49333 5.33333 2.66667 6.56 2.66667 8C2.66667 9.46667 4.05333 10 6.98667 10.7067C9.81333 11.4133 13.3333 12.2933 13.3333 16C13.3333 18.3867 11.3733 20.4133 8.66667 21.0933V24H4.66667V21.0933C1.96 20.4133 0 18.3867 0 16Z" fill="#303030" />

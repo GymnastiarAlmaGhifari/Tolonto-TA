@@ -42,7 +42,7 @@ class ControllerBooking extends Database
 
     public function getsewa($id)
     {
-        $sql = "SELECT user.username, user.hp, sewa.id_sewa, ps_sewa.id_ps, sewa.pil_kirim, sewa.latitude, sewa.longitude, sewa.address, sewa.description
+        $sql = "SELECT user.username, user.hp, sewa.id_sewa, ps_sewa.id_ps, sewa.playtime, sewa.mulai_sewa, sewa.akhir_sewa, sewa.pil_kirim, sewa.latitude, sewa.longitude, sewa.address, sewa.description
          FROM `sewa` JOIN user ON sewa.id_user = user.user_id
         JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.id_sewa = '$id' ;";
         $data = $this->uniquery($sql);

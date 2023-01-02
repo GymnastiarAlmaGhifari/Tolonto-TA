@@ -8,7 +8,7 @@
                         <h2><?php echo $jumlah_rent ?></h2>
                         <h1 id="text-data" class="text-2xl pl-4 ml-4 gap-4 hidden">Tidak Ada Data</h1>
                     </div>
-                    <span id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                    <span title="buka/tutup table rental" id="open" class="w-[36px] h-[36px] bg-neutral_050 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                         <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                         <span id="plus" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                     </span>
@@ -105,9 +105,9 @@
                                         - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
                                         <td class="text-center"><?php echo $rent[$row]['payment_method'] ?> - <?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
                                         <td class="text-center"><?php echo $rent[$row]['status'] ?></td>
-                                        <td class="text-center flex flex-row justify-center whitespace-nowrap">
+                                        <td class="text-center ">
                                             <?php if ($rent[$row]['status'] == 'incoming') { ?>
-                                                <button id="aktif_rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
+                                                <button id="aktif_rental" title="aktifkan rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center mx-auto hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
                                                     <h1 class="text-neutral_900 font-semibold">Aktifkan</h1>
                                                     <svg width="19" class="mx-auto" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.03529 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.03529 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#4FCF2F" />
@@ -115,7 +115,7 @@
                                                 </button>
 
                                             <?php } else if ($rent[$row]['status'] == 'ongoing') { ?>
-                                                <button id="mati_rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
+                                                <button id="mati_rental" title="nonaktifkan rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 rounded-full p-4 flex flex-row items-center mx-auto hover:bg-neutral_050/90 focus:bg-neutral_050/75 gap-2">
                                                     <h1 class="text-neutral_900 font-semibold">Matikan</h1>
                                                     <svg width="19" class="mx-auto" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M14.915 2.87059L13.1931 4.57647C15.2475 5.81176 16.625 8.0353 16.625 10.5882C16.625 12.4604 15.8743 14.2558 14.5381 15.5796C13.2019 16.9034 11.3897 17.6471 9.5 17.6471C7.61033 17.6471 5.79806 16.9034 4.46186 15.5796C3.12567 14.2558 2.375 12.4604 2.375 10.5882C2.375 8.0353 3.7525 5.81177 5.795 4.56471L4.085 2.87059C1.615 4.56471 0 7.38824 0 10.5882C0 13.0844 1.00089 15.4783 2.78249 17.2434C4.56408 19.0084 6.98044 20 9.5 20C12.0196 20 14.4359 19.0084 16.2175 17.2434C17.9991 15.4783 19 13.0844 19 10.5882C19 7.38824 17.385 4.56471 14.915 2.87059ZM10.6875 0H8.3125V11.7647H10.6875" fill="#E53935" />

@@ -97,6 +97,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                     ],
                     $_POST['id-admin-edit']
                 )) {
+                    Session::set('username', $_POST['username-edit']);
                     echo "<script>
                     Swal.fire({
                         icon: 'success',
@@ -129,6 +130,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                     $_POST['id-admin-edit']
                 )) // jika berhasil refresh page tanpa submit ulang
                 {
+                    Session::set('username', $_POST['username-edit']);
                     echo "<script>
                     Swal.fire({
                         icon: 'success',
@@ -160,6 +162,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                     ],
                     $_POST['id-admin-edit']
                 )) {
+                    Session::set('username', $_POST['username-edit']);
                     echo "<script>
                     Swal.fire({
                         icon: 'success',
@@ -191,6 +194,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                     $_POST['id-admin-edit']
                 ))
                 {
+                    Session::set('username', $_POST['username-edit']);
                     echo "<script>
                     Swal.fire({
                         icon: 'success',
@@ -225,14 +229,14 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         <h2><?php echo $ja ?></h2>
                     </div>
                     <div class="flex flex-row gap-2 sm:gap-5">
-                        <button id="tambahAdmin" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-3">
+                        <button id="tambahAdmin" title="tambah admin" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-3">
                             <h1 class="text-neutral_900 font-semibold hidden sm:block">Tambah Admin</h1>
                             <svg class="xs:w-[22px] sm:w-[26px]" width="28" height="18" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.746 11.25C14.494 11.25 8.00219 12.7462 8.00219 15.75V18H27.4898V15.75C27.4898 12.7462 20.998 11.25 17.746 11.25ZM6.78421 6.75V3.375H4.34826V6.75H0.694336V9H4.34826V12.375H6.78421V9H10.4381V6.75M17.746 9C19.0381 9 20.2773 8.52589 21.1909 7.68198C22.1046 6.83807 22.6179 5.69347 22.6179 4.5C22.6179 3.30653 22.1046 2.16193 21.1909 1.31802C20.2773 0.474106 19.0381 0 17.746 0C16.4539 0 15.2147 0.474106 14.301 1.31802C13.3874 2.16193 12.8741 3.30653 12.8741 4.5C12.8741 5.69347 13.3874 6.83807 14.301 7.68198C15.2147 8.52589 16.4539 9 17.746 9Z" fill="#303030" />
                             </svg>
                             </svg>
                         </button>
-                        <span id="open3" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                        <span id="open3"  title="buka/tutup table admin" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                             <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                             <span id="plus3" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                         </span>
@@ -317,14 +321,14 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                                         <td class="pl-4 text-center"><?php echo date('H:i:s d/m/y', strtotime($tb_admin[$row]['create_at'])); ?></td>
                                         <td class="pl-4  text-center">
                                             <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
-                                                <button id="editAdmin" name="editAdmin" type="submit" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
+                                                <button id="editAdmin" title="edit admin" name="editAdmin" type="submit" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
                                                     <svg width="19" class="mx-auto" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="#303030" />
                                                     </svg>
                                                     <input type="hidden" name="inputpost">
                                                 </button>
                                                 <span class="w-0.5 h-6 bg-neutral_900"></span>
-                                                <button id="deleteAdmin" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class="hover:bg-neutral_900/20 w-[35px] h-[28px] rounded-3xl">
+                                                <button id="deleteAdmin" title="hapus admin" value="<?php echo $tb_admin[$row]['id_admin'] ?>" class="hover:bg-neutral_900/20 w-[35px] h-[28px] rounded-3xl">
                                                     <svg width="16" class="mx-auto" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
                                                     </svg>

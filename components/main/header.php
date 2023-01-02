@@ -302,7 +302,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                     }
                 }
             };
-            xhttp.open("GET", "notifikasi.php", true);
+            xhttp.open("POST", "notifikasi.php", true);
             xhttp.send();
 
         }, 1500);

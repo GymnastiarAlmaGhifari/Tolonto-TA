@@ -71,6 +71,8 @@ if ($servis->update_admservis(
             SendPush($getuser['fcm'], 'Servis kamu telah Selesai', 'Servis ' . $getservis['nama_barang'] . ' telah selesai, silakan datang ke toko kami untuk mengambil barang anda', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
         } else if ($status == 'progress') {
             SendPush($getuser['fcm'], 'Servis kamu sedang dalam proses', 'Servis ' . $getservis['nama_barang'] . ' sedang diproses oleh teknisi kami', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
+        } else if ($status == 'pending') {
+            SendPush($getuser['fcm'], 'Servis kamu sedang dalam antrian', 'Servis ' . $getservis['nama_barang'] . ' sedang dalam antrian dan akan segera diperiksa oleh teknisi kami', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
         } else {
             SendPush($getuser['fcm'], 'Servis kamu telah dibatalkan', 'Servis ' . $getservis['nama_barang'] . ' telah dibatalkan, silakan datang ke toko kami untuk mengambil barang anda', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
         }

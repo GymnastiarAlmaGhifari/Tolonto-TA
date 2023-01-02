@@ -17,6 +17,8 @@ if ($booking->getsewa($id)) {
         'nama' => $datasewa[0]['username'],
         'hp' => $datasewa[0]['hp'],
         'id_ps' => $datasewa[0]['id_ps'],
+        'lama_sewa' => $datasewa[0]['playtime'],
+        'waktu_sewa' => date('d/m/y', strtotime($datasewa[0]['mulai_sewa'])) . ' - ' . date('d/m/y', strtotime($datasewa[0]['akhir_sewa'])),
         'pil_kirim' => $datasewa[0]['pil_kirim'],
         'latitude' => $datasewa[0]['latitude'],
         'longitude' => $datasewa[0]['longitude'],

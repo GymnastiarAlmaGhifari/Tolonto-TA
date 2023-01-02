@@ -136,7 +136,7 @@
                      <button type="button" onclick="openModalSewa(false)" name="Batal-sewa" id="Batal-sewa" value="Batal-sewa" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">
                          Batal
                      </button>
-                     <button type="submit" name="Konfirmasi-sewa" id="Konfirmasi-sewa" class="bg-[#4FCF2F]  text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">Konfirmasi</button>
+                     <button type="submit" title="konfirmasi tambah ps sewa" name="Konfirmasi-sewa" id="Konfirmasi-sewa" class="bg-[#4FCF2F]  text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">Konfirmasi</button>
                  </div>
              </form>
          </div>

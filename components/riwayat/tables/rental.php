@@ -9,13 +9,13 @@
                          <h2><?php echo $jumlah_rent ?></h2>
                      </div>
                      <div class="flex flex-row gap-2 sm:gap-5">
-                         <button id="hapus-semua-rental" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-3">
+                         <button id="hapus-semua-rental" title="hapus semua riwayat rental" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-3">
                              <h1 class="text-neutral_900 font-semibold hidden sm:block">Hapus Semua Rental</h1>
                              <svg width="16" class="xs:w-[22px] sm:w-[26px]" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
                              </svg>
                          </button>
-                         <span id="open" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                         <span id="open" title="buka/tutup table rental" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                              <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                              <span id="plus" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                          </span>
@@ -52,7 +52,7 @@
                                  </th>
                                  <th scope="col" class="text-left pl-4  ">
                                      <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
-                                         RENTAL
+                                         WAKTU RENTAL
                                      </h1>
                                  </th>
                                  </th>
@@ -111,10 +111,10 @@
                                          <td class="pl-4 text-center"><?php echo $rent[$row]['playtime'] ?> Jam</td>
                                          <td class="pl-4  text-center"><?php echo date('H:i:s d/m/y', strtotime($rent[$row]['mulai_rental'])) ?>
                                          - <?php echo date('H:i:s d/m/y', strtotime($rent[$row]['selesai_rental'])) ?></td>
-                                         <td class="pl-10 text-left"><?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
+                                         <td class="pl-9 text-left"><?php echo Rupiah::to($rent[$row]['bayar']) ?></td>
                                          <td class="pl-4 text-center"><?php echo $rent[$row]['status'] ?></td>
                                          <td class="pl-4  text-center">
-                                             <button id="hapus-rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
+                                             <button id="hapus-rental" title="hapus riwayat rental" value="<?php echo $rent[$row]['id_rental'] ?>" class="h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full p-4 flex flex-row items-center justify-center mx-auto gap-2">
                                                  <h1 class="text-neutral_900 font-semibold">hapus</h1>
                                                  <svg width="16" class="mx-auto" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                      <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />

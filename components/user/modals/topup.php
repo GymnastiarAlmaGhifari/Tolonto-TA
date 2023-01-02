@@ -37,10 +37,10 @@
                 </div>
 
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalTopup(false)" name="Batal-topup" id="Batal-topup" value="Batal-topup" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800"">
+                    <button type="button" onclick="openModalTopup(false)" title="batal" name="Batal-topup" id="Batal-topup" value="Batal-topup" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800"">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-topup" id="Konfirmasi-topup" class="bg-[#4FCF2F] shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80 text-neutral_050 w-5/12 h-12 rounded-2xl">Konfirmasi</button>
+                    <button type="submit" title="konfirmasi topup" name="Konfirmasi-topup" id="Konfirmasi-topup" class="bg-[#4FCF2F] shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80 text-neutral_050 w-5/12 h-12 rounded-2xl">Konfirmasi</button>
                 </div>
             </form>
         </div>

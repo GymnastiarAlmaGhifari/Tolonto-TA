@@ -154,10 +154,10 @@ if (isset($_POST['Konfirmasi-rental-edit'])) {
                 </div>
 
                 <div class="flex flex-row xs:gap-6 md:gap-[42px] mt-2 items-center justify-center w-full">
-                    <button type="button" onclick="openModalRentalEdit(false)" name="batal-rental-edit" id="batal-rental-edit" value="batal-rental-edit" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">
+                    <button title="batal" type="button" onclick="openModalRentalEdit(false)" name="batal-rental-edit" id="batal-rental-edit" value="batal-rental-edit" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800">
                         Batal
                     </button>
-                    <button type="submit" name="Konfirmasi-rental-edit" id="Konfirmasi-rental-edit" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">Konfirmasi</button>
+                    <button title="konfirmasi edit ps rental" type="submit" name="Konfirmasi-rental-edit" id="Konfirmasi-rental-edit" class="bg-[#4FCF2F] text-neutral_050 w-5/12 h-12 rounded-2xl px-4 shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80">Konfirmasi</button>
                 </div>
             </form>
         </div>

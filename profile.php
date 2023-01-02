@@ -22,9 +22,9 @@ $SadminUser = new ControllerSuperadminUser();
 
 <body>
     <!--loader start  -->
-    <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
+    <!-- <div id="loader" class="fixed bg-neutral_900 h-screen w-screen flex flex-row justify-center items-center z-50">
         <span class="loader-103"> </span>
-    </div>
+    </div> -->
     <!-- loader end -->
     <main class=" bg-neutral_900 w-full ">
         <div class="overflow-x-hidden overflow-y-auto font-noto-sans h-screen">
@@ -53,43 +53,20 @@ $SadminUser = new ControllerSuperadminUser();
                                 <h2> terakhir diupdate pada : <?php echo $user_data['update_at'] ?></h2>
                             </div>
                         </div>
-                        <button id="ubah_profile" class=" w-96 p-4 bg-[#32FC00] rounded-lg drop-shadow-2xl mt-4 font-bold" name="submin"> Edit Profile</button>
+                        <button id="ubah_profile" class=" w-96 p-4 bg-[#4FCF2F] rounded-lg drop-shadow-2xl mt-4 font-bold"> Edit Profile</button>
                     </div>
             </section>
     </main>
     <!-- fungsi multi level user       -->
-    <?php require_once 'components/profile/modals_ubahpassword.php'; ?>
-</body>
-<script>
+    
+    <script>
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
 
-    const table_admin = document.getElementById('table-admin');
-    var loader = document.getElementById('loader');
-    window.addEventListener("load", () => {
-        loader.classList.add("hidden");
-    });
-
-    imginp.onchange = evt => {
-        const [file] = imginp.files
-        if (file) {
-            //if size is more than 2mb alert
-            if (file.size > 2000000) {
-                alert('ukuran file maksimal 2mb');
-                imginp.value = '';
-                return false;
-            } else if (file.type != 'image/jpeg' && file.type != 'image/png' && file.type != 'image/jpg') {
-                alert('type file harus .jpg .png .jpeg');
-                imginp.value = '';
-                return false;
-            } else {
-                prev.src = URL.createObjectURL(file)
-
-            }
-
-        }
-    }
 </script>
+<?php require_once 'components/profile/modals_ubahpassword.php'; ?>
+</body>
+
 
 </html>

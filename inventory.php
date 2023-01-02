@@ -38,12 +38,6 @@ $errors = array();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" 
-    content="
-      worker-src blob:; 
-      child-src blob: gap:;
-      img-src 'self' blob: data:;
-      default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
     <link rel="stylesheet" href="dist/output.css">
     <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
@@ -78,9 +72,7 @@ $errors = array();
             <!-- list ps -->
             <?php require_once 'components/inventory/lists/rental.php' ?>
 
-            <?php if ($user_data['username'] == Session::get('username') && $user_data['lok'] == 'Bojonegoro') { ?>
-                <?php require_once 'components/inventory/lists/sewa.php' ?>
-            <?php } ?>
+            <?php require_once 'components/inventory/lists/sewa.php' ?>
 
         </div>
 
@@ -89,24 +81,14 @@ $errors = array();
 
     <script src="assets/js/main.js"></script>
     <script>
-
-if ( window.history.replaceState ) {
-  window.history.replaceState( null, null, window.location.href );
-}
-
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
 
         var loader = document.getElementById('loader');
         window.addEventListener("load", () => {
             loader.classList.add("hidden");
         });
-
-        const hapus = document.getElementById('hapus');
-        const alertHapus = document.getElementById('alertHapus');
-
-
-        hapus.addEventListener('click', () => {
-            alertHapus.classList.toggle('activeAlert');
-        })
     </script>
 
 </body>

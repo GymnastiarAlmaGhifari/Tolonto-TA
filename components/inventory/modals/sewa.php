@@ -47,7 +47,7 @@
                 echo "<script>
                 Swal.fire({
                     icon: 'success',
-                    text: 'Berhasil Menambah PlayStation Rental',
+                    text: 'Berhasil Menambah PlayStation Sewa',
                     showConfirmButton: false,
                     timer: 1500
                 });

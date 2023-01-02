@@ -1,6 +1,5 @@
-<?
+<?php
 if (isset($_POST['Konfirmasi-sewa-edit'])) {
-
     $namaFile = $_FILES['image-sewa-edit']['name'];
     $fileNameParts = explode('.', $namaFile);
     $ext = end($fileNameParts);
@@ -46,8 +45,6 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
                 text: 'Gagal Mengubah PlayStation Sewa',
                 showConfirmButton: false,
                 timer: 1500
-            }).then(() => {
-                location.href = 'inventory.php';
             });
             </script>";
         }
@@ -78,8 +75,6 @@ if (isset($_POST['Konfirmasi-sewa-edit'])) {
                 text: 'Gagal Mengubah PlayStation Sewa',
                 showConfirmButton: false,
                 timer: 1500
-            }).then(() => {
-                location.href = 'inventory.php';
             });
             </script>";
         }

@@ -97,7 +97,9 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                     ],
                     $_POST['id-admin-edit']
                 )) {
-                    Session::set('username', $_POST['username-edit']);
+                    if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
+                        Session::set('username', $_POST['username-edit']);
+                    }
                     echo "<script>
                     Swal.fire({
                         icon: 'success',
@@ -130,7 +132,9 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                     $_POST['id-admin-edit']
                 )) // jika berhasil refresh page tanpa submit ulang
                 {
-                    Session::set('username', $_POST['username-edit']);
+                    if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
+                        Session::set('username', $_POST['username-edit']);
+                    }
                     echo "<script>
                     Swal.fire({
                         icon: 'success',
@@ -162,7 +166,9 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                     ],
                     $_POST['id-admin-edit']
                 )) {
-                    Session::set('username', $_POST['username-edit']);
+                    if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
+                        Session::set('username', $_POST['username-edit']);
+                    }
                     echo "<script>
                     Swal.fire({
                         icon: 'success',
@@ -194,7 +200,9 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                     $_POST['id-admin-edit']
                 ))
                 {
-                    Session::set('username', $_POST['username-edit']);
+                    if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
+                        Session::set('username', $_POST['username-edit']);
+                    }
                     echo "<script>
                     Swal.fire({
                         icon: 'success',

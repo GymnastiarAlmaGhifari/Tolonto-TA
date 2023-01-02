@@ -23,12 +23,18 @@ class ControllerRiwayat extends Database
 
     public function h_sewa($lok)
     {
-        $sql = "SELECT user.username, user.user_id, user.img, sewa.id_sewa, ps_sewa.nama_ps, sewa.status, sewa.waktu_order, 
-        sewa.playtime, sewa.mulai_sewa, sewa.akhir_sewa, sewa.bayar, manage.username AS username_admin FROM `sewa` JOIN user ON sewa.id_user = user.user_id 
-        JOIN manage ON sewa.id_admin = manage.id_admin
-        JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps WHERE sewa.lok = '$lok' ORDER BY sewa.waktu_order DESC ;";
+        $sql = "SELECT user.username, user.user_id, user.img, sewa.id_sewa, ps_sewa.nama_ps, sewa.status, 
+        sewa.waktu_order, sewa.playtime, sewa.mulai_sewa, sewa.akhir_sewa, sewa.bayar, sewa.id_admin 
+        FROM `sewa` JOIN user ON sewa.id_user = user.user_id JOIN ps_sewa ON sewa.id_ps = ps_sewa.id_ps 
+        WHERE sewa.lok = '$lok' ORDER BY sewa.waktu_order DESC; ;";
         $data = $this->uniquery($sql);
         return $data;
+    }
+
+    public function fetch_username_admin($id)
+    {
+        $data = $this->select('username', 'manage', 'id_admin', $id);
+        return $data[0]['username'];
     }
 
     public function jumlah_sewa($lok)

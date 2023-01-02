@@ -16,6 +16,7 @@ $SadminUser = new ControllerSuperadminUser();
     <link rel="stylesheet" href="dist/output.css">
     <link rel="stylesheet" href="assets/styles/animation.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
+    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Profile</title>
 </head>
@@ -50,7 +51,8 @@ $SadminUser = new ControllerSuperadminUser();
                                 <h1 class="font-bold text-2xl "><?php echo $user_data['username']; ?></h1>
                             </div>
                             <div class="flex flex-row gap-4 justify-center">
-                                <h2> terakhir diupdate pada : <?php echo $user_data['update_at'] ?></h2>
+                                
+                                <h2> terakhir diupdate pada : <?php echo date('H:i:s', strtotime($user_data['update_at'])) . ' - ' . Tanggal::tgl_indo($user_data['update_at']) ?></h2>
                             </div>
                         </div>
                         <button id="ubah_profile" class=" w-96 p-4 bg-[#4FCF2F] rounded-lg drop-shadow-2xl mt-4 font-bold"> Edit Profile</button>

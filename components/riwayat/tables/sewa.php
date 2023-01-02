@@ -44,22 +44,22 @@
                                     </h1>
                                 </th>
                                 </th>
-                            </th>
-                            <th scope="col" class="text-left pl-4">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
-                                    TOTAL
-                                </h1>
-                            </th>
-                            <th scope="col" class="text-left pl-4 ">
-                                <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
-                                    STATUS
-                                </h1>
-                            </th>
-                            <th scope="col" class="text-left pl-4 ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
-                                    ADMIN
-                                </h1>
-                            </th>
+                                </th>
+                                <th scope="col" class="text-left pl-4">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        TOTAL
+                                    </h1>
+                                </th>
+                                <th scope="col" class="text-left pl-4 ">
+                                    <h1 class="bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                        STATUS
+                                    </h1>
+                                </th>
+                                <th scope="col" class="text-left pl-4 ">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                        ADMIN
+                                    </h1>
+                                </th>
                                 <th scope="col" class="text-left pl-4 ">
                                     <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         OPTIONS
@@ -102,17 +102,21 @@
                                         </td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['nama_ps'] ?></td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['playtime'] ?> Hari</td>
-                                        <td class="pl-10 text-left"><?php echo Rupiah::to($sewa[$rows]['bayar']) ?></td>
+                                        <td class="md:pl-10 xs:pl-8 xl:pl-14 2xl:pl-16 text-left"><?php echo Rupiah::to($sewa[$rows]['bayar']) ?></td>
                                         <td class="pl-4 text-center"><?php echo $sewa[$rows]['status'] ?></td>
-                                        <td class="pl-4 text-center"><?php echo $sewa[$rows]['username_admin']; ?></td>
+                                        <td class="pl-4 text-center"><?php if (empty($sewa[$rows]['id_admin'])) {
+                                                                            echo "Belum ada admin";
+                                                                        } else {
+                                                                            echo $riwayat->fetch_username_admin($sewa[$rows]['id_admin']);
+                                                                        } ?></td>
                                         <td class="pl-4  text-center">
                                             <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
-                                            <button id="sewa_info" title="info riwayat sewa" name="sewa_info" value="<?php echo $sewa[$rows]['id_sewa'] ?>" type="submit" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
+                                                <button id="sewa_info" title="info riwayat sewa" name="sewa_info" value="<?php echo $sewa[$rows]['id_sewa'] ?>" type="submit" class=" hover:bg-neutral_900/20  w-[35px] h-[28px] rounded-3xl">
                                                     <svg class="mx-auto" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M9 7H11V5H9M10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM10 0C8.68678 0 7.38642 0.258658 6.17317 0.761205C4.95991 1.26375 3.85752 2.00035 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C3.85752 17.9997 4.95991 18.7362 6.17317 19.2388C7.38642 19.7413 8.68678 20 10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 8.68678 19.7413 7.38642 19.2388 6.17317C18.7362 4.95991 17.9997 3.85752 17.0711 2.92893C16.1425 2.00035 15.0401 1.26375 13.8268 0.761205C12.6136 0.258658 11.3132 0 10 0ZM9 15H11V9H9V15Z" fill="#303030" />
                                                     </svg>
                                                 </button>
-                                            <span class="w-0.5 h-6 bg-neutral_900"></span>
+                                                <span class="w-0.5 h-6 bg-neutral_900"></span>
                                                 <button id="hapus-sewa" title="hapus riwayat sewa" value="<?php echo $sewa[$rows]['id_sewa'] ?>" class="hover:bg-neutral_900/20 w-[35px] h-[28px] rounded-3xl">
                                                     <svg width="16" class="mx-auto" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M5 0V1H0V3H1V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H13C13.5304 18 14.0391 17.7893 14.4142 17.4142C14.7893 17.0391 15 16.5304 15 16V3H16V1H11V0H5ZM3 3H13V16H3V3ZM5 5V14H7V5H5ZM9 5V14H11V5H9Z" fill="#E53935" />
@@ -216,18 +220,21 @@
         const filter = input.value.toUpperCase();
         const table = document.getElementById('table2');
         const tr = table.getElementsByTagName('tr');
+        const td = table.querySelectorAll('td');
+        let count = 0;
         for (let i = 0; i < tr.length; i++) {
             const td = tr[i].getElementsByTagName('td')[0];
             if (td) {
                 const txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
+                    count++;
                 } else {
                     tr[i].style.display = "none";
                 }
             }
         }
-        if (tr[1].style.display == "none") {
+        if (count == 0) {
             tidak_ditemukan2.classList.remove('hidden');
         } else {
             tidak_ditemukan2.classList.add('hidden');

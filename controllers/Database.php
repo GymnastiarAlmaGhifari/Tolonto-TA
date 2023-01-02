@@ -103,6 +103,25 @@ class Database
         return false;
     }
 
+    //function select 1 column data
+    public function select($id, $table, $row, $val)
+    {
+
+        $query = "SELECT $id FROM $table WHERE $row = '$val' ;";
+        $result = $this->conn->query($query);
+
+        while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
+            return $row;
+            $results[] = $row;
+        }
+        if (isset($results)) {
+            return $results;
+        } else {
+            return false;
+        }
+        // return $results;
+    }
+
 
     public function fetch($table, $row = '', $value = '')
     {

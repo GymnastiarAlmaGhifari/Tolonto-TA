@@ -1,12 +1,10 @@
 <!-- modal Ubah Profile start -->
 <?php
-
-
 if (isset($_POST['konfirmasi-password'])) {
     $id = $_POST['id_admin'];
-$nama = $_POST['username'];
-$pwbaru = $_POST['password_baru'];
-$kpwbaru = $_POST['konfirmasi_password_baru'];
+    $nama = $_POST['username'];
+    $pwbaru = $_POST['password_baru'];
+    $kpwbaru = $_POST['konfirmasi_password_baru'];
     if ($pwbaru == $kpwbaru) {
         $namaFile = $_FILES['image-Admin']['name'];
         $fileNameParts = explode('.', $namaFile);

@@ -105,7 +105,7 @@
                                                                                     echo $valid_date;
 
                                                                                     ?></td>
-                                        <td class="md:pl-10 xs:pl-8 text-left"><?php echo Rupiah::to($service[$rows]['bayar']) ?></td>
+                                        <td class="md:pl-10 xs:pl-8 xl:pl-14 2xl:pl-16 text-left"><?php echo Rupiah::to($service[$rows]['bayar']) ?></td>
                                         <td class="pl-4 text-center"><?php echo $service[$rows]['status'] ?></td>
                                         <td class="pl-4  text-center">
                                         <div class="h-[36px] w-[91px] bg-neutral_050 rounded-full p-2 flex flex-row items-center justify-center mx-auto gap-2 ">
@@ -220,18 +220,21 @@
         const filter = input.value.toUpperCase();
         const table = document.getElementById('table4');
         const tr = table.getElementsByTagName('tr');
+        const td = table.querySelectorAll('td');
+        let count = 0;
         for (let i = 0; i < tr.length; i++) {
             const td = tr[i].getElementsByTagName('td')[0];
             if (td) {
                 const txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
+                    count++;
                 } else {
                     tr[i].style.display = "none";
                 }
             }
         }
-        if (tr[1].style.display == "none") {
+        if (count == 0) {
             tidak_ditemukan4.classList.remove('hidden');
         } else {
             tidak_ditemukan4.classList.add('hidden');

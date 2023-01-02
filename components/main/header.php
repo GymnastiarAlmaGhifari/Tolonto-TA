@@ -254,7 +254,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                                                 <h1 class="text-neutral_900">ID ${json[row].id}</h1>
                                             </div>
                                             <div class="flex flex-row items-center gap-x-2">
-                                                <h1 class="text-neutral_900">${json[row].playtime} jam</h1>
+                                                <h1 class="text-neutral_900">${json[row].playtime} Hari</h1>
                                                 <i class="fa-regular fa-clock text-neutral_900"></i>
                                             </div>
                             </div>
@@ -302,7 +302,7 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                     }
                 }
             };
-            xhttp.open("GET", "notifikasi.php", true);
+            xhttp.open("POST", "notifikasi.php", true);
             xhttp.send();
 
         }, 1500);

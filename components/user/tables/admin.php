@@ -418,9 +418,6 @@ if (isset($_POST['Konfirmasi-Admin'])) {
     }
     openTable3();
 
-
-
-    //  beri class hidden pada data kosong dengan rmv hidden pada data tidak ditemukan
     const dataKosong3 = () => {
         const input = document.getElementById('search3');
         const filter = input.value.toUpperCase();

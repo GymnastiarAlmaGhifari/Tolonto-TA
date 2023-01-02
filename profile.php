@@ -51,7 +51,8 @@ $SadminUser = new ControllerSuperadminUser();
                                 <h1 class="font-bold text-2xl "><?php echo $user_data['username']; ?></h1>
                             </div>
                             <div class="flex flex-row gap-4 justify-center">
-                                <h2> terakhir diupdate pada : <?php echo $user_data['update_at'] ?></h2>
+                                
+                                <h2> terakhir diupdate pada : <?php echo date('H:i:s', strtotime($user_data['update_at'])) . ' - ' . Tanggal::tgl_indo($user_data['update_at']) ?></h2>
                             </div>
                         </div>
                         <button id="ubah_profile" class=" w-96 p-4 bg-[#4FCF2F] rounded-lg drop-shadow-2xl mt-4 font-bold"> Edit Profile</button>

@@ -41,25 +41,28 @@ function sendPush($to, $title, $body, $icon, $url)
 $booking = new ControllerBooking();
 
 $rentals = $booking->getrentalincoming();
-echo json_encode($rentals);
 date_default_timezone_set('Asia/Jakarta');
-
-foreach ($rentals as $rental) {
-    $id = $rental['id_rental'];
-    if (date('Y-m-d H:i:s') >= $rental['mulai_rental']) {
-        if ($booking->aktifrental($id)) {
-            $idps = $booking->getps($id);
-            $fcm = $user->fetchuser($idps[0]['id_user']);
-            if ($booking->aktifps($idps[0]['id_ps'])) {
-                echo json_encode(['status' => 'success']);
-                sendPush($fcm['fcm'], 'Rental telah diaktifkan', 'Rental Anda dengan Kode Rental ' . $id . ' telah aktif, Selamat Bermain!', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
+//cek apakah ada rental yang akan dimulai
+if ($rentals) {
+    foreach ($rentals as $rental) {
+        $id = $rental['id_rental'];
+        if (date('Y-m-d H:i:s') >= $rental['mulai_rental']) {
+            if ($booking->aktifrental($id)) {
+                $idps = $booking->getps($id);
+                $fcm = $user->fetchuser($idps[0]['id_user']);
+                if ($booking->aktifps($idps[0]['id_ps'])) {
+                    echo json_encode(['status' => 'success']);
+                    sendPush($fcm['fcm'], 'Rental telah diaktifkan', 'Rental Anda dengan Kode Rental ' . $id . ' telah aktif, Selamat Bermain!', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
+                } else {
+                    echo json_encode(['status' => 'gagal mengaktifkan ps']);
+                }
             } else {
-                echo json_encode(['status' => 'gagal mengaktifkan ps']);
+                echo json_encode(['status' => 'gagal mengaktifkan rental']);
             }
         } else {
-            echo json_encode(['status' => 'gagal mengaktifkan rental']);
+            echo json_encode(['status' => 'belum waktunya', 'date' => date('Y-m-d H:i:s')]);
         }
-    } else {
-        echo json_encode(['status' => 'belum waktunya', 'date' => date('Y-m-d H:i:s')]);
     }
+} else {
+    echo json_encode(['status' => 'tidak ada rental yang akan dimulai']);
 }

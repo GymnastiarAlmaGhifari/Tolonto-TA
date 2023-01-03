@@ -40,29 +40,37 @@ function sendPush($to, $title, $body, $icon, $url)
 
 $booking = new ControllerBooking();
 
-$rentals = $booking->getrentalongoing();
-date_default_timezone_set('Asia/Jakarta');
+$psaktif = $booking->cekpsaktif();
 
-if ($rentals) {
-foreach ($rentals as $rental) {
-    $id = $rental['id_rental'];
-    if (date('Y-m-d H:i:s') >= $rental['selesai_rental']) {
-        if ($booking->matirental($id)) {
-            $idps = $booking->getps($id);
-            $fcm = $user->fetchuser($idps[0]['id_user']);
-            if ($booking->matips($idps[0]['id_ps'])) {
-                echo json_encode(['status' => 'success']);
-                sendPush($fcm['fcm'], 'Rental telah selesai', 'Rental Anda dengan Kode Rental ' . $id . ' telah selesai, Terima Kasih!', 'https://tolonto.okifirsyah.com/public/brand-logo.png', '');
+if($psaktif) {
+    $j_ongoing = $booking->countrentalongoing($psaktif[0]['id_ps']);
+    if ($j_ongoing == 0) {
+        foreach ($psaktif as $ps) {
+            $idps = $ps['id_ps'];
+            if ($booking->matips($idps)) {
+                echo json_encode(['status_psmati' => 'success']);
             } else {
-                echo json_encode(['status' => 'gagal nonaktifkan ps']);
+                echo json_encode(['status_psmati' => 'gagal nonaktifkan ps']);
             }
-        } else {
-            echo json_encode(['status' => 'gagal nonaktifkan rental']);
         }
     } else {
-        echo json_encode(['status' => 'belum waktunya']);
+        echo json_encode(['status_psmati' => 'tidak ada ps ongoing']);
     }
-}
 } else {
-echo json_encode(['status' => 'tidak ada rental']);
+    echo json_encode(['status_psmati' => 'tidak ada ps aktif']);
+}
+
+$rental = $booking->getrentalongoing();
+echo json_encode($rental);
+
+if($rental) {
+    //aktifkan ps
+    foreach ($rental as $r) {
+        $idps = $r['id_ps'];
+        if ($booking->aktifps($idps)) {
+            echo json_encode(['status_psaktif' => 'success']);
+        } else {
+            echo json_encode(['status_psaktif' => 'gagal aktifkan ps']);
+        }
+    }
 }

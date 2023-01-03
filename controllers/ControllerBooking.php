@@ -143,4 +143,16 @@ class ControllerBooking extends Database
         }
     }
 
+    public function getrentalincoming()
+    {
+        $data = $this->fetchwhere('rental', 'status', 'incoming');
+        return $data;
+    }
+
+    public function getrentalongoing()
+    {
+        $data = $this->fetchwhere('rental', 'status', 'ongoing');
+        return $data;
+    }
+
 }

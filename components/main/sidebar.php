@@ -258,34 +258,39 @@ if (Location::in(1, 'profile')) {
 
 
 
-    <?php if (Location::in(1, 'dashboard') && !$user->is_superAdmin(Session::get('username'))) { ?>
+    <?php if (Location::in(1, 'dashboard')) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'inventory') && !$user->is_superAdmin(Session::get('username'))) { ?>
+    <?php if (Location::in(1, 'inventory')) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'booking') && !$user->is_superAdmin(Session::get('username'))) { ?>
+    <?php if (Location::in(1, 'booking')) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'riwayat') && !$user->is_superAdmin(Session::get('username'))) { ?>
+    <?php if (Location::in(1, 'riwayat')) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'user') && !$user->is_superAdmin(Session::get('username')) ) { ?>
+    <?php if (Location::in(1, 'user') ) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         } 
     <?php } ?>
-    <?php if (Location::in(1, 'profile') && !$user->is_superAdmin(Session::get('username')) ) { ?>
+    <?php if (Location::in(1, 'profile') ) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
+        } 
+    <?php } ?>
+    <?php if (Location::in(1, 'servis') ) { ?>
+        if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
+            window.location.href = 'dashboard.php';
         } 
     <?php } ?>
 </script>

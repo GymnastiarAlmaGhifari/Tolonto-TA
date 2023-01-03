@@ -73,6 +73,8 @@ class Database
 
                 if ($stmt->execute()) {
                     return true;
+                } else {
+                    return false;
                 }
             }
         }
@@ -244,8 +246,9 @@ class Database
 
     public function is_aktif($idps = '')
     {
-        $query = "SELECT rental.playtime, rental.bayar, user.username 
-        FROM rental JOIN user ON rental.id_user = user.user_id WHERE id_ps = '$idps' ;";
+            $query = "SELECT rental.playtime, rental.bayar, user.username 
+            FROM rental JOIN user ON rental.id_user = user.user_id WHERE id_ps = '$idps' 
+            AND rental.status = 'ongoing' ORDER BY rental.selesai_rental DESC ;";
         $result = $this->conn->query($query);
 
         while ($row = $result->fetchAll(PDO::FETCH_BOTH)) {

@@ -19,20 +19,32 @@ if (isset($_POST['Konfirmasi-Admin'])) {
     $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
 
     if ($terupload) {
-        if ($SadminUser->add_admin(
-            [
-                'id_admin' => $idadmin,
-                'username' => $_POST['username'],
-                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-                'create_at' => date('Y-m-d H:i:s'),
-                'update_at' => date('Y-m-d H:i:s'),
-                'level' => $_POST['level-Admin'],
-                'lok' => $_POST['lokasi-Admin'],
-                'img' => $dirUpload . $filename
-            ]
-        )) // jika berhasil refresh page tanpa submit ulang
-        {
+        if ($SadminUser->fetchnameadmin($_POST['username'])) {
             echo "<script>
+            Swal.fire({
+                icon: 'error',
+                text: 'Username Sudah Ada',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            </script>";
+            header("Refresh: 1; url=user.php");
+        } else {
+
+            if ($SadminUser->add_admin(
+                [
+                    'id_admin' => $idadmin,
+                    'username' => $_POST['username'],
+                    'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                    'create_at' => date('Y-m-d H:i:s'),
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-Admin'],
+                    'lok' => $_POST['lokasi-Admin'],
+                    'img' => $dirUpload . $filename
+                ]
+            )) // jika berhasil refresh page tanpa submit ulang
+            {
+                echo "<script>
             Swal.fire({
                 icon: 'success',
                 text: 'Berhasil Menambah Admin',
@@ -40,14 +52,14 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                 timer: 1500
             });
             </script>";
-            // back to user.php saat berhasil tambah admin
-            // header("Location: {$_SERVER['PHP_SELF']}"); 
+                // back to user.php saat berhasil tambah admin
+                // header("Location: {$_SERVER['PHP_SELF']}"); 
 
 
-             header("Refresh: 1; url=user.php");
-        } else {
-            // gagal tambah admin
-            echo "<script>
+                header("Refresh: 1; url=user.php");
+            } else {
+                // gagal tambah admin
+                echo "<script>
             Swal.fire({
                 icon: 'error',
                 text: 'Gagal Menambah Admin',
@@ -55,6 +67,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                 timer: 1500
             });
             </script>";
+            }
         }
     } else {
         echo "<script>
@@ -66,41 +79,42 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         });
         </script>";
     }
-}    if (isset($_POST['Konfirmasi-Admin-Edit'])) {
-        // $idmin = $_POST['id-admin-edit'];
-        // echo $idmin;
-    
-        $namaFile = $_FILES['image-Admin-edit']['name'];
-        $fileNameParts = explode('.', $namaFile);
-        $ext = end($fileNameParts);
-        $namaSementara = $_FILES['image-Admin-edit']['tmp_name'];
-        // create folder if not exist
-        if (!file_exists('img/admin')) {
-            mkdir('img/admin', 0777, true);
-        }
-        $dirUpload = "img/admin/";
-        // genearete datetimestamp
-        $filename = $_POST['id-admin-edit'] . '.' . $ext;
-    
-        // pindahkan file 
-        $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
-    
-        if ($terupload) {
-            if ($_POST['password-edit'] == '') {
-                if ($SadminUser->update_admin(
-                    [
-                        'username' => $_POST['username-edit'],
-                        'update_at' => date('Y-m-d H:i:s'),
-                        'level' => $_POST['level-edit'],
-                        'lok' => $_POST['lokasi-edit'],
-                        'img' => $dirUpload . $filename
-                    ],
-                    $_POST['id-admin-edit']
-                )) {
-                    if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
-                        Session::set('username', $_POST['username-edit']);
-                    }
-                    echo "<script>
+}
+if (isset($_POST['Konfirmasi-Admin-Edit'])) {
+    // $idmin = $_POST['id-admin-edit'];
+    // echo $idmin;
+
+    $namaFile = $_FILES['image-Admin-edit']['name'];
+    $fileNameParts = explode('.', $namaFile);
+    $ext = end($fileNameParts);
+    $namaSementara = $_FILES['image-Admin-edit']['tmp_name'];
+    // create folder if not exist
+    if (!file_exists('img/admin')) {
+        mkdir('img/admin', 0777, true);
+    }
+    $dirUpload = "img/admin/";
+    // genearete datetimestamp
+    $filename = $_POST['id-admin-edit'] . '.' . $ext;
+
+    // pindahkan file 
+    $terupload = move_uploaded_file($namaSementara, $dirUpload . $filename);
+
+    if ($terupload) {
+        if ($_POST['password-edit'] == '') {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                    'img' => $dirUpload . $filename
+                ],
+                $_POST['id-admin-edit']
+            )) {
+                if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
+                    Session::set('username', $_POST['username-edit']);
+                }
+                echo "<script>
                     Swal.fire({
                         icon: 'success',
                         text: 'Berhasil Ubah Admin',
@@ -108,44 +122,9 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500s
                     });
                     </script>";
-                     header("Refresh: 1; url=user.php");
-                } else {
-                    echo "<script>
-                    Swal.fire({
-                        icon: 'error',
-                        text: 'Gagal Ubah Admin',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    </script>";
-                }
+                header("Refresh: 1; url=user.php");
             } else {
-                if ($SadminUser->update_admin(
-                    [
-                        'username' => $_POST['username-edit'],
-                        'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
-                        'update_at' => date('Y-m-d H:i:s'),
-                        'level' => $_POST['level-edit'],
-                        'lok' => $_POST['lokasi-edit'],
-                        'img' => $dirUpload . $filename
-                    ],
-                    $_POST['id-admin-edit']
-                )) // jika berhasil refresh page tanpa submit ulang
-                {
-                    if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
-                        Session::set('username', $_POST['username-edit']);
-                    }
-                    echo "<script>
-                    Swal.fire({
-                        icon: 'success',
-                        text: 'Berhasil Ubah Admin',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    </script>";
-                     header("Refresh: 1; url=user.php");
-                } else {
-                    echo "<script>
+                echo "<script>
                     Swal.fire({
                         icon: 'error',
                         text: 'Gagal Ubah Admin',
@@ -153,57 +132,24 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500
                     });
                     </script>";
-                }
             }
         } else {
-            if ($_POST['password-edit'] == '') {
-                if ($SadminUser->update_admin(
-                    [
-                        'username' => $_POST['username-edit'],
-                        'update_at' => date('Y-m-d H:i:s'),
-                        'level' => $_POST['level-edit'],
-                        'lok' => $_POST['lokasi-edit'],
-                    ],
-                    $_POST['id-admin-edit']
-                )) {
-                    if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
-                        Session::set('username', $_POST['username-edit']);
-                    }
-                    echo "<script>
-                    Swal.fire({
-                        icon: 'success',
-                        text: 'Berhasil Ubah Admin',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    </script>";
-                     header("Refresh: 1; url=user.php");
-                } else {
-                    echo "<script>
-                    Swal.fire({
-                        icon: 'error',
-                        text: 'Gagal Ubah Admin',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    </script>";
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                    'img' => $dirUpload . $filename
+                ],
+                $_POST['id-admin-edit']
+            )) // jika berhasil refresh page tanpa submit ulang
+            {
+                if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
+                    Session::set('username', $_POST['username-edit']);
                 }
-            } else {
-                if ($SadminUser->update_admin(
-                    [
-                        'username' => $_POST['username-edit'],
-                        'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
-                        'update_at' => date('Y-m-d H:i:s'),
-                        'level' => $_POST['level-edit'],
-                        'lok' => $_POST['lokasi-edit'],
-                    ],
-                    $_POST['id-admin-edit']
-                ))
-                {
-                    if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
-                        Session::set('username', $_POST['username-edit']);
-                    }
-                    echo "<script>
+                echo "<script>
                     Swal.fire({
                         icon: 'success',
                         text: 'Berhasil Ubah Admin',
@@ -211,9 +157,9 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500
                     });
                     </script>";
-                    header("Refresh: 1; url=user.php");
-                } else {
-                    echo "<script>
+                header("Refresh: 1; url=user.php");
+            } else {
+                echo "<script>
                     Swal.fire({
                         icon: 'error',
                         text: 'Gagal Ubah Admin',
@@ -221,9 +167,76 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                         timer: 1500
                     });
                     </script>";
-                                }
             }
         }
+    } else {
+        if ($_POST['password-edit'] == '') {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                ],
+                $_POST['id-admin-edit']
+            )) {
+                if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
+                    Session::set('username', $_POST['username-edit']);
+                }
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Berhasil Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+                header("Refresh: 1; url=user.php");
+            } else {
+                echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Gagal Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+            }
+        } else {
+            if ($SadminUser->update_admin(
+                [
+                    'username' => $_POST['username-edit'],
+                    'password' => password_hash($_POST['password-edit'], PASSWORD_DEFAULT),
+                    'update_at' => date('Y-m-d H:i:s'),
+                    'level' => $_POST['level-edit'],
+                    'lok' => $_POST['lokasi-edit'],
+                ],
+                $_POST['id-admin-edit']
+            )) {
+                if ($_POST['id-admin-edit'] == Session::get('id_admin')) {
+                    Session::set('username', $_POST['username-edit']);
+                }
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Berhasil Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+                header("Refresh: 1; url=user.php");
+            } else {
+                echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Gagal Ubah Admin',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    </script>";
+            }
+        }
+    }
 }
 ?>
 <!-- table start -->
@@ -244,7 +257,7 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                             </svg>
                             </svg>
                         </button>
-                        <span id="open3"  title="buka/tutup table admin" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
+                        <span id="open3" title="buka/tutup table admin" class="w-[36px] h-[36px] bg-neutral_050 hover:bg-neutral_050/90 focus:bg-neutral_050/75 rounded-full flex items-center justify-center cursor-pointer -mr-2">
                             <span class="bg-neutral_900 w-3.5 h-[2px] rounded-full"></span>
                             <span id="plus3" class="bg-neutral_800 w-[2px] h-3.5 absolute rounded-full"></span>
                         </span>
@@ -263,29 +276,29 @@ if (isset($_POST['Konfirmasi-Admin'])) {
                                     </div>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         LEVEL
                                     </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         LOKASI
                                     </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-44 rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex justify-center mx-auto w-44 rounded-2xl">
                                         TERAHIR DIUBAH
                                     </h1>
                                 </th>
                                 </th>
                                 <th scope="col" class="text-left pl-4 ">
-                                <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
+                                    <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
                                         DIBUAT PADA
                                     </h1>
                                 </th>
                                 <th scope="col" class="text-left pl-4  ">
-                                <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
+                                    <h1 class="bg-transparent text-neutral_050 p-1 flex justify-center mx-auto w-32 rounded-2xl">
                                         OPTIONS
                                     </h1>
                                 </th>
@@ -452,7 +465,6 @@ if (isset($_POST['Konfirmasi-Admin'])) {
         }
     }
     search3.addEventListener('keyup', dataKosong3);
-
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

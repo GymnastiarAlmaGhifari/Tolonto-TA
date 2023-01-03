@@ -1,5 +1,6 @@
 <!-- sidebar -->
 <?php
+$user_data = $user->get_data(Session::get('username'));
 
 if (Location::in(1, 'dashboard')) {
     $active = "bg-primary_700 rounded-2xl";
@@ -257,32 +258,32 @@ if (Location::in(1, 'profile')) {
 
 
 
-    <?php if (Location::in(1, 'dashboard')) { ?>
+    <?php if (Location::in(1, 'dashboard') && !$user->is_superAdmin(Session::get('username'))) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'inventory')) { ?>
+    <?php if (Location::in(1, 'inventory') && !$user->is_superAdmin(Session::get('username'))) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'booking')) { ?>
+    <?php if (Location::in(1, 'booking') && !$user->is_superAdmin(Session::get('username'))) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'riwayat')) { ?>
+    <?php if (Location::in(1, 'riwayat') && !$user->is_superAdmin(Session::get('username'))) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         }
     <?php } ?>
-    <?php if (Location::in(1, 'user') ) { ?>
+    <?php if (Location::in(1, 'user') && !$user->is_superAdmin(Session::get('username')) ) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         } 
     <?php } ?>
-    <?php if (Location::in(1, 'profile') ) { ?>
+    <?php if (Location::in(1, 'profile') && !$user->is_superAdmin(Session::get('username')) ) { ?>
         if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
             servis_list.classList.add('hidden');
         } 

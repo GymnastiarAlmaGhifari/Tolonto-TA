@@ -454,6 +454,19 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
         lokasiUser.classList.add('text-neutral_900');
         lokasiUser.classList.add('font-noto-sans');
     <?php } ?>
+    <?php if (Location::in(1, 'servis') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'Servis';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
 </script>
 <script>
     const clock = () => {

@@ -58,8 +58,7 @@ class ControllerSuperadminUser extends Database
     public function add_admin($fields = [])
     {
 
-        $data = $this->insert('manage', $fields);
-        if ($data) {
+        if ($this->insert('manage', $fields)) {
             return true;
         } else {
             return false;
@@ -79,6 +78,12 @@ class ControllerSuperadminUser extends Database
     public function fetchadmin($id)
     {
         $data = $this->fetch('manage', 'id_admin', $id);
+        return $data;
+    }
+
+    public function fetchnameadmin($id)
+    {
+        $data = $this->fetch('manage', 'username', $id);
         return $data;
     }
 

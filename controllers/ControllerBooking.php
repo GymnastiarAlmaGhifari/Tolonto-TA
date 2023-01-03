@@ -143,4 +143,31 @@ class ControllerBooking extends Database
         }
     }
 
+    public function getrentalincoming()
+    {
+        $data = $this->fetchwhere('rental', 'status', 'incoming');
+        return $data;
+    }
+
+    public function getrentalongoing()
+    {
+        $data = $this->fetchwhere('rental', 'status', 'ongoing');
+        return $data;
+    }
+
+    public function cekpsaktif()
+    {
+        $data = $this->fetchwhere('ps', 'status', 'aktif');
+        return $data;
+    }
+
+    public function countrentalongoing($id)
+    {
+        $sql = "SELECT COUNT(id_rental) as jrent FROM `rental` WHERE status = 'ongoing' AND id_ps = '$id' ;";
+        $data = $this->uniquerycount($sql);
+        $jumlah=$data['jrent'];
+        if ($jumlah != 0) return $jumlah;
+            else return "0";
+    }
+
 }

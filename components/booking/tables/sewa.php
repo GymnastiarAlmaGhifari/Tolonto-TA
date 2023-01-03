@@ -44,7 +44,7 @@
                                             </td>
                                             <th scope="col" class=" ">
                                                 <h1 class="cursor-default bg-neutral_050 text-neutral_900 p-1 flex px-3 justify-center mx-auto w-[164px] rounded-2xl">
-                                                    WAKTU RENTAL
+                                                    WAKTU SEWA
                                                 </h1>
                                             </th>
                                             </td>

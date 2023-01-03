@@ -108,8 +108,11 @@
                                     location.reload();
                                 }, 1600);
                             },
-
                      });
+
+                    // hapus data di tabel
+                    // const row = document.querySelector(`#row-${id}`);
+                    // row.remove();
                  } else {
                      //  tidak dapat menghapus diri sendiri
                      Swal.fire({

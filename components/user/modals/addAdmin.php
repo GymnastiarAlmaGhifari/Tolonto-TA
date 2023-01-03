@@ -78,7 +78,7 @@
                     <button type="button" title="batal" onclick="openModalAddadmin(false)" name="Batal-Admin" id="Batal-Admin" value="Batal-Admin" class="bg-error_600 text-neutral_050 w-5/12 h-12 rounded-2xl shadow-elevation-light-2 hover:bg-error_300 focus:bg-error_800"">
                         Batal
                     </button>
-                    <button type="submit" title="konfirmasi tambah admin" name="Konfirmasi-Admin" id="Konfirmasi-Admin" class="bg-[#4FCF2F] shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80 text-neutral_050 w-5/12 h-12 rounded-2xl">Konfirmasi</button>
+                    <button type=" submit" title="konfirmasi tambah admin" name="Konfirmasi-Admin" id="Konfirmasi-Admin" class="bg-[#4FCF2F] shadow-elevation-light-2  hover:bg-[#81FF62] focus:bg-[#4FCF2F]/80 text-neutral_050 w-5/12 h-12 rounded-2xl">Konfirmasi</button>
                 </div>
             </form>
 
@@ -94,6 +94,7 @@
     const tambahAdmin = document.querySelector('#tambahAdmin');
     const imginp = document.getElementById('image-Admin');
     const prev = document.getElementById('preview-Admin');
+
 
     imginp.onchange = evt => {
         const [file] = imginp.files
@@ -155,5 +156,34 @@
 
     tambahAdmin.addEventListener('click', () => {
         openModalAddadmin(true)
+    });
+
+    document.getElementById("level-Admin").addEventListener("change", function() {
+        var selectedValue = this.value;
+        if (selectedValue === "1") {
+            document.getElementById("lokasi-Admin").value = 'Bojonegoro';
+            document.getElementById("lokasi-Admin").readOnly = true;
+            // hapus option yang memiliki value selain bojonegoro berada di select-Admin querySelectorAll
+            var select = document.getElementById("lokasi-Admin");
+            var options = select.querySelectorAll('option');
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].value != 'Bojonegoro') {
+                    options[i].classList.add("hidden");
+                }
+            }
+
+
+        } else {
+            document.getElementById("lokasi-Admin").readOnly = false;
+            var select = document.getElementById("lokasi-Admin");
+            var options = select.querySelectorAll('option');
+                        // munclkan semua option yang telah dihapus berada di select-Admin querySelectorAll 
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].value != 'Bojonegoro') {
+                    options[i].classList.remove("hidden");
+                }
+                
+            }
+        }
     });
 </script>

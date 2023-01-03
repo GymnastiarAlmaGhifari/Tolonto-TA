@@ -168,12 +168,15 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
 
                             const options = {
                                 hour: '2-digit',
-                                minute: '2-digit',  
+                                minute: '2-digit',
                                 second: '2-digit',
                                 hourCycle: 'h24',
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: '2-digit',
                             };
 
-                            const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+                            const formattedDate = new Intl.DateTimeFormat('id', options).format(date);
                             // formattedDate will be a string in the format "H:i:s d/m/y", e.g. "00:00:00 30/12/2022"
                             // buat list_notif baru
                             list_notif.innerHTML += ` <li onclick="redirect_to()" class="bg-neutral_050 active:bg-primary_500 active:text-neutral_900  hover:bg-neutral_200 rounded-sm  py-2 font-noto-sans text-base  mt-3 cursor-pointer">
@@ -224,9 +227,12 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
                                 minute: '2-digit',
                                 second: '2-digit',
                                 hourCycle: 'h24',
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: '2-digit',
                             };
 
-                            const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+                            const formattedDate = new Intl.DateTimeFormat('id', options).format(date);
                             // formattedDate will be a string in the format "H:i:s d/m/y", e.g. "00:00:00 30/12/2022"
                             // buat list_notif baru
                             list_notif.innerHTML += ` <li onclick="redirect_to()" class="bg-neutral_050 active:bg-primary_500 active:text-neutral_900  hover:bg-neutral_200 rounded-sm  py-2 font-noto-sans text-base  mt-3 cursor-pointer">
@@ -425,6 +431,19 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
     <?php if (Location::in(1, 'riwayat') && !$user->is_superAdmin(Session::get('username'))) { ?>
         // set tempat with text dashboard
         tempat.innerHTML = 'History';
+        lokasi_drop.classList.add('hidden');
+        lokasiUser.classList.remove('hidden');
+        lokasiUser.classList.add('flex');
+        lokasiUser.classList.add('items-center');
+        lokasiUser.classList.add('justify-center');
+        lokasiUser.classList.add('gap-2');
+        lokasiUser.classList.add('font-semibold');
+        lokasiUser.classList.add('text-neutral_900');
+        lokasiUser.classList.add('font-noto-sans');
+    <?php } ?>
+    <?php if (Location::in(1, 'profile') && !$user->is_superAdmin(Session::get('username'))) { ?>
+        // set tempat with text dashboard
+        tempat.innerHTML = 'Profile';
         lokasi_drop.classList.add('hidden');
         lokasiUser.classList.remove('hidden');
         lokasiUser.classList.add('flex');

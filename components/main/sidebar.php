@@ -282,4 +282,9 @@ if (Location::in(1, 'profile')) {
             servis_list.classList.add('hidden');
         } 
     <?php } ?>
+    <?php if (Location::in(1, 'profile') ) { ?>
+        if (res !== "Bojonegoro" || localStorage.getItem('lokasi') !== "Bojonegoro") {
+            servis_list.classList.add('hidden');
+        } 
+    <?php } ?>
 </script>

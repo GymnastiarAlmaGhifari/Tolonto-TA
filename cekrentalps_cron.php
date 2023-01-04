@@ -43,25 +43,46 @@ $booking = new ControllerBooking();
 $psaktif = $booking->cekpsaktif();
 
 if ($psaktif) {
-    $j_ongoing = $booking->countrentalongoing($psaktif[0]['id_ps']);
-    if ($j_ongoing == 0) {
-        foreach ($psaktif as $ps) {
+    foreach ($psaktif as $ps) {
+        $j_ongoing = $booking->countrentalongoing($ps['id_ps']);
+        if ($j_ongoing == 0) {
             $idps = $ps['id_ps'];
             if ($booking->matips($idps)) {
                 echo json_encode(['status_psmati' => 'success']);
             } else {
                 echo json_encode(['status_psmati' => 'gagal nonaktifkan ps']);
             }
+        } else {
+            echo json_encode(['status_psmati' => 'PS masih ongoing']);
         }
-    } else {
-        echo json_encode(['status_psmati' => 'tidak ada ps ongoing']);
     }
 } else {
     echo json_encode(['status_psmati' => 'tidak ada ps aktif']);
 }
 
+$pssewaaktif = $booking->cekpssewaaktif();
+
+if ($pssewaaktif) {
+    foreach ($pssewaaktif as $pssewa) {
+        echo "wakwka" . $pssewa['id_ps'];
+        $j_aktif = $booking->countsewaongoing($pssewa['id_ps']);
+        echo "wakwka" . $j_aktif;
+        if ($j_aktif == 0) {
+            $idpssewa = $pssewa['id_ps'];
+            if ($booking->matips_sewa($idpssewa)) {
+                echo json_encode(['status_pssewamati' => 'success']);
+            } else {
+                echo json_encode(['status_pssewamati' => 'gagal nonaktifkan ps']);
+            }
+        } else {
+            echo json_encode(['status_pssewamati' => 'PS sewa masih ongoing']);
+        }
+    }
+} else {
+    echo json_encode(['status_pssewamati' => 'tidak ada ps sewa aktif']);
+}
+
 $rental = $booking->getrentalongoing();
-echo json_encode($rental);
 
 if ($rental) {
     //aktifkan ps
@@ -78,4 +99,6 @@ if ($rental) {
             echo json_encode(['status_psaktif' => 'tidak ada ps nonaktif']);
         }
     }
+} else {
+    echo json_encode(['status_psaktif' => 'tidak ada rental ongoing']);
 }

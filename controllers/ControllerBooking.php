@@ -161,13 +161,26 @@ class ControllerBooking extends Database
         return $data;
     }
 
+    public function cekpssewaaktif()
+    {
+        $data = $this->fetchwhere('ps_sewa', 'status', 'aktif');
+        return $data;
+    }
+
     public function countrentalongoing($id)
     {
         $sql = "SELECT COUNT(id_rental) as jrent FROM `rental` WHERE status = 'ongoing' AND id_ps = '$id' ;";
         $data = $this->uniquerycount($sql);
         $jumlah=$data['jrent'];
-        if ($jumlah != 0) return $jumlah;
-            else return "0";
+        return $jumlah;
+    }
+
+    public function countsewaongoing($id)
+    {
+        $sql = "SELECT COUNT(id_sewa) as jsewa FROM `sewa` WHERE status = 'aktif' AND id_ps = '$id' ;";
+        $data = $this->uniquerycount($sql);
+        $jumlah=$data['jsewa'];
+        return $jumlah;
     }
 
     public function getpsnonaktif($id)

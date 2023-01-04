@@ -313,6 +313,42 @@ $lokasi = "<script>document.write(localStorage.getItem('lokasi'));</script>";
 
         }, 1500);
 
+        setInterval(function() {
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                }
+            };
+            xhttp.open("POST", "aktifrental_cron.php", true);
+            xhttp.send();
+
+        }, 30000);
+
+        setInterval(function() {
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                }
+            };
+            xhttp.open("POST", "matirental_cron.php", true);
+            xhttp.send();
+
+        }, 30000);
+
+        setInterval(function() {
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                }
+            };
+            xhttp.open("POST", "cekrentalps_cron.php", true);
+            xhttp.send();
+
+        }, 30000);
+
 
     }
     loadDoc();

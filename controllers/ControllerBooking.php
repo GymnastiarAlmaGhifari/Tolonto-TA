@@ -170,4 +170,11 @@ class ControllerBooking extends Database
             else return "0";
     }
 
+    public function getpsnonaktif($id)
+    {
+        $sql = "SELECT id_ps, status FROM ps WHERE id_ps = '$id' AND status = 'tidak aktif' ;";
+        $data = $this->uniquery($sql);
+        return $data;
+    }
+
 }

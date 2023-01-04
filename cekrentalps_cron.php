@@ -42,7 +42,7 @@ $booking = new ControllerBooking();
 
 $psaktif = $booking->cekpsaktif();
 
-if($psaktif) {
+if ($psaktif) {
     $j_ongoing = $booking->countrentalongoing($psaktif[0]['id_ps']);
     if ($j_ongoing == 0) {
         foreach ($psaktif as $ps) {
@@ -63,14 +63,19 @@ if($psaktif) {
 $rental = $booking->getrentalongoing();
 echo json_encode($rental);
 
-if($rental) {
+if ($rental) {
     //aktifkan ps
     foreach ($rental as $r) {
         $idps = $r['id_ps'];
-        if ($booking->aktifps($idps)) {
-            echo json_encode(['status_psaktif' => 'success']);
+        $psnonaktif = $booking->getpsnonaktif($idps);
+        if ($psnonaktif) {
+            if ($booking->aktifps($idps)) {
+                echo json_encode(['status_psaktif' => 'success']);
+            } else {
+                echo json_encode(['status_psaktif' => 'gagal aktifkan ps']);
+            }
         } else {
-            echo json_encode(['status_psaktif' => 'gagal aktifkan ps']);
+            echo json_encode(['status_psaktif' => 'tidak ada ps nonaktif']);
         }
     }
 }

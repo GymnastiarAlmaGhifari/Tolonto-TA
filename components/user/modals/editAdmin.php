@@ -181,5 +181,34 @@
             });
             xhr.send(data);
         })
-    })
+    });
+
+    document.getElementById("level-edit").addEventListener("change", function() {
+        var selectedValue = this.value;
+        if (selectedValue === "1") {
+            document.getElementById("lokasi-edit").value = 'Bojonegoro';
+            document.getElementById("lokasi-edit").readOnly = true;
+            // hapus option yang memiliki value selain bojonegoro berada di select-Admin querySelectorAll
+            var select = document.getElementById("lokasi-edit");
+            var options = select.querySelectorAll('option');
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].value != 'Bojonegoro') {
+                    options[i].classList.add("hidden");
+                }
+            }
+
+
+        } else {
+            document.getElementById("lokasi-edit").readOnly = false;
+            var select = document.getElementById("lokasi-edit");
+            var options = select.querySelectorAll('option');
+                        // munclkan semua option yang telah dihapus berada di select-Admin querySelectorAll 
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].value != 'Bojonegoro') {
+                    options[i].classList.remove("hidden");
+                }
+                
+            }
+        }
+    });
 </script>
